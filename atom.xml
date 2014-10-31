@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[梦断代码]]></title>
+  <subtitle><![CDATA[乐天知命]]></subtitle>
+  <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
+  <link href="http://blog.zhanghai.me"/>
+  <updated>2014-10-31T06:44:21.852Z</updated>
+  <id>http://blog.zhanghai.me/</id>
+  <author>
+    <name><![CDATA[张海]]></name>
+  </author>
+  <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[你好，世界！]]></title>
+    <link href="http://blog.zhanghai.me/hello-world/"/>
+    <id>http://blog.zhanghai.me/hello-world/</id>
+    <published>2014-10-31T05:45:52.000Z</published>
+    <updated>2014-10-31T05:46:24.000Z</updated>
+    <content type="html"><![CDATA[<p>你好，世界！</p>
+]]></content>
+  </entry>
+</feed>
