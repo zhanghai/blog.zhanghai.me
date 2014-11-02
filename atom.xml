@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2014-11-02T12:20:50.112Z</updated>
+  <updated>2014-11-02T14:23:02.744Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -15,7 +15,7 @@
     <link href="http://blog.zhanghai.me/android-design-guide/"/>
     <id>http://blog.zhanghai.me/android-design-guide/</id>
     <published>2014-11-02T10:23:15.000Z</published>
-    <updated>2014-11-02T12:20:19.000Z</updated>
+    <updated>2014-11-02T14:22:43.000Z</updated>
     <content type="html"><![CDATA[<p><img src="/android-design-guide/android_design_elements_landing.png" alt="欢迎"></p>
 <h2 id="前言">前言</h2>
 <p>这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考<a href="http://developer.android.com/design/index.html" target="_blank" rel="external">官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="external">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
@@ -62,7 +62,7 @@
 <li><p>让用户能够自定义应用，同时记住用户的偏好，让用户拥有在应用中的归属感。</p>
 </li>
 <li><p>为用户作出最佳的决定，但总是让用户最终确认。</p>
-<p>  <img src="/android-design-guide/android_principles_delight.png" alt="自动打开 Beam"></p>
+<p>  <img src="/android-design-guide/android_principles_decide_for_me.png" alt="自动打开 Beam"></p>
 <p>  用户是为了方便生活而使用应用，因此，应用应当尽力简化用户的操作，根据当前的状态，提供最合理的默认值。同时，为了不让用户感到惊讶或受到侵犯，在执行决定之前总是征求他们的同意。</p>
 </li>
 <li><p>只在必要时提醒用户，避免打扰。</p>
