@@ -4,12 +4,86 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2014-10-31T07:16:03.401Z</updated>
+  <updated>2014-11-02T11:59:18.442Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[Android 设计简明教程]]></title>
+    <link href="http://blog.zhanghai.me/android-design-guide/"/>
+    <id>http://blog.zhanghai.me/android-design-guide/</id>
+    <published>2014-11-02T10:23:15.000Z</published>
+    <updated>2014-11-02T11:58:15.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="/android-design-guide/android_design_elements_landing.png" alt="欢迎"></p>
+<h2 id="前言">前言</h2>
+<p>这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考<a href="http://developer.android.com/design/index.html" target="_blank" rel="external">官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="external">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
+<p>在今年，Google 已经推出了新的 <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">Material 设计标准</a>，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。</p>
+<a id="more"></a>
+
+<h2 id="设计原则"><a href="http://developer.android.com/design/get-started/principles.html" target="_blank" rel="external">设计原则</a></h2>
+<p>为了对设计中的问题解决提供指导，设计师结合他们所追求的设计理念和实际的设计案例，制定了一系列的设计原则。</p>
+<p>在学习 Android 设计的过程中，首先接触 Android 官方推荐的设计原则，可以在设计过程的初期就逐渐熟悉并得到运用。在这以后，经过长期的观察与设计，大家也可以渐渐总结出自己的设计原则。总而言之，有所坚持，有所变通。</p>
+<p>以下是一些官方设计原则页面上提及的设计规范，但按照我个人的设计理念，重新进行了组织。</p>
+<ol>
+<li><p>一致</p>
+<p> 一致性是众多原则所共同要求的特性。一致性符合人的认知习惯，无论是编程还是设计，一致性都能够带来清晰与优雅。</p>
+<ul>
+<li><p>保持应用界面的一致性。相似的内容应当拥有相似的布局，使得用户得以通过经验快速熟悉应用。</p>
+</li>
+<li><p>保持应用逻辑的一致性。相似的界面元素应当拥有相似的功能，使得用户能够举一反三，至于熟练。</p>
+<p>  <img src="/android-design-guide/android_principles_looks_same.png" alt="一致的 ActionBar 导航"></p>
+<p>  如上图 ActionBar 中的导航，都是通过点击 Spinner（下拉列表框）来更改主界面正在浏览内容的分类。</p>
+</li>
+<li><p>保持与 Android 界面的一致性。其他平台（如 iOS）拥有自己的设计风格，但 Android 也有着自己的视觉语言，即拟物。Android 用户在应用中期待的是和平台一致的用户界面，因此，请不要将其他平台的设计元素强行引入，相反，寻找并使用 Android 的表现方式。所谓入乡随俗。</p>
+<p>  <img src="/android-design-guide/holo_everywhere.png" alt="Holo 主题中的控件"></p>
+<p>  以上是 Holo 主题中的一些控件的展示，可以注意到整体设计风格与 iOS 的不同。这在之后会继续讨论。</p>
+</li>
+</ul>
+</li>
+<li><p>简约</p>
+<p> 简约不是简陋，而是合适简化与强大功能的结合。</p>
+<ul>
+<li><p>拟真的界面元素，经过适当的抽象在实物与概念化间达到平衡，给用户以熟悉而优雅的体验。</p>
+<p>  <img src="/android-design-guide/android_principles_real_objects.png" alt="拟真的交互方式"></p>
+<p>  拟真是 Android 的核心设计理念，这在之后的 Android 风格介绍中会进行说明。</p>
+</li>
+<li><p>简化界面的布局，突出常用的功能，而将不常用者隐藏于菜单等二级界面，降低用户的认知负担，加快学习进程。</p>
+<p>  <img src="/android-design-guide/android_principles_information_when_need_it.png" alt="将功能装入 Action Overflow"></p>
+</li>
+<li><p>适当而不过度的界面动画，可以为操作过程增加趣味，同时间接说明界面间的逻辑关系。</p>
+<p>  <img src="/android-design-guide/android_principles_delight.png" alt="将功能装入 Action Overflow"></p>
+</li>
+</ul>
+</li>
+<li><p>友好</p>
+<ul>
+<li><p>让用户能够自定义应用，同时记住用户的偏好，让用户拥有在应用中的归属感。</p>
+</li>
+<li><p>为用户作出最佳的决定，但总是让用户最终确认。</p>
+<p>  <img src="/android-design-guide/android_principles_delight.png" alt="自动打开 Beam"></p>
+<p>  用户是为了方便生活而使用应用，因此，应用应当尽力简化用户的操作，根据当前的状态，提供最合理的默认值。同时，为了不让用户感到惊讶或受到侵犯，在执行决定之前总是征求他们的同意。</p>
+</li>
+<li><p>只在必要时提醒用户，避免打扰。</p>
+<p>  <img src="/android-design-guide/android_principles_information_when_need_it.png" alt="日历在时间开始前的提醒可以接受"></p>
+<p>  Android 中的通知栏是经常被国产应用滥用的地方，常常可以见到许多广告或是不需要的信息被应用探出在此。我自己，以及一批用户对此都深恶痛绝。</p>
+<p>  通知栏中仅仅应当出现用户自己设定的内容，或者是真正具有足够重要性的内容。并且即便如此，还是应当尽量减少应用弹出的通知，避免对用户的打扰。</p>
+</li>
+<li><p>友好地提示用户的错误，隐藏技术细节，突出重要信息，提供易于操作的解决方案。</p>
+<p>  <img src="/android-design-guide/android_principles_keep_it_brief.png" alt="简洁明了的提示文本"></p>
+<p>  <img src="/android-design-guide/android_principles_error.png" alt="清晰详细的操作指示"></p>
+</li>
+<li><p>给予用户操作及时的反馈，让用户放心，并获得成就感。</p>
+<p>  <img src="/android-design-guide/android_confirm_ack_acknowledge.png" alt="日历应用创建事件后的提醒"></p>
+<p>  例如在修改成功后使用 Toast 提示，以及使用向导而非直接让用户填写长表单。关于进行提醒反馈的时机将会在之后进行详细讨论。</p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    <category scheme="http://blog.zhanghai.me/categories/design/" term="设计"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[你好，世界！]]></title>
     <link href="http://blog.zhanghai.me/hello-world/"/>
