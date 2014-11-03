@@ -292,6 +292,9 @@ figure.highlight .code {
   border-left: 1px solid #fff;
   color: #666;
 }
+figure.highlight .line {
+  height: 20px;
+}
 pre .comment,
 pre .template_comment,
 pre .diff .header,
