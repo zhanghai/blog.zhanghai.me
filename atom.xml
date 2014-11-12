@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2014-11-12T12:16:51.387Z</updated>
+  <updated>2014-11-12T12:19:49.660Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -15,7 +15,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2014-11-12T12:16:22.000Z</updated>
+    <updated>2014-11-12T12:18:45.000Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2>
 <ul>
@@ -188,7 +188,7 @@
 <h2 id="Google_URL_in_Google_Chrome">Google URL in Google Chrome</h2>
 <p>Open <code>~/.config/google-chrome/Default/Preferences</code>, edit <code>last_known_google_url</code> and <code>last_prompted_google_url</code>.</p>
 <h2 id="Render_GFM">Render GFM</h2>
-<p>Bash script from <a href="https://gist.github.com/jaburns/33d88f4aa99bb4ab6ad6" target="_blank" rel="external">jaburn’s gist</a></p>
+<p>Bash script from <a href="https://gist.github.com/jaburns/33d88f4aa99bb4ab6ad6" target="_blank" rel="external">jaburn’s gist</a>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/usr/bin/env bash</span></div><div class="line"></div><div class="line">data=<span class="string">"<span class="variable">$(</span></span></div><div class="line">    cat "$1" \</div><div class="line">      | sed 's/"/\\"/g' \</div><div class="line">      | sed ':a;N;$!ba;s/\n/\\n/g' \</div><div class="line">)"</div><div class="line"></div><div class="line"><span class="keyword">if</span> [[ -z <span class="string">"<span class="variable">$2</span>"</span> ]]; <span class="keyword">then</span></div><div class="line">    context=<span class="string">''</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    context=<span class="string">",\"context\":\"<span class="variable">$2</span>\""</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">'&lt;!DOCTYPE html&gt;'</span></div><div class="line"><span class="built_in">echo</span> <span class="string">'&lt;html&gt;&lt;head&gt;&lt;style&gt;'</span></div><div class="line">curl <span class="operator">-s</span> <span class="string">'https://gist.githubusercontent.com/andyferra/2554919/raw/2e66cabdafe1c9a7f354aa2ebf5bc38265e638e5/github.css'</span></div><div class="line"><span class="built_in">echo</span> <span class="string">'&lt;/style&gt;&lt;/head&gt;&lt;body&gt;'</span></div><div class="line">curl <span class="operator">-s</span> --data <span class="string">"{\"text\":\"<span class="variable">$data</span>\",\"mode\":\"gfm\"<span class="variable">$context</span>}"</span> <span class="string">'https://api.github.com/markdown'</span></div><div class="line"><span class="built_in">echo</span> <span class="string">'&lt;/body&gt;&lt;/html&gt;'</span></div></pre></td></tr></table></figure>
 
 ]]></content>
