@@ -4,12 +4,28 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2014-11-26T12:41:11.661Z</updated>
+  <updated>2014-12-16T11:43:45.087Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[求是潮手机站 Android 客户端 V3]]></title>
+    <link href="http://blog.zhanghai.me/qsc-mobile-android-v3/"/>
+    <id>http://blog.zhanghai.me/qsc-mobile-android-v3/</id>
+    <published>2014-12-16T11:33:35.000Z</published>
+    <updated>2014-12-16T11:42:07.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="/qsc-mobile-android-v3/0.png" alt="0"></p>
+<a id="more"></a>
+
+<p><img src="/qsc-mobile-android-v3/1.png" alt="1"></p>
+<p><img src="/qsc-mobile-android-v3/2.png" alt="2"></p>
+<p><img src="/qsc-mobile-android-v3/3.png" alt="3"></p>
+<p><img src="/qsc-mobile-android-v3/4.png" alt="4"></p>
+]]></content>
+    <category scheme="http://blog.zhanghai.me/categories/career/" term="职业"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Arch Linux Notes]]></title>
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
@@ -216,7 +232,7 @@
     <link href="http://blog.zhanghai.me/android-design-guide/"/>
     <id>http://blog.zhanghai.me/android-design-guide/</id>
     <published>2014-11-02T10:23:15.000Z</published>
-    <updated>2014-11-07T13:36:33.000Z</updated>
+    <updated>2014-12-16T11:38:03.000Z</updated>
     <content type="html"><![CDATA[<p><img src="/android-design-guide/android_design_elements_landing.png" alt="欢迎"></p>
 <h2 id="零、前言">零、前言</h2>
 <p>这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考<a href="http://developer.android.com/design/index.html" target="_blank" rel="external">官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="external">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
