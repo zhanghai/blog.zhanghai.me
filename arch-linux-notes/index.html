@@ -249,7 +249,16 @@ It has a powerful Arch User Repository and makes it easy for y">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir frames</div><div class="line">ffmpeg -ss &lt;HH:MM:SS[.XXX]|START_SECONDS&gt; -t&lt;HH:MM:SS[.XXX]|DURATION_SECONDS&gt; -i &lt;YOUR_VIDEO_FILE&gt; [-r &lt;FPS&gt;] <span class="operator">-s</span> &lt;WIDTH_NORMALLY_480&gt;x&lt;HEIGHT_NORMALLY_270&gt; ./frames/frame%<span class="number">04</span>d.png</div><div class="line">convert -delay &lt;<span class="number">100</span>/FPS&gt; -loop <span class="number">0</span> -layers Optimize ./frames/frame*.png output.gif</div></pre></td></tr></table></figure>
 
 <p>If you need to compress your GIF file, use <code>gifsicle</code> or do it <a href="http://ezgif.com/optimize" target="_blank" rel="external">online</a>; for cropping, you also can use <a href="http://ezgif.com/crop" target="_blank" rel="external">this site</a> with option “Crop with Gifsicle” (ImageMagick output seems corrupted).</p>
-<h2 id="Convert_GB*_encoded_mp3_tag_to_Unicode">Convert GB* encoded mp3 tag to Unicode</h2>
+<h2 id="Convert_SVG_to_PNG_(or_else)">Convert SVG to PNG (or else)</h2>
+<pre><code><span class="comment">inkscape</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">export</span><span class="literal">-</span><span class="comment">png=</span>&lt;<span class="comment">OUTPUT_FILE</span>&gt; <span class="literal">-</span><span class="literal">-</span><span class="comment">export</span><span class="literal">-</span><span class="comment">width=</span>&lt;<span class="comment">WIDTH</span>&gt; <span class="literal">-</span><span class="literal">-</span><span class="comment">export</span><span class="literal">-</span><span class="comment">height=</span>&lt;<span class="comment">HEIGHT</span>&gt;
+</code></pre><p><code>--export-dpi</code> is also available.</p>
+<p>See <code>man inkscape</code> for more formats.</p>
+<h2 id="Bitmap_operation">Bitmap operation</h2>
+<p>Resize:</p>
+<pre><code><span class="title">mogrify</span> -interpolate bicubic -resize <span class="number">50</span>% <span class="regexp">*.png</span>
+</code></pre><p>Crop:</p>
+<pre><code><span class="title">mogrify</span> -crop 1080x1845+<span class="number">0</span>+<span class="number">75</span> <span class="regexp">*.png</span>
+</code></pre><h2 id="Convert_GB*_encoded_mp3_tag_to_Unicode">Convert GB* encoded mp3 tag to Unicode</h2>
 <p>Install package <code>easytag</code>.</p>
 <p>Note that EasyTag may become the handler for MIME type <code>inode/directory</code>, instead of your own file manager, say, Nautilus. You can delete the default association for Easytag and inode/directory in <code>~/.local/share/applications/mimeapps.list</code>, which is managed by <code>gvfs-mime</code>. See also the MIME type section.</p>
 <h2 id="MIME_type_handling">MIME type handling</h2>
