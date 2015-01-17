@@ -145,6 +145,10 @@ It has a powerful Arch User Repository and makes it easy for y">
 <li><code>B</code>    reBoot</li>
 </ol>
 <p>Note that the key <code>C</code> can make your kernel panic immediately.</p>
+<h2 id="Watch_FS_Buffer_Status">Watch FS Buffer Status</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">watch grep <span class="operator">-e</span> Dirty: <span class="operator">-e</span> Writeback: /proc/meminfo</div></pre></td></tr></table></figure>
+
+<p>You can execute <code>sync</code> to flush the buffer immediately.</p>
 <h2 id="Map_Alt_Gr_(Right_Alt)_to_Alt_in_tty">Map Alt Gr (Right Alt) to Alt in tty</h2>
 <p>From <a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Console_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="external">Arch Wiki</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/share/kbd/keymaps/i386/qwerty</div><div class="line">cp us.map.gz us-two-alt-keys.map.gz</div><div class="line">gunzip us-two-alt-keys.map.gz</div></pre></td></tr></table></figure>
@@ -290,7 +294,7 @@ It has a powerful Arch User Repository and makes it easy for y">
 <li><p>Record: <code>Shift + Ctrl + Alt + R</code></p>
 </li>
 </ol>
-<p>To open a dialog for settings before screenshot, run <code>gnome-screenshot -i</code>.</p>
+<p>To open a dialog for settings before screenshot, execute <code>gnome-screenshot -i</code>.</p>
 <h2 id="Draw_graphs">Draw graphs</h2>
 <p>LibreOffice Draw, and use its connectors instead of bare wires. Shift for regular shape and Ctrl + Mouse move for cloning can also be handy.</p>
 <h2 id="Render_GFM">Render GFM</h2>
