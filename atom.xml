@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-01-17T08:45:01.507Z</updated>
+  <updated>2015-01-17T13:58:58.790Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -31,7 +31,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-01-17T08:43:20.000Z</updated>
+    <updated>2015-01-17T13:58:06.000Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2>
 <ul>
@@ -89,7 +89,7 @@
 <li><code>B</code>    reBoot</li>
 </ol>
 <p>Note that the key <code>C</code> can make your kernel panic immediately.</p>
-<h2 id="Watch_FS_Buffer_Status">Watch FS Buffer Status</h2>
+<h2 id="Watch_FS_buffer_status">Watch FS buffer status</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">watch grep <span class="operator">-e</span> Dirty: <span class="operator">-e</span> Writeback: /proc/meminfo</div></pre></td></tr></table></figure>
 
 <p>You can execute <code>sync</code> to flush the buffer immediately.</p>
@@ -102,6 +102,8 @@
 
 <p>Edit <code>/etc/vconsole.conf</code>, replace <code>KEYMAP=us</code> with <code>KEYMAP=us-two-alt-keys</code>.</p>
 <p>Reboot.</p>
+<h2 id="Input_tab_or_newline_character_in_bash">Input tab or newline character in bash</h2>
+<p><code>Ctrl+V</code> in bash works as <code>Ctrl+Q</code> in emacs, which will insert the next character literally.</p>
 <h2 id="Make_programs_use_proxy">Make programs use proxy</h2>
 <p>There are several ways to make a program proxied. Part of the following comes from <a href="https://wiki.archlinux.org/index.php/proxy_settings" target="_blank" rel="external">Arch Wiki</a>.</p>
 <ul>
