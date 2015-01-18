@@ -225,9 +225,10 @@ It has a powerful Arch User Repository and makes it easy for y">
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -n <span class="string">"Updating font cache... "</span></div><div class="line">fc-cache &gt;/dev/null <span class="operator">-f</span></div><div class="line">mkfontscale</div><div class="line">mkfontdir</div><div class="line"><span class="built_in">echo</span> <span class="keyword">done</span></div></pre></td></tr></table></figure>
 
 <h2 id="Analyze_boot_time">Analyze boot time</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemd-analyze blame</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemd-analyze blame</div><div class="line">systemd-analyze critical-chain</div></pre></td></tr></table></figure>
 
-<p>Sometimes man-db.service might slow down the booting drastically, see <a href="https://bbs.archlinux.org/viewtopic.php?pid=1409295" target="_blank" rel="external">this thread</a>, <a href="https://bugs.archlinux.org/task/41511" target="_blank" rel="external">this issue</a>, and <a href="https://bugs.archlinux.org/task/41688" target="_blank" rel="external">this issue</a>.</p>
+<p>For more information, see <code>man systemd-analyze</code>.</p>
+<p>Sometimes man-db.service may slow down the booting drastically, see <a href="https://bbs.archlinux.org/viewtopic.php?pid=1409295" target="_blank" rel="external">this thread</a>, <a href="https://bugs.archlinux.org/task/41511" target="_blank" rel="external">this issue</a>, and <a href="https://bugs.archlinux.org/task/41688" target="_blank" rel="external">this issue</a>.</p>
 <h2 id="System_backup_using_tar">System backup using tar</h2>
 <p>Install AUR package <code>system-tar-and-restore</code>.</p>
 <p>Example: <code>/etc/backup.conf</code></p>

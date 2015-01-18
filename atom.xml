@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-01-17T14:34:42.417Z</updated>
+  <updated>2015-01-18T01:50:05.522Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -31,7 +31,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-01-17T13:58:06.000Z</updated>
+    <updated>2015-01-18T01:48:23.000Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2>
 <ul>
@@ -169,9 +169,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -n <span class="string">"Updating font cache... "</span></div><div class="line">fc-cache &gt;/dev/null <span class="operator">-f</span></div><div class="line">mkfontscale</div><div class="line">mkfontdir</div><div class="line"><span class="built_in">echo</span> <span class="keyword">done</span></div></pre></td></tr></table></figure>
 
 <h2 id="Analyze_boot_time">Analyze boot time</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemd-analyze blame</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemd-analyze blame</div><div class="line">systemd-analyze critical-chain</div></pre></td></tr></table></figure>
 
-<p>Sometimes man-db.service might slow down the booting drastically, see <a href="https://bbs.archlinux.org/viewtopic.php?pid=1409295" target="_blank" rel="external">this thread</a>, <a href="https://bugs.archlinux.org/task/41511" target="_blank" rel="external">this issue</a>, and <a href="https://bugs.archlinux.org/task/41688" target="_blank" rel="external">this issue</a>.</p>
+<p>For more information, see <code>man systemd-analyze</code>.</p>
+<p>Sometimes man-db.service may slow down the booting drastically, see <a href="https://bbs.archlinux.org/viewtopic.php?pid=1409295" target="_blank" rel="external">this thread</a>, <a href="https://bugs.archlinux.org/task/41511" target="_blank" rel="external">this issue</a>, and <a href="https://bugs.archlinux.org/task/41688" target="_blank" rel="external">this issue</a>.</p>
 <h2 id="System_backup_using_tar">System backup using tar</h2>
 <p>Install AUR package <code>system-tar-and-restore</code>.</p>
 <p>Example: <code>/etc/backup.conf</code></p>
