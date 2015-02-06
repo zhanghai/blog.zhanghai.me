@@ -109,6 +109,68 @@ It has a powerful Arch User Repository and makes it easy for y">
 <li><p>Install <code>ntfs-config</code> and enable auto mounting.</p>
 </li>
 </ol>
+<h2 id="Make_programs_use_proxy">Make programs use proxy</h2>
+<p>There are several ways to make a program proxied. Part of the following comes from <a href="https://wiki.archlinux.org/index.php/proxy_settings" target="_blank" rel="external">Arch Wiki</a>.</p>
+<ul>
+<li><p>Environment variables</p>
+<p>  Some programs respect proxy set via environment variables.</p>
+<p>  <!-- Unable to wrap a backtick code block in a list item. --></p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> http_proxy=http://<span class="number">10.203</span>.<span class="number">0.1</span>:<span class="number">5187</span>/</div><div class="line"><span class="keyword">export</span> https_proxy=<span class="variable">$http_proxy</span></div><div class="line"><span class="keyword">export</span> ftp_proxy=<span class="variable">$http_proxy</span></div><div class="line"><span class="keyword">export</span> rsync_proxy=<span class="variable">$http_proxy</span></div><div class="line"><span class="keyword">export</span> no_proxy=<span class="string">"localhost,127.0.0.1,localaddress,.localdomain.com"</span></div></pre></td></tr></table></figure>
+
+<p>  It is sometimes advised that you export these environment variables again, with their names upper cased.</p>
+</li>
+<li><p>Proxychains</p>
+<p>  Install <a href="https://www.archlinux.org/packages/?name=proxychains-ng" target="_blank" rel="external">proxychains-ng</a>. Proxychains hooks some C library functions so that programs gets proxied. However the Java VM cannot be proxied this way.</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxychains &lt;YOUR_PROGRAM&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Java</p>
+<p>  From <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html" target="_blank" rel="external">the documentation of Java</a>:</p>
+<ul>
+<li><p>HTTP</p>
+<ul>
+<li><p>http.proxyHost: the host name of the proxy server</p>
+</li>
+<li><p>http.proxyPort: the port number, the default value being 80.</p>
+</li>
+<li><p>http.nonProxyHosts: a list of hosts that should be reached directly, bypassing the proxy. This is a list of patterns separated by ‘|’. The patterns may start or end with a ‘*’ for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy.</p>
+</li>
+</ul>
+</li>
+<li><p>HTTPS</p>
+<ul>
+<li><p>https.proxyHost</p>
+<p>https.proxyPort</p>
+</li>
+</ul>
+</li>
+<li><p>FTP</p>
+<ul>
+<li><p>ftp.proxyHost (Typo in official documentation)</p>
+</li>
+<li><p>ftp.proxyPort</p>
+</li>
+<li><p>ftp.nonProxyHosts</p>
+</li>
+</ul>
+</li>
+<li><p>SOCKS</p>
+<ul>
+<li><p>socksProxyHost for the host name of the SOCKS proxy server</p>
+</li>
+<li><p>socksProxyPort for the port number, the default value being 1080</p>
+</li>
+<li><p>socksProxyVersion for the version of the SOCKS protocol, the default being 5, and alternatively 4 can be specified.</p>
+</li>
+</ul>
+<p>Note: socksProxyVersion and more properties are documented at <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html" target="_blank" rel="external">another documentation of Java</a>.</p>
+<p>Sample usage:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=<span class="number">8080</span> -Dhttp.nonProxyHosts=”localhost|host.example.com”</div></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>Note that you can tunnel http(s) request to local socks client using <a href="https://www.archlinux.org/packages/?name=delegate" target="_blank" rel="external">DeleGate</a>.</p>
 <h2 id="GNOME_proxy_setting">GNOME proxy setting</h2>
 <p>You can utilize GNOME’s proxy setting in <code>Settings &gt; Network</code> even if you use <code>netctl</code> instead of <code>Network Manager</code>. Both HTTP and SOCKS proxy are supported.</p>
 <p>Note that the proxy setting will also be read and set to corresponding environment variables by <code>gnome-terminal</code>, and no option is offered to turn this behavior off. To avoid setting proxy environment variables, reset the environment variables in your <code>.bashrc</code>.</p>
@@ -168,65 +230,6 @@ It has a powerful Arch User Repository and makes it easy for y">
 <p>Reboot.</p>
 <h2 id="Input_tab_or_newline_character_in_bash">Input tab or newline character in bash</h2>
 <p><code>Ctrl+V</code> in bash works as <code>Ctrl+Q</code> in emacs, which will insert the next character literally.</p>
-<h2 id="Make_programs_use_proxy">Make programs use proxy</h2>
-<p>There are several ways to make a program proxied. Part of the following comes from <a href="https://wiki.archlinux.org/index.php/proxy_settings" target="_blank" rel="external">Arch Wiki</a>.</p>
-<ul>
-<li><p>Environment variables</p>
-<p>  Some programs respect proxy set via environment variables.</p>
-<p>  <!-- Unable to wrap a backtick code block in a list item. --></p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> http_proxy=http://<span class="number">10.203</span>.<span class="number">0.1</span>:<span class="number">5187</span>/</div><div class="line"><span class="keyword">export</span> https_proxy=<span class="variable">$http_proxy</span></div><div class="line"><span class="keyword">export</span> ftp_proxy=<span class="variable">$http_proxy</span></div><div class="line"><span class="keyword">export</span> rsync_proxy=<span class="variable">$http_proxy</span></div><div class="line"><span class="keyword">export</span> no_proxy=<span class="string">"localhost,127.0.0.1,localaddress,.localdomain.com"</span></div></pre></td></tr></table></figure>
-
-<p>  It is sometimes advised that you export these environment variables again, with their names upper cased.</p>
-</li>
-<li><p>Proxychains</p>
-<p>  Install <a href="https://www.archlinux.org/packages/?name=proxychains-ng" target="_blank" rel="external">proxychains-ng</a>. Proxychains hooks some C library functions so that programs gets proxied. However the Java VM cannot be proxied this way.</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxychains &lt;YOUR_PROGRAM&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>Java</p>
-<p>  From <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html" target="_blank" rel="external">the documentation of Java</a>:</p>
-<ul>
-<li><p>HTTP</p>
-<ul>
-<li><p>http.proxyHost: the host name of the proxy server</p>
-</li>
-<li><p>http.proxyPort: the port number, the default value being 80.</p>
-</li>
-<li><p>http.nonProxyHosts: a list of hosts that should be reached directly, bypassing the proxy. This is a list of patterns separated by ‘|’. The patterns may start or end with a ‘*’ for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy.</p>
-</li>
-</ul>
-</li>
-<li><p>HTTPS</p>
-<ul>
-<li><p>https.proxyHost</p>
-<p>https.proxyPort</p>
-</li>
-</ul>
-</li>
-<li><p>FTP</p>
-<ul>
-<li><p>ftp.proxyHost (Typo in official documentation)</p>
-</li>
-<li><p>ftp.proxyPort</p>
-</li>
-<li><p>ftp.nonProxyHosts</p>
-</li>
-</ul>
-</li>
-<li><p>SOCKS</p>
-<ul>
-<li><p>socksProxyHost for the host name of the SOCKS proxy server</p>
-</li>
-<li><p>socksProxyPort for the port number, the default value being 1080</p>
-</li>
-</ul>
-<p>Sample usage:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=<span class="number">8080</span> -Dhttp.nonProxyHosts=”localhost|host.example.com”</div></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<p>Note that you can tunnel http(s) request to local socks client using <a href="https://www.archlinux.org/packages/?name=delegate" target="_blank" rel="external">DeleGate</a>.</p>
 <h2 id="Install_font">Install font</h2>
 <p>From <a href="https://wiki.archlinux.org/index.php/Fonts" target="_blank" rel="external">Arch Wiki</a>:</p>
 <p>Drop your font files into <code>~/.fonts/</code>, <code>cd</code> into that directory, and execute the following command.</p>
