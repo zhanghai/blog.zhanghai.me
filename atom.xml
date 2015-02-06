@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-02-06T13:07:41.167Z</updated>
+  <updated>2015-02-06T13:46:24.483Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -31,7 +31,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-02-06T13:06:47.000Z</updated>
+    <updated>2015-02-06T13:45:20.000Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2>
 <ul>
@@ -172,6 +172,9 @@
 
 <p>Edit <code>/etc/vconsole.conf</code>, replace <code>KEYMAP=us</code> with <code>KEYMAP=us-two-alt-keys</code>.</p>
 <p>Reboot.</p>
+<h2 id="Execute_previous_commands_in_bash">Execute previous commands in bash</h2>
+<p><code>Ctrl+R</code> (I-search backward in emacs) can let you quickly execute command in your history.</p>
+<p><code>!!</code> is substituted to be the last command in your history, but be careful when using it, for example <code>echo !!</code> will lead to unexpected behavior if <code>!!</code> is substituted to be <code>something &amp;&amp; poweroff</code>, then <code>poweroff</code> will be executed. To avoid such cases, always wrap it with quotes, like <code>echo &#39;!!&#39;</code>.</p>
 <h2 id="Input_tab_or_newline_character_in_bash">Input tab or newline character in bash</h2>
 <p><code>Ctrl+V</code> in bash works as <code>Ctrl+Q</code> in emacs, which will insert the next character literally.</p>
 <h2 id="Install_font">Install font</h2>
