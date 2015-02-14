@@ -550,7 +550,7 @@ pre .deletion {
   font-size: 220%;
   margin: 0;
 }
-.article-devider {
+.article-divider {
   width: 8%;
   margin: 5em auto;
   border: 0;
@@ -598,6 +598,15 @@ pre .deletion {
   font: 12px FontAwesome;
   padding-left: 10px;
   vertical-align: super;
+}
+.entry-content .more {
+  font-size: 90%;
+}
+.entry-content .more a {
+  color: #777;
+}
+.entry-content .more a:hover {
+  color: #33a6b8;
 }
 .entry-content p {
   margin: 0 0 1em 0;
