@@ -687,10 +687,9 @@ pre .deletion {
   padding: 10px 0;
 }
 .entry-content blockquote {
-  font-family: Georgia, "Nimbus Roman No9 L", "Times New Roman", "Songti SC", STSong, "AR PL New Sung", "AR PL SungtiL GB", NSimSun, SimSun, "TW\-Sung", "WenQuanYi Bitmap Song", "WenQuanYi Zen Hei Sharp", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", serif;
   margin: 1.5em 3em;
   padding: 5px 20px;
-  border-left: 2px solid #aaa;
+  border-left: 5px solid #aaa;
   color: #777;
 }
 .entry-content blockquote p:last-child {
@@ -706,7 +705,6 @@ pre .deletion {
 }
 .entry-content .pullquote {
   border-left: 0;
-  font-family: Georgia, "Nimbus Roman No9 L", "Times New Roman", "Songti SC", STSong, "AR PL New Sung", "AR PL SungtiL GB", NSimSun, SimSun, "TW\-Sung", "WenQuanYi Bitmap Song", "WenQuanYi Zen Hei Sharp", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", serif;
   text-align: left;
   width: 45%;
   margin: 10px 0 0 0;
@@ -718,6 +716,16 @@ pre .deletion {
 .entry-content .pullquote .right {
   margin-right: 0.5em;
   margin-left: 1em;
+}
+.entry-content .callout {
+  margin: 1.5em 0;
+  padding: 5px 20px;
+  border-left: 5px solid #222;
+  color: #4f5759;
+}
+.entry-content .callout .title {
+  color: #222;
+  font-weight: bold;
 }
 .entry-content .caption {
   color: #4f5759;
