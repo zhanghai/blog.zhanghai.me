@@ -609,7 +609,7 @@ pre .deletion {
   color: #33a6b8;
 }
 .entry-content p {
-  margin: 0 0 1em 0;
+  margin: 0.5em 0;
 }
 .entry-content img,
 .entry-content video {
@@ -672,19 +672,31 @@ pre .deletion {
   margin-bottom: 0;
 }
 .entry-content table {
-  margin: 0;
+  margin: 0.5em 0 1em 0;
   width: auto;
   border-collapse: collapse;
   border-spacing: 0;
 }
+.entry-content thead tr {
+  border-bottom: 3px solid #ddd;
+}
+.entry-content tbody tr {
+  border-bottom: 1px solid #ddd;
+}
 .entry-content th {
   font-weight: bold;
-  border-bottom: 3px solid #ddd;
-  padding-bottom: 0.5em;
 }
+.entry-content th,
 .entry-content td {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  padding: 0.25em 1em 0.25em 1em;
+}
+.entry-content th:first-child,
+.entry-content td:first-child {
+  padding-left: 0;
+}
+.entry-content th:last-child,
+.entry-content td:last-child {
+  padding-right: 0;
 }
 .entry-content blockquote {
   margin: 1.5em 3em;
