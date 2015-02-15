@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-02-15T12:32:34.106Z</updated>
+  <updated>2015-02-15T12:36:47.933Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -15,9 +15,10 @@
     <link href="http://blog.zhanghai.me/c-exam-notes/"/>
     <id>http://blog.zhanghai.me/c-exam-notes/</id>
     <published>2015-02-15T10:38:12.000Z</published>
-    <updated>2015-02-15T12:29:01.000Z</updated>
+    <updated>2015-02-15T12:36:22.000Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言</h2>
 <p>这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>
+<a id="more"></a>
 <h2 id="正文">正文</h2>
 <p><code>if</code> 语句没有花括号时只包含之后一行，如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (condition)</div><div class="line">    optionally_executed();</div><div class="line">    always_executed();</div></pre></td></tr></table></figure>
