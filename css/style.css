@@ -243,7 +243,7 @@ code {
 figure.highlight {
   background: color-code;
   border: 1px solid #ddd;
-  margin: 0;
+  margin: 1em 0;
   padding: 7px 15px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -269,16 +269,16 @@ figure.highlight pre {
   margin: 0;
 }
 figure.highlight table {
-  margin-top: 0;
-  border-spacing: 0;
+  margin: 0;
+}
+figure.highlight tr {
+  border: 0 !important;
 }
 figure.highlight th {
   font-weight: normal;
-  border-bottom: 0;
-  padding-bottom: 0;
+  padding: 0;
 }
 figure.highlight td {
-  border-bottom: 0;
   padding: 0;
 }
 figure.highlight .gutter {
