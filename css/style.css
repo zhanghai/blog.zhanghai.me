@@ -616,7 +616,7 @@ pre .deletion {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: auto;
+  margin: 0.5em auto;
 }
 .entry-content a[title*="Flickr"] img {
   height: auto !important;
@@ -627,7 +627,7 @@ pre .deletion {
 .entry-content h4,
 .entry-content h5,
 .entry-content h6 {
-  margin: 1em 0 0.8em 0;
+  margin: 1em 0;
   line-height: 1.5;
 }
 .entry-content h1 {
@@ -688,7 +688,7 @@ pre .deletion {
 }
 .entry-content th,
 .entry-content td {
-  padding: 0.25em 1em 0.25em 1em;
+  padding: 0.25em 1em;
 }
 .entry-content th:first-child,
 .entry-content td:first-child {
