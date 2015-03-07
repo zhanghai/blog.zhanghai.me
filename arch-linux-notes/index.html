@@ -243,6 +243,8 @@ It has a powerful Arch User Repository and makes it easy for y">
 <p>Drop your font files into <code>~/.fonts/</code>, <code>cd</code> into that directory, and execute the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -n <span class="string">"Updating font cache... "</span></div><div class="line">fc-cache &gt;/dev/null <span class="operator">-f</span></div><div class="line">mkfontscale</div><div class="line">mkfontdir</div><div class="line"><span class="built_in">echo</span> <span class="keyword">done</span></div></pre></td></tr></table></figure>
 
+<h2 id="Handle_filesystem_package_update">Handle filesystem package update</h2>
+<p>Use <code>diff</code> and your editor to manually merge your <code>passwd</code>, <code>shadow</code>, <code>group</code> and <code>gshadow</code> with the <code>*.pacnew</code> one(s), then execute <code>pwconv</code> and <code>groupconv</code> for updating the shadow ones (<code>*-</code>).</p>
 <h2 id="Analyze_boot_time">Analyze boot time</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemd-analyze blame</div><div class="line">systemd-analyze critical-chain</div></pre></td></tr></table></figure>
 
