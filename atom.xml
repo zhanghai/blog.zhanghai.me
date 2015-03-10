@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-03-07T09:59:55.055Z</updated>
+  <updated>2015-03-10T01:19:33.101Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -298,7 +298,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-03-02T08:59:17.000Z</updated>
+    <updated>2015-03-10T01:18:12.000Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2>
 <ul>
@@ -509,6 +509,7 @@
 <p>The second one takes precedence, and I guess <code>gvfs-mime</code> is implemented partially for GNOME Open with dialog.</p>
 <h2 id="Google_URL_in_Google_Chrome">Google URL in Google Chrome</h2>
 <p>Open <code>~/.config/google-chrome/Default/Preferences</code>, edit <code>last_known_google_url</code> and <code>last_prompted_google_url</code>.</p>
+<p>If Chrome keeps reverting the url, visiting <a href="https://www.google.com/ncr" target="_blank" rel="external">https://www.google.com/ncr</a> may help.</p>
 <h2 id="Screenshot">Screenshot</h2>
 <p>Shortcut keys for screenshot is listed in the search category of its setting.</p>
 <ol>
