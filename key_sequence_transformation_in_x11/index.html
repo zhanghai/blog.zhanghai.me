@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Key Sequence Transformation in X11 | 梦断代码</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="This article is originally titled Abandoning treatment for X11, for my xkeymacs project.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Key Sequence Transformation in X11">
+<meta property="og:url" content="http://blog.zhanghai.me/key_sequence_transformation_in_x11/">
+<meta property="og:site_name" content="梦断代码">
+<meta property="og:description" content="This article is originally titled Abandoning treatment for X11, for my xkeymacs project.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Key Sequence Transformation in X11">
+<meta name="twitter:description" content="This article is originally titled Abandoning treatment for X11, for my xkeymacs project.">
+
+  
+    <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+  <i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+  <h1 class="blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li><a href="/">主页</a></li><li><a href="/archives">存档</a></li>
+      <li><a id="nav-search-btn" class="nav-icon" title="搜索"></a></li>
+      <li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS 订阅"></a></li>
+    </ul>
+  </nav>
+  <div id="search-form-wrap">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://blog.zhanghai.me"></form>
+  </div>
+</header>
+
+    <div id="main">
+      <article id="post-key_sequence_transformation_in_x11" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/key_sequence_transformation_in_x11/" class="article-date">
+  <time datetime="2014-11-01T05:04:38.000Z" itemprop="datePublished">11月 1 2014</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/key_sequence_transformation_in_x11/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Key Sequence Transformation in X11
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <p>This article is originally titled <a href="https://github.com/DreaminginCodeZH/xkeymacs/issues/1" target="_blank" rel="external">Abandoning treatment for X11</a>, for my <a href="https://github.com/DreaminginCodeZH/xkeymacs" target="_blank" rel="external">xkeymacs</a> project.</p>
+<a id="more"></a>
+<hr>
+<p>I think I’ve done all that’s possible to achieve with X11 API in this project, but there still remain a bunch of issues. This document is about what they are and why they may not be resolved as an X11 application.</p>
+<p>Before we start with the issues, we need clarify the situation first.</p>
+<p>There are three ways to grab key events in X11: <code>XGrabKeyboard</code>, <code>XGrabKey</code> with <code>GrabModeSync</code> and <code>XGrabKey</code> with <code>GrabModeAsync</code>. In the meantime, there is only one way to send a key event in X11: <code>XTestFakeKeyEvent</code>, while <code>XSendEvents</code> marks events sent as synthesized and a bunch of applications (such as <code>xterm</code>) ignore events with this flag for some security reasons, according to various sources.</p>
+<p>If you want to replay the key event you just grabbed, use <code>XAllowEvents</code> with <code>ReplayKeyboard</code>. This requires the key event to come from <code>XGrabKey</code> or a previous <code>XAllowEvents</code> with <code>SyncKeyboard</code>, but not from a <code>XGrabKeyboard</code>.</p>
+<p>You cannot use <code>XGrabKeyboard</code> along with <code>XTestFakeKeyEvent</code> because the former sets an active grab and it will receive the key event faked by yourself. If you want to <code>XUngrabKeyboard</code> and wait for <code>XTestFakeKeyEvent</code> to accomplish, sadly there seems to be no way. <code>XFlush</code> flushes your own request to X server, while <code>XSync</code> flushes and make X server process all requests and generate events, but <strong>not handling</strong> them, according to <a href="https://motif.ics.com/forum/xsync-xflush" target="_blank" rel="external">this thread</a>.</p>
+<p><code>XGrabKey</code> is called a passive grab. It is activated and then behaves like <code>XGrabKeyboard</code> when the registered key and modifier combination is found, and actually ungrabbed after the <code>KeyRelease</code> event of that combination (see <a href="http://lists.freedesktop.org/archives/xorg/2006-May/015090.html" target="_blank" rel="external">this mail</a>). So if you send a key in <code>KeyPress</code> event, you <em>will</em> intercept the key you just sent. To workaround this issue, you can do <code>XUngrabKeyboard</code> before you send the key. This results in garbage <code>KeyRelease</code> events sent to the focused window, however it is normally ignored. Another workaround would be sending the key in <code>KeyRelease</code> event, which works, but is not the desired behavior.</p>
+<p>Note that if you replay a key event with <code>XAllowEvents</code> in <code>KeyPress</code>, It will also result in garbage <code>KeyRelease</code> events, because according to the documentation the replayed event will ignore any key grabs set by any client.</p>
+<p>So here is the first issue.</p>
+<ul>
+<li><p>Grabbed keys sent by <code>XTestFakeKeyEvent</code> cannot be replayed</p>
+<p>  When testing the application, I was surprised to find that when I sent keys that are also grabbed by myself and deliberately do the replay in <code>KeyPress</code>, I still receive <code>KeyRelease</code> events for them. That is to say the <code>XAllowEvent</code> replay failed. I guess this is because <code>XTestFakeKeyEvent</code> is part of the <code>XTest</code> extension and is aimed for automating testing, so the internal implementation did not take this situation into consideration. So there may be no workaround for this.</p>
+<p>  An example for this issue can be when I grabbed <code>Control+X</code> for C-x mode and I send <code>Control+X</code> inside the handling of <code>Control+W</code></p>
+</li>
+</ul>
+<p>When sending some key combination, one have to know the status of the modifier keys and adjust them, send the key, and then restore them. This is expected to happen in a very short period of time so the user won’t notice. To accomplish this, <code>XQueryKeymap</code> and multiple <code>XTestFakeKeyEvent</code> is used.</p>
+<p>And the second issue.</p>
+<ul>
+<li><p>Sending keys containing <code>F1</code>~<code>F8</code> causes user to be switched to <code>tty</code></p>
+<p>  When sending keys containing <code>F3</code> or <code>F4</code>, sometimes I got switched to <code>tty</code> by an unexpected <code>Control+Alt+F3/4</code> combination. This happens for most of the time when I send <code>Control+F4</code> for <code>(Control+X) k</code>. You can see that there is nothing about <code>Alt</code>, but still I was almost always switched to <code>tty4</code>, however <code>xev</code> reported the expected key sequence for this situation. The underlying logic is unknown, it may have something to do with <code>tty</code> switching hot key implementation.</p>
+</li>
+</ul>
+<p>And some other issues.</p>
+<ul>
+<li><p>Auto repeat cannot work if we intercept the <code>KeyPress</code> event</p>
+<p>  X server generates continuous paired <code>KeyPress</code> and <code>KeyRelease</code> event for clients if a key is physically held for a long time. However if we intercept the first <code>KeyPress</code> event, and send another key event, then the auto repeat just disappears. There doesn’t seem to be a solution for this issue.</p>
+</li>
+<li><p>Efficiency</p>
+<p>  There is a perceptible (annoying but bearable) pause when using the above stated approach to implement keyboard macros. Seems no way to resolve either.</p>
+<p>  Note that using <code>GrabModeAsync</code> helps to improve the performance a little bit, but it results in various problems that I haven’t investigated yet.</p>
+</li>
+</ul>
+<p>So the conclusion is that, while X11 provided some API for keyboard event operations, it is  vague in documentation and working mechanism, and clearly not designed, nor suitable for translating key sequences into others. This may be the reason why almost no such project like this is known.</p>
+<p>For an alternative API, some people in a mailing list suggested <a href="https://developer.gnome.org/libatspi/stable/libatspi-atspi-registry.html" target="_blank" rel="external">Atspi</a>, which I haven’t tried out myself.</p>
+<hr>
+<p>UPDATE:</p>
+<p>Later I found out that this can be achieved with <code>evdev</code> and <code>uinput</code>.</p>
+<p>For a python implementation, see my <a href="https://github.com/DreaminginCodeZH/pykeymacs" target="_blank" rel="external">pykeymacs</a>.</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/android-design-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android 设计简明教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          你好，世界！
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:blog.zhanghai.me">
+    </form>
+</div>
+<footer id="footer">
+  <h1 class="footer-blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <span class="copyright">
+    &copy; 2015 张海<br>
+    Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'zhanghai';
+  
+  var disqus_url = 'http://blog.zhanghai.me/key_sequence_transformation_in_x11/';
+  
+  (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

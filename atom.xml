@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-03-10T01:27:30.483Z</updated>
+  <updated>2015-03-13T07:08:34.748Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -683,6 +683,56 @@
 ]]></content>
     <category scheme="http://blog.zhanghai.me/tags/tutorial/" term="教程"/>
     <category scheme="http://blog.zhanghai.me/tags/design/" term="设计"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[Key Sequence Transformation in X11]]></title>
+    <link href="http://blog.zhanghai.me/key_sequence_transformation_in_x11/"/>
+    <id>http://blog.zhanghai.me/key_sequence_transformation_in_x11/</id>
+    <published>2014-11-01T05:04:38.000Z</published>
+    <updated>2015-03-13T07:07:44.000Z</updated>
+    <content type="html"><![CDATA[<p>This article is originally titled <a href="https://github.com/DreaminginCodeZH/xkeymacs/issues/1" target="_blank" rel="external">Abandoning treatment for X11</a>, for my <a href="https://github.com/DreaminginCodeZH/xkeymacs" target="_blank" rel="external">xkeymacs</a> project.</p>
+<a id="more"></a>
+<hr>
+<p>I think I’ve done all that’s possible to achieve with X11 API in this project, but there still remain a bunch of issues. This document is about what they are and why they may not be resolved as an X11 application.</p>
+<p>Before we start with the issues, we need clarify the situation first.</p>
+<p>There are three ways to grab key events in X11: <code>XGrabKeyboard</code>, <code>XGrabKey</code> with <code>GrabModeSync</code> and <code>XGrabKey</code> with <code>GrabModeAsync</code>. In the meantime, there is only one way to send a key event in X11: <code>XTestFakeKeyEvent</code>, while <code>XSendEvents</code> marks events sent as synthesized and a bunch of applications (such as <code>xterm</code>) ignore events with this flag for some security reasons, according to various sources.</p>
+<p>If you want to replay the key event you just grabbed, use <code>XAllowEvents</code> with <code>ReplayKeyboard</code>. This requires the key event to come from <code>XGrabKey</code> or a previous <code>XAllowEvents</code> with <code>SyncKeyboard</code>, but not from a <code>XGrabKeyboard</code>.</p>
+<p>You cannot use <code>XGrabKeyboard</code> along with <code>XTestFakeKeyEvent</code> because the former sets an active grab and it will receive the key event faked by yourself. If you want to <code>XUngrabKeyboard</code> and wait for <code>XTestFakeKeyEvent</code> to accomplish, sadly there seems to be no way. <code>XFlush</code> flushes your own request to X server, while <code>XSync</code> flushes and make X server process all requests and generate events, but <strong>not handling</strong> them, according to <a href="https://motif.ics.com/forum/xsync-xflush" target="_blank" rel="external">this thread</a>.</p>
+<p><code>XGrabKey</code> is called a passive grab. It is activated and then behaves like <code>XGrabKeyboard</code> when the registered key and modifier combination is found, and actually ungrabbed after the <code>KeyRelease</code> event of that combination (see <a href="http://lists.freedesktop.org/archives/xorg/2006-May/015090.html" target="_blank" rel="external">this mail</a>). So if you send a key in <code>KeyPress</code> event, you <em>will</em> intercept the key you just sent. To workaround this issue, you can do <code>XUngrabKeyboard</code> before you send the key. This results in garbage <code>KeyRelease</code> events sent to the focused window, however it is normally ignored. Another workaround would be sending the key in <code>KeyRelease</code> event, which works, but is not the desired behavior.</p>
+<p>Note that if you replay a key event with <code>XAllowEvents</code> in <code>KeyPress</code>, It will also result in garbage <code>KeyRelease</code> events, because according to the documentation the replayed event will ignore any key grabs set by any client.</p>
+<p>So here is the first issue.</p>
+<ul>
+<li><p>Grabbed keys sent by <code>XTestFakeKeyEvent</code> cannot be replayed</p>
+<p>  When testing the application, I was surprised to find that when I sent keys that are also grabbed by myself and deliberately do the replay in <code>KeyPress</code>, I still receive <code>KeyRelease</code> events for them. That is to say the <code>XAllowEvent</code> replay failed. I guess this is because <code>XTestFakeKeyEvent</code> is part of the <code>XTest</code> extension and is aimed for automating testing, so the internal implementation did not take this situation into consideration. So there may be no workaround for this.</p>
+<p>  An example for this issue can be when I grabbed <code>Control+X</code> for C-x mode and I send <code>Control+X</code> inside the handling of <code>Control+W</code></p>
+</li>
+</ul>
+<p>When sending some key combination, one have to know the status of the modifier keys and adjust them, send the key, and then restore them. This is expected to happen in a very short period of time so the user won’t notice. To accomplish this, <code>XQueryKeymap</code> and multiple <code>XTestFakeKeyEvent</code> is used.</p>
+<p>And the second issue.</p>
+<ul>
+<li><p>Sending keys containing <code>F1</code>~<code>F8</code> causes user to be switched to <code>tty</code></p>
+<p>  When sending keys containing <code>F3</code> or <code>F4</code>, sometimes I got switched to <code>tty</code> by an unexpected <code>Control+Alt+F3/4</code> combination. This happens for most of the time when I send <code>Control+F4</code> for <code>(Control+X) k</code>. You can see that there is nothing about <code>Alt</code>, but still I was almost always switched to <code>tty4</code>, however <code>xev</code> reported the expected key sequence for this situation. The underlying logic is unknown, it may have something to do with <code>tty</code> switching hot key implementation.</p>
+</li>
+</ul>
+<p>And some other issues.</p>
+<ul>
+<li><p>Auto repeat cannot work if we intercept the <code>KeyPress</code> event</p>
+<p>  X server generates continuous paired <code>KeyPress</code> and <code>KeyRelease</code> event for clients if a key is physically held for a long time. However if we intercept the first <code>KeyPress</code> event, and send another key event, then the auto repeat just disappears. There doesn’t seem to be a solution for this issue.</p>
+</li>
+<li><p>Efficiency</p>
+<p>  There is a perceptible (annoying but bearable) pause when using the above stated approach to implement keyboard macros. Seems no way to resolve either.</p>
+<p>  Note that using <code>GrabModeAsync</code> helps to improve the performance a little bit, but it results in various problems that I haven’t investigated yet.</p>
+</li>
+</ul>
+<p>So the conclusion is that, while X11 provided some API for keyboard event operations, it is  vague in documentation and working mechanism, and clearly not designed, nor suitable for translating key sequences into others. This may be the reason why almost no such project like this is known.</p>
+<p>For an alternative API, some people in a mailing list suggested <a href="https://developer.gnome.org/libatspi/stable/libatspi-atspi-registry.html" target="_blank" rel="external">Atspi</a>, which I haven’t tried out myself.</p>
+<hr>
+<p>UPDATE:</p>
+<p>Later I found out that this can be achieved with <code>evdev</code> and <code>uinput</code>.</p>
+<p>For a python implementation, see my <a href="https://github.com/DreaminginCodeZH/pykeymacs" target="_blank" rel="external">pykeymacs</a>.</p>
+]]></content>
+    <category scheme="http://blog.zhanghai.me/tags/programming/" term="Programming"/>
+    <category scheme="http://blog.zhanghai.me/tags/linux/" term="Linux"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[你好，世界！]]></title>
