@@ -114,6 +114,18 @@ It has a powerful Arch User Repository and makes it easy for y">
 <li><p>Install <code>ntfs-config</code> and enable auto mounting.</p>
 </li>
 </ol>
+<h2 id="Disable_Nvidia_graphics">Disable Nvidia graphics</h2>
+<p>Install <code>bumblebee</code> and <code>bbswitch</code>.</p>
+<p>And create <code>/etc/modprobe.d/nouveau_blacklist.conf</code> as follow, or else <code>bbswitch</code> will find Nvidia graphics in use by <code>nouveau</code>.</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">blacklist nouveau</div></pre></td></tr></table></figure>
+
+<p>You can verify <code>bbswitch</code> status by <code>cat /proc/acpi/bbswitch</code> and view its log by <code>dmesg | grep bbswitch</code>.</p>
+<p>Note that <code>nouveau</code> kernel module is shipped in <code>linux</code>.</p>
+<h2 id="Shrink_pacman_cache">Shrink pacman cache</h2>
+<p>From <a href="https://wiki.archlinux.org/index.php/pacman" target="_blank" rel="external">Arch Wiki</a>:</p>
+<p><code>paccache -r</code> deletes all the cached versions of each package except for the most recent 3 (without confirmation).</p>
+<p><code>paccache -ruk0</code> removes all the cached versions of uninstalled packages.</p>
+<p>See <code>paccache -h</code> for dry run and other parameters.</p>
 <h2 id="Make_programs_use_proxy">Make programs use proxy</h2>
 <p>There are several ways to make a program proxied. Part of the following comes from <a href="https://wiki.archlinux.org/index.php/proxy_settings" target="_blank" rel="external">Arch Wiki</a>.</p>
 <ul>
