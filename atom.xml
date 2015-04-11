@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-04-02T13:58:39.327Z</updated>
+  <updated>2015-04-11T07:40:42.776Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -298,7 +298,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-03-31T02:48:20.371Z</updated>
+    <updated>2015-04-11T07:40:22.135Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2>
 <ul>
@@ -501,9 +501,15 @@
 
 <p>If you need to compress your GIF file, use <code>gifsicle</code> or do it <a href="http://ezgif.com/optimize" target="_blank" rel="external">online</a>; for cropping, you also can use <a href="http://ezgif.com/crop" target="_blank" rel="external">this site</a> with option “Crop with Gifsicle” (ImageMagick output seems corrupted).</p>
 <h2 id="Convert_SVG_to_PNG_(or_else)">Convert SVG to PNG (or else)</h2>
-<pre><code><span class="comment">inkscape</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">export</span><span class="literal">-</span><span class="comment">png=</span>&lt;<span class="comment">OUTPUT_FILE</span>&gt; <span class="literal">-</span><span class="literal">-</span><span class="comment">export</span><span class="literal">-</span><span class="comment">width=</span>&lt;<span class="comment">WIDTH</span>&gt; <span class="literal">-</span><span class="literal">-</span><span class="comment">export</span><span class="literal">-</span><span class="comment">height=</span>&lt;<span class="comment">HEIGHT</span>&gt;
-</code></pre><p><code>--export-dpi</code> is also available.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">inkscape --export-png=&lt;OUTPUT_FILE&gt; --export-width=&lt;WIDTH&gt; --export-height=&lt;HEIGHT&gt;</div></pre></td></tr></table></figure>
+
+<p><code>--export-dpi</code> is also available.</p>
 <p>See <code>man inkscape</code> for more formats.</p>
+<h2 id="Convert_PDF_to_PNG">Convert PDF to PNG</h2>
+<p>From <a href="http://stackoverflow.com/questions/6605006/convert-pdf-to-image-with-high-resolution" target="_blank" rel="external">StackOverflow</a>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">convert -density <span class="number">300</span> &lt;YOUR_FILE.pdf&gt; &lt;YOUR_FILE.png&gt;</div></pre></td></tr></table></figure>
+
+<p>Where the density parameter is your desired DPI.</p>
 <h2 id="Bitmap_operation">Bitmap operation</h2>
 <p>Resize:</p>
 <pre><code><span class="title">mogrify</span> -interpolate bicubic -resize <span class="number">50</span>% <span class="regexp">*.png</span>
