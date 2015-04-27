@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-04-11T07:40:42.776Z</updated>
+  <updated>2015-04-27T01:59:59.606Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -298,7 +298,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-04-11T07:40:22.135Z</updated>
+    <updated>2015-04-27T01:58:41.421Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2>
 <ul>
@@ -401,6 +401,8 @@
 <h2 id="GNOME_online_account">GNOME online account</h2>
 <p>You can log in your Google account and all the things will be configured and synchronized automatically to your laptop. It can be a huge boost for your work flow.</p>
 <p>If you need a proxy to access Google, configure it as in the GNOME proxy setting section.</p>
+<h2 id="Nautilus_hangs_occasionally">Nautilus hangs occasionally</h2>
+<p>In my case it often happened when I started to search something. Executing <code>tracker reset -r</code> to reset tracker index and configurations, and rebooting immediately after that, resolved my issue.</p>
 <h2 id="DNS_and_resolvconf">DNS and resolvconf</h2>
 <p>DNS is managed by <code>resolvconf</code> in Arch Linux. In order to supply your own DNS, edit <code>/etc/resolvconf.conf</code>.</p>
 <p>There are two options you may normally want to specify:</p>
