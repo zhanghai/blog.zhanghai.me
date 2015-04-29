@@ -82,7 +82,7 @@
     
       <p>在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
 <a id="more"></a>
-<p><img src="/building-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - 使用 Gtk 3"></p>
+<p><img src="/building-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - 使用 Gtk 3 渲染"></p>
 <h2 id="集成">集成</h2>
 <p>鉴于 Maven 上的版本老旧，推荐直接前往 <a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT 官方网站</a>下载稳定发行版本。我使用的开发环境是 IntelliJ Idea，因此在 Project Structure 中的 Libraries 和 Artifacts 内添加相应的设置即可。</p>
 <h2 id="架构">架构</h2>
@@ -104,13 +104,15 @@
 <p>SWT 中的布局方式分为两步：使用 <code>Composite.setLayout()</code> 设置父元素布局子元素时使用的布局方式，使用 <code>Control.setLayoutData()</code> 提供子元素的布局参数。这与 Android 中的布局方式有些许不同，即 SWT 中的 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Layout.html" target="_blank" rel="external"><code>Layout</code></a> 是父容器的参数而非父容器本身的类型。</p>
 <p>SWT 中常用的 <code>Layout</code> 包括 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/FillLayout.html" target="_blank" rel="external"><code>FillLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/RowLayout.html" target="_blank" rel="external"><code>RowLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/GridLayout.html" target="_blank" rel="external"><code>GridLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/FormLayout.html" target="_blank" rel="external"><code>FormLayout</code></a> 和 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/SashForm.html" target="_blank" rel="external"><code>SashForm</code></a> 等。对于前三种基础布局，可以参考 <a href="http://www.eclipse.org/articles/article.php?file=Article-Understanding-Layouts/index.html" target="_blank" rel="external">Eclipse 的这篇文章</a>进行学习。</p>
 <h3 id="资源系统">资源系统</h3>
+<p>与 Android 框架不同，SWT 只是一个图形界面库，因此不提供资源系统。</p>
 <p>在写作一般规模的 SWT 应用时，可以使用 Java 自带的 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ResourceBundle.html" target="_blank" rel="external"><code>ResourceBundle</code></a> 进行资源管理与国际化。</p>
 <p>常见的范式如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ResourceBundle resourceBundle = ResourceBundle.getBundle(<span class="string">"res/string/mipside"</span>, <span class="keyword">new</span> Utf8Control());</div><div class="line">Display.setAppName(resourceBundle.getString(<span class="string">"app_name"</span>));</div></pre></td></tr></table></figure>
 
 <p>其中 <code>Utf8Control</code> 是为了使得 ResourceBundle 支持直接读取 UTF-8 编码的资源文件的类，可以从之后我的项目中获得我编写的版本；ResourceBundle 默认只支持 ASCII 编码。</p>
 <h2 id="结语">结语</h2>
-<p>菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="external"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但是网络上相关的资源还是十分丰富的，例如 Google、Eclipse 的 Javadoc、Java2s 上的代码示例都是有用的信息来源。<br>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以<a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="external">移步至 GitHub 浏览</a>。</p>
+<p>菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="external"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但网络上相关的资源是十分丰富的，例如 Google、Eclipse 的 Javadoc、Java2s 上的代码示例都是有用的信息来源。</p>
+<p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以<a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="external">移步至 GitHub 浏览</a>。</p>
 
     
   </div>
