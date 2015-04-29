@@ -13,6 +13,7 @@
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言
 在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
+<meta property="og:image" content="/building-portable-desktop-application-with-swt/mipsasm-windows.png">
 <meta property="og:image" content="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 SWT 搭建跨平台桌面应用">
@@ -86,7 +87,8 @@
       <h2 id="前言">前言</h2>
 <p>在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
 <a id="more"></a>
-<p><img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - 使用 Gtk 3 渲染"></p>
+<p><img src="/building-portable-desktop-application-with-swt/mipsasm-windows.png" alt="MIPS 汇编集成开发环境 - Windows"></p>
+<p><img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - Gtk 3"></p>
 <h2 id="集成">集成</h2>
 <p>鉴于 Maven 上的版本老旧，推荐直接前往 <a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT 官方网站</a>下载稳定发行版本。我使用的开发环境是 IntelliJ Idea，因此在 Project Structure 中的 Libraries 和 Artifacts 内添加相应的设置即可。</p>
 <h2 id="架构">架构</h2>
