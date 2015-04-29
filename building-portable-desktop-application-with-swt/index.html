@@ -5,16 +5,19 @@
   
   <title>使用 SWT 搭建跨平台桌面应用 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
+  <meta name="description" content="前言
+在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 SWT 搭建跨平台桌面应用">
 <meta property="og:url" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
+<meta property="og:description" content="前言
+在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
 <meta property="og:image" content="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 SWT 搭建跨平台桌面应用">
-<meta name="twitter:description" content="在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
+<meta name="twitter:description" content="前言
+在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
 
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
@@ -80,7 +83,8 @@
   </header>
   <div class="entry-content">
     
-      <p>在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
+      <h2 id="前言">前言</h2>
+<p>在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
 <a id="more"></a>
 <p><img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - 使用 Gtk 3 渲染"></p>
 <h2 id="集成">集成</h2>
@@ -114,6 +118,10 @@
 <p>在 Linux 上，一个 Shell 脚本执行 <code>java -jar</code> 已经足够。</p>
 <p>在 Windows 上，经过一些比较，我决定使用 <a href="http://launch4j.sourceforge.net/" target="_blank" rel="external">launch4j</a>，至今体验良好。</p>
 <p>在 Mac OSX 上，JVM 需要特定参数才能正常启动应用，以及其他打包应用程序的细节，可以参考<a href="https://www.eclipse.org/swt/macosx/" target="_blank" rel="external">这篇 Eclipse 的文档</a>。</p>
+<h2 id="评价">评价</h2>
+<p>在使用 SWT 完成我的项目后，总体来说，感觉这是一个可用的图形库。</p>
+<p>从接口方面看，SWT 遵循着一致的命名规范，但 Builder 模式的缺失使得构造控件的过程较为冗长，此外将样式、键码等大量常量放置在 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/SWT.html" target="_blank" rel="external"><code>SWT</code></a> 类中也显得较为奇怪。</p>
+<p>从功能方面看，SWT 跨平台调用原生控件的能力确实令人惊喜。众多部件在 Windows、Linux Gtk3 和 Gtk2、Mac OSX Cocoa 上不需要经过调试即表现良好，并且通过打包与原生应用几乎没有什么差异。美中不足的只是一些小的设计细节，例如标签中的文本不能使用光标选择复制、带有链接的多行标签需要使用另一个类却不能制定多行文本居中对齐。但总体来说，这些瑕疵要么可以绕过，要么相比于 SWT 本身带来的便捷来说，无伤大雅。</p>
 <h2 id="结语">结语</h2>
 <p>菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="external"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但网络上相关的资源是十分丰富的，例如 Google、Eclipse 的 Javadoc 和 Java2s 上的代码示例都是有用的信息来源。</p>
 <p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以<a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="external">移步至 GitHub 浏览</a>。</p>
