@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="http://blog.zhanghai.me/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me"/>
-  <updated>2015-04-29T04:05:41.603Z</updated>
+  <updated>2015-04-29T04:08:45.714Z</updated>
   <id>http://blog.zhanghai.me/</id>
   <author>
     <name><![CDATA[张海]]></name>
@@ -15,7 +15,7 @@
     <link href="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/"/>
     <id>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</id>
     <published>2015-04-29T02:25:34.000Z</published>
-    <updated>2015-04-29T04:05:24.344Z</updated>
+    <updated>2015-04-29T04:08:34.917Z</updated>
     <content type="html"><![CDATA[<p>在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
 <a id="more"></a>
 <p><img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - 使用 Gtk 3 渲染"></p>
@@ -46,6 +46,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ResourceBundle resourceBundle = ResourceBundle.getBundle(<span class="string">"res/string/mipside"</span>, <span class="keyword">new</span> Utf8Control());</div><div class="line">Display.setAppName(resourceBundle.getString(<span class="string">"app_name"</span>));</div></pre></td></tr></table></figure>
 
 <p>其中 <code>Utf8Control</code> 是为了使得 ResourceBundle 支持直接读取 UTF-8 编码的资源文件的类，可以从之后我的项目中获得我编写的版本；ResourceBundle 默认只支持 ASCII 编码。</p>
+<h2 id="部署">部署</h2>
+<p>在 Linux 上，一个 Shell 脚本执行 <code>java -jar</code> 已经足够。</p>
+<p>在 Windows 上，经过一些比较，我决定使用 <a href="http://launch4j.sourceforge.net/" target="_blank" rel="external">launch4j</a>，至今体验良好。</p>
+<p>在 Mac OSX 上，JVM 需要特定参数才能正常启动应用，以及打包的细节，可以参考<a href="https://www.eclipse.org/swt/macosx/" target="_blank" rel="external">这篇 Eclipse 的文档</a>。</p>
 <h2 id="结语">结语</h2>
 <p>菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="external"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但网络上相关的资源是十分丰富的，例如 Google、Eclipse 的 Javadoc 和 Java2s 上的代码示例都是有用的信息来源。</p>
 <p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以<a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="external">移步至 GitHub 浏览</a>。</p>
