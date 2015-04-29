@@ -123,7 +123,7 @@
 <h2 id="评价">评价</h2>
 <p>在使用 SWT 完成我的项目后，总体来说，感觉这是一个可用的图形库。</p>
 <p>从接口方面看，SWT 遵循着一致的命名规范，但 Builder 模式的缺失使得构造控件的过程较为冗长，此外将样式、键码等大量常量放置在 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/SWT.html" target="_blank" rel="external"><code>SWT</code></a> 类中也显得较为奇怪。</p>
-<p>从功能方面看，SWT 跨平台调用原生控件的能力确实令人惊喜。众多部件在 Windows、Linux GTK+ 3 和 GTK+ 2、Mac OS X Cocoa 上不需要经过调试即表现良好，并且通过打包与原生应用几乎没有什么差异。美中不足的只是一些小的设计细节，例如标签中的文本不能使用光标选择复制、带有链接的多行标签需要使用另一个类却不能制定多行文本居中对齐。但总体来说，这些瑕疵要么可以绕过，要么相比于 SWT 本身带来的便捷来说，无伤大雅。</p>
+<p>从功能方面看，SWT 跨平台调用原生控件的能力确实令人惊喜。众多部件在 Windows、Linux GTK+ 3 和 GTK+ 2、Mac OS X Cocoa 上不需要经过调试即表现良好，并且通过打包与原生应用几乎没有什么差异。美中不足的只是一些小的设计细节，例如标签中的文本不能使用光标选择复制、带有链接的多行标签需要使用另一个类却不能指定多行文本居中对齐。但总体来说，这些瑕疵要么可以绕过，要么相比于 SWT 本身带来的便捷来说，无伤大雅。</p>
 <h2 id="结语">结语</h2>
 <p>菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="external"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但网络上相关的资源是十分丰富的，例如 Google、Eclipse 的 Javadoc 和 Java2s 上的代码示例都是有用的信息来源。</p>
 <p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以<a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="external">移步至 GitHub 浏览</a>。</p>
