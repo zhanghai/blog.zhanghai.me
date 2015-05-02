@@ -5,21 +5,17 @@
   
   <title>使用 SWT 搭建跨平台桌面应用 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="前言
-在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
+  <meta name="description" content="前言在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 SWT 搭建跨平台桌面应用">
-<meta property="og:url" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/">
+<meta property="og:url" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="前言
-在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
+<meta property="og:description" content="前言在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
 <meta property="og:image" content="/building-portable-desktop-application-with-swt/mipsasm-windows.png">
 <meta property="og:image" content="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 SWT 搭建跨平台桌面应用">
-<meta name="twitter:description" content="前言
-在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
-
+<meta name="twitter:description" content="前言在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
@@ -27,7 +23,6 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
@@ -50,11 +45,11 @@
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://blog.zhanghai.me"></form>
   </div>
 </header>
 
-    <div id="main">
+    <section id="main">
       <article id="post-building-portable-desktop-application-with-swt" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
@@ -84,49 +79,35 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="前言">前言</h2>
-<p>在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
+      <h2 id="前言">前言 </h2><p> 在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
 <a id="more"></a>
-<p><img src="/building-portable-desktop-application-with-swt/mipsasm-windows.png" alt="MIPS 汇编集成开发环境 - Windows"></p>
-<p><img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - GTK+ 3"></p>
-<h2 id="集成">集成</h2>
-<p>鉴于 Maven 上的版本老旧，推荐直接前往 <a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT 官方网站</a>下载稳定发行版本。我使用的开发环境是 IntelliJ Idea，因此在 Project Structure 中的 Libraries 和 Artifacts 内添加相应的设置即可。</p>
-<h2 id="架构">架构</h2>
-<p>我是一名 Android 开发者，因此我在学习 SWT 时也会与 Android 框架进行对比。二者多有类似，也有不同。</p>
+<img src="/building-portable-desktop-application-with-swt/mipsasm-windows.png">
+<img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
+<h2 id="集成">集成 </h2><p> 鉴于 Maven 上的版本老旧，推荐直接前往 <a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT 官方网站 </a> 下载稳定发行版本。我使用的开发环境是 IntelliJ Idea，因此在 Project Structure 中的 Libraries 和 Artifacts 内添加相应的设置即可。</p>
+<h2 id="架构">架构 </h2><p> 我是一名 Android 开发者，因此我在学习 SWT 时也会与 Android 框架进行对比。二者多有类似，也有不同。</p>
 <p>在 SWT 中，<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Display.html" target="_blank" rel="external"><code>Display</code></a> 与 Android 中 <a href="http://developer.android.com/reference/android/content/Context.html" target="_blank" rel="external"><code>Context</code></a> 和 <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank" rel="external"><code>Application</code></a> 的设计有所相近，具有系统资源管理和应用层面操作的功能。而 <code>Display</code> 的一个实用的扩展是 <code>Display.getCurrent()</code> 和 <code>Display.getDefault()</code>，即可以通过静态方法获取当前线程或默认的 <code>Display</code>。</p>
 <p>而与 Android 中的 <a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank" rel="external"><code>Activity</code></a> 相近的则是 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Shell.html" target="_blank" rel="external"><code>Shell</code></a>。<code>Shell</code> 代表一个平台无关的抽象窗口，由此可以进行窗口相关的操作，并建立视图结构。</p>
 <p>与 Andorid 不同，SWT 中没有 XML 布局系统，所有视图的创建需要由应用程序的 Java 代码完成（但有自动将 XML 转换为 Java 代码的工具，如 <a href="https://code.google.com/p/swtxml/" target="_blank" rel="external">SWTXML</a> 等）。<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Control.html" target="_blank" rel="external"><code>Control</code></a> 与 Android 中的 <a href="http://developer.android.com/reference/android/view/View.html" target="_blank" rel="external"><code>View</code></a> 类似，是所有控件的基类，但不同的是，所有的 <code>Control</code> 在构造时都需要一个 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Composite.html" target="_blank" rel="external"><code>Composite</code></a> 作为父对象，既是 Android 中的 <code>Context</code>，也是视图结构上的父容器。而之后如果需要更改控件的父容器，可以调用<code>Control.setParent()</code>，但是否成功则需要由平台支持决定。</p>
 <p>一个窗口最初的 <code>Composite</code> 实例即是 <code>Shell</code>。</p>
-<h2 id="使用">使用</h2>
-<h3 id="主循环">主循环</h3>
-<p>SWT 的主循环是由应用程序自己书写的。常见的范式如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">onCreateDisplay();</div><div class="line"></div><div class="line">onCreateShell();</div><div class="line"></div><div class="line">shell.open();</div><div class="line"><span class="keyword">while</span> (!shell.isDisposed()) {</div><div class="line">    <span class="keyword">if</span> (!display.readAndDispatch()) {</div><div class="line">        display.sleep();</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line">display.dispose();</div></pre></td></tr></table></figure>
-
-<h3 id="视图结构创建">视图结构创建</h3>
-<p>在创建 <code>Shell</code> 实例之后，一般会添加界面元素和布局信息。示例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onCreateShell</span>() {</div><div class="line"></div><div class="line">    shell = <span class="keyword">new</span> Shell(display, SWT.SHELL_TRIM);</div><div class="line"></div><div class="line">    <span class="comment">// 设置图标</span></div><div class="line">    shell.setImages(icons);</div><div class="line"></div><div class="line">    <span class="comment">// 设置根视图布局</span></div><div class="line">    shell.setLayout(<span class="keyword">new</span> FillLayout());</div><div class="line"></div><div class="line">    <span class="comment">// 创建一个 SashForm，作为根视图的子视图</span></div><div class="line">    sashForm = <span class="keyword">new</span> SashForm(shell, SWT.VERTICAL);</div><div class="line"></div><div class="line">    <span class="comment">// 创建编辑器文本框</span></div><div class="line">    editText = <span class="keyword">new</span> StyledText(sashForm, SWT.H_SCROLL | SWT.V_SCROLL);</div><div class="line">    editText.setAlwaysShowScrollBars(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 创建消息区文本框</span></div><div class="line">    messageText = <span class="keyword">new</span> StyledText(sashForm, SWT.H_SCROLL | SWT.V_SCROLL);</div><div class="line">    messageText.setAlwaysShowScrollBars(<span class="keyword">false</span>);</div><div class="line">    messageText.setEditable(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">    sashForm.setWeights(<span class="keyword">new</span> <span class="keyword">int</span>[]{<span class="number">8</span>, <span class="number">2</span>});</div><div class="line"></div><div class="line">    <span class="comment">// 本程序菜单实现依赖于 editText</span></div><div class="line">    onCreateMenu();</div><div class="line">    shell.setMenuBar(menu);</div><div class="line"></div><div class="line">    <span class="comment">// 监听窗口关闭事件，提示保存</span></div><div class="line">    shell.addListener(SWT.Close, <span class="keyword">new</span> Listener() {</div><div class="line">        <span class="annotation">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleEvent</span>(Event event) {</div><div class="line">            event.doit = onClose();</div><div class="line">        }</div><div class="line">    });</div><div class="line"></div><div class="line">    <span class="comment">// 更新窗口标题</span></div><div class="line">    updateTitle();</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="视图布局">视图布局</h3>
-<p>SWT 中的布局方式分为两步：使用 <code>Composite.setLayout()</code> 设置父元素布局子元素时使用的布局方式，使用 <code>Control.setLayoutData()</code> 提供子元素的布局参数。这与 Android 中的布局方式有些许不同，即 SWT 中的 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Layout.html" target="_blank" rel="external"><code>Layout</code></a> 是父容器的参数而非父容器本身的类型。</p>
-<p>SWT 中常用的 <code>Layout</code> 包括 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/FillLayout.html" target="_blank" rel="external"><code>FillLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/RowLayout.html" target="_blank" rel="external"><code>RowLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/GridLayout.html" target="_blank" rel="external"><code>GridLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/FormLayout.html" target="_blank" rel="external"><code>FormLayout</code></a> 和 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/SashForm.html" target="_blank" rel="external"><code>SashForm</code></a> 等。对于前三种基础布局，可以参考 <a href="http://www.eclipse.org/articles/article.php?file=Article-Understanding-Layouts/index.html" target="_blank" rel="external">Eclipse 的这篇文章</a>进行学习。</p>
-<h3 id="资源系统">资源系统</h3>
-<p>与 Android 框架不同，SWT 只是一个图形界面库，因此不提供资源系统。</p>
+<h2 id="使用">使用 </h2><h3 id="主循环"> 主循环</h3><p>SWT 的主循环是由应用程序自己书写的。常见的范式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">onCreateDisplay();</span><br><span class="line"></span><br><span class="line">onCreateShell();</span><br><span class="line"></span><br><span class="line">shell.open();</span><br><span class="line"><span class="keyword">while</span> (!shell.isDisposed()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!display.readAndDispatch()) &#123;</span><br><span class="line">        display.sleep();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">display.dispose();</span><br></pre></td></tr></table></figure>
+<h3 id="视图结构创建">视图结构创建 </h3><p> 在创建 <code>Shell</code> 实例之后，一般会添加界面元素和布局信息。示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onCreateShell</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    shell = <span class="keyword">new</span> Shell(display, SWT.SHELL_TRIM);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置图标</span></span><br><span class="line">    shell.setImages(icons);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置根视图布局</span></span><br><span class="line">    shell.setLayout(<span class="keyword">new</span> FillLayout());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个 SashForm，作为根视图的子视图</span></span><br><span class="line">    sashForm = <span class="keyword">new</span> SashForm(shell, SWT.VERTICAL);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建编辑器文本框</span></span><br><span class="line">    editText = <span class="keyword">new</span> StyledText(sashForm, SWT.H_SCROLL | SWT.V_SCROLL);</span><br><span class="line">    editText.setAlwaysShowScrollBars(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建消息区文本框</span></span><br><span class="line">    messageText = <span class="keyword">new</span> StyledText(sashForm, SWT.H_SCROLL | SWT.V_SCROLL);</span><br><span class="line">    messageText.setAlwaysShowScrollBars(<span class="keyword">false</span>);</span><br><span class="line">    messageText.setEditable(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">    sashForm.setWeights(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">8</span>, <span class="number">2</span>&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 本程序菜单实现依赖于 editText</span></span><br><span class="line">    onCreateMenu();</span><br><span class="line">    shell.setMenuBar(menu);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 监听窗口关闭事件，提示保存</span></span><br><span class="line">    shell.addListener(SWT.Close, <span class="keyword">new</span> Listener() &#123;</span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleEvent</span><span class="params">(Event event)</span> </span>&#123;</span><br><span class="line">            event.doit = onClose();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新窗口标题</span></span><br><span class="line">    updateTitle();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="视图布局">视图布局</h3><p>SWT 中的布局方式分为两步：使用 <code>Composite.setLayout()</code> 设置父元素布局子元素时使用的布局方式，使用 <code>Control.setLayoutData()</code> 提供子元素的布局参数。这与 Android 中的布局方式有些许不同，即 SWT 中的 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Layout.html" target="_blank" rel="external"><code>Layout</code></a> 是父容器的参数而非父容器本身的类型。</p>
+<p>SWT 中常用的 <code>Layout</code> 包括 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/FillLayout.html" target="_blank" rel="external"><code>FillLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/RowLayout.html" target="_blank" rel="external"><code>RowLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/GridLayout.html" target="_blank" rel="external"><code>GridLayout</code></a>、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/layout/FormLayout.html" target="_blank" rel="external"><code>FormLayout</code></a> 和 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/SashForm.html" target="_blank" rel="external"><code>SashForm</code></a> 等。对于前三种基础布局，可以参考 <a href="http://www.eclipse.org/articles/article.php?file=Article-Understanding-Layouts/index.html" target="_blank" rel="external">Eclipse 的这篇文章 </a> 进行学习。</p>
+<h3 id="资源系统">资源系统 </h3><p> 与 Android 框架不同，SWT 只是一个图形界面库，因此不提供资源系统。</p>
 <p>在写作一般规模的 SWT 应用时，可以使用 Java 自带的 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ResourceBundle.html" target="_blank" rel="external"><code>ResourceBundle</code></a> 进行资源管理与国际化。</p>
 <p>常见的范式如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ResourceBundle resourceBundle = ResourceBundle.getBundle(<span class="string">"res/string/mipside"</span>, <span class="keyword">new</span> Utf8Control());</div><div class="line">Display.setAppName(resourceBundle.getString(<span class="string">"app_name"</span>));</div></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ResourceBundle resourceBundle = ResourceBundle.getBundle(<span class="string">"res/string/mipside"</span>, <span class="keyword">new</span> Utf8Control());</span><br><span class="line">Display.setAppName(resourceBundle.getString(<span class="string">"app_name"</span>));</span><br></pre></td></tr></table></figure>
 <p>其中 <code>Utf8Control</code> 是为了使得 ResourceBundle 支持直接读取 UTF-8 编码的资源文件的类，可以从之后我的项目中获得我编写的版本；ResourceBundle 默认只支持 ASCII 编码。</p>
-<h2 id="部署">部署</h2>
-<p>在 Linux 上，一个 Shell 脚本执行 <code>java -jar</code> 已经足够。</p>
+<h2 id="部署">部署 </h2><p> 在 Linux 上，一个 Shell 脚本执行 <code>java -jar</code> 已经足够。</p>
 <p>在 Windows 上，经过一些比较，我决定使用 <a href="http://launch4j.sourceforge.net/" target="_blank" rel="external">launch4j</a>，至今体验良好。</p>
-<p>在 Mac OS X 上，JVM 需要特定参数才能正常启动应用，以及其他打包应用程序的细节，可以参考<a href="https://www.eclipse.org/swt/macosx/" target="_blank" rel="external">这篇 Eclipse 的文档</a>。</p>
-<h2 id="评价">评价</h2>
-<p>在使用 SWT 完成我的项目后，总体来说，感觉这是一个可用的图形库。</p>
+<p>在 Mac OS X 上，JVM 需要特定参数才能正常启动应用，以及其他打包应用程序的细节，可以参考 <a href="https://www.eclipse.org/swt/macosx/" target="_blank" rel="external"> 这篇 Eclipse 的文档</a>。</p>
+<h2 id="评价">评价 </h2><p> 在使用 SWT 完成我的项目后，总体来说，感觉这是一个可用的图形库。</p>
 <p>从接口方面看，SWT 遵循着一致的命名规范，但 Builder 模式的缺失使得构造控件的过程较为冗长，此外将样式、键码等大量常量放置在 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/SWT.html" target="_blank" rel="external"><code>SWT</code></a> 类中也显得较为奇怪。</p>
 <p>从功能方面看，SWT 跨平台调用原生控件的能力确实令人惊喜。众多部件在 Windows、Linux GTK+ 3 和 GTK+ 2、Mac OS X Cocoa 上不需要经过调试即表现良好，并且通过打包与原生应用几乎没有什么差异。美中不足的只是一些小的设计细节，例如标签中的文本不能使用光标选择复制、带有链接的多行标签需要使用另一个类却不能指定多行文本居中对齐。但总体来说，这些瑕疵要么可以绕过，要么相比于 SWT 本身带来的便捷来说，无伤大雅。</p>
-<h2 id="结语">结语</h2>
-<p>菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="external"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但网络上相关的资源是十分丰富的，例如 Google、Eclipse 的 Javadoc 和 Java2s 上的代码示例都是有用的信息来源。</p>
-<p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以<a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="external">移步至 GitHub 浏览</a>。</p>
+<h2 id="结语">结语 </h2><p> 菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="external"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但网络上相关的资源是十分丰富的，例如 Google、Eclipse 的 Javadoc 和 Java2s 上的代码示例都是有用的信息来源。</p>
+<p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以 <a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="external"> 移步至 GitHub 浏览</a>。</p>
 
     
   </div>
@@ -175,7 +156,7 @@
 
 
 
-    </div>
+    </section>
     <div class="mb-search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="搜索">
@@ -203,7 +184,7 @@
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
@@ -212,12 +193,11 @@
 <script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
 <script src="/js/script.js" type="text/javascript"></script>
-
 
   </div>
 </body>
