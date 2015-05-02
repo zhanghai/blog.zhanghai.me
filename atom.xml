@@ -337,7 +337,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-04-27T01:58:41.421Z</updated>
+    <updated>2015-05-02T10:16:42.758Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -503,11 +503,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -density <span class="number">300</span> &lt;YOUR_FILE.pdf&gt; &lt;YOUR_FILE.png&gt;</span><br></pre></td></tr></table></figure>
 <p>Where the density parameter is your desired DPI.</p>
 <h2 id="Bitmap_operation">Bitmap operation</h2><p>Resize:</p>
-<pre><code><span class="title">mogrify</span> -interpolate bicubic -resize <span class="number">50</span>% <span class="regexp">*.png</span>
-</code></pre><p>Crop:</p>
-<pre><code><span class="title">mogrify</span> -crop 1080x1845+<span class="number">0</span>+<span class="number">75</span> <span class="regexp">*.png</span>
-</code></pre><h2 id="Merge_PDFs">Merge PDFs</h2><pre><code>pdfunite <span class="tag">&lt;<span class="title">SOURCE_PDF_FILES</span>&gt;</span> <span class="tag">&lt;<span class="title">OUTPUT_PDF_FILE</span>&gt;</span>
-</code></pre><h2 id="Convert_GB*_encoded_mp3_tag_to_Unicode">Convert GB* encoded mp3 tag to Unicode</h2><p>Install package <code>easytag</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mogrify -interpolate bicubic -resize <span class="number">50</span>% *.png</span><br></pre></td></tr></table></figure>
+<p>Crop:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mogrify -crop <span class="number">1080</span>x1845+<span class="number">0</span>+<span class="number">75</span> *.png</span><br></pre></td></tr></table></figure>
+<h2 id="Merge_PDFs">Merge PDFs</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdfunite &lt;SOURCE_PDF_FILES&gt; &lt;OUTPUT_PDF_FILE&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Convert_GB*_encoded_mp3_tag_to_Unicode">Convert GB* encoded mp3 tag to Unicode</h2><p>Install package <code>easytag</code>.</p>
 <p>Note that EasyTag may become the handler for MIME type <code>inode/directory</code>, instead of your own file manager, say, Nautilus. You can delete the default association for Easytag and inode/directory in <code>~/.local/share/applications/mimeapps.list</code>, which is managed by <code>gvfs-mime</code>. See also the MIME type section.</p>
 <h2 id="MIME_type_handling">MIME type handling</h2><p>In GNOME, there are two components managing the default application for a MIME type.</p>
 <p>The first one, which is system-wide, can be queried or set via <code>xdg-mime</code>.</p>

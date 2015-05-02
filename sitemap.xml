@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
+    <lastmod>2015-05-02T10:16:42.758Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
     <lastmod>2015-05-02T07:05:18.578Z</lastmod>
   </url>
@@ -19,11 +24,6 @@
   <url>
     <loc>http://blog.zhanghai.me/qsc-mobile-android-v3/</loc>
     <lastmod>2015-05-02T06:23:58.071Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
-    <lastmod>2015-04-27T01:58:41.421Z</lastmod>
   </url>
   
   <url>
