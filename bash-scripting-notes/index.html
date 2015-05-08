@@ -86,6 +86,7 @@ StylingUse Google style guide for shell.">
 <h2 id="Organization">Organization</h2><p>Use functions; use a <code>main</code> function and call it by <code>main &quot;$@&quot;</code> at the end of the script.</p>
 <h2 id="Boolean_variable">Boolean variable</h2><p>Use <code>1</code> or <code>0</code> literal for boolean; test by <code>[[${bool_val} -eq 1 ]]</code>.</p>
 <h2 id="Local_variable">Local variable</h2><p>Use <code>local</code> for function local variable; seprate declaration and assignment.</p>
+<h2 id="String_operation">String operation</h2><p>See <a href="http://tldp.org/LDP/abs/html/refcards.html#AEN22828" target="_blank" rel="external">this manual</a>.</p>
 <h2 id="getopt">getopt</h2><p>Always quote <code>&quot;$@&quot;</code> to preserve correct word splitting.</p>
 <h2 id="Read_password">Read password</h2><p>Use <code>read -p &lt;prompt&gt; -s &lt;variable&gt;; echo</code> to read password.</p>
 <h2 id="Using_sudo">Using sudo</h2><p>Include this function and call it before you’re going to use <code>sudo</code>.</p>
