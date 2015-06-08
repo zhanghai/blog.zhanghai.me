@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/c-exam-notes/</loc>
+    <lastmod>2015-06-08T14:11:15.718Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/bash-scripting-notes/</loc>
     <lastmod>2015-05-10T09:56:38.873Z</lastmod>
   </url>
@@ -44,11 +49,6 @@
   <url>
     <loc>http://blog.zhanghai.me/404.html</loc>
     <lastmod>2015-03-02T08:59:17.129Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/c-exam-notes/</loc>
-    <lastmod>2015-03-02T08:59:17.126Z</lastmod>
   </url>
   
 </urlset>

@@ -149,7 +149,7 @@
     <link href="http://blog.zhanghai.me/c-exam-notes/"/>
     <id>http://blog.zhanghai.me/c-exam-notes/</id>
     <published>2015-02-15T10:38:12.000Z</published>
-    <updated>2015-03-02T08:59:17.126Z</updated>
+    <updated>2015-06-08T14:11:15.718Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言 </h2><p> 这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>
 <a id="more"></a>
 <h2 id="正文">正文</h2><p><code>if</code> 语句没有花括号时只包含之后一行，如：</p>
@@ -301,6 +301,7 @@
 <p><code>007</code>为八进制数字，注意范围为 <em>0-7</em>，<code>0x0F</code> 为十六进制数字。</p>
 <p><code>strcat</code>实现：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcat</span><span class="params">(<span class="keyword">char</span> *str1, <span class="keyword">char</span> *str2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (*str &amp;&amp; *++str);</span><br><span class="line">    <span class="keyword">while</span> (*str1++ = *str2++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="callout"><div class="title">相关阅读</div><a href="http://blog.yzyzsun.me/c-traps-and-pitfalls/" target="_blank" rel="external">《C 陷阱与缺陷》笔记 | 孙耀珠的博客</a></blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="前言">前言</h2><p>这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>]]>

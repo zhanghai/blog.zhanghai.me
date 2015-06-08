@@ -228,6 +228,7 @@
 <p><code>007</code>为八进制数字，注意范围为 <em>0-7</em>，<code>0x0F</code> 为十六进制数字。</p>
 <p><code>strcat</code>实现：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcat</span><span class="params">(<span class="keyword">char</span> *str1, <span class="keyword">char</span> *str2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (*str &amp;&amp; *++str);</span><br><span class="line">    <span class="keyword">while</span> (*str1++ = *str2++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="callout"><div class="title">相关阅读</div><a href="http://blog.yzyzsun.me/c-traps-and-pitfalls/" target="_blank" rel="external">《C 陷阱与缺陷》笔记 | 孙耀珠的博客</a></blockquote>
 
     
   </div>
