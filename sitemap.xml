@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</loc>
+    <lastmod>2015-06-11T06:22:15.218Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/c-exam-notes/</loc>
     <lastmod>2015-06-08T14:11:15.718Z</lastmod>
   </url>
@@ -37,7 +42,7 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/key_sequence_transformation_in_x11/</loc>
+    <loc>http://blog.zhanghai.me/key-sequence-transformation-in-x11/</loc>
     <lastmod>2015-03-13T07:07:44.516Z</lastmod>
   </url>
   
