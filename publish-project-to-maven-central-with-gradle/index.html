@@ -115,11 +115,11 @@
 <li><p>无法使用命令行输入密码。</p>
 <p> GnuPG 默认在有图形界面时使用会 <code>XGrabKeyboard</code> 的窗口进行密码输入，并且无法从剪贴板粘贴文本，给我使用随机密码带来了很多不便，因此我希望从命令行输入密码。</p>
 <p> 在 GnuPG 2.1 中，一切相关的操作被交由 <code>gpg-agent</code> 完成，同时，<code>--pinentry-mode loopback</code> 被提示为不支持，即使在 <code>gpg-agent.conf</code> 中添加 <code>allow-loopback-pinentry</code> 也没有作用。</p>
-<p> 最终我的解决方案是在执行 <code>gpg</code> 前 <code>unset DISPLAY</code> 使其使用一个基于 <code>curses</code> 的命令行界面，然后对终端进行粘贴文本。</p>
+<p> 最终我的解决方案是在执行 <code>gpg</code> 前 <code>DISPLAY=&quot;&quot;</code> 使其使用一个基于 <code>curses</code> 的命令行界面，然后对终端进行粘贴文本。</p>
 </li>
 <li><p><code>secring.gpg</code> 中找不到私钥。</p>
 <p> GnuPG 2.1 <a href="https://www.gnupg.org/faq/whats-new-in-2.1.html#nosecring" target="_blank" rel="external">已经不再使用 <code>secring.gpg</code></a>，因此新创建的私钥不会向其中写入，而是会由 <code>gpg-agent</code> 写入至 <code>private-keys-v1.d</code> 目录。为了兼容 Gradle 签名插件，我将私钥导出，模拟了一个 <code>secring.gpg</code>。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> DISPLAY &amp;&amp; gpg --output secring.gpg --export-secret-keys &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISPLAY=<span class="string">""</span> gpg --output secring.gpg --export-secret-keys &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>需要将公钥发布至公钥服务器才能通过审核。</p>
 <p> 在对项目进行 Close 时，会对签名进行验证，因此需要将你的公钥上传以使其可以被公开获取。我选择了发布至 MIT 公钥服务器。</p>
