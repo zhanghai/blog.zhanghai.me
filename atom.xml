@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2015-06-11T06:22:15.218Z</updated>
+  <updated>2015-06-11T06:26:57.282Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -19,8 +19,9 @@
     <link href="http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/"/>
     <id>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</id>
     <published>2015-06-11T04:32:45.000Z</published>
-    <updated>2015-06-11T06:22:15.218Z</updated>
+    <updated>2015-06-11T06:26:57.282Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
+<a id="more"></a>
 <h2 id="Gradle">Gradle</h2><p>作为一个 Android 开发者，一般会使用 Gradle 进行构建与发布。广为使用的脚本是 Chris Banes 所写的 <code>gradle-mvn-push</code>，项目中的 <code>README.md</code> 有详细的步骤说明。</p>
 <blockquote class="callout"><div class="title">外部文章</div><a href="https://github.com/chrisbanes/gradle-mvn-push/blob/master/README.md" target="_blank" rel="external">gradle-mvn-push 的 README</a></blockquote>
 <p>我不喜欢将密码明文写在配置文件中，而是习惯从终端读入密码，因此我对 <code>gradle-mvn-push.gradle</code> 进行了一些修改：</p>
@@ -73,8 +74,8 @@
 <p>虽然麻烦，但是对于开发者来说，发布之后的使用还是十分舒服的，因此这些努力也算没有白费。记录在此，希望能够在其他开发者发布自己的项目时有所帮助。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="前言">前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
-<h2 id="Gradle">Gradle</h2><p>作为一个]]>
+    <![CDATA[<h2 id="前言">前言</h2><p>将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>]]>
+    
     </summary>
     
       <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>

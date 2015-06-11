@@ -79,58 +79,12 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="前言">前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
-<h2 id="Gradle">Gradle</h2><p>作为一个 Android 开发者，一般会使用 Gradle 进行构建与发布。广为使用的脚本是 Chris Banes 所写的 <code>gradle-mvn-push</code>，项目中的 <code>README.md</code> 有详细的步骤说明。</p>
-<blockquote class="callout"><div class="title">外部文章</div><a href="https://github.com/chrisbanes/gradle-mvn-push/blob/master/README.md" target="_blank" rel="external">gradle-mvn-push 的 README</a></blockquote>
-<p>我不喜欢将密码明文写在配置文件中，而是习惯从终端读入密码，因此我对 <code>gradle-mvn-push.gradle</code> 进行了一些修改：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> getReleaseRepositoryUrl() &#123;</span><br><span class="line">    <span class="keyword">return</span> hasProperty(<span class="string">'RELEASE_REPOSITORY_URL'</span>) ? RELEASE_REPOSITORY_URL</span><br><span class="line">            : <span class="string">"https://oss.sonatype.org/service/local/staging/deploy/maven2/"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> getSnapshotRepositoryUrl() &#123;</span><br><span class="line">    <span class="keyword">return</span> hasProperty(<span class="string">'SNAPSHOT_REPOSITORY_URL'</span>) ? SNAPSHOT_REPOSITORY_URL</span><br><span class="line">            : <span class="string">"https://oss.sonatype.org/content/repositories/snapshots/"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">    gradle.taskGraph.whenReady &#123; taskGraph -&gt;</span><br><span class="line">        <span class="keyword">if</span> (taskGraph.allTasks.<span class="keyword">any</span> &#123; it <span class="keyword">instanceof</span> Sign &#125;) &#123;</span><br><span class="line">            <span class="keyword">allprojects</span> &#123;</span><br><span class="line">                 ext.<span class="string">"signing.password"</span> = System.console() != <span class="keyword">null</span> ? System.console().readLine(<span class="string">"\nPGP private key password:"</span>) : <span class="string">""</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>此外，这个脚本在构建 <code>JavaDoc</code> 时会使用系统的语言设置，导致生成的文档可能是中文版本。通过将 <code>LANG=&quot;en_US.UTF-8&quot;</code> 附加在 <code>gradle</code> 命令之前可以将语言设置为英文。</p>
-<p>关于我自己采用的配置，可以参考我 <a href="https://github.com/DreaminginCodeZH/MaterialProgressBar" target="_blank" rel="external"> 在 Github 上的项目</a>。</p>
-<h2 id="OSSRH">OSSRH</h2><p>为了在 Maven Central 上发布项目，一般会选择在 Sonatype OSSRH (OSS Repository Hosting) 上注册账户进行操作。最顶层的帮助是以下这篇文章，从其中的链接可以进入其他子页面查看详细步骤。</p>
-<blockquote class="callout"><div class="title">外部文章</div><a href="http://central.sonatype.org/pages/ossrh-guide.html" target="_blank" rel="external">OSSRH Guide</a></blockquote>
-<p>同时，这篇中文文章也较为详尽，对我的发布过程有很大帮助。</p>
-<blockquote class="callout"><div class="title">外部文章 </div><a href="http://blog.csdn.net/qiujuer/article/details/44195131" target="_blank" rel="external"> 使用 Gradle 发布 AAR 到 Maven 仓库</a></blockquote>
-<p>以下是我的步骤：</p>
-<ol>
-<li><p><a href="https://issues.sonatype.org/secure/Signup!default.jspa" target="_blank" rel="external">注册 JIRA 账户</a>。</p>
-</li>
-<li><p><a href="https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&amp;pid=10134" target="_blank" rel="external">创建工程工单</a>。</p>
-<p> Group Id 请填写顶级域名的反转，因为每个用户只需要创建一次工单，之后会将整个 Group Id 下的权限开放给用户。我填写了项目的 Group Id，之后被处理者修正。</p>
-<p> SCM URL 可以直接填写 GitHub 仓库的地址。我开始时一直尝试使用 SSH 克隆地址，但总是不能通过验证。</p>
-</li>
-<li><p>发布项目至暂存区。</p>
-<p> 使用 <code>gradle-mvn-push</code>，执行 <code>LANG=&quot;en_US.UTF-8&quot; gradle clean build uploadArchives</code>。这需要正确的 PGP 签名设置，将在这篇文章的稍后进行说明。</p>
-</li>
-<li><p>公开发布项目。</p>
-<p> 前往 <a href="https://oss.sonatype.org/" target="_blank" rel="external">Sonatype OSS</a>，登录，点击左侧边栏中的 Staging Repositories，找到并选择自己的项目，点击 Close，刷新并等待操作完成，之后点击 Release，即完成公开发布。</p>
-</li>
-<li><p>回复工单</p>
-<p> 在处理者对工单的回复中，会要求你在公开发布第一个项目后回复此工单，照做即可。</p>
-</li>
-</ol>
-<h2 id="GnuPG（2-1）">GnuPG（2.1）</h2><p>GnuPG 2.1 的使用是我在这次发布过程中遇到的最为棘手的问题，因为网络上大部分的教程还是基于之前的版本，导致许多已经更改的操作方式不再可用；并且 Gradle 也尚未支持这个版本，尽管 2.1 已在去年 11 月发布。因此在这里简单记录一些我遇到的问题和解决方案。</p>
-<ol>
-<li><p>无法选定密钥长度。</p>
-<p> 在 GnuPG 2.1 中，需要使用 <code>--full-gen-key</code> 以获取之前在 <code>--gen-key</code> 中可用的选项。</p>
-</li>
-<li><p>无法使用命令行输入密码。</p>
-<p> GnuPG 默认在有图形界面时使用会 <code>XGrabKeyboard</code> 的窗口进行密码输入，并且无法从剪贴板粘贴文本，给我使用随机密码带来了很多不便，因此我希望从命令行输入密码。</p>
-<p> 在 GnuPG 2.1 中，一切相关的操作被交由 <code>gpg-agent</code> 完成，同时，<code>--pinentry-mode loopback</code> 被提示为不支持，即使在 <code>gpg-agent.conf</code> 中添加 <code>allow-loopback-pinentry</code> 也没有作用。</p>
-<p> 最终我的解决方案是在执行 <code>gpg</code> 前 <code>unset DISPLAY</code> 使其使用一个基于 <code>curses</code> 的命令行界面，然后对终端进行粘贴文本。</p>
-</li>
-<li><p><code>secring.gpg</code> 中找不到私钥。</p>
-<p> GnuPG 2.1 <a href="https://www.gnupg.org/faq/whats-new-in-2.1.html#nosecring" target="_blank" rel="external">已经不再使用 <code>secring.gpg</code></a>，因此新创建的私钥不会向其中写入，而是会由 <code>gpg-agent</code> 写入至 <code>private-keys-v1.d</code> 目录。为了兼容 Gradle 签名插件，我将私钥导出，模拟了一个 <code>secring.gpg</code>。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> DISPLAY &amp;&amp; gpg --output secring.gpg --export-secret-keys &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>需要将公钥发布至公钥服务器才能通过审核。</p>
-<p> 在对项目进行 Close 时，会对签名进行验证，因此需要将你的公钥上传以使其可以被公开获取。我选择了发布至 MIT 公钥服务器。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver pgp.mit.edu --send-key &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="结语">结语 </h2><p> 发布项目到 Maven Central 的过程确实十分复杂，同时 GnuPG 进行了不兼容升级并且缺乏文档，所以令我花费了不少时间。</p>
-<p>相比之下，通过 BinTray 发布则更为简单和自动化一些，然而它要求你将私钥上传至它的服务器，这令我不太舒服，因此并没有采用。</p>
-<p>虽然麻烦，但是对于开发者来说，发布之后的使用还是十分舒服的，因此这些努力也算没有白费。记录在此，希望能够在其他开发者发布自己的项目时有所帮助。</p>
-
+      <h2 id="前言">前言</h2><p>将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
+      
+        <p class="more">
+          <a href="/publish-project-to-maven-central-with-gradle/#more">继续阅读</a>
+        </p>
+      
     
   </div>
   <footer class="entry-footer">
