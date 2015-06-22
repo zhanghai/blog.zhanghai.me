@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>标签：Android | 梦断代码</title>
+  <title>Material 设计 ProgressBar 的兼容实现 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description">
+  <meta name="description" content="前言 Material 设计中对 ProgressBar 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用原生的 Holo 主题样式，并且也没有提供是否显示控件的留白和背景轨迹的选项。因此，决定自己根据 Android 5.0 中的 Drawable，给出一个兼容 Android 4.0 的实">
 <meta property="og:type" content="article">
-<meta property="og:title" content="梦断代码">
-<meta property="og:url" content="http://blog.zhanghai.me/tags/android/index.html">
+<meta property="og:title" content="Material 设计 ProgressBar 的兼容实现">
+<meta property="og:url" content="http://blog.zhanghai.me/backporting-material-design-progressbar/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description">
+<meta property="og:description" content="前言 Material 设计中对 ProgressBar 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用原生的 Holo 主题样式，并且也没有提供是否显示控件的留白和背景轨迹的选项。因此，决定自己根据 Android 5.0 中的 Drawable，给出一个兼容 Android 4.0 的实">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="梦断代码">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Material 设计 ProgressBar 的兼容实现">
+<meta name="twitter:description" content="前言 Material 设计中对 ProgressBar 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用原生的 Holo 主题样式，并且也没有提供是否显示控件的留白和背景轨迹的选项。因此，决定自己根据 Android 5.0 中的 Drawable，给出一个兼容 Android 4.0 的实">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
@@ -48,9 +48,7 @@
 </header>
 
     <section id="main">
-      
-  
-    <article id="post-backporting-material-design-progressbar" class="post">
+      <article id="post-backporting-material-design-progressbar" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/backporting-material-design-progressbar/" class="article-date">
@@ -70,8 +68,8 @@
   <header class="entry-header">
     
   
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/backporting-material-design-progressbar/">Material 设计 ProgressBar 的兼容实现</a>
+    <h1 class="article-title entry-title" itemprop="name">
+      Material 设计 ProgressBar 的兼容实现
     </h1>
   
 
@@ -100,79 +98,33 @@
     </div>
   </footer>
   
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-    <article id="post-drag-and-drop-with-animation-on-linearlayout" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/drag-and-drop-with-animation-on-linearlayout/" class="article-date">
-  <time datetime="2015-02-25T05:04:38.000Z" itemprop="datePublished">2月 25 2015</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
     
+<nav id="article-nav">
   
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/drag-and-drop-with-animation-on-linearlayout/">LinearLayout 的拖放操作和动画</a>
-    </h1>
   
-
-
-  </header>
-  <div class="entry-content">
-    
-      <h2 id="前言">前言</h2><p>Android 中<code>ListView</code>的拖放操作和动画实现已经被<a href="https://www.youtube.com/watch?v=_BZIvjMgH-Q">这个 DevByte</a> 和<a href="https://android.googlesource.com/platform/development/+/master/samples/devbytes/animation/ListViewDraggingAnimation">相关的样例</a>说明，并且也有 <a href="https://github.com/nhaarman/ListViewAnimations">ListViewAnimations</a> 这样强大的开源库进行了集成。但是，一番 Google 后，我发现基于<code>LinearLayout</code>的相关实现却不多。</p>
-<p>然而，有时我们可能需要使用<code>LinearLayout</code>替代<code>ListView</code>来实现列表，例如不需要<code>ListView</code>的视图回收机制（比如使用<code>Fragment</code>作为列表项），或者我们需要把这个视图放在<code>ScrollView</code>中。</p>
-<p>在使用<code>LinearLayout</code>实现拖放和动画时，实现代码相比于之前提到的<code>ListView</code>实现也需要一些变动。因为我在网络上没有找到相应的资料，所以写下这篇文章来记录这个过程。</p>
-      
-        <p class="more">
-          <a href="/drag-and-drop-with-animation-on-linearlayout/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
+    <a href="/publish-project-to-maven-central-with-gradle/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
         
-
-      </span>
-      <span class="tags">
+          使用 Gradle 发布项目至 Maven Central
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+      </div>
+    </a>
+  
+</nav>
 
 
-      </span>
-    </div>
-  </footer>
   
 </article>
 
 
-  <hr class="article-divider">
 
 
-
-
-  
-  
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
 
 
 
@@ -198,11 +150,13 @@
 <script>
   var disqus_shortname = 'zhanghai';
   
+  var disqus_url = 'http://blog.zhanghai.me/backporting-material-design-progressbar/';
+  
   (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2015-06-15T06:39:35.334Z</updated>
+  <updated>2015-06-14T12:52:25.010Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -13,6 +13,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Material 设计 ProgressBar 的兼容实现]]></title>
+    <link href="http://blog.zhanghai.me/backporting-material-design-progressbar/"/>
+    <id>http://blog.zhanghai.me/backporting-material-design-progressbar/</id>
+    <published>2015-06-14T11:19:10.000Z</published>
+    <updated>2015-06-14T12:52:25.010Z</updated>
+    <content type="html"><![CDATA[<h2 id="前言"> 前言 </h2><p>Material 设计中对 <code>ProgressBar</code> 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用原生的 Holo 主题样式，并且也没有提供是否显示控件的留白和背景轨迹的选项。因此，决定自己根据 Android 5.0 中的 <code>Drawable</code>，给出一个兼容 Android 4.0 的实现。</p>
+<video controls loop src="/backporting-material-design-progressbar/material_design_progressbar.webm" onclick="this.paused ? this.play() : this.pause()"></video>
+<h2 id="原生实现"> 原生实现 </h2><p>Android 5.0 中引入了 <code>VectorDrawable</code> 以支持矢量图形，并且在 <code>Interplolator</code> 和 <code>ObjectAnimator</code> 内支持 <code>pathData</code> 作为路径数据，由此在框架内使用 XML 实现了三种 <code>ProgressBar</code> 的 </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="前言"> 前言 </h2><p>Material 设计中对 <code>ProgressBar</code> 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用]]>
+    </summary>
+    
+      <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
+    
+      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[使用 Gradle 发布项目至 Maven Central]]></title>
@@ -409,7 +429,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-05-02T10:16:42.758Z</updated>
+    <updated>2015-06-22T06:38:09.497Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -501,7 +521,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Unset global proxy set by gnome-terminal</span></span><br><span class="line"><span class="comment"># See https://github.com/GNOME/gnome-terminal/blob/master/src/terminal-util.c</span></span><br><span class="line"><span class="built_in">unset</span> http_proxy https_proxy ftp_proxy all_proxy no_proxy</span><br><span class="line"><span class="built_in">unset</span> HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY</span><br></pre></td></tr></table></figure>
 <h2 id="GNOME_online_account">GNOME online account</h2><p>You can log in your Google account and all the things will be configured and synchronized automatically to your laptop. It can be a huge boost for your work flow.</p>
 <p>If you need a proxy to access Google, configure it as in the GNOME proxy setting section.</p>
-<h2 id="Nautilus_hangs_occasionally">Nautilus hangs occasionally</h2><p>In my case it often happened when I started to search something. Executing <code>tracker reset -r</code> to reset tracker index and configurations, and rebooting immediately after that, resolved my issue.</p>
+<h2 id="Nautilus_hangs_occasionally">Nautilus hangs occasionally</h2><p>In my case it often happened when I started to search something. Turned out that it is caused by my putting too many files under indexed directories.</p>
+<p>To fix the hang up, launch <code>tracker-preferences</code>, go to “Locations” tab, and turn off “Recurse” for directories you may store a large amount of files. Then execute <code>tracker reset --hard</code> to reset tracker index and configurations. This resolved my issue so far.</p>
 <h2 id="DNS_and_resolvconf">DNS and resolvconf</h2><p>DNS is managed by <code>resolvconf</code> in Arch Linux. In order to supply your own DNS, edit <code>/etc/resolvconf.conf</code>.</p>
 <p>There are two options you may normally want to specify:</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">name_servers=<span class="value">&lt;DNS1&gt; #Prepended into DNS list</span></span></span><br><span class="line"><span class="setting">name_servers_append=<span class="value"><span class="string">"&lt;DNS2&gt; &lt;DNS3&gt; ..."</span></span></span></span><br></pre></td></tr></table></figure>

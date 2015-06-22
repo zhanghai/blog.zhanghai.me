@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>存档：2015 | 梦断代码</title>
+  <title>存档 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
   <meta name="description">
 <meta property="og:type" content="article">
 <meta property="og:title" content="梦断代码">
-<meta property="og:url" content="http://blog.zhanghai.me/archives/2015/06/index.html">
+<meta property="og:url" content="http://blog.zhanghai.me/archives/page/2/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -50,18 +50,18 @@
     <section id="main">
       
   
-    <article id="post-backporting-material-design-progressbar" class="post">
+    <article id="post-hello-world" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
-      <a href="/backporting-material-design-progressbar/" class="article-date">
-  <time datetime="2015-06-14T11:19:10.000Z" itemprop="datePublished">6月 14 2015</time>
+      <a href="/hello-world/" class="article-date">
+  <time datetime="2014-10-31T05:45:52.000Z" itemprop="datePublished">10月 31 2014</time>
 </a>
 
     </span>
     <span class="meta-elements author">张海</span>
     <div class="commentscount">
       
-        <a href="http://blog.zhanghai.me/backporting-material-design-progressbar/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="http://blog.zhanghai.me/hello-world/#disqus_thread" class="article-comment-link">评论</a>
       
     </div>
   </header>
@@ -71,7 +71,7 @@
     
   
     <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/backporting-material-design-progressbar/">Material 设计 ProgressBar 的兼容实现</a>
+      <a class="article-title" href="/hello-world/">你好，世界！</a>
     </h1>
   
 
@@ -79,9 +79,7 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="前言"> 前言 </h2><p>Material 设计中对 <code>ProgressBar</code> 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用原生的 Holo 主题样式，并且也没有提供是否显示控件的留白和背景轨迹的选项。因此，决定自己根据 Android 5.0 中的 <code>Drawable</code>，给出一个兼容 Android 4.0 的实现。</p>
-<video controls loop src="/backporting-material-design-progressbar/material_design_progressbar.webm" onclick="this.paused ? this.play() : this.pause()"></video>
-<h2 id="原生实现"> 原生实现 </h2><p>Android 5.0 中引入了 <code>VectorDrawable</code> 以支持矢量图形，并且在 <code>Interplolator</code> 和 <code>ObjectAnimator</code> 内支持 <code>pathData</code> 作为路径数据，由此在框架内使用 XML 实现了三种 <code>ProgressBar</code> 的 </p>
+      <p> 你好，世界！</p>
 
     
   </div>
@@ -89,12 +87,14 @@
     <div class="entry-meta-footer">
       <span class="category">
         
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/other/">其他</a>
+  </div>
+
 
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
-
 
       </span>
     </div>
@@ -109,67 +109,10 @@
 
 
   
-    <article id="post-publish-project-to-maven-central-with-gradle" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/publish-project-to-maven-central-with-gradle/" class="article-date">
-  <time datetime="2015-06-11T04:32:45.000Z" itemprop="datePublished">6月 11 2015</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
   
-
-  <header class="entry-header">
-    
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/publish-project-to-maven-central-with-gradle/">使用 Gradle 发布项目至 Maven Central</a>
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <h2 id="前言">前言</h2><p>将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
-      
-        <p class="more">
-          <a href="/publish-project-to-maven-central-with-gradle/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
-        
-
-      </span>
-      <span class="tags">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
-
-
-      </span>
-    </div>
-  </footer>
-  
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">« 上一页</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
