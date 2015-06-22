@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2015-06-14T12:52:25.010Z</updated>
+  <updated>2015-06-15T06:39:35.334Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -13,26 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Material 设计 ProgressBar 的兼容实现]]></title>
-    <link href="http://blog.zhanghai.me/backporting-material-design-progressbar/"/>
-    <id>http://blog.zhanghai.me/backporting-material-design-progressbar/</id>
-    <published>2015-06-14T11:19:10.000Z</published>
-    <updated>2015-06-14T12:52:25.010Z</updated>
-    <content type="html"><![CDATA[<h2 id="前言"> 前言 </h2><p>Material 设计中对 <code>ProgressBar</code> 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用原生的 Holo 主题样式，并且也没有提供是否显示控件的留白和背景轨迹的选项。因此，决定自己根据 Android 5.0 中的 <code>Drawable</code>，给出一个兼容 Android 4.0 的实现。</p>
-<video controls loop src="/backporting-material-design-progressbar/material_design_progressbar.webm" onclick="this.paused ? this.play() : this.pause()"></video>
-<h2 id="原生实现"> 原生实现 </h2><p>Android 5.0 中引入了 <code>VectorDrawable</code> 以支持矢量图形，并且在 <code>Interplolator</code> 和 <code>ObjectAnimator</code> 内支持 <code>pathData</code> 作为路径数据，由此在框架内使用 XML 实现了三种 <code>ProgressBar</code> 的 </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="前言"> 前言 </h2><p>Material 设计中对 <code>ProgressBar</code> 的样式给出了新的设计，而在 Android 5.0 中也利用矢量图形和路径动画进行了实现。然而，虽然使用了 AppCompat，在之前的版本上还是只会使用]]>
-    </summary>
-    
-      <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
-    
-      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[使用 Gradle 发布项目至 Maven Central]]></title>
