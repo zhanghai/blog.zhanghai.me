@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</loc>
+    <lastmod>2015-07-18T06:44:27.806Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     <lastmod>2015-06-22T06:38:09.497Z</lastmod>
   </url>
@@ -24,11 +29,6 @@
   <url>
     <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
     <lastmod>2015-05-02T07:05:18.578Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</loc>
-    <lastmod>2015-05-02T06:30:11.668Z</lastmod>
   </url>
   
   <url>

@@ -100,6 +100,7 @@
 <p>常见的范式如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ResourceBundle resourceBundle = ResourceBundle.getBundle(<span class="string">"res/string/mipside"</span>, <span class="keyword">new</span> Utf8Control());</span><br><span class="line">Display.setAppName(resourceBundle.getString(<span class="string">"app_name"</span>));</span><br></pre></td></tr></table></figure>
 <p>其中 <code>Utf8Control</code> 是为了使得 ResourceBundle 支持直接读取 UTF-8 编码的资源文件的类，可以从之后我的项目中获得我编写的版本；ResourceBundle 默认只支持 ASCII 编码。</p>
+<h3 id="设置">设置 </h3><p> 为了保存用户的设置，可以使用 Java 自带的 <a href="https://docs.oracle.com/javase/7/docs/api/java/util/prefs/Preferences.html" target="_blank" rel="external"><code>Preferences</code></a> 进行键值对的存储。可通过 <code>Preferences.userNodeForPackage()</code> 获取一个节点的 <code>Preferences</code> 实例，之后的使用则与 Android 中的 <a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank" rel="external"><code>SharedPreferences</code></a> 类似。</p>
 <h2 id="部署">部署 </h2><p> 在 Linux 上，一个 Shell 脚本执行 <code>java -jar</code> 已经足够。</p>
 <p>在 Windows 上，经过一些比较，我决定使用 <a href="http://launch4j.sourceforge.net/" target="_blank" rel="external">launch4j</a>，至今体验良好。</p>
 <p>在 Mac OS X 上，JVM 需要特定参数才能正常启动应用，以及其他打包应用程序的细节，可以参考 <a href="https://www.eclipse.org/swt/macosx/" target="_blank" rel="external"> 这篇 Eclipse 的文档</a>。</p>
