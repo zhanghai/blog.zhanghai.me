@@ -411,7 +411,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-06-22T06:38:09.497Z</updated>
+    <updated>2015-07-21T08:04:17.001Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -548,6 +548,8 @@
 <p>Drop your font files into <code>~/.fonts/</code>, <code>cd</code> into that directory, and execute the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -n <span class="string">"Updating font cache..."</span></span><br><span class="line"><span class="built_in">fc</span>-cache &gt;/dev/null <span class="operator">-f</span></span><br><span class="line">mkfontscale</span><br><span class="line">mkfontdir</span><br><span class="line"><span class="built_in">echo</span> <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <h2 id="Handle_filesystem_package_update">Handle filesystem package update</h2><p>Use <code>diff</code> and your editor to manually merge your <code>passwd</code>, <code>shadow</code>, <code>group</code> and <code>gshadow</code> with the <code>*.pacnew</code> one(s), then execute <code>pwconv</code> and <code>groupconv</code> for updating the shadow ones (<code>*-</code>).</p>
+<h2 id="Sync_time_with_NTP">Sync time with NTP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S ntp</span><br><span class="line">sudo ntpd -gq &amp;&amp; sudo hwclock -w</span><br></pre></td></tr></table></figure>
+<p>For more information, see <a href="https://wiki.archlinux.org/index.php/Time" target="_blank" rel="external">Arch Wiki</a>.</p>
 <h2 id="Analyze_boot_time">Analyze boot time</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemd-analyze blame</span><br><span class="line">systemd-analyze critical-chain</span><br></pre></td></tr></table></figure>
 <p>For more information, see <code>man systemd-analyze</code>.</p>
 <p>Sometimes man-db.service may slow down the booting drastically, see <a href="https://bbs.archlinux.org/viewtopic.php?pid=1409295" target="_blank" rel="external">this thread</a>, <a href="https://bugs.archlinux.org/task/41511" target="_blank" rel="external">this issue</a>, and <a href="https://bugs.archlinux.org/task/41688" target="_blank" rel="external">this issue</a>.</p>
