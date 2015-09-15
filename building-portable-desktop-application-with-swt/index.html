@@ -11,8 +11,9 @@
 <meta property="og:url" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
-<meta property="og:image" content="/building-portable-desktop-application-with-swt/mipsasm-windows.png">
-<meta property="og:image" content="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
+<meta property="og:image" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/mipsasm-windows.png">
+<meta property="og:image" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
+<meta property="og:updated_time" content="2015-07-18T06:49:07.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 SWT 搭建跨平台桌面应用">
 <meta name="twitter:description" content="前言在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
@@ -45,7 +46,7 @@
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
   </div>
 </header>
 
@@ -80,9 +81,9 @@
   <div class="entry-content">
     
       <h2 id="前言">前言 </h2><p> 在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
-<img src="/building-portable-desktop-application-with-swt/mipsasm-windows.png">
+<img src="/building-portable-desktop-application-with-swt/mipsasm-windows.png" alt="MIPS 汇编集成开发环境 - Windows" title="MIPS 汇编集成开发环境 - Windows">
 <a id="more"></a>
-<img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
+<img src="/building-portable-desktop-application-with-swt/mipsasm-gtk3.png" alt="MIPS 汇编集成开发环境 - GTK+ 3" title="MIPS 汇编集成开发环境 - GTK+ 3">
 <h2 id="集成">集成 </h2><p> 鉴于 Maven 上的版本老旧，推荐直接前往 <a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT 官方网站 </a> 下载稳定发行版本。我使用的开发环境是 IntelliJ Idea，因此在 Project Structure 中的 Libraries 和 Artifacts 内添加相应的设置即可。</p>
 <h2 id="架构">架构 </h2><p> 我是一名 Android 开发者，因此我在学习 SWT 时也会与 Android 框架进行对比。二者多有类似，也有不同。</p>
 <p>在 SWT 中，<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/widgets/Display.html" target="_blank" rel="external"><code>Display</code></a> 与 Android 中 <a href="http://developer.android.com/reference/android/content/Context.html" target="_blank" rel="external"><code>Context</code></a> 和 <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank" rel="external"><code>Application</code></a> 的设计有所相近，具有系统资源管理和应用层面操作的功能。而 <code>Display</code> 的一个实用的扩展是 <code>Display.getCurrent()</code> 和 <code>Display.getDefault()</code>，即可以通过静态方法获取当前线程或默认的 <code>Display</code>。</p>

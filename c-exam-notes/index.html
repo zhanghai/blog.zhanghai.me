@@ -11,6 +11,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/c-exam-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
+<meta property="og:updated_time" content="2015-06-08T14:11:15.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C 语言应试笔记">
 <meta name="twitter:description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
@@ -43,7 +44,7 @@
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
   </div>
 </header>
 
@@ -195,7 +196,7 @@
 <p>通过 <code>memset(array,0,sizeof(array))</code> 可以实现数组重初始化。（需要<code>string.h</code>）</p>
 <p>宏 <code>#</code> 代表将此后的文本变为字符串；<code>##</code>代表连接文本；含有 <code>#</code> 与<code>##</code>的宏不进行参数展开，可利用包装宏展开。（<a href="http://learn.akae.cn/media/ch21s02.html" target="_blank" rel="external">参考</a>）</p>
 <p>宏函数定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> func_name(var) \</span><br><span class="line">do &#123; \</span><br><span class="line">    do_something(); \</span><br><span class="line">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> func_name(var) \</span><br><span class="line">do &#123; \</span><br><span class="line">    do_something(); \</span><br><span class="line">&#125; while (<span class="number">0</span>)</span></span><br></pre></td></tr></table></figure>
 <p>调用与函数调用一致：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func_name(var);</span><br></pre></td></tr></table></figure>
 <p><code>scanf</code>中 <code>f</code> 为<code>float</code>，<code>lf</code>为 <code>double</code>；<code>printf</code> 中<code>f</code>为 <code>double</code>；<code>lf</code> 未定义。</p>
