@@ -463,7 +463,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-09-15T07:03:12.746Z</updated>
+    <updated>2015-09-27T17:08:05.166Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -476,6 +476,10 @@
 </li>
 </ul>
 <a id="more"></a>
+<h2 id="Using_manual">Using manual</h2><p>Use <code>man [SECTION] &lt;NAME&gt;</code> to show a manual.</p>
+<p>Use <code>whatis &lt;NAME&gt;</code> to find out which sections are available in manual.</p>
+<p>Use <code>man man-pages</code> to see the definition of each seciton.</p>
+<p>The “SEE ALSO” section in a manual sometimes can be very helpful.</p>
 <h2 id="NTFS_partitions_auto_mounting">NTFS partitions auto mounting</h2><ol>
 <li><p>Use <code>gnome-disks</code>, select partition and click the settings button below, click and then modify mount options in the popup menu.</p>
 </li>
