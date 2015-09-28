@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/android-developer-guide/</loc>
+    <lastmod>2015-09-28T13:44:36.378Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     <lastmod>2015-09-27T17:08:05.166Z</lastmod>
   </url>
