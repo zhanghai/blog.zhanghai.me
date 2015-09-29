@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/android-developer-guide/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。">
-<meta property="og:updated_time" content="2015-09-28T15:48:43.858Z">
+<meta property="og:updated_time" content="2015-09-29T07:53:28.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 开发入门指南">
 <meta name="twitter:description" content="前言从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。">
@@ -85,7 +85,7 @@
 <p>此外，初学者请格外重视代码风格，始终遵循 Java 的编码规范，因为这可以使代码风格统一、结构有序、逻辑清晰和易于维护。IntelliJ Idea（Android Studio）的默认代码风格正与之符合。</p>
 <h2 id="框架入门">框架入门 </h2><p> 在拥有了 Java 语法基础之后，就可以开始学习 Android 的框架了。</p>
 <p>Android API 和最佳实践的更新较为迅速，所以几乎没有可靠的 Android 开发书籍，不推荐购买书籍入门。而 <a href="developer.android.com/develop">Android 官方网站的文档</a> 是保持与框架同步的，同时也有很多关于最佳实践的介绍。</p>
-<p>所以我的建议是，从官方文档的 <a href="https://developer.android.com/training/index.html" target="_blank" rel="external">Training</a> 开始，读完最基础的部分后，自己想好要做的一个小型项目，再按照需求查找 <a href="https://developer.android.com/guide/index.html" target="_blank" rel="external">Guide</a> 和 <a href="https://developer.android.com/reference/packages.html" target="_blank" rel="external">Reference</a>，结合 <a href="https://stackoverflow.com/" target="_blank" rel="external">StackOverflow</a> 等资源，在实践中完成第一个自己的 Android 应用。这个过程我使用了另外两周的时间。</p>
+<p>所以我的建议是，从官方文档的 <a href="https://developer.android.com/training/index.html" target="_blank" rel="external">Training</a> 开始，读完最基础的部分后，自己想好要做的一个小型项目，再按照需求查找 <a href="https://developer.android.com/guide/index.html" target="_blank" rel="external">Guide</a> 和 <a href="https://developer.android.com/reference/packages.html" target="_blank" rel="external">Reference</a>，结合 <a href="https://stackoverflow.com/" target="_blank" rel="external">StackOverflow</a> 等资源，在实践中完成第一个自己的 Android 应用，掌握一些 Android 开发的基础知识。这个过程我使用了另外两周的时间。</p>
 <h2 id="开发环境">开发环境 </h2><p> 关于开发时使用的环境，Eclipse 早已经是日薄西山，而构建于 <a href="https://www.jetbrains.com/idea/" target="_blank" rel="external">IntelliJ Idea</a> 之上的 <a href="https://developer.android.com/tools/studio/index.html" target="_blank" rel="external">Android Studio</a> 才是 Google 和社区支持的重心，也是在官方文档中建议使用的开发环境。</p>
 <p>同时，Android Studio 的 Refactor，Generate，Lint Check 等功能也十分强大，能够显著地提高开发体验和效率。此外 Emacs 键绑定在调节个别设置之后就完全可用。</p>
 <p>在工具的选择上还是应该以功能性和主流选择为依据，因此我建议即使之前熟悉 Eclipse 的同学，也开始使用 Android Studio 进行 Android 开发。</p>
@@ -114,7 +114,7 @@
 <li><a href="https://github.com/snowdream/awesome-android" target="_blank" rel="external">Awesome Android</a>：同上，一般全。</li>
 </ul>
 <p>在选择开源库时，建议考察它的 Star/Fork 数、文档、代码风格、作者回复 Issue 的活跃程度，谨慎作出决定。一旦使用，建议 Watch 此项目，关注更新。</p>
-<p>另外提一下其他几个项目，且并非针对作者个人。在我个人看来，虽然很多很全，但 <a href="https://github.com/Trinea/android-common" target="_blank" rel="external">android-common</a> 和 <a href="https://github.com/Trinea/android-demo" target="_blank" rel="external">android-demo</a> 两个项目的代码质量并不算高，也无法确定是否始终遵循着 Android 最新的变更和最佳实践。因此，我个人极其反对直接复制粘贴其中的代码（或者其他任何代码），也不推荐直接参考其中的代码而不查阅其他来源；相应地，应该始终使用 Google 搜索解决方案，这样才能保持最新。</p>
+<p>另外提一下其他几个项目，且并非针对作者个人。在我个人看来，虽然很多很全，但 <a href="https://github.com/Trinea/android-common" target="_blank" rel="external">android-common</a> 和 <a href="https://github.com/Trinea/android-demo" target="_blank" rel="external">android-demo</a> 两个项目的代码质量并不算很高，也无法确定是否始终遵循着 Android 最新的变更和最佳实践。因此，我个人极其反对直接复制粘贴其中的代码（或者其他任何代码），也不推荐直接参考其中的代码而不查阅其他来源；相应地，应该始终使用 Google 搜索解决方案，这样才能保持最新。</p>
 <h2 id="界面设计">界面设计 </h2><p> 作为一名合格的 Android 开发者，也应该拥有 Android 相关的设计素养，而不是设计师给了一个不标准（或者像 iOS）的设计，却不知道提出意见或修正。</p>
 <p>Android 现有的设计规范是 <a href="http://www.google.com/design/spec/" target="_blank" rel="external">Material Design</a>，已经初步成熟，但有时还是会有小的补充，因此建议始终阅读这个文档。在入门 Android 开发后，建议抽出时间，将这份文档通读一遍，以了解符合 Android 平台的设计。另外，我见过的几个中文版设计文档翻译质量一般，排版较差，还有一些时效性问题，因此不是十分建议阅读。</p>
 <p>Material Design 的实现主要依靠支持库中的 AppCompat 和 Design 库，目前文档不算十分完善，可以参考 <a href="http://android-developers.blogspot.jp/2015/05/android-design-support-library.html" target="_blank" rel="external">BlogSpot 上的相关介绍</a> 和 <a href="https://github.com/chrisbanes/cheesesquare/" target="_blank" rel="external">Chris Banes 的 CheeseSquare</a>，辅助以 StackOverflow、Google Code Issues 和部分国外博客。</p>
