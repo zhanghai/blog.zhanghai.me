@@ -544,7 +544,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-09-27T17:08:05.166Z</updated>
+    <updated>2015-10-01T14:03:58.776Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -748,7 +748,7 @@
 </ol>
 <p>To open a dialog for settings before screenshot, execute <code>gnome-screenshot -i</code>.</p>
 <h2 id="Use_PrtSc_key_for_Menu">Use PrtSc key for Menu</h2><p>On my ThinkPad T430, the usual location for Menu key is a PrtSc key. I tried to change it with <code>xmodmap</code>, but it cannot get automatically loaded by my GNOME 3 — even when using autostart. Seems that it gets reset by some others, but even disabling a GNOME keyboard plugin as per a post in Arch Linux BBS did not help. And some other people say <code>xmodmap</code> has been deprecated; people should use <code>xkb</code> instead.</p>
-<p>So in the end, I resorted to <code>xkb</code>, and dirtily modified <code>/etc/X11/xkb/symbols/pc</code>, swapping <code>PRSC</code>, <code>Menu</code> and <code>INS</code>, as follows.</p>
+<p>So in the end, I resorted to <code>xkb</code>, and dirtily modified <code>/usr/share/X11/xkb/symbols/pc</code>, swapping <code>PRSC</code>, <code>Menu</code> and <code>INS</code>, as follows.</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">32c32</span><br><span class="line">&lt;    key &lt;MENU&gt; &#123;	[Menu]	&#125;;</span><br><span class="line"><span class="header">---</span></span><br><span class="line">&gt;    key &lt;PRSC&gt; &#123;	[Menu]	&#125;;</span><br><span class="line">67c67</span><br><span class="line">&lt;    key &lt;PRSC&gt; &#123;</span><br><span class="line"><span class="header">---</span></span><br><span class="line">&gt;    key  &lt;INS&gt; &#123;</span><br><span class="line">76c76</span><br><span class="line">&lt;    key  &lt;INS&gt; &#123;	[Insert]	&#125;;</span><br><span class="line"><span class="header">---</span></span><br><span class="line">&gt;    key &lt;MENU&gt; &#123;	[Insert]	&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="Draw_graphs">Draw graphs</h2><p>LibreOffice Draw, and use its connectors instead of bare wires. Shift for regular shape and Ctrl + Mouse move for cloning can also be handy.</p>
 <h2 id="Render_GFM">Render GFM</h2><p>Bash script from <a href="https://gist.github.com/jaburns/33d88f4aa99bb4ab6ad6" target="_blank" rel="external">jaburn’s gist</a>.</p>
