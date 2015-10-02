@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2015-09-29T07:53:28.857Z</updated>
+  <updated>2015-10-02T06:04:25.790Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://blog.zhanghai.me/android-developer-guide/"/>
     <id>http://blog.zhanghai.me/android-developer-guide/</id>
     <published>2015-09-28T13:13:29.000Z</published>
-    <updated>2015-09-29T07:53:28.857Z</updated>
+    <updated>2015-10-02T06:04:25.790Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言 </h2><p> 从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。</p>
 <a id="more"></a>
 <h2 id="Java">Java</h2><p>学习 Android 开发，首先要有扎实的 Java 基础。如果不理解一门语言的设计思想，编写代码时将常常感觉思维与语法发生冲突，同时也无法针对这门语言扬长避短，最终代码将会难以实现和维护。</p>
@@ -60,7 +60,7 @@
 <h2 id="界面设计">界面设计 </h2><p> 作为一名合格的 Android 开发者，也应该拥有 Android 相关的设计素养，而不是设计师给了一个不标准（或者像 iOS）的设计，却不知道提出意见或修正。</p>
 <p>Android 现有的设计规范是 <a href="http://www.google.com/design/spec/" target="_blank" rel="external">Material Design</a>，已经初步成熟，但有时还是会有小的补充，因此建议始终阅读这个文档。在入门 Android 开发后，建议抽出时间，将这份文档通读一遍，以了解符合 Android 平台的设计。另外，我见过的几个中文版设计文档翻译质量一般，排版较差，还有一些时效性问题，因此不是十分建议阅读。</p>
 <p>Material Design 的实现主要依靠支持库中的 AppCompat 和 Design 库，目前文档不算十分完善，可以参考 <a href="http://android-developers.blogspot.jp/2015/05/android-design-support-library.html" target="_blank" rel="external">BlogSpot 上的相关介绍</a> 和 <a href="https://github.com/chrisbanes/cheesesquare/" target="_blank" rel="external">Chris Banes 的 CheeseSquare</a>，辅助以 StackOverflow、Google Code Issues 和部分国外博客。</p>
-<p>为了精确地实现界面布局，可以使用开发者选项中的“显示视图边界”来确定各个视图的大小和位置，此外 <a href="https://play.google.com/store/apps/details?id=com.faizmalkani.keylines" target="_blank" rel="external">KeyLinePushing</a> 是一款十分好用的工具应用，可以在屏幕上显示关键线和网格，帮助检视视图布局。</p>
+<p>为了精确地实现界面布局，可以使用开发者选项中的“显示视图边界”来确定各个视图的大小和位置，此外 <a href="https://play.google.com/store/apps/details?id=com.faizmalkani.keylines" target="_blank" rel="external">KeylinePushing</a> 是一款十分好用的工具应用，可以在屏幕上显示关键线和网格，帮助检视视图布局。</p>
 <p>关于设计资源。<a href="https://www.google.com/design/icons/" target="_blank" rel="external">Material Icons</a> 是 Google 的开源 Material Design 图标库，内容十分丰富，也符合设计规范。<a href="http://romannurik.github.io/AndroidAssetStudio/index.html" target="_blank" rel="external">Android Asset Studio</a> 曾经十分流行，但由于 Material Design 的引入开始有些过时，不过启动器图标和设备预览图的生成器依然可以使用。</p>
 <h2 id="信息来源">信息来源</h2><p>Android 的更新发展较为快速，为了跟进 Android 最新的动态，可以了解、关注或订阅以下的人或内容。其中，Google Plus 可以作为一个干净的技术社交平台（屏蔽几个热门推荐就好），有很多活跃的 Android 开发者和社群，十分建议加入。</p>
 <p>建议：</p>
