@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2015-10-04T08:02:06.410Z">
+<meta property="og:updated_time" content="2015-10-04T08:11:31.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -181,7 +181,7 @@ It has a powerful Arch User Repository and makes it easy for yo">
 </li>
 </ul>
 <p>Note that you can tunnel http(s) request to local socks client using <a href="https://www.archlinux.org/packages/?name=delegate" target="_blank" rel="external">DeleGate</a>.</p>
-<h2 id="GNOME_proxy_setting">GNOME proxy setting</h2><p>You can utilize GNOME’s proxy setting <del>in <code>Settings &gt; Network</code> (Removed in recent GNOME, see below)</del> even if you use <code>netctl</code> instead of <code>Network Manager</code>. Both HTTP and SOCKS proxy are supported.</p>
+<h2 id="GNOME_proxy_setting">GNOME proxy setting</h2><p>You can utilize GNOME’s proxy setting in <code>Settings &gt; Network</code> <del>even if you use <code>netctl</code> instead of <code>Network Manager</code></del> (Disabled in recent GNOME, see below). Both HTTP and SOCKS proxy are supported.</p>
 <p>You can also modify proxy setting with <code>dconf-editor</code>, Set <code>system.proxy.mode</code> to <code>manual</code>, then set your proxy in <code>system.proxy.{ftp,http,https,socks}</code>.</p>
 <p>Note that the proxy setting will also be read and set to corresponding environment variables by <code>gnome-terminal</code>, and no option is offered to turn this behavior off. To avoid setting proxy environment variables, reset the environment variables in your <code>.bashrc</code>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Unset global proxy set by gnome-terminal</span></span><br><span class="line"><span class="comment"># See https://github.com/GNOME/gnome-terminal/blob/master/src/terminal-util.c</span></span><br><span class="line"><span class="built_in">unset</span> http_proxy https_proxy ftp_proxy all_proxy no_proxy</span><br><span class="line"><span class="built_in">unset</span> HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY</span><br></pre></td></tr></table></figure>
