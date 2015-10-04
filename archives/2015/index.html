@@ -50,6 +50,85 @@
     <section id="main">
       
   
+    <article id="post-thoughts-on-content-handling-in-android-application" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/thoughts-on-content-handling-in-android-application/" class="article-date">
+  <time datetime="2015-10-04T13:44:12.000Z" itemprop="datePublished">10月 4 2015</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/thoughts-on-content-handling-in-android-application/">Thoughts on Content Handling in Android Application</a>
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="Introduction">Introduction</h2><p>For a content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenerios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
+<p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>
+<h2 id="Initial_Scenario">Initial Scenario</h2><p>Let’s look at the naive solution first, retrieving content from network and only keeping them in memory. In this case, no central storage is needed, and every component fetches its content independently, simple enough. But this approach immediately becomes flawed when it comes to content updating such as user modification. For instance, we have a list activity and a detail activity, and the user can often modified something in the detail activity, say, they clicked ‘like’, and the like button shall look activiated not only in the detail activity, but also in the list activity now in background.</p>
+<p>Content is fetched independently, so every component have no knowledge of whether someone else is holding the same content as itself, and that content will become stale when shown to user if the content this component newly retrieved is an updated version. Ideally speaking, any piece content is a single resource that should have only one state at point of time, and keeping it represented by one entity in memory is the best way to achieve this — yes, a central storage (whether in memory or also backed by disk), and the DRY (don’t repeat yourself) principle, a different story of the solution framework provided.</p>
+<p>Anyway, we always need a notifying mechanism, instead of having some holder of a unique entity shared among clients, because clients may need to transform the content into something else instead of using the unique one directly, or they need notify others when content is changed.</p>
+<h2 id="ContentProvider_Mechanism">ContentProvider Mechanism</h2><p>The idea behind <code>ContentProvider</code> is that, <code>ContentProvider</code> is the only central storage and all its content is the only real entity that will always be up-to-date, while the content its clients hold is only a copy that will easily get out-of-date. So when a change happened, the central storage is refreshed, and <code>ContentObserver</code>s are notified of the change and then they will query the central <code>ContentProvider</code> for an updated copy of content.</p>
+<p>In this case, only the <code>ContentProvider</code> (or a delegated <code>SyncAdapter</code>) can fetch data from network; the clients can only request a fetch and wait for the change callback just as any other client. The central <code>ContentProvider</code> acts as a middle man between clients and network, to ensure the uniqueness of any content entity.</p>
+<h2 id="Go_centralized?">Go centralized?</h2><p>But a principally-correct and comprehensive solution may not be the best solution for a specific type of senario. We will face at least the following difficulties:</p>
+<ol>
+<li><p>Identifier: In order to ensure only one central entity per resource, We need URIs to uniquely identify resources just as its name suggests, so we must defining a content URI scheme. But things go complex quickly considering the complex logical hierarchy an interlinked content system will need.</p>
+</li>
+<li><p>Action: We’ll lose the flexibility on handling changes for special cases. Think of infinite loading, liking and post deleting, we’ll need a generic mechanism to notify all the observers on an URI if some items are newly loaded, modified or removed, while framework’s <code>ContentObserver</code> only offers an <code>onChanged()</code> method. However if we handle this only for specific cases, it can be much more easier to implement.</p>
+</li>
+<li><p>Releasing memory: Because most of the content is dynamic, there is little point in data persistence on disk. So we’ll store retrieved items only in memory, and then, we need to release them once nobody needs them. This can be tricky when, for instance, we have an observer on a collection, and another observer on a detail of this collection is removed, now whether the detailed content should be released depends on whether the collection observer actually observes on this detail, which cannot be inferred by the central content manager from URI scheme.</p>
+</li>
+<li><p>JSON interoperability: The framework <code>ContentProvider</code> mechanism uses <code>Cursor</code>, where only basic types and blob are valid column type, making it uninteroperable with the widely used JSON approach. We’ll have to roll our own.</p>
+</li>
+</ol>
+<p>Implementing and using such a framework is a complex and heavy task, and complexity is error-prone, while it brings little advantage over the decentralized solution we are going to talk about.</p>
+<h2 id="Stay_decentralized">Stay decentralized</h2><p>So we want to stay on the track of not having any central storage, and allow duplicated (so possibly inconsistent) entities of content in memory.</p>
+<p>This way, we are to do a sync among components once we any content is newly fetched from network in this case. The solution is much more specific to each scenario in this case: we can utilize some already present event bus system to get notified of updates, listen to specific event code of content change, and then respond accordingly.</p>
+<p>On the first sight, this solution may seem not generic enough, lacking in the beauty of unity. However, considering the overall cost of using a centralized storage with  URI scheme, I believe this decentralized-and-syncing mechanism is the way to go for applications in this scenario.</p>
+<h2 id="Conclusion">Conclusion</h2><p>Different mechanisms apply to different scenarios. Android’s centralized <code>ContentProvider</code> mechanism fits for content that should be persisted and synced, while the decentralized mechanism works well with application with highly-dynamic content.</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+</article>
+
+
+  <hr class="article-divider">
+
+
+
+
+  
     <article id="post-android-developer-guide" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
