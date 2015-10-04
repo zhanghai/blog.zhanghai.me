@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2015-10-04T17:24:26.565Z</updated>
+  <updated>2015-10-04T17:28:10.025Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -19,9 +19,10 @@
     <link href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/"/>
     <id>http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/</id>
     <published>2015-10-04T13:44:12.000Z</published>
-    <updated>2015-10-04T17:24:26.565Z</updated>
+    <updated>2015-10-04T17:28:10.025Z</updated>
     <content type="html"><![CDATA[<h2 id="Introduction">Introduction</h2><p>For a content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenerios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
 <p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>
+<a id="more"></a>
 <h2 id="Initial_Scenario">Initial Scenario</h2><p>Let’s look at the naive solution first, retrieving content from network and only keeping them in memory. In this case, no central storage is needed, and every component fetches its content independently, simple enough. But this approach immediately becomes flawed when it comes to content updating such as user modification. For instance, we have a list activity and a detail activity, and the user can often modified something in the detail activity, say, they clicked ‘like’, and the like button shall look activiated not only in the detail activity, but also in the list activity now in background.</p>
 <p>Content is fetched independently, so every component have no knowledge of whether someone else is holding the same content as itself, and that content will become stale when shown to user if the content this component newly retrieved is an updated version. Ideally speaking, any piece content is a single resource that should have only one state at point of time, and keeping it represented by one entity in memory is the best way to achieve this — yes, a central storage (whether in memory or also backed by disk), and the DRY (don’t repeat yourself) principle, a different story of the solution framework provided.</p>
 <p>Anyway, we always need a notifying mechanism, instead of having some holder of a unique entity shared among clients, because clients may need to transform the content into something else instead of using the unique one directly, or they need notify others when content is changed.</p>
@@ -45,7 +46,9 @@
 <h2 id="Conclusion">Conclusion</h2><p>Different mechanisms apply to different scenarios. Android’s centralized <code>ContentProvider</code> mechanism fits for content that should be persisted and synced, while the decentralized mechanism works well with application with highly-dynamic content.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="Introduction">Introduction</h2><p>For a content-oriented Android application, how and where to store the content to display is a iss]]>
+    <![CDATA[<h2 id="Introduction">Introduction</h2><p>For a content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenerios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
+<p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>]]>
+    
     </summary>
     
       <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
