@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/android-developer-guide/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。">
-<meta property="og:updated_time" content="2015-10-02T06:04:26.000Z">
+<meta property="og:updated_time" content="2015-10-06T17:19:42.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 开发入门指南">
 <meta name="twitter:description" content="前言从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。">
@@ -93,6 +93,7 @@
 <h2 id="问题解决">问题解决 </h2><p> 在开发的过程中如果遇到问题，首先可以尝试 <a href="https://www.google.com" target="_blank" rel="external">Google 搜索</a>。搜索结果中，又以 Android 官方的教程结果为好，<a href="https://stackoverflow.com/" target="_blank" rel="external">StackOverflow</a> 辅之，某些编写精良的国外博客可以参考。</p>
 <p>此外，如果是框架或者支持库的 Bug，<a href="https://code.google.com/p/android/issues/" target="_blank" rel="external">Google Code Issues</a> 和 StackOverflow 上也可能有人贴出 Workaround；如果暂时没有，自己在 Google Code 上提交 issue 也有一定可能收到关注<del>（和 Chris Banes 搭话玩）</del>。</p>
 <p>对于 CSDN、博客园等国内博客，则应该尽量避免，即使读时，应抱有将信将疑的态度，因为国内博客的总体质量偏低，常常代码风格混乱、不遵循最佳实践、只以达成效果为目的，甚至可能有明显的错误。当然少数排版良好、编写细致的博客除外。</p>
+<p>至于 Android 开发 QQ 群、微信群等，由于质量和氛围，在总体上个人极其不建议新手加入。</p>
 <h1 id="阅读框架代码">阅读框架代码 </h1><p> 如果问题没有直接的解答，则可以尝试查看 Android 的 JavaDoc 和源代码，来理解框架的具体行为。</p>
 <p>在这个过程中，Android Studio 是很好的工具。通过按住 Ctrl + 单击，可以跳转到源代码所在的位置，或者资源文件的定义；点击类或方法左侧行号旁边的标记，可以访问继承或重载当前片段的代码，查看框架的细节行为，或是内部的使用范例；这些功能使得查看框架代码十分方便快捷。</p>
 <p>此外，<a href="http://grepcode.com" target="_blank" rel="external">GrepCode</a>、<a href="https://github.com/android/" target="_blank" rel="external">GitHub</a> 和 <a href="https://android.googlesource.com/" target="_blank" rel="external">Google Source</a> 可以在线查看框架代码的变更，以及未进入 SDK 的代码，使用时 Google“类名 网站名”即可。三家各有千秋。GrepCode 类名或方法名旁的向下箭头，类似 Android Studio，可以点击查看使用情况或者继承、覆盖者等，便于快速定位问题、理解架构；GitHub 和 Google Source 则有完整的 git 记录，可以查看 diff 和 blame（GoogleSource 是真正的版本库所在地，GitHub 会自动拉取 GoogleSource 上的更新）；个人感觉 GitHub 的界面和功能相对更加友好一些。</p>
