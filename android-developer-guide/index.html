@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/android-developer-guide/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。">
-<meta property="og:updated_time" content="2015-10-06T17:19:42.271Z">
+<meta property="og:updated_time" content="2015-10-09T07:27:37.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 开发入门指南">
 <meta name="twitter:description" content="前言从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。">
@@ -88,6 +88,7 @@
 <p>所以我的建议是，从官方文档的 <a href="https://developer.android.com/training/index.html" target="_blank" rel="external">Training</a> 开始，读完最基础的部分后，自己想好要做的一个小型项目，再按照需求查找 <a href="https://developer.android.com/guide/index.html" target="_blank" rel="external">Guide</a> 和 <a href="https://developer.android.com/reference/packages.html" target="_blank" rel="external">Reference</a>，结合 <a href="https://stackoverflow.com/" target="_blank" rel="external">StackOverflow</a> 等资源，在实践中完成第一个自己的 Android 应用，掌握一些 Android 开发的基础知识。这个过程我使用了另外两周的时间。</p>
 <h2 id="开发环境">开发环境 </h2><p> 关于开发时使用的环境，Eclipse 早已经是日薄西山，而构建于 <a href="https://www.jetbrains.com/idea/" target="_blank" rel="external">IntelliJ Idea</a> 之上的 <a href="https://developer.android.com/tools/studio/index.html" target="_blank" rel="external">Android Studio</a> 才是 Google 和社区支持的重心，也是在官方文档中建议使用的开发环境。</p>
 <p>同时，Android Studio 的 Refactor，Generate，Lint Check 等功能也十分强大，能够显著地提高开发体验和效率。此外 Emacs 键绑定在调节个别设置之后就完全可用。</p>
+<p>Android Studio 的连击 Shift 全局搜索功能在想要打开特定文件时也十分好用，默认在工程范围内搜索，再次连击可以将框架代码也纳入搜索范围。</p>
 <p>在工具的选择上还是应该以功能性和主流选择为依据，因此我建议即使之前熟悉 Eclipse 的同学，也开始使用 Android Studio 进行 Android 开发。</p>
 <p>官方文档中有关于 Android Studio 和 Android SDK 配置的详细说明。Android Studio 的更新动态可以在 <a href="http://tools.android.com/recent" target="_blank" rel="external">Anroid Tools Project Site</a> 上查看，也提供了 RSS 订阅。</p>
 <h2 id="问题解决">问题解决 </h2><p> 在开发的过程中如果遇到问题，首先可以尝试 <a href="https://www.google.com" target="_blank" rel="external">Google 搜索</a>。搜索结果中，又以 Android 官方的教程结果为好，<a href="https://stackoverflow.com/" target="_blank" rel="external">StackOverflow</a> 辅之，某些编写精良的国外博客可以参考。</p>
@@ -115,6 +116,14 @@
 <li><a href="https://github.com/snowdream/awesome-android" target="_blank" rel="external">Awesome Android</a>：同上，一般全。</li>
 </ul>
 <p>在选择开源库时，建议考察它的 Star/Fork 数、文档、代码风格、作者回复 Issue 的活跃程度，谨慎作出决定。一旦使用，建议 Watch 此项目，关注更新。</p>
+<p>建议使用的部分开源第三方库：</p>
+<ul>
+<li><a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">ButterKnife</a>：自动视图注入，替代冗长的 <code>findViewById()</code>。</li>
+<li><a href="https://github.com/mcxiaoke/android-volley" target="_blank" rel="external">Volley</a>：短时网络请求。已进入 AOSP，链接中是第三方附加了一些 Tweak 的镜像。</li>
+<li><a href="https://github.com/google/gson" target="_blank" rel="external">Gson</a>：JSON 与 Java 对象自动转换，在进行数据模型复杂的应用开发时极其有用，与 Volley 搭配和谐。</li>
+<li><a href="https://github.com/bumptech/glide" target="_blank" rel="external">Glide</a>：为可回收视图容器优化的图片加载，可与 Volley 整合。被 Chris Banes 在 <a href="https://github.com/chrisbanes/cheesesquare/" target="_blank" rel="external">cheesesquare</a> 中使用。</li>
+<li><a href="https://github.com/ThreeTen/threetenbp" target="_blank" rel="external">ThreetenBp</a>：Java 8 日期时间 API，优异的设计和实现，从此日期时间编程不再困难。</li>
+</ul>
 <p>另外提一下其他几个项目，且并非针对作者个人。在我个人看来，虽然很多很全，但 <a href="https://github.com/Trinea/android-common" target="_blank" rel="external">android-common</a> 和 <a href="https://github.com/Trinea/android-demo" target="_blank" rel="external">android-demo</a> 两个项目的代码质量并不算很高，也无法确定是否始终遵循着 Android 最新的变更和最佳实践。因此，我个人极其反对直接复制粘贴其中的代码（或者其他任何代码），也不推荐直接参考其中的代码而不查阅其他来源；相应地，应该始终使用 Google 搜索解决方案，这样才能保持最新。</p>
 <h2 id="界面设计">界面设计 </h2><p> 作为一名合格的 Android 开发者，也应该拥有 Android 相关的设计素养，而不是设计师给了一个不标准（或者像 iOS）的设计，却不知道提出意见或修正。</p>
 <p>Android 现有的设计规范是 <a href="http://www.google.com/design/spec/" target="_blank" rel="external">Material Design</a>，已经初步成熟，但有时还是会有小的补充，因此建议始终阅读这个文档。在入门 Android 开发后，建议抽出时间，将这份文档通读一遍，以了解符合 Android 平台的设计。另外，我见过的几个中文版设计文档翻译质量一般，排版较差，还有一些时效性问题，因此不是十分建议阅读。</p>
