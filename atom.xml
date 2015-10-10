@@ -597,7 +597,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-10-08T04:09:01.776Z</updated>
+    <updated>2015-10-10T08:38:16.783Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -824,6 +824,7 @@
 <li><code>mtr</code>: <code>traceroute</code> + <code>ping</code>, automatically.</li>
 <li><code>ntfs-3g</code>: NTFS writing support, and others.</li>
 <li><code>pdfgrep</code>: <code>grep</code> on PDF.</li>
+<li><code>powertop</code>: Show power consumption.</li>
 <li><code>profile-cleaner</code>: Optimize browser profile SQLite database, and more.</li>
 <li><code>proxychains</code>: Proxify other programs.</li>
 <li><code>pv</code>: View progress for <code>dd</code>, etc.</li>
