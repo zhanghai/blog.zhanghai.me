@@ -50,6 +50,85 @@
     <section id="main">
       
   
+    <article id="post-introduction-to-plan-9-the-os" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/introduction-to-plan-9-the-os/" class="article-date">
+  <time datetime="2015-10-21T07:32:24.000Z" itemprop="datePublished">10月 21 2015</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/introduction-to-plan-9-the-os/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/introduction-to-plan-9-the-os/">Plan 9 操作系统介绍</a>
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="前言">前言 </h2><p> 这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。</p>
+<p>以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。</p>
+<h2 id="简介">简介</h2><p>Plan 9 是一款分布式操作系统，由贝尔实验室计算机科学研究中心在 19 世纪 80 年代中期开始开发，旨在成为 Unix 的后继者。Plan 9 的团队正是曾开发 Unix 和 C 语言的团队，开发过程中参与者包括 Ken Thompson、Dennis Ritchie、Bjarne Stroustrup 等人。</p>
+<p>本文将主要介绍 Plan 9 的部分设计理念。</p>
+<h2 id="设计">设计 </h2><h3 id="文件"> 文件 </h3><p>Plan 9 继承了 Unix 中“<a href="https://en.wikipedia.org/wiki/Everything_is_a_file" target="_blank" rel="external"> 任何事物都是文件</a>”的哲学，并且对其进一步扩展，将所有计算资源都视为文件进行管理，使用读取和写入操作作为与资源交互的统一方式。</p>
+<p>例如，在 Unix 中对许多具体硬件控制需要使用 <code>ioctl</code> 系统调用进行，以及 X Window 等系统中对于资源也使用函数调用控制而非用文件代表，但在 Plan 9 中，无论是 CPU、外围设备、网络，还是图形界面本身，设计者始终采用文件来代表资源并与之交互。</p>
+<p>在这个意义下，其实文件的意义并非传统的磁盘存储的单元，而是一个指代一般意义上计算资源的名字。</p>
+<h3 id="文件系统">文件系统</h3><p>Plan 9 与 Unix 同样采用的是层次性的文件系统。由于文件实际上就是资源，所以文件的路径实际上也与 URI 的意义类似，即计算资源可以通过特定的路径访问。</p>
+<p>在文件的组织方式上，Plan 9 使用了与 Unix 类似约定的命名方式，例如也可以使用 <code>ls /proc</code> 查看所有进程等。</p>
+<p>Plan 9 的文件系统并非传统意义上局限于磁盘的文件系统。在 Plan 9 中，由于资源即是文件，资源本身来自本地设备还是需要通过网络访问其实只是实现细节，所以两者在文件系统中具有统一的表示。Plan 9 采用一种名为 9P 的协议对资源的访问过程进行封装。经过这种抽象，系统中对远端和本机资源进行访问的接口达成了一致，由此通过分布式的文件系统从系统设计上实现了分布式计算的基础，例如即使是 CPU 资源也可以通过文件方便地共享。</p>
+<h3 id="命名空间">命名空间 </h3><p> 文件系统只是资源的组织形式，而允许不同程序对资源采取不同的组织形式可以带来很大的可扩展性，因此 Plan 9 对每个进程使用使用了不同的文件系统，称为命名空间，并由此实现了资源的进程隔离。</p>
+<p>此外，父进程还可以以 9P 协议向子进程的命名空间提供虚拟文件（以文件作为服务），这样实现了一种低成本而原生的跨进程资源访问，也使得提供给子进程资源可以被自由地替换。由此，实现 VPN 连接只需要将 <code>/net</code> 目录代理，实现窗口系统只需要将 <code>bitblt</code> 文件代理，等等。</p>
+<h3 id="合并目录">合并目录 </h3><p> 因为要替换子进程文件系统中的目录，但目录中的内容又并非全部都需要重新提供，合并目录就成为了一个良好的解决方案。</p>
+<p>Plan 9 中的合并目录是一种类似 Unix 中挂载和搜索路径相结合的做法。通过将目录甲合并至目录乙，访问目录乙时将会先在目录甲中进行查找，未找到时再在目录乙本身中查询。将这个设计与网络结合，则可以产生将远端的 <code>/bin</code> 目录合并至本地即可直接使用远端程序这样的使用方法。</p>
+<h3 id="UTF-8">UTF-8</h3><p>Plan 9 更加为人知晓的一个组件则是由 Ken Thompson 提出的 UTF-8 编码。通过这种编码方式，Unicode 自动兼容与原先的 ASCII 字符，不会出现需要编码转换的问题，因此时至今日已经被广泛采用。而 UTF-8 本身则早已是 Plan 9 的原生编码。</p>
+<h2 id="发展">发展 </h2><p> 虽然 Plan 9 有着相对于 Unix 更加普适和可扩展的设计，但在实际使用中它并没有赢得太多的用户。</p>
+<p>Plan 9 在 1992 年向大学公开，并在 1995 年由 AT&amp;T 商业发布。然而 1996 年，AT&amp;T 已将重心转移至 Inferno，一个基于 Plan 9 思想设计并且旨在与 Java 竞争的系统。到了 2000 年，掌管贝尔实验室的朗讯决定停止 Plan 9 的商业支持，并在几年之后将 Plan 9 的代码以自由软件许可的形式向大众公开。</p>
+<h2 id="评价">评价</h2><p>Plan 9 对 Unix 中的许多理念做了进一步的提升和扩展，对资源管理和分布式计算进行了优秀而统一的实现，在操作系统架构的历史上具有不可磨灭的意义；来自其中的 UTF-8、rc shell 等组件，也被其他操作系统所吸纳接受；并且，Plan 9 的后继者 Inferno 和 Plan B 还在继续发展。</p>
+<p>但是，仅有优雅的设计，却缺乏相应的生态，这导致了 Plan 9 在实际应用中的结果不成功，令人惋惜。这一切正如 Eric Raymond 所说，足以让目标高远的软件工程师们时时警醒。</p>
+<blockquote>
+<p>Plan 9 会失败，纯粹只是因为它的改进程度没有大到能取代 Unix。与九号计划相比，Unix 虽然破破烂烂带有明显的缺陷，但还是能够把工作良好地完成，而这就足以保住它的地位了。这件事情给那些怀有雄心壮志的系统架构师上了一堂课：一个更优解决方案所面临的最危险的敌人，其实是那些能把事情刚好完成的程序。</p>
+</blockquote>
+<h2 id="致谢">致谢 </h2><p> 本文写作过程中参考了 <a href="https://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs" target="_blank" rel="external">Plan 9 from Bell Labs - Wikipedia, the free encyclopedia</a> 和 <a href="https://zh.wikipedia.org/wiki/%E8%B2%9D%E7%88%BE%E5%AF%A6%E9%A9%97%E5%AE%A4%E4%B9%9D%E8%99%9F%E8%A8%88%E7%95%AB" target="_blank" rel="external">贝尔实验室九号计划 - 维基百科，自由的百科全书</a> 等页面的内容，在此表示感谢。</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-science/">计算机科学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+</article>
+
+
+  <hr class="article-divider">
+
+
+
+
+  
     <article id="post-thoughts-on-content-handling-in-android-application" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
@@ -219,7 +298,7 @@
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/career/">职业</a></li></ul>
 
 
       </span>
@@ -280,7 +359,7 @@
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
 
 
       </span>
@@ -342,7 +421,7 @@
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
 
       </span>
@@ -467,7 +546,7 @@
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
 
 
       </span>
@@ -528,7 +607,7 @@
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
 
       </span>
@@ -590,77 +669,6 @@
       <span class="tags">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/career/">职业</a></li></ul>
-
-
-      </span>
-    </div>
-  </footer>
-  
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-    <article id="post-arch-linux-notes" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/arch-linux-notes/" class="article-date">
-  <time datetime="2014-11-03T06:18:11.000Z" itemprop="datePublished">11月 3 2014</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/arch-linux-notes/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
-    
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/arch-linux-notes/">Arch Linux Notes</a>
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
-<h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
-<li><p>It is fresh and simple in package dependency.</p>
-</li>
-<li><p>It has a powerful Arch User Repository and makes it easy for you to make/modify your package.</p>
-</li>
-<li><p>It has a detailed Arch Wiki comprising useful experiences and recommendations.</p>
-</li>
-<li><p>It gets you to learn the basic knowledge required to be a Linux user/administrator/programmer.</p>
-</li>
-</ul>
-      
-        <p class="more">
-          <a href="/arch-linux-notes/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
-        
-
-      </span>
-      <span class="tags">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">Software</a></li></ul>
 
 
       </span>

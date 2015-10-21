@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>存档：2015 | 梦断代码</title>
+  <title>Plan 9 操作系统介绍 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梦断代码">
-<meta property="og:url" content="http://blog.zhanghai.me/archives/2015/10/index.html">
+  <meta name="description" content="前言  这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
+以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。
+简介Plan 9 是一款分布式操作系统，由贝尔实验室计算机科学研究中心在 19 世纪">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Plan 9 操作系统介绍">
+<meta property="og:url" content="http://blog.zhanghai.me/introduction-to-plan-9-the-os/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description">
+<meta property="og:description" content="前言  这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
+以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。
+简介Plan 9 是一款分布式操作系统，由贝尔实验室计算机科学研究中心在 19 世纪">
+<meta property="og:updated_time" content="2015-10-21T07:40:46.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="梦断代码">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Plan 9 操作系统介绍">
+<meta name="twitter:description" content="前言  这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
+以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。
+简介Plan 9 是一款分布式操作系统，由贝尔实验室计算机科学研究中心在 19 世纪">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
@@ -48,9 +55,7 @@
 </header>
 
     <section id="main">
-      
-  
-    <article id="post-introduction-to-plan-9-the-os" class="post">
+      <article id="post-introduction-to-plan-9-the-os" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/introduction-to-plan-9-the-os/" class="article-date">
@@ -70,8 +75,8 @@
   <header class="entry-header">
     
   
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/introduction-to-plan-9-the-os/">Plan 9 操作系统介绍</a>
+    <h1 class="article-title entry-title" itemprop="name">
+      Plan 9 操作系统介绍
     </h1>
   
 
@@ -120,78 +125,33 @@
     </div>
   </footer>
   
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-    <article id="post-thoughts-on-content-handling-in-android-application" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/thoughts-on-content-handling-in-android-application/" class="article-date">
-  <time datetime="2015-10-04T13:44:12.000Z" itemprop="datePublished">10月 4 2015</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
     
+<nav id="article-nav">
   
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/thoughts-on-content-handling-in-android-application/">Thoughts on Content Handling in Android Application</a>
-    </h1>
   
-
-
-  </header>
-  <div class="entry-content">
-    
-      <h2 id="Introduction">Introduction</h2><p>For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
-<p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>
-      
-        <p class="more">
-          <a href="/thoughts-on-content-handling-in-android-application/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
+    <a href="/thoughts-on-content-handling-in-android-application/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
         
-
-      </span>
-      <span class="tags">
+          Thoughts on Content Handling in Android Application
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+      </div>
+    </a>
+  
+</nav>
 
 
-      </span>
-    </div>
-  </footer>
   
 </article>
 
 
-  <hr class="article-divider">
 
 
-
-
-  
-  
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
 
 
 
@@ -217,11 +177,13 @@
 <script>
   var disqus_shortname = 'zhanghai';
   
+  var disqus_url = 'http://blog.zhanghai.me/introduction-to-plan-9-the-os/';
+  
   (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
