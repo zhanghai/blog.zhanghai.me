@@ -654,7 +654,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-10-21T07:38:07.290Z</updated>
+    <updated>2015-11-09T07:59:21.845Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -824,6 +824,11 @@
 <p>To truly manage your start up applications, go to <code>~/.config/autostart/</code> and edit the desktop files there.</p>
 <h2 id="Pomodoro_for_GNOME_3">Pomodoro for GNOME 3</h2><p>Install AUR package <code>gnome-shell-pomodoro</code>.</p>
 <h2 id="Clipboard_management_tool_for_GNOME_3">Clipboard management tool for GNOME 3</h2><p>Install AUR package <code>gpaste</code>, restart GNOME shell and enable the extension GPaste.</p>
+<h2 id="View_video_codec_information">View video codec information</h2><p>Use <code>ffprobe</code>.</p>
+<h2 id="Clip_video">Clip video</h2><p>From <a href="http://stackoverflow.com/a/18449609/2420519" target="_blank" rel="external">StackOverflow</a>:</p>
+<p>If you want to support video players without edit list support (or actually drop the unused frames), you need to do a re-encode, which is the default if <code>copy</code> is not specified.</p>
+<p>Normally, you can use the following command to clip a video:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i &lt;INPUT_FILE&gt; [-ss &lt;START_TIME&gt;] [-t &lt;STOP_TIME&gt;] [-async <span class="number">1</span>] &lt;OUTPUT_FILE&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="Convert_video_to_animated_GIF">Convert video to animated GIF</h2><p>Adapted From <a href="http://dtbaker.net/random-linux-posts/convert-video-avi-mpeg-mp4-to-a-gif-animation-on-linux/" target="_blank" rel="external">dtbaker</a> and <a href="http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality/556031" target="_blank" rel="external">a SuperUser question</a>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir frames</span><br><span class="line">ffmpeg -ss &lt;HH:MM:SS[.XXX]|START_SECONDS&gt; -t&lt;HH:MM:SS[.XXX]|DURATION_SECONDS&gt; -i &lt;YOUR_VIDEO_FILE&gt; [-r &lt;FPS&gt;] <span class="operator">-s</span> &lt;WIDTH_NORMALLY_480&gt;x&lt;HEIGHT_NORMALLY_270&gt; ./frames/frame%<span class="number">04</span>d.png</span><br><span class="line">convert -delay &lt;<span class="number">100</span>/FPS&gt; -loop <span class="number">0</span> -layers Optimize ./frames/frame*.png output.gif</span><br></pre></td></tr></table></figure>
 <p>If you need to compress your GIF file, use <code>gifsicle</code> or do it <a href="http://ezgif.com/optimize" target="_blank" rel="external">online</a>; for cropping, you also can use <a href="http://ezgif.com/crop" target="_blank" rel="external">this site</a> with option “Crop with Gifsicle” (ImageMagick output seems corrupted).</p>

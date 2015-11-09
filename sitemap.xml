@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
+    <lastmod>2015-11-09T07:59:21.845Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/bash-scripting-notes/</loc>
     <lastmod>2015-11-01T16:18:13.997Z</lastmod>
   </url>
@@ -34,11 +39,6 @@
   <url>
     <loc>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</loc>
     <lastmod>2015-10-21T07:39:08.313Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
-    <lastmod>2015-10-21T07:38:07.290Z</lastmod>
   </url>
   
   <url>
