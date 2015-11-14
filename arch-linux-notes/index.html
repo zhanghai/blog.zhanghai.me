@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2015-11-09T07:59:21.845Z">
+<meta property="og:updated_time" content="2015-11-14T07:30:46.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -255,7 +255,8 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <p>Add the following lines to your <code>.bashrc</code>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">=() &#123;</span><br><span class="line">input=<span class="string">"<span class="variable">$&#123;@//pi/π&#125;</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="operator">-ne</span> <span class="string">"<span class="variable">$input</span>\nquit"</span> | gcalccmd | sed <span class="string">'s:^&gt; ::g'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>For example, <code>= &quot;e^(i*pi)+asin(1)/90&quot;</code> gives <code>0</code>.</p>
-<h2 id="GNOME_3_Start_up_applications">GNOME 3 Start up applications</h2><p>As of GNOME 3.12, <code>gnome-session-properties</code> is removed. Instead, launch <code>gnome-tweak-tool</code> and go to the corresponding tab. If you cannot add a start up application (the add button not responding), try launching <code>gnome-tweak-tool</code> from your terminal.</p>
+<h2 id="Use_English-named_XDG_user_directories">Use English-named XDG user directories</h2><p>As in <a href="https://wiki.archlinux.org/index.php/Xdg_user_directories" target="_blank" rel="external">Arch Wiki</a>, execute <code>LC_ALL=&#39;en_US.UTF-8&#39; xdg-user-dirs-update</code>.</p>
+<h2 id="GNOME_3_start_up_applications">GNOME 3 start up applications</h2><p>As of GNOME 3.12, <code>gnome-session-properties</code> is removed. Instead, launch <code>gnome-tweak-tool</code> and go to the corresponding tab. If you cannot add a start up application (the add button not responding), try launching <code>gnome-tweak-tool</code> from your terminal.</p>
 <p>To truly manage your start up applications, go to <code>~/.config/autostart/</code> and edit the desktop files there.</p>
 <h2 id="Pomodoro_for_GNOME_3">Pomodoro for GNOME 3</h2><p>Install AUR package <code>gnome-shell-pomodoro</code>.</p>
 <h2 id="Clipboard_management_tool_for_GNOME_3">Clipboard management tool for GNOME 3</h2><p>Install AUR package <code>gpaste</code>, restart GNOME shell and enable the extension GPaste.</p>
