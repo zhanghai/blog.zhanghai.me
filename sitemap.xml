@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/c-interview-questions/</loc>
+    <lastmod>2015-11-17T08:47:05.883Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     <lastmod>2015-11-14T07:30:46.579Z</lastmod>
   </url>
@@ -24,11 +29,6 @@
   <url>
     <loc>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</loc>
     <lastmod>2015-10-21T07:41:07.776Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/c-interview-questions/</loc>
-    <lastmod>2015-10-21T07:40:26.400Z</lastmod>
   </url>
   
   <url>
