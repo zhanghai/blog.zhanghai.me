@@ -654,7 +654,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-11-14T07:30:46.579Z</updated>
+    <updated>2015-12-05T03:37:02.980Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -846,6 +846,7 @@
 <h2 id="Merge_PDFs">Merge PDFs</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdfunite &lt;SOURCE_PDF_FILES&gt; &lt;OUTPUT_PDF_FILE&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="Convert_GB*_encoded_mp3_tag_to_Unicode">Convert GB* encoded mp3 tag to Unicode</h2><p>Install package <code>easytag</code>.</p>
 <p>Note that EasyTag may become the handler for MIME type <code>inode/directory</code>, instead of your own file manager, say, Nautilus. You can delete the default association for Easytag and inode/directory in <code>~/.local/share/applications/mimeapps.list</code>, which is managed by <code>gvfs-mime</code>. See also the MIME type section.</p>
+<h2 id="Edit_FLAC_metadata">Edit FLAC metadata</h2><p>Use <code>metaflac</code> from the <code>flac</code> package.</p>
 <h2 id="MIME_type_handling">MIME type handling</h2><p>In GNOME, there are two components managing the default application for a MIME type.</p>
 <p>The first one, which is system-wide, can be queried or set via <code>xdg-mime</code>.</p>
 <p>The second one, which is a per-user setting, can be queried or set via <code>gvfs-mime</code>, or manually editing <code>~/.local/share/applications/mimeapps.list</code>.</p>
