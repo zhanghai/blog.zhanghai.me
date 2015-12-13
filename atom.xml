@@ -654,7 +654,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-12-05T03:50:22.243Z</updated>
+    <updated>2015-12-13T07:48:17.846Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -673,6 +673,7 @@
 <p>Use <code>man man-pages</code> to see the definition of each seciton.</p>
 <p>Use <code>help -m &lt;BUILTIN&gt;</code> to show help for a shell builtin in manual page format.</p>
 <p>The “SEE ALSO” section in a manual sometimes can be very helpful.</p>
+<h2 id="Find_available_commands">Find available commands</h2><p>Shell builtin <code>compgen</code> can list possible completions for your input.</p>
 <h2 id="NTFS_partitions_auto_mounting">NTFS partitions auto mounting</h2><ol>
 <li><p>Use <code>gnome-disks</code>, select partition and click the settings button below, click and then modify mount options in the popup menu.</p>
 </li>
