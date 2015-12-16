@@ -254,7 +254,7 @@
     <link href="http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/"/>
     <id>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</id>
     <published>2015-06-11T04:32:45.000Z</published>
-    <updated>2015-10-21T07:41:07.776Z</updated>
+    <updated>2015-12-16T12:29:23.735Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
 <a id="more"></a>
 <h2 id="Gradle">Gradle</h2><p>作为一个 Android 开发者，一般会使用 Gradle 进行构建与发布。广为使用的脚本是 Chris Banes 所写的 <code>gradle-mvn-push</code>，项目中的 <code>README.md</code> 有详细的步骤说明。</p>
@@ -304,6 +304,9 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver pgp.mit.edu --send-key &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h2 id="附加：为示例应用生成签名密钥">附加：为示例应用生成签名密钥 </h2><p> 可以使用 Java 的 <code>keytool</code> 工具进行生成，但 Android Studio 提供了自带推荐参数并且简单易用的界面。</p>
+<p>在 Android Studio 中，点击“Build &gt; Generate Signed APK…”，如果已有密钥存储则点击“Choose existing…”并选择，之后点击“Create new…”填写信息并创建密钥即可。</p>
+<p>这种方法并不会覆盖密钥存储中已有的密钥。但还是建议在操作之前，进行备份。</p>
 <h2 id="结语">结语 </h2><p> 发布项目到 Maven Central 的过程确实十分复杂，同时 GnuPG 进行了不兼容升级并且缺乏文档，所以令我花费了不少时间。</p>
 <p>相比之下，通过 BinTray 发布则更为简单和自动化一些，然而它要求你将私钥上传至它的服务器，这令我不太舒服，因此并没有采用。</p>
 <p>虽然麻烦，但是对于开发者来说，发布之后的使用还是十分舒服的，因此这些努力也算没有白费。记录在此，希望能够在其他开发者发布自己的项目时有所帮助。</p>
