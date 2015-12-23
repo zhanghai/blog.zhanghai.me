@@ -78,9 +78,9 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="前言">前言 </h2><p> 这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>
+      <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>
 <a id="more"></a>
-<h2 id="正文">正文</h2><p><code>if</code> 语句没有花括号时只包含之后一行，如：</p>
+<h2 id="u6B63_u6587"><a href="#u6B63_u6587" class="headerlink" title="正文"></a>正文</h2><p><code>if</code> 语句没有花括号时只包含之后一行，如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition)</span><br><span class="line">    optionally_executed();</span><br><span class="line">    always_executed();</span><br></pre></td></tr></table></figure>
 <p><code>if else</code>语句在没有花括号时，<code>else</code>总是匹配最近的<code>if</code>（Dangling Else），如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a)</span><br><span class="line">    <span class="keyword">if</span> (b) do_b();</span><br><span class="line"><span class="keyword">else</span> do_c();</span><br></pre></td></tr></table></figure>

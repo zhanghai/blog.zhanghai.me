@@ -105,10 +105,10 @@
   <div class="entry-content">
     
       <img src="/android-design-guide/android_design_elements_landing.png" alt="欢迎" title="欢迎">
-<h2 id="零、前言">零、前言 </h2><p> 这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考 <a href="http://developer.android.com/design/index.html" target="_blank" rel="external"> 官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="external">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
+<h2 id="u96F6_u3001_u524D_u8A00"><a href="#u96F6_u3001_u524D_u8A00" class="headerlink" title="零、前言"></a>零、前言 </h2><p> 这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考 <a href="http://developer.android.com/design/index.html" target="_blank" rel="external"> 官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="external">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
 <p>在今年，Google 已经推出了新的 <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">Material 设计标准</a>，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。</p>
 <a id="more"></a>
-<h2 id="一、设计原则">一、<a href="http://developer.android.com/design/get-started/principles.html" target="_blank" rel="external">设计原则 </a></h2><p> 为了对设计中的问题解决提供指导，设计师结合他们所追求的设计理念和实际的设计案例，制定了一系列的设计原则。</p>
+<h2 id="u4E00_u3001_u8BBE_u8BA1_u539F_u5219"><a href="#u4E00_u3001_u8BBE_u8BA1_u539F_u5219" class="headerlink" title="一、设计原则"></a>一、<a href="http://developer.android.com/design/get-started/principles.html" target="_blank" rel="external">设计原则 </a></h2><p> 为了对设计中的问题解决提供指导，设计师结合他们所追求的设计理念和实际的设计案例，制定了一系列的设计原则。</p>
 <p>在学习 Android 设计的过程中，首先接触 Android 官方推荐的设计原则，可以在设计过程的初期就逐渐熟悉并得到运用。在这以后，经过长期的观察与设计，大家也可以渐渐总结出自己的设计原则。总而言之，有所坚持，有所变通。</p>
 <p>以下是一些官方设计原则页面上提及的设计规范，但按照我个人的设计理念，重新进行了组织。</p>
 <ol>
@@ -168,11 +168,11 @@
 </ol>
 <p>以上设计原则中，有很多与用户体验相关，因为设计的目标之一即是对用户友好。下面是一篇来源于 Android 官方视频的文章，可供参考。</p>
 <blockquote class="callout"><div class="title">延伸阅读</div><a href="http://www.geekpark.net/topics/188876" target="_blank" rel="external">Android 应用中十大常见 UX 错误</a></blockquote>
-<h2 id="二、设计样式">二、设计样式 </h2><h3 id="风格"> 风格 </h3><p> 可以先来谈谈其他平台的设计风格。iOS 历史版本的设计风格是拟物，即尝试将实际物体的形状、材质，都在图像资源中体现，来为用户提供友好而熟悉的体验。而当前版本的  iOS 及 Windows Phone 当前的设计风格是扁平化的。其设计的目的是使用大量的纯色与矩形，减少界面元素装饰对用户精力的分散，突出交互元素的内容。</p>
+<h2 id="u4E8C_u3001_u8BBE_u8BA1_u6837_u5F0F"><a href="#u4E8C_u3001_u8BBE_u8BA1_u6837_u5F0F" class="headerlink" title="二、设计样式"></a>二、设计样式 </h2><h3 id="u98CE_u683C"><a href="#u98CE_u683C" class="headerlink" title="风格"></a> 风格 </h3><p> 可以先来谈谈其他平台的设计风格。iOS 历史版本的设计风格是拟物，即尝试将实际物体的形状、材质，都在图像资源中体现，来为用户提供友好而熟悉的体验。而当前版本的  iOS 及 Windows Phone 当前的设计风格是扁平化的。其设计的目的是使用大量的纯色与矩形，减少界面元素装饰对用户精力的分散，突出交互元素的内容。</p>
 <p>Android 的设计风格可以称之为拟真。拟真与拟物相似，但又并非拟物。拟真是对显示中物体的部分抽象，即保留人们熟悉的物体外形，而去除物体的具体材质，同时加上柔和的阴影。通过拟真的设计，可以避免由于完全拟物带来的认知过载，同时防止过于抽象带来的认知困难，这就是 Android 的设计风格。</p>
 <p>顺便一提，在 Android 的设计中，一般建议阴影是从前上方 45 度角照明产生的，这在启动器图标和卡片等界面元素的设计中都有体现。</p>
 <img src="/android-design-guide/android_iconography_launcher_example2.png" alt="Android 拟真风格的图标" title="Android 拟真风格的图标">
-<h3 id="主题"><a href="http://developer.android.com/design/style/themes.html" target="_blank" rel="external">主题</a></h3><p>Android 4 原生主题的名称为 Holo，具有暗色和亮色两个风格，以及一个暗色 ActionBar，亮色界面的变种风格。通过使用原生的主题，可以让应用程序快速获得与 Android 匹配的视觉体验。</p>
+<h3 id="u4E3B_u9898"><a href="#u4E3B_u9898" class="headerlink" title="主题"></a><a href="http://developer.android.com/design/style/themes.html" target="_blank" rel="external">主题</a></h3><p>Android 4 原生主题的名称为 Holo，具有暗色和亮色两个风格，以及一个暗色 ActionBar，亮色界面的变种风格。通过使用原生的主题，可以让应用程序快速获得与 Android 匹配的视觉体验。</p>
 <img src="/android-design-guide/android_themes_holo_light.png" alt="Holo Light" title="Holo Light">
 <img src="/android-design-guide/android_themes_holo_dark.png" alt="Holo (Dark)" title="Holo (Dark)">
 <p>将原生主题使用自己的配色进行修改，使得应用同时具有自己的特色，也是一种常见的方案。修改主题的任务较为繁琐，所幸可以使用 <a href="http://romannurik.github.io/AndroidAssetStudio/" target="_blank" rel="external">Android Asset Studio</a> 这个第三方工具进行主题的生成。</p>
@@ -180,7 +180,7 @@
 <p>Android Asset Studio 可以进行图标和主题等资源的生成，极大地简化设计的实现过程。</p>
 <p>在此之外，虽然 Holo 主题是 Android 设计的代表性元素，但也并不是 Android 设计的全部。具体的探讨，可以参考以下这篇文章。</p>
 <blockquote class="callout"><div class="title">延伸阅读</div><a href="http://www.geekpark.net/topics/179488" target="_blank" rel="external">Android Design 与 Holo Theme</a></blockquote>
-<h3 id="度量"><a href="http://developer.android.com/design/style/metrics-grids.html" target="_blank" rel="external">度量 </a></h3><blockquote class="callout"><div class="title"> 提示 </div> 这一小节部分内容与 Android 中应用程序的具体实现有所关联，设计者在初期仅需了解即可。</blockquote>
+<h3 id="u5EA6_u91CF"><a href="#u5EA6_u91CF" class="headerlink" title="度量"></a><a href="http://developer.android.com/design/style/metrics-grids.html" target="_blank" rel="external">度量 </a></h3><blockquote class="callout"><div class="title"> 提示 </div> 这一小节部分内容与 Android 中应用程序的具体实现有所关联，设计者在初期仅需了解即可。</blockquote>
 <p>Android 的设备规格是碎片化的，因此 Android 也有专门设计的方式应对。</p>
 <p>设备使用 DPI（Dots per Inch，每英寸像素数）表示屏幕像素密度，从而在不同清晰度的设备上呈现相通的物理大小。</p>
 <p>相应地，在进行设计时，也有不同的单位可以选择。</p>
@@ -200,22 +200,22 @@
 <img src="/android-design-guide/android_metrics_diagram.png" alt="Android 设备的屏幕尺寸" title="Android 设备的屏幕尺寸">
 <p>开发者为每个分类提供相应大小的图像资源，在分类内部不同的像素密度之内则由 Android 操作系统自动进行缩放，如此就完成了对不同屏幕密度的适配。</p>
 <p>这项工作较为繁琐，不过之前提到的 <a href="http://romannurik.github.io/AndroidAssetStudio/" target="_blank" rel="external">Android Asset Studio</a> 中也提供了上传高品质的图像，自动使用二次立方插值算法（较为平滑，但比线性缩放耗时稍多）进行缩放生成不同 DPI 所需图片，并按目录组织打包以供下载的功能。</p>
-<h3 id="排版"><a href="http://developer.android.com/design/style/metrics-grids.html#48dp-rhythm" target="_blank" rel="external">排版</a></h3><p>Android 应用的界面普遍以 48dp 组织一个视觉单位，例如 ActionBar 的高度、列表的行高、文本框和按钮的高度。48dp 在物理设备上大约为 9mm 的长度，正好处于 7-10mm 的舒适触摸区域大小之内，同时可以在设备屏幕上保证合理的信息密度，更为重要的是，一致的元素高度可以让用户界面简约而优雅。</p>
+<h3 id="u6392_u7248"><a href="#u6392_u7248" class="headerlink" title="排版"></a><a href="http://developer.android.com/design/style/metrics-grids.html#48dp-rhythm" target="_blank" rel="external">排版</a></h3><p>Android 应用的界面普遍以 48dp 组织一个视觉单位，例如 ActionBar 的高度、列表的行高、文本框和按钮的高度。48dp 在物理设备上大约为 9mm 的长度，正好处于 7-10mm 的舒适触摸区域大小之内，同时可以在设备屏幕上保证合理的信息密度，更为重要的是，一致的元素高度可以让用户界面简约而优雅。</p>
 <img src="/android-design-guide/android_metrics_forms.png" alt="48dp 旋律" title="48dp 旋律">
 <p>这称为 Android 的 48dp 韵律。</p>
 <p>而 Android 中部件的间距常常为 8dp。这个边距常常被原生部件已经计算在内，然而有时也需要自己指定。</p>
 <img src="/android-design-guide/android_metrics_closeup.png" alt="部件的布局" title="部件的布局">
 <p>可以看出，Android 中布局常常是以 4dp 的倍数作为长度，这也是推荐的实践。</p>
-<h3 id="文字样式"><a href="http://developer.android.com/design/style/typography.html" target="_blank" rel="external">文字样式 </a></h3><h4 id="字体"> 字体</h4><img src="/android-design-guide/android_typography_main.png" alt="英文字体排版" title="英文字体排版">
+<h3 id="u6587_u5B57_u6837_u5F0F"><a href="#u6587_u5B57_u6837_u5F0F" class="headerlink" title="文字样式"></a><a href="http://developer.android.com/design/style/typography.html" target="_blank" rel="external">文字样式 </a></h3><h4 id="u5B57_u4F53"><a href="#u5B57_u4F53" class="headerlink" title="字体"></a> 字体</h4><img src="/android-design-guide/android_typography_main.png" alt="英文字体排版" title="英文字体排版">
 <p>Android 4.0 之后默认的英文无衬线字体 Roboto 已经具有多个变种，因此英文中也常常使用不同的字体来实现美观的排版。</p>
 <img src="/android-design-guide/android_typography_variants@2x.png" alt="Roboto 字体集" title="Roboto 字体集">
 <blockquote class="callout"><div class="title">下载</div><a href="http://developer.android.com/downloads/design/roboto-1.2.zip" target="_blank" rel="external">Roboto 字体集</a></blockquote>
 <p>Android 中的中文字体名为 Droid Sans Fallback，顾名思义，只是一个回退的字体，虽然作为无衬线字体在移动端小型屏幕上拥有令人满意的视觉体验，但并没有如同英文字体那样多的风格与设计考虑。因此，中文常用的字体样式只有常规和粗体两种（中文斜体由算法生成，样式并不理想）。</p>
-<h4 id="字号">字号 </h4><p> 字号的变化可以产生对比，但过多的字号会导致界面的混乱。Android 系统提供了以下几种推荐的字号。</p>
+<h4 id="u5B57_u53F7"><a href="#u5B57_u53F7" class="headerlink" title="字号"></a>字号 </h4><p> 字号的变化可以产生对比，但过多的字号会导致界面的混乱。Android 系统提供了以下几种推荐的字号。</p>
 <img src="/android-design-guide/android_typography_sizes.png" alt="Android 系统字号" title="Android 系统字号">
-<h4 id="文字颜色">文字颜色</h4><p>Android 的 Holo 主题默认定义了多种字体颜色，在设计时也可以进行引用。</p>
+<h4 id="u6587_u5B57_u989C_u8272"><a href="#u6587_u5B57_u989C_u8272" class="headerlink" title="文字颜色"></a>文字颜色</h4><p>Android 的 Holo 主题默认定义了多种字体颜色，在设计时也可以进行引用。</p>
 <img src="/android-design-guide/android_typography_defaults.png" alt="Holo 主题文字颜色" title="Holo 主题文字颜色">
-<h3 id="色彩"><a href="http://developer.android.com/design/style/color.html" target="_blank" rel="external">色彩</a></h3><p>Android 拥有自己的标准调色盘（Palette），包括深浅两个风格的红、黄、绿、紫、蓝五色。</p>
+<h3 id="u8272_u5F69"><a href="#u8272_u5F69" class="headerlink" title="色彩"></a><a href="http://developer.android.com/design/style/color.html" target="_blank" rel="external">色彩</a></h3><p>Android 拥有自己的标准调色盘（Palette），包括深浅两个风格的红、黄、绿、紫、蓝五色。</p>
 <img src="/android-design-guide/android_color_palette.png" alt="Android 调色盘" title="Android 调色盘">
 <blockquote class="callout"><div class="title">下载</div><a href="http://developer.android.com/downloads/design/Android_Design_Color_Swatches_20120229.zip" target="_blank" rel="external">Android 调色盘</a></blockquote>
 <p>在设计应用界面时，使用系统调色盘的颜色可以简化颜色挑选，同时获得与平台的一致性。</p>

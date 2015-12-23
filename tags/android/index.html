@@ -79,7 +79,7 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="Introduction">Introduction</h2><p>For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
+      <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
 <p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>
       
         <p class="more">
@@ -141,7 +141,7 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="前言">前言</h2><p>从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。</p>
+      <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。</p>
       
         <p class="more">
           <a href="/android-developer-guide/#more">继续阅读</a>
@@ -202,7 +202,7 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="前言">前言</h2><p>Android 中<code>ListView</code>的拖放操作和动画实现已经被<a href="https://www.youtube.com/watch?v=_BZIvjMgH-Q">这个 DevByte</a> 和<a href="https://android.googlesource.com/platform/development/+/master/samples/devbytes/animation/ListViewDraggingAnimation">相关的样例</a>说明，并且也有 <a href="https://github.com/nhaarman/ListViewAnimations">ListViewAnimations</a> 这样强大的开源库进行了集成。但是，一番 Google 后，我发现基于<code>LinearLayout</code>的相关实现却不多。</p>
+      <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>Android 中<code>ListView</code>的拖放操作和动画实现已经被<a href="https://www.youtube.com/watch?v=_BZIvjMgH-Q">这个 DevByte</a> 和<a href="https://android.googlesource.com/platform/development/+/master/samples/devbytes/animation/ListViewDraggingAnimation">相关的样例</a>说明，并且也有 <a href="https://github.com/nhaarman/ListViewAnimations">ListViewAnimations</a> 这样强大的开源库进行了集成。但是，一番 Google 后，我发现基于<code>LinearLayout</code>的相关实现却不多。</p>
 <p>然而，有时我们可能需要使用<code>LinearLayout</code>替代<code>ListView</code>来实现列表，例如不需要<code>ListView</code>的视图回收机制（比如使用<code>Fragment</code>作为列表项），或者我们需要把这个视图放在<code>ScrollView</code>中。</p>
 <p>在使用<code>LinearLayout</code>实现拖放和动画时，实现代码相比于之前提到的<code>ListView</code>实现也需要一些变动。因为我在网络上没有找到相应的资料，所以写下这篇文章来记录这个过程。</p>
       
