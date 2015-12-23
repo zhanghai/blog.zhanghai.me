@@ -657,7 +657,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2015-12-13T07:48:17.846Z</updated>
+    <updated>2015-12-23T11:26:41.263Z</updated>
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why_Arch_Linux?">Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
@@ -757,6 +757,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Unset global proxy set by gnome-terminal</span></span><br><span class="line"><span class="comment"># See https://github.com/GNOME/gnome-terminal/blob/master/src/terminal-util.c</span></span><br><span class="line"><span class="built_in">unset</span> http_proxy https_proxy ftp_proxy all_proxy no_proxy</span><br><span class="line"><span class="built_in">unset</span> HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY NO_PROXY</span><br></pre></td></tr></table></figure>
 <h2 id="GNOME_online_account">GNOME online account</h2><p>You can log in your Google account and all the things will be configured and synchronized automatically to your laptop. It can be a huge boost for your work flow.</p>
 <p>If you need a proxy to access Google, configure it as in the GNOME proxy setting section.</p>
+<h2 id="Save_ssh_key_passphrase_to_keyring">Save ssh key passphrase to keyring</h2><p>As in <a href="https://wiki.archlinux.org/index.php/GNOME_Keyring#SSH_keys" target="_blank" rel="external">Arch Wiki</a>, use <code>seahorse-ssh-askpass</code>.</p>
+<p>As of <code>seahorse</code> 3.18.0-2, <code>SSH_ASKPASS</code> is not exported by default anymore, so you will need to add the following lines to your <code>/etc/profile</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set ssh askpass</span></span><br><span class="line">SSH_ASKPASS=/usr/lib/seahorse/seahorse-ssh-askpass</span><br></pre></td></tr></table></figure>
 <h2 id="Nautilus_hangs_occasionally">Nautilus hangs occasionally</h2><p>In my case it often happened when I started to search something. Turned out that it is caused by my putting too many files under indexed directories.</p>
 <p>To fix the hang up, launch <code>tracker-preferences</code>, go to “Locations” tab, and turn off “Recurse” for directories you may store a large amount of files. Then execute <code>tracker reset --hard</code> to reset tracker index and configurations. This resolved my issue so far.</p>
 <h2 id="DNS_and_resolvconf">DNS and resolvconf</h2><p>DNS is managed by <code>resolvconf</code> in Arch Linux. In order to supply your own DNS, edit <code>/etc/resolvconf.conf</code>.</p>
