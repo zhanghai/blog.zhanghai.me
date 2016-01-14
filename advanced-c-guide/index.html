@@ -5,21 +5,21 @@
   
   <title>C 语言进阶指南 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="前言本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的思想而非强制记忆的规则得出答案。
-所采取的方式是，通过对某个语言机制存在的原因，来理解这个特性为何这样设计，以至于可以推测在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。
+  <meta name="description" content="前言本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的思想而非强制记忆的规则得出正确的答案。
+所采取的方式是，通过对某个语言机制存在的原因，来理解这个特性为何这样设计，并得出一些基本的原则，以至于可以推测在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。
 给楚楚。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C 语言进阶指南">
 <meta property="og:url" content="http://blog.zhanghai.me/advanced-c-guide/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="前言本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的思想而非强制记忆的规则得出答案。
-所采取的方式是，通过对某个语言机制存在的原因，来理解这个特性为何这样设计，以至于可以推测在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。
+<meta property="og:description" content="前言本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的思想而非强制记忆的规则得出正确的答案。
+所采取的方式是，通过对某个语言机制存在的原因，来理解这个特性为何这样设计，并得出一些基本的原则，以至于可以推测在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。
 给楚楚。">
-<meta property="og:updated_time" content="2016-01-14T15:07:57.878Z">
+<meta property="og:updated_time" content="2016-01-14T15:09:07.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C 语言进阶指南">
-<meta name="twitter:description" content="前言本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的思想而非强制记忆的规则得出答案。
-所采取的方式是，通过对某个语言机制存在的原因，来理解这个特性为何这样设计，以至于可以推测在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。
+<meta name="twitter:description" content="前言本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的思想而非强制记忆的规则得出正确的答案。
+所采取的方式是，通过对某个语言机制存在的原因，来理解这个特性为何这样设计，并得出一些基本的原则，以至于可以推测在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。
 给楚楚。">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
@@ -84,8 +84,8 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的 <strong> 思想 </strong> 而非 <strong> 强制记忆的规则 </strong> 得出答案。</p>
-<p>所采取的方式是，通过对某个语言机制 <strong> 存在的原因 </strong>，来理解这个特性<strong> 为何这样设计 </strong>，以至于<strong> 可以推测 </strong> 在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。</p>
+      <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的 <strong> 思想 </strong> 而非 <strong> 强制记忆的规则 </strong> 得出正确的答案。</p>
+<p>所采取的方式是，通过对某个语言机制 <strong> 存在的原因 </strong>，来理解这个特性<strong> 为何这样设计 </strong>，并得出一些<strong> 基本的原则 </strong>，以至于<strong> 可以推测 </strong> 在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。</p>
 <p><em>给楚楚。</em></p>
 <a id="more"></a>
 <h2 id="u9759_u6001"><a href="#u9759_u6001" class="headerlink" title="静态"></a>静态 </h2><p> 这一部分主要介绍 C 语言中的静态部分，即语法相关。</p>
