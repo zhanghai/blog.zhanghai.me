@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-01-14T15:09:07.348Z</updated>
+  <updated>2016-01-14T15:13:26.722Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://blog.zhanghai.me/advanced-c-guide/"/>
     <id>http://blog.zhanghai.me/advanced-c-guide/</id>
     <published>2016-01-13T14:00:46.000Z</published>
-    <updated>2016-01-14T15:09:07.348Z</updated>
+    <updated>2016-01-14T15:13:26.722Z</updated>
     <content type="html"><![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的 <strong> 思想 </strong> 而非 <strong> 强制记忆的规则 </strong> 得出正确的答案。</p>
 <p>所采取的方式是，通过对某个语言机制 <strong> 存在的原因 </strong>，来理解这个特性<strong> 为何这样设计 </strong>，并得出一些<strong> 基本的原则 </strong>，以至于<strong> 可以推测 </strong> 在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。</p>
 <p><em>给楚楚。</em></p>
@@ -38,8 +38,8 @@
 <p>这一点请时刻牢记。</p>
 <p>因此，指针存在的作用是，为了能够引用内存中任意位置的数据，需要将它的地址这个整数，保存在某种的类型变量里。这种类型就是指针类型，这种类型的 <strong> 内容就是一个整数 </strong>，不过是这个整数被<strong> 理解为内存地址 </strong> 而已。</p>
 <p>指针特有的操作是 <strong> 解引用 </strong>。解引用的操作，就是把指针变量所存储的那个整数取出，作为内存地址理解，然后把对这个变量的取值或者赋值，<strong> 转化为对那个内存地址上内容的取值或赋值</strong>。</p>
-<p>由于指针的值不过是一个整数，因此可以像整数一样进行加减来计算地址，而每次加 <code>1</code>，都是将指针所存储的地址的值，加上指针所指向的那个类型的数据的大小，这样新的地址值就会指向下一个这个类型的数据。即如下例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> *a = <span class="literal">NULL</span>;</span><br><span class="line">a += <span class="number">4</span>; <span class="comment">// a 存储的地址将增加 4 * sizeof(long)</span></span><br></pre></td></tr></table></figure>
+<p>由于指针的值不过是一个整数，因此可以像整数一样进行加减来计算地址，称为 <strong> 指针运算 </strong>。与普通的整数运算不同，指针每次加 <code>1</code>，都是将指针所存储的地址的值，加上指针<strong> 所指向的那个类型占据的大小 </strong>，这样新的地址值就会<strong> 指向下一个 </strong> 这个类型的数据。即如下例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> b[<span class="number">4</span>] = &#123;<span class="number">0</span>&#125;, *a = b;</span><br><span class="line">a += <span class="number">3</span>; <span class="comment">// a 存储的地址将增加 3 * sizeof(long)，即指向 b[3]。</span></span><br></pre></td></tr></table></figure>
 <h3 id="u7ED3_u6784_u4F53"><a href="#u7ED3_u6784_u4F53" class="headerlink" title="结构体"></a>结构体 </h3><p> 结构体的存在，是因为程序员表达一个事物可能需要多个基础数据类型的量，但将一个个量在函数等之间 <strong> 单独传递过于麻烦 </strong>，所以提供一种机制把多个量<strong> 打包一起处理</strong>。</p>
 <blockquote class="callout"><div class="title">重要原则 </div> 结构体的本质是一个偏移量表（以及由此知道的总长度）。</blockquote>
 <p>这一点会在不同的场景下不断体现。</p>
