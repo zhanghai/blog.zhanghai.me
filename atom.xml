@@ -4,7 +4,7 @@
   <subtitle><![CDATA[乐天知命]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-01-14T14:50:41.161Z</updated>
+  <updated>2016-01-14T14:56:58.262Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -19,51 +19,48 @@
     <link href="http://blog.zhanghai.me/advanced-c-guide/"/>
     <id>http://blog.zhanghai.me/advanced-c-guide/</id>
     <published>2016-01-13T14:00:46.000Z</published>
-    <updated>2016-01-14T14:50:41.161Z</updated>
+    <updated>2016-01-14T14:56:58.262Z</updated>
     <content type="html"><![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的 <em> 思想 </em> 而非 <em> 强制记忆的规则 </em> 得出答案。</p>
 <p>所采取的方式是，通过对某个语言机制 <em> 存在的原因 </em>，来理解这个特性为何这样<em> 设计 </em>，以及<em> 推测 </em> 在其他情景下这个特性会如何表现。可以的时候，会结合一些例子提出问题。</p>
 <blockquote>
 <p>给楚楚。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="u9759_u6001"><a href="#u9759_u6001" class="headerlink" title="静态"></a>静态 </h2><p> 这一部分主要介绍 C 语言中的静态部分，即语法相关。</p>
 <p>在开始之前，有一个基本原则可以记住：</p>
-<blockquote>
-<p>C 语言是一门直接面向内存操作的语言。</p>
-</blockquote>
+<blockquote class="callout"><div class="title">基本原则</div>C 语言是一门直接面向内存操作的语言。</blockquote>
 <p>C 语言在本质上不过是在按规则不断读写内存而已。这一点在之后会不断体现。</p>
 <h3 id="u6570_u636E_u7C7B_u578B"><a href="#u6570_u636E_u7C7B_u578B" class="headerlink" title="数据类型"></a>数据类型</h3><p>C 中常见的数据类型有 <code>int</code>、<code>long</code>、<code>float</code>、<code>double</code> 等等基础类型，和 <code>struct</code>、<code>union</code>、<code>enum</code> 等自定义类型。</p>
 <p>数据类型的存在，是为了给内存里本身并 <em> 没有意义 </em> 的二进制数据，提供一个 <em> 理解这些数据的方式</em>。因此，<code>int</code> 类型会导致 C 语言认为这个位置上的二进制们是一个特定长度的整数，并按照整数的加减乘除进行运算；而 <code>float</code> 类型会导致 C 语言把这些数据理解成一个浮点数来处理。</p>
 <p>总的来说，内存里的数据本身没有意义，有了数据类型规定的理解方式后，它们才有了意义。</p>
 <p>但是，另外需要注意的一点是，数据类型的存在，只是为了告诉 C 语言的编译器如何处理数据，由此来生成 CPU 指令。而在 <em> 编译之后 </em> 实际运行时，只有 CPU 对内存作数学运算，并 <em> 不会留有任何关于数据类型的信息</em>，这也是一条重要的原则。</p>
-<blockquote>
-<p>C 语言编译后数据类型就不再存在，即数据类型只用于编译时帮助生成代码。</p>
-</blockquote>
+<blockquote class="callout"><div class="title">重要原则</div>C 语言编译后数据类型就不再存在，即数据类型只用于编译时帮助生成代码。</blockquote>
 <h3 id="u6307_u9488"><a href="#u6307_u9488" class="headerlink" title="指针"></a>指针 </h3><p> 关于指针最重要的一点：</p>
-<blockquote>
-<p>指针在本质上只是一个整数。</p>
-</blockquote>
+<blockquote class="callout"><div class="title">重要原则 </div> 指针在本质上只是一个整数。</blockquote>
 <p>这一点请时刻牢记。</p>
 <p>因此，指针存在的作用是，为了能够引用内存中任意位置的数据，需要将它的地址这个整数，保存在某种的类型变量里。这种类型就是指针类型，这种类型的 <em> 内容就是一个整数 </em>，不过是这个整数被<em> 理解为内存地址 </em> 而已。</p>
 <p>指针特有的操作是 <em> 解引用 </em>。解引用的操作，就是把指针变量所存储的那个整数取出，作为内存地址理解，然后把对这个变量的取值或者赋值，<em> 转化为对那个内存地址上内容的取值或赋值</em>。</p>
 <h3 id="u7ED3_u6784_u4F53"><a href="#u7ED3_u6784_u4F53" class="headerlink" title="结构体"></a>结构体 </h3><p> 结构体的存在，是因为程序员表达一个事物可能需要多个基础数据类型的量，但将一个个量在函数等之间 <em> 单独传递过于麻烦 </em>，所以提供一种机制把多个量<em> 打包一起处理</em>。</p>
-<p>关于结构体最重要的一点：</p>
-<blockquote>
-<p>结构体的本质是一个偏移量表（以及由此知道的总长度）。</p>
-</blockquote>
+<blockquote class="callout"><div class="title">重要原则 </div> 结构体的本质是一个偏移量表（以及由此知道的总长度）。</blockquote>
 <p>这一点会在不同的场景下不断体现。</p>
 <p>可以通过 <code>.</code> 和 <code>-&gt;</code> <em>访问结构体的成员 </em>。在访问成员时，实际上，只是取得结构体在内存里的位置，<em> 加上这个成员相对于结构体开始的偏移量 </em>，来<em> 访问这个新位置上内存中的内容 </em> 而已。</p>
 <p>TODO: &amp;(NULL-&gt;a)</p>
 <h3 id="u7C7B_u578B_u8F6C_u6362"><a href="#u7C7B_u578B_u8F6C_u6362" class="headerlink" title="类型转换"></a>类型转换 </h3><p> 类型转换分为两种，一种是基础数据类型间的转换，一种是指针类型的转换。</p>
 <p>基础数据类型有 <code>int</code>、<code>long</code>、<code>float</code>、<code>double</code> 等，在它们之间进行相互转换时，是将数据 <em> 按照原有类型理解 </em> 以后，重新 <em> 以另一种类型规定的方式把这个值存储 </em> 到另一个地方。</p>
 <p>例如，在将 <code>int</code> 转换为 <code>float</code> 时，<code>int</code>直接采用补码表示一个整数，类型转换时按照补码理解这个数的值，然后通过运算，计算出 <code>float</code> 需要的 <a href="https://zh.wikipedia.org/wiki/IEEE_754" target="_blank" rel="external">IEEE 754</a> 格式的值（符号位、指数、尾数）给使用者。二者在内存中的表示其实完全不同，是编译器会生成代码帮助程序员完成这个转换。</p>
-<p>指针类型间的转换，在简单的假设下，可以理解为只是为了满足编译器做的类型检查而已，<em>编译后没有任何相关的代码</em>。</p>
+<blockquote class="callout"><div class="title">重要原则 </div> 指针类型间的转换可以理解为只是为了 C 语言的类型检查，编译时不会产生实际代码。</blockquote>
 <p>也就是说，编译器需要知道指针所指向数据的类型，才能知道应该 <em> 怎样操作 </em> 指向的这块数据，以及 <em> 检查 </em> 出不合法的操作。类型转换，只是程序员明确告诉编译器指向的这块数据可以被 <em> 重新理解 </em> 为另一种类型而已，然后编译器就会按照这种类型操作。但实际上，这种重新理解只需要在编译的时候知道即可，所以编译后不会有相关的代码。</p>
 <p>// TODO：结构体间类型转换。</p>
 <p>实际情况下，不同指针类型的长度可能不同，所以有时会发生实际的扩展或压缩地址长度的操作，这一点知道即可。</p>
 <h3 id="u51FD_u6570_u8C03_u7528"><a href="#u51FD_u6570_u8C03_u7528" class="headerlink" title="函数调用"></a>函数调用</h3><p>// TOOD: 正在写作。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读]]>
+    <![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解 C 的本质，面对问题时，能够通过 C 的<em>思想</em>而非<em>强制记忆的规则</em>得出答案。</p>
+<p>所采取的方式是，通过对某个语言机制<em>存在的原因</em>，来理解这个特性为何这样<em>设计</em>，以及<em>推测</em>在其他情景下这个特性会如何表现。可以的时候，会结合一些例子提出问题。</p>
+<blockquote>
+<p>给楚楚。</p>
+</blockquote>]]>
+    
     </summary>
     
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
