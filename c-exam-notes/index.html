@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/c-exam-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
-<meta property="og:updated_time" content="2015-10-21T07:39:26.000Z">
+<meta property="og:updated_time" content="2016-01-18T09:36:38.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C 语言应试笔记">
 <meta name="twitter:description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
@@ -94,6 +94,7 @@
 <p>注意变量作用域屏蔽，如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
 <p>注意 <code>int</code> 溢出，若易发生溢出（如阶乘操作）应使用 <code>long</code> 或<code>double</code>代替。</p>
+<p><code>char a = 255</code>，打印后值为 <code>-1</code>，因为 <code>char</code> 为有符号类型，范围为 <code>-128 ~ 127</code>。</p>
 <p>负数的位移操作中符号位也参与位移；左操作数为负数的右移 <code>&gt;&gt;</code> 结果由实现定义，Turbo C 为补 1。</p>
 <p><code>a/b</code>与 <code>a%b</code> 结果在 <code>a</code> 与<code>b</code>中有一个为负数时由实现定义，但保证 <code>a / b * b + a % b</code> 结果为<code>a</code>。</p>
 <p>过滤回车结束的输入字符串：</p>

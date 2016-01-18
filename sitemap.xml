@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/c-exam-notes/</loc>
+    <lastmod>2016-01-18T09:36:38.686Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/advanced-c-guide/</loc>
     <lastmod>2016-01-14T15:13:26.722Z</lastmod>
   </url>
@@ -34,11 +39,6 @@
   <url>
     <loc>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</loc>
     <lastmod>2015-10-21T07:45:32.583Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/c-exam-notes/</loc>
-    <lastmod>2015-10-21T07:39:26.000Z</lastmod>
   </url>
   
   <url>
