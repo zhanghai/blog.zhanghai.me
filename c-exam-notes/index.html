@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/c-exam-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
-<meta property="og:updated_time" content="2016-01-18T09:36:38.686Z">
+<meta property="og:updated_time" content="2016-01-18T11:03:38.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C 语言应试笔记">
 <meta name="twitter:description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
@@ -80,7 +80,10 @@
     
       <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>
 <a id="more"></a>
-<h2 id="u6B63_u6587"><a href="#u6B63_u6587" class="headerlink" title="正文"></a>正文</h2><p><code>if</code> 语句没有花括号时只包含之后一行，如：</p>
+<h2 id="u6B63_u6587"><a href="#u6B63_u6587" class="headerlink" title="正文"></a>正文 </h2><blockquote class="callout"><div class="title"> 一言以概 </div> 任何看上去有简单答案的问题都藏有坑。</blockquote>
+<p>看见定义变量，总是注意变量是否被初始化过。</p>
+<p>注意 <code>if</code> 中的等号是 <code>=</code> 还是 <code>==</code>。</p>
+<p><code>if</code> 语句没有花括号时只包含之后一行，如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition)</span><br><span class="line">    optionally_executed();</span><br><span class="line">    always_executed();</span><br></pre></td></tr></table></figure>
 <p><code>if else</code>语句在没有花括号时，<code>else</code>总是匹配最近的<code>if</code>（Dangling Else），如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a)</span><br><span class="line">    <span class="keyword">if</span> (b) do_b();</span><br><span class="line"><span class="keyword">else</span> do_c();</span><br></pre></td></tr></table></figure>
@@ -88,13 +91,17 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a) &#123;</span><br><span class="line">    <span class="keyword">if</span> (b) &#123;</span><br><span class="line">        do_b();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        do_c();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>switch</code>语句在缺少 <code>break</code> 时将 Fall through。</p>
 <p>求值逻辑表达式时 <code> 真</code>为 <code>1</code>，<code> 假</code>为 <code>0</code>。 判断逻辑表达式时，<code> 非 0</code>为 <code> 真</code>，<code>0</code>为 <code> 假</code>。</p>
+<p><code>true</code>、<code>false</code>、<code>TRUE</code>、<code>FALSE</code> 是合法的变量名，因为在 C 中它们不是关键字。</p>
 <p><code>*p++</code>等价于 <code>*(p++)</code>，因后自增<code>++</code> 优先级高于解引用<code>*</code>。</p>
 <p>注意整型除法结果被截断， <code>int n = 2; 1 / n == 0</code>。</p>
 <p>注意本地变量需要初始化。</p>
 <p>注意变量作用域屏蔽，如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
+<p>注意函数为传值，指针也是值传递，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并不影响外部。</p>
 <p>注意 <code>int</code> 溢出，若易发生溢出（如阶乘操作）应使用 <code>long</code> 或<code>double</code>代替。</p>
-<p><code>char a = 255</code>，打印后值为 <code>-1</code>，因为 <code>char</code> 为有符号类型，范围为 <code>-128 ~ 127</code>。</p>
+<p><code>char a = 255</code>，打印后值为 <code>-1</code>，因为 <code>char</code> 为有符号类型并采用补码表示，其范围为 <code>-128 ~ 127</code>。</p>
 <p>负数的位移操作中符号位也参与位移；左操作数为负数的右移 <code>&gt;&gt;</code> 结果由实现定义，Turbo C 为补 1。</p>
 <p><code>a/b</code>与 <code>a%b</code> 结果在 <code>a</code> 与<code>b</code>中有一个为负数时由实现定义，但保证 <code>a / b * b + a % b</code> 结果为<code>a</code>。</p>
 <p>过滤回车结束的输入字符串：</p>
