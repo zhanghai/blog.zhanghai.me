@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-03-06T12:34:48.955Z">
+<meta property="og:updated_time" content="2016-03-06T12:38:30.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -241,7 +241,7 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <p>To get more completion with specific commands, install package <code>bash-completion</code>.</p>
 <h2 id="Bash-command-not-found-hook"><a href="#Bash-command-not-found-hook" class="headerlink" title="Bash command not found hook"></a>Bash command not found hook</h2><p>Install package <code>pkgfile</code>.</p>
 <h2 id="Execute-previous-commands-in-bash"><a href="#Execute-previous-commands-in-bash" class="headerlink" title="Execute previous commands in bash"></a>Execute previous commands in bash</h2><p><code>Ctrl+R</code> (I-search backward in emacs) can let you quickly execute command in your history.</p>
-<p><code>!!</code> is substituted to be the last command in your history, but be careful when using it, for example <code>echo !!</code> will lead to unexpected behavior if <code>!!</code> is substituted to be <code>something &amp;&amp; poweroff</code>, then <code>poweroff</code> will be executed. To avoid such cases, always wrap it with quotes, like <code>echo &#39;!!&#39;</code>.</p>
+<p><code>!!</code> is substituted to be the last command in your history, but be careful when using it, for example <code>echo !!</code> will lead to unexpected behavior if <code>!!</code> is substituted to be <code>something &amp;&amp; poweroff</code>, then <code>poweroff</code> will be executed. To avoid such cases, always wrap it with quotes, like <code>echo &quot;!!&quot;</code>.</p>
 <h2 id="Input-tab-or-newline-character-in-bash"><a href="#Input-tab-or-newline-character-in-bash" class="headerlink" title="Input tab or newline character in bash"></a>Input tab or newline character in bash</h2><p><code>Ctrl+V</code> in bash works as <code>Ctrl+Q</code> in emacs, which will insert the next character literally.</p>
 <h2 id="Access-clipboard-in-bash"><a href="#Access-clipboard-in-bash" class="headerlink" title="Access clipboard in bash"></a>Access clipboard in bash</h2><p>Install package <code>xsel</code>. Add <code>alias xsel=&#39;xsel -b&#39;</code> to your <code>.bashrc</code>, and then you can use it like <code>xsel &lt;input_file</code> or <code>xsel &gt;output_file</code>.</p>
 <h2 id="Default-font"><a href="#Default-font" class="headerlink" title="Default font"></a>Default font</h2><p>To specify your preference on default fonts, create <code>/etc/fonts/local.conf</code>, and edit it like the following example:</p>
