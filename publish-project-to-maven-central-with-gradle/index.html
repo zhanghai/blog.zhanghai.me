@@ -78,7 +78,7 @@
   </header>
   <div class="entry-content">
     
-      <h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
+      <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
 <a id="more"></a>
 <h2 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><p>作为一个 Android 开发者，一般会使用 Gradle 进行构建与发布。广为使用的脚本是 Chris Banes 所写的 <code>gradle-mvn-push</code>，项目中的 <code>README.md</code> 有详细的步骤说明。</p>
 <blockquote class="callout"><div class="title">外部文章</div><a href="https://github.com/chrisbanes/gradle-mvn-push/blob/master/README.md" target="_blank" rel="external">gradle-mvn-push 的 README</a></blockquote>
@@ -108,7 +108,7 @@
 <p> 在处理者对工单的回复中，会要求你在公开发布第一个项目后回复此工单，照做即可。</p>
 </li>
 </ol>
-<h2 id="GnuPG_uFF082-1_uFF09"><a href="#GnuPG_uFF082-1_uFF09" class="headerlink" title="GnuPG（2.1）"></a>GnuPG（2.1）</h2><p>GnuPG 2.1 的使用是我在这次发布过程中遇到的最为棘手的问题，因为网络上大部分的教程还是基于之前的版本，导致许多已经更改的操作方式不再可用；并且 Gradle 也尚未支持这个版本，尽管 2.1 已在去年 11 月发布。因此在这里简单记录一些我遇到的问题和解决方案。</p>
+<h2 id="GnuPG（2-1）"><a href="#GnuPG（2-1）" class="headerlink" title="GnuPG（2.1）"></a>GnuPG（2.1）</h2><p>GnuPG 2.1 的使用是我在这次发布过程中遇到的最为棘手的问题，因为网络上大部分的教程还是基于之前的版本，导致许多已经更改的操作方式不再可用；并且 Gradle 也尚未支持这个版本，尽管 2.1 已在去年 11 月发布。因此在这里简单记录一些我遇到的问题和解决方案。</p>
 <ol>
 <li><p>无法选定密钥长度。</p>
 <p> 在 GnuPG 2.1 中，需要使用 <code>--full-gen-key</code> 以获取之前在 <code>--gen-key</code> 中可用的选项。</p>
@@ -127,10 +127,10 @@
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver pgp.mit.edu --send-key &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="u9644_u52A0_uFF1A_u4E3A_u793A_u4F8B_u5E94_u7528_u751F_u6210_u7B7E_u540D_u5BC6_u94A5"><a href="#u9644_u52A0_uFF1A_u4E3A_u793A_u4F8B_u5E94_u7528_u751F_u6210_u7B7E_u540D_u5BC6_u94A5" class="headerlink" title="附加：为示例应用生成签名密钥"></a>附加：为示例应用生成签名密钥 </h2><p> 可以使用 Java 的 <code>keytool</code> 工具进行生成，但 Android Studio 提供了自带推荐参数并且简单易用的界面。</p>
+<h2 id="附加：为示例应用生成签名密钥"><a href="# 附加：为示例应用生成签名密钥" class="headerlink" title="附加：为示例应用生成签名密钥"></a>附加：为示例应用生成签名密钥 </h2><p> 可以使用 Java 的 <code>keytool</code> 工具进行生成，但 Android Studio 提供了自带推荐参数并且简单易用的界面。</p>
 <p>在 Android Studio 中，点击“Build &gt; Generate Signed APK…”，如果已有密钥存储则点击“Choose existing…”并选择，之后点击“Create new…”填写信息并创建密钥即可。</p>
 <p>这种方法并不会覆盖密钥存储中已有的密钥。但还是建议在操作之前，进行备份。</p>
-<h2 id="u7ED3_u8BED"><a href="#u7ED3_u8BED" class="headerlink" title="结语"></a>结语 </h2><p> 发布项目到 Maven Central 的过程确实十分复杂，同时 GnuPG 进行了不兼容升级并且缺乏文档，所以令我花费了不少时间。</p>
+<h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语 </h2><p> 发布项目到 Maven Central 的过程确实十分复杂，同时 GnuPG 进行了不兼容升级并且缺乏文档，所以令我花费了不少时间。</p>
 <p>相比之下，通过 BinTray 发布则更为简单和自动化一些，然而它要求你将私钥上传至它的服务器，这令我不太舒服，因此并没有采用。</p>
 <p>虽然麻烦，但是对于开发者来说，发布之后的使用还是十分舒服的，因此这些努力也算没有白费。记录在此，希望能够在其他开发者发布自己的项目时有所帮助。</p>
 
