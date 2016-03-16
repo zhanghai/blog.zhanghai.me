@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-03-06T12:38:30.972Z">
+<meta property="og:updated_time" content="2016-03-16T14:40:13.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -330,6 +330,18 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <h2 id="Minecraft-with-Forge-crashes-on-splash-screen"><a href="#Minecraft-with-Forge-crashes-on-splash-screen" class="headerlink" title="Minecraft with Forge crashes on splash screen"></a>Minecraft with Forge crashes on splash screen</h2><p>Sometimes Minecraft with Forge can crash with a message like the following one:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[xcb] Unknown request in queue while dequeuing</span><br></pre></td></tr></table></figure>
 <p>Disabling the Forge splash screen by setting <code>enabled=false</code> in <code>.minecraft/config/splash.properties</code> can workaround this problem.</p>
+<h2 id="Install-Xilinx-ISE"><a href="#Install-Xilinx-ISE" class="headerlink" title="Install Xilinx ISE"></a>Install Xilinx ISE</h2><p>Modified from <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK" target="_blank" rel="external">Arch Wiki</a>:</p>
+<ol>
+<li>Download Xilinx ISE Installer from <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/design-tools.html" target="_blank" rel="external">here</a>.</li>
+<li>Untar only the first image, execute <code>xsetup</code>, choose system edition, uncheck sending data, and leave options the default. You don’t need to check the “Install cable driver”.</li>
+<li>Fix <code>libstdc++.so</code> as in <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK#Dynamic_Library_Fix_.28libstdc.2B.2B.so.29" target="_blank" rel="external">here</a>.</li>
+<li>Install Digilent USB-JTAG drivers as in <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK#Digilent_USB-JTAG_Drivers" target="_blank" rel="external">here</a>. You don’t need to install <code>fxload</code>, or add yourself to the <code>uucp</code> group, or add a udev rule. You can program the device with the command <code>djtgcfg</code> with <code>digilent.adept.utilities</code> installed.</li>
+<li>Create <code>~/.local/share/applications/xilinx-ise.desktop</code> as in <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK#Launching_via_desktop_icons" target="_blank" rel="external">here</a>. My alternative version is given below.</li>
+<li>Get a license, and feed it to the license manager.</li>
+</ol>
+<p><code>xilinx-ise.desktop</code>:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[Desktop Entry]</span></span><br><span class="line"><span class="setting">Categories=<span class="value">Development;</span></span></span><br><span class="line"><span class="setting">Comment=<span class="value">Xilinx ISE</span></span></span><br><span class="line"><span class="setting">Encoding=<span class="value">UTF-<span class="number">8</span></span></span></span><br><span class="line"><span class="setting">Exec=<span class="value">sh -c <span class="string">"unset LANG &amp;&amp; unset QT_PLUGIN_PATH &amp;&amp; source /opt/Xilinx/14.7/ISE_DS/settings64.sh &amp;&amp; export PRINTER=null &amp;&amp; ise"</span></span></span></span><br><span class="line"><span class="setting">GenericName=<span class="value">Xilinx ISE</span></span></span><br><span class="line"><span class="setting">Icon=<span class="value">/opt/Xilinx/<span class="number">14.7</span>/ISE_DS/ISE/data/images/pn-ise.png</span></span></span><br><span class="line"><span class="setting">Keywords=<span class="value">Xlinx;ISE</span></span></span><br><span class="line"><span class="setting">Name=<span class="value">Xilinx ISE</span></span></span><br><span class="line"><span class="setting">StartupNotify=<span class="value"><span class="keyword">true</span></span></span></span><br><span class="line"><span class="setting">Type=<span class="value">Application</span></span></span><br></pre></td></tr></table></figure>
+<p>By <code>export PRINTER=null</code> you can print schematic file to PDF once per launch. This is a bug in Xilinx ISE.</p>
 <h2 id="Additional-tools"><a href="#Additional-tools" class="headerlink" title="Additional tools"></a>Additional tools</h2><ul>
 <li><code>cloc</code>: Counting line of code.</li>
 <li><code>dos2unix</code>: Convert End-of-line and some encoding to Unix flavor.</li>
