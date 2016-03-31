@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-02-10T09:17:20.173Z</updated>
+  <updated>2015-10-21T07:45:32.583Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -14,64 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>C 语言进阶指南</title>
-    <link href="http://blog.zhanghai.me/advanced-c-guide/"/>
-    <id>http://blog.zhanghai.me/advanced-c-guide/</id>
-    <published>2016-01-13T14:00:46.000Z</published>
-    <updated>2016-02-10T09:17:20.173Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt; 本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解其本质，面对问题时，能够通过语言的 &lt;strong&gt; 设计思想 &lt;/strong&gt; 而非 &lt;strong&gt; 强制记忆的规则 &lt;/strong&gt; 得出正确的答案。&lt;/p&gt;
-&lt;p&gt;所采取的方式是，通过对某个语言机制 &lt;strong&gt; 存在的原因 &lt;/strong&gt;，来理解这个特性&lt;strong&gt; 为何这样设计 &lt;/strong&gt;，并得出一些&lt;strong&gt; 基本的原则 &lt;/strong&gt;，以至于&lt;strong&gt; 可以推测 &lt;/strong&gt; 在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;给楚楚。&lt;/em&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;静态&quot;&gt;&lt;a href=&quot;# 静态&quot; class=&quot;headerlink&quot; title=&quot;静态&quot;&gt;&lt;/a&gt;静态 &lt;/h2&gt;&lt;p&gt; 这一部分主要介绍 C 语言中的静态部分，即语法相关。&lt;/p&gt;
-&lt;p&gt;在开始之前，有一个基本原则可以记住：&lt;/p&gt;
-&lt;blockquote class=&quot;callout&quot;&gt;&lt;div class=&quot;title&quot;&gt;基本原则&lt;/div&gt;C 语言是一门直接面向内存操作的语言。&lt;/blockquote&gt;
-&lt;p&gt;C 语言在本质上不过是在按规则不断读写内存而已。这一点在之后会不断体现。&lt;/p&gt;
-&lt;h3 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;# 数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h3&gt;&lt;p&gt;C 中常见的数据类型有 &lt;code&gt;int&lt;/code&gt;、&lt;code&gt;long&lt;/code&gt;、&lt;code&gt;float&lt;/code&gt;、&lt;code&gt;double&lt;/code&gt; 等等基础类型，和 &lt;code&gt;struct&lt;/code&gt;、&lt;code&gt;union&lt;/code&gt;、&lt;code&gt;enum&lt;/code&gt; 等自定义类型。&lt;/p&gt;
-&lt;p&gt;数据类型的存在，是为了给内存里本身并 &lt;strong&gt; 没有意义 &lt;/strong&gt; 的二进制数据，提供一个 &lt;strong&gt; 理解这些数据的方式&lt;/strong&gt;。因此，&lt;code&gt;int&lt;/code&gt; 类型会导致 C 语言认为这个位置上的二进制们是一个特定长度的整数，并按照整数的加减乘除进行运算；而 &lt;code&gt;float&lt;/code&gt; 类型会导致 C 语言把这些数据理解成一个浮点数来处理。&lt;/p&gt;
-&lt;p&gt;总的来说，内存里的数据本身没有意义，有了数据类型规定的理解方式后，它们才有了意义。&lt;/p&gt;
-&lt;p&gt;但是，另外需要注意的一点是，数据类型的存在，只是为了告诉 C 语言的编译器如何处理数据，由此来生成 CPU 指令。而在 &lt;strong&gt; 编译之后 &lt;/strong&gt; 实际运行时，只有 CPU 对内存作数学运算，并 &lt;strong&gt; 不会留有任何关于数据类型的信息&lt;/strong&gt;，这也是一条重要的原则。&lt;/p&gt;
-&lt;blockquote class=&quot;callout&quot;&gt;&lt;div class=&quot;title&quot;&gt;重要原则&lt;/div&gt;C 语言编译后数据类型就不再存在，即数据类型只用于编译时帮助生成代码。&lt;/blockquote&gt;
-&lt;h3 id=&quot;指针&quot;&gt;&lt;a href=&quot;# 指针&quot; class=&quot;headerlink&quot; title=&quot;指针&quot;&gt;&lt;/a&gt;指针 &lt;/h3&gt;&lt;p&gt; 关于指针最重要的一点：&lt;/p&gt;
-&lt;blockquote class=&quot;callout&quot;&gt;&lt;div class=&quot;title&quot;&gt;重要原则 &lt;/div&gt; 指针在本质上只是一个整数。&lt;/blockquote&gt;
-&lt;p&gt;这一点请时刻牢记。&lt;/p&gt;
-&lt;p&gt;因此，指针存在的作用是，为了能够引用内存中任意位置的数据，需要将它的地址这个整数，保存在某种的类型变量里。这种类型就是指针类型，这种类型的 &lt;strong&gt; 内容就是一个整数 &lt;/strong&gt;，不过是这个整数被&lt;strong&gt; 理解为内存地址 &lt;/strong&gt; 而已。&lt;/p&gt;
-&lt;p&gt;指针特有的操作是 &lt;strong&gt; 解引用 &lt;/strong&gt;。解引用的操作，就是把指针变量所存储的那个整数取出，作为内存地址理解，然后把对这个变量的取值或者赋值，&lt;strong&gt; 转化为对那个内存地址上内容的取值或赋值&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;由于指针的值不过是一个整数，因此可以像整数一样进行加减来计算地址，称为 &lt;strong&gt; 指针运算 &lt;/strong&gt;。与普通的整数运算不同，指针每次加 &lt;code&gt;1&lt;/code&gt;，都是将指针所存储的地址的值，加上指针&lt;strong&gt; 所指向的那个类型占据的大小 &lt;/strong&gt;，这样新的地址值就会&lt;strong&gt; 指向下一个 &lt;/strong&gt; 这个类型的数据。即如下例：&lt;/p&gt;
-&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;long&lt;/span&gt; b[&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;] = &amp;#123;&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&amp;#125;, *a = b;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a += &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;// a 存储的地址将增加 3 * sizeof(long)，即指向 b[3]。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;结构体&quot;&gt;&lt;a href=&quot;# 结构体&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体 &lt;/h3&gt;&lt;p&gt; 结构体的存在，是因为程序员表达一个事物可能需要多个基础数据类型的量，但将一个个量在函数等之间 &lt;strong&gt; 单独传递过于麻烦 &lt;/strong&gt;，所以提供一种机制把多个量&lt;strong&gt; 打包一起处理&lt;/strong&gt;。&lt;/p&gt;
-&lt;blockquote class=&quot;callout&quot;&gt;&lt;div class=&quot;title&quot;&gt;重要原则 &lt;/div&gt; 结构体的本质是一个偏移量表（以及由此知道的总长度）。&lt;/blockquote&gt;
-&lt;p&gt;这一点会在不同的场景下不断体现。&lt;/p&gt;
-&lt;p&gt;可以通过 &lt;code&gt;.&lt;/code&gt; 和 &lt;code&gt;-&amp;gt;&lt;/code&gt; &lt;strong&gt;访问结构体的成员 &lt;/strong&gt;。在访问成员时，实际上，只是取得结构体在内存里的位置，&lt;strong&gt; 加上这个成员相对于结构体开始的偏移量 &lt;/strong&gt;，来&lt;strong&gt; 访问这个新位置上内存中的内容 &lt;/strong&gt; 而已。&lt;/p&gt;
-&lt;p&gt;// TODO: &amp;amp;(NULL-&amp;gt;a)&lt;/p&gt;
-&lt;h3 id=&quot;类型转换&quot;&gt;&lt;a href=&quot;# 类型转换&quot; class=&quot;headerlink&quot; title=&quot;类型转换&quot;&gt;&lt;/a&gt;类型转换 &lt;/h3&gt;&lt;p&gt; 类型转换分为两种，一种是基础数据类型间的转换，一种是指针类型的转换。&lt;/p&gt;
-&lt;p&gt;基础数据类型有 &lt;code&gt;int&lt;/code&gt;、&lt;code&gt;long&lt;/code&gt;、&lt;code&gt;float&lt;/code&gt;、&lt;code&gt;double&lt;/code&gt; 等，在它们之间进行相互转换时，是将数据 &lt;strong&gt; 按照原有类型理解 &lt;/strong&gt; 以后，重新 &lt;strong&gt; 以另一种类型规定的方式把这个值存储 &lt;/strong&gt; 到另一个地方。&lt;/p&gt;
-&lt;p&gt;例如，在将 &lt;code&gt;int&lt;/code&gt; 转换为 &lt;code&gt;float&lt;/code&gt; 时，&lt;code&gt;int&lt;/code&gt;直接采用补码表示一个整数，类型转换时按照补码理解这个数的值，然后通过运算，计算出 &lt;code&gt;float&lt;/code&gt; 需要的 &lt;a href=&quot;https://zh.wikipedia.org/wiki/IEEE_754&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IEEE 754&lt;/a&gt; 格式的值（符号位、指数、尾数）给使用者。二者在内存中的表示其实完全不同，是编译器会生成代码帮助程序员完成这个转换。&lt;/p&gt;
-&lt;blockquote class=&quot;callout&quot;&gt;&lt;div class=&quot;title&quot;&gt;重要原则 &lt;/div&gt; 指针类型间的转换可以理解为只是为了 C 语言的类型检查，编译时不会产生实际代码。&lt;/blockquote&gt;
-&lt;p&gt;也就是说，编译器需要知道指针所指向数据的类型，才能知道应该 &lt;strong&gt; 怎样操作 &lt;/strong&gt; 指向的这块数据，以及 &lt;strong&gt; 检查 &lt;/strong&gt; 出不合法的操作。类型转换，只是程序员明确告诉编译器指向的这块数据可以被 &lt;strong&gt; 重新理解 &lt;/strong&gt; 为另一种类型而已，然后编译器就会按照这种类型操作。但实际上，这种重新理解只需要在编译的时候知道即可，所以编译后不会有相关的代码。&lt;/p&gt;
-&lt;p&gt;// TODO：结构体间类型转换。&lt;/p&gt;
-&lt;p&gt;实际情况下，不同指针类型的长度可能不同，所以有时会发生实际的扩展或压缩地址长度的操作，这一点知道即可。&lt;/p&gt;
-&lt;h3 id=&quot;指针与数组&quot;&gt;&lt;a href=&quot;# 指针与数组&quot; class=&quot;headerlink&quot; title=&quot;指针与数组&quot;&gt;&lt;/a&gt;指针与数组&lt;/h3&gt;&lt;p&gt;// TODO: 正在写作。&lt;/p&gt;
-&lt;h3 id=&quot;函数调用&quot;&gt;&lt;a href=&quot;# 函数调用&quot; class=&quot;headerlink&quot; title=&quot;函数调用&quot;&gt;&lt;/a&gt;函数调用&lt;/h3&gt;&lt;p&gt;// TOOD: 正在写作。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文章主要面向的是已经基本熟悉 C 语言的初学者，而目的则在于通过对 C 语言具体机制的介绍，使得读者可以理解其本质，面对问题时，能够通过语言的&lt;strong&gt;设计思想&lt;/strong&gt;而非&lt;strong&gt;强制记忆的规则&lt;/strong&gt;得出正确的答案。&lt;/p&gt;
-&lt;p&gt;所采取的方式是，通过对某个语言机制&lt;strong&gt;存在的原因&lt;/strong&gt;，来理解这个特性&lt;strong&gt;为何这样设计&lt;/strong&gt;，并得出一些&lt;strong&gt;基本的原则&lt;/strong&gt;，以至于&lt;strong&gt;可以推测&lt;/strong&gt;在其他情景下这个特性会如何表现。适当的时候，会结合一些例子说明问题。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;给楚楚。&lt;/em&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
-    
-      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
-    
-  </entry>
   
   <entry>
     <title>Plan 9 操作系统介绍</title>
