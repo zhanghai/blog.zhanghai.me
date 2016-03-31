@@ -764,7 +764,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-03-23T08:10:30.251Z</updated>
+    <updated>2016-03-31T10:11:22.327Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -791,11 +791,12 @@
 &lt;li&gt;&lt;p&gt;Install &lt;code&gt;ntfs-config&lt;/code&gt; and enable auto mounting.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;Disable-Nvidia-graphics&quot;&gt;&lt;a href=&quot;#Disable-Nvidia-graphics&quot; class=&quot;headerlink&quot; title=&quot;Disable Nvidia graphics&quot;&gt;&lt;/a&gt;Disable Nvidia graphics&lt;/h2&gt;&lt;p&gt;Install &lt;code&gt;bumblebee&lt;/code&gt; and &lt;code&gt;bbswitch&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Disable-Nvidia-graphics&quot;&gt;&lt;a href=&quot;#Disable-Nvidia-graphics&quot; class=&quot;headerlink&quot; title=&quot;Disable Nvidia graphics&quot;&gt;&lt;/a&gt;Disable Nvidia graphics&lt;/h2&gt;&lt;p&gt;Install &lt;code&gt;bbswitch&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;And create &lt;code&gt;/etc/modprobe.d/nouveau_blacklist.conf&lt;/code&gt; as follow, or else &lt;code&gt;bbswitch&lt;/code&gt; will find Nvidia graphics in use by &lt;code&gt;nouveau&lt;/code&gt;.&lt;/p&gt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;blacklist nouveau&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;You can verify &lt;code&gt;bbswitch&lt;/code&gt; status by &lt;code&gt;cat /proc/acpi/bbswitch&lt;/code&gt; and view its log by &lt;code&gt;dmesg | grep bbswitch&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Note that &lt;code&gt;nouveau&lt;/code&gt; kernel module is shipped in &lt;code&gt;linux&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Note that the &lt;code&gt;nouveau&lt;/code&gt; kernel module is shipped in &lt;code&gt;linux&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Also note that if your install &lt;code&gt;bumblebee&lt;/code&gt;, it will ship the blacklist file for you.&lt;/p&gt;
 &lt;h2 id=&quot;Shrink-pacman-cache&quot;&gt;&lt;a href=&quot;#Shrink-pacman-cache&quot; class=&quot;headerlink&quot; title=&quot;Shrink pacman cache&quot;&gt;&lt;/a&gt;Shrink pacman cache&lt;/h2&gt;&lt;p&gt;From &lt;a href=&quot;https://wiki.archlinux.org/index.php/pacman&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Arch Wiki&lt;/a&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;paccache -r&lt;/code&gt; deletes all the cached versions of each package except for the most recent 3 (without confirmation).&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;paccache -ruk0&lt;/code&gt; removes all the cached versions of uninstalled packages.&lt;/p&gt;

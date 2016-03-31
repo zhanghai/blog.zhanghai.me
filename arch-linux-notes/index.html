@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-03-23T08:10:30.251Z">
+<meta property="og:updated_time" content="2016-03-31T10:11:22.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -115,11 +115,12 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <li><p>Install <code>ntfs-config</code> and enable auto mounting.</p>
 </li>
 </ol>
-<h2 id="Disable-Nvidia-graphics"><a href="#Disable-Nvidia-graphics" class="headerlink" title="Disable Nvidia graphics"></a>Disable Nvidia graphics</h2><p>Install <code>bumblebee</code> and <code>bbswitch</code>.</p>
+<h2 id="Disable-Nvidia-graphics"><a href="#Disable-Nvidia-graphics" class="headerlink" title="Disable Nvidia graphics"></a>Disable Nvidia graphics</h2><p>Install <code>bbswitch</code>.</p>
 <p>And create <code>/etc/modprobe.d/nouveau_blacklist.conf</code> as follow, or else <code>bbswitch</code> will find Nvidia graphics in use by <code>nouveau</code>.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blacklist nouveau</span><br></pre></td></tr></table></figure>
 <p>You can verify <code>bbswitch</code> status by <code>cat /proc/acpi/bbswitch</code> and view its log by <code>dmesg | grep bbswitch</code>.</p>
-<p>Note that <code>nouveau</code> kernel module is shipped in <code>linux</code>.</p>
+<p>Note that the <code>nouveau</code> kernel module is shipped in <code>linux</code>.</p>
+<p>Also note that if your install <code>bumblebee</code>, it will ship the blacklist file for you.</p>
 <h2 id="Shrink-pacman-cache"><a href="#Shrink-pacman-cache" class="headerlink" title="Shrink pacman cache"></a>Shrink pacman cache</h2><p>From <a href="https://wiki.archlinux.org/index.php/pacman" target="_blank" rel="external">Arch Wiki</a>:</p>
 <p><code>paccache -r</code> deletes all the cached versions of each package except for the most recent 3 (without confirmation).</p>
 <p><code>paccache -ruk0</code> removes all the cached versions of uninstalled packages.</p>
