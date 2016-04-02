@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</loc>
+    
+    <lastmod>2016-04-02T06:08:41.156Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     
     <lastmod>2016-03-31T10:11:22.327Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://blog.zhanghai.me/bash-scripting-notes/</loc>
     
     <lastmod>2015-11-01T16:18:13.997Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</loc>
-    
-    <lastmod>2015-10-21T07:45:32.583Z</lastmod>
     
   </url>
   

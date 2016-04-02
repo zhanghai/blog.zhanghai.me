@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
 以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。">
-<meta property="og:updated_time" content="2015-10-21T07:45:32.583Z">
+<meta property="og:updated_time" content="2016-04-02T06:08:41.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Plan 9 操作系统介绍">
 <meta name="twitter:description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
@@ -96,7 +96,7 @@
 <p>此外，父进程还可以以 9P 协议向子进程的命名空间提供虚拟文件（以文件作为服务），这样实现了一种低成本而原生的跨进程资源访问，也使得提供给子进程资源可以被自由地替换。由此，实现 VPN 连接只需要将 <code>/net</code> 目录代理，实现窗口系统只需要将 <code>bitblt</code> 文件代理，等等。</p>
 <h3 id="合并目录"><a href="# 合并目录" class="headerlink" title="合并目录"></a>合并目录 </h3><p> 因为要替换子进程文件系统中的目录，但目录中的内容又并非全部都需要重新提供，合并目录就成为了一个良好的解决方案。</p>
 <p>Plan 9 中的合并目录是一种类似 Unix 中挂载和搜索路径相结合的做法。通过将目录甲合并至目录乙，访问目录乙时将会先在目录甲中进行查找，未找到时再在目录乙本身中查询。将这个设计与网络结合，则可以产生将远端的 <code>/bin</code> 目录合并至本地即可直接使用远端程序这样的使用方法。</p>
-<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>Plan 9 更加为人知晓的一个组件则是由 Ken Thompson 提出的 UTF-8 编码。通过这种编码方式，Unicode 自动兼容与原先的 ASCII 字符，不会出现需要编码转换的问题，因此时至今日已经被广泛采用。而 UTF-8 本身则早已是 Plan 9 的原生编码。</p>
+<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>Plan 9 更加为人知晓的一个组件则是由 Ken Thompson 提出的 UTF-8 编码。通过这种编码方式，Unicode 自动兼容于原先的 ASCII 字符，不会出现需要编码转换的问题，因此时至今日已经被广泛采用。而 UTF-8 本身则早已是 Plan 9 的原生编码。</p>
 <h2 id="发展"><a href="# 发展" class="headerlink" title="发展"></a>发展 </h2><p> 虽然 Plan 9 有着相对于 Unix 更加普适和可扩展的设计，但在实际使用中它并没有赢得太多的用户。</p>
 <p>Plan 9 在 1992 年向大学公开，并在 1995 年由 AT&amp;T 商业发布。然而 1996 年，AT&amp;T 已将重心转移至 Inferno，一个基于 Plan 9 思想设计并且旨在与 Java 竞争的系统。到了 2000 年，掌管贝尔实验室的朗讯决定停止 Plan 9 的商业支持，并在几年之后将 Plan 9 的代码以自由软件许可的形式向大众公开。</p>
 <h2 id="评价"><a href="# 评价" class="headerlink" title="评价"></a>评价</h2><p>Plan 9 对 Unix 中的许多理念做了进一步的提升和扩展，对资源管理和分布式计算进行了优秀而统一的实现，在操作系统架构的历史上具有不可磨灭的意义；来自其中的 UTF-8、rc shell 等组件，也被其他操作系统所吸纳接受；并且，Plan 9 的后继者 Inferno 和 Plan B 还在继续发展。</p>
