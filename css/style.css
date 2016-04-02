@@ -704,6 +704,7 @@ pre .deletion {
   border-left: 5px solid #aaa;
   color: #777;
 }
+.entry-content blockquote p:first-child,
 .entry-content blockquote p:last-child {
   margin-bottom: 0;
 }
