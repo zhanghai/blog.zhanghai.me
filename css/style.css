@@ -699,7 +699,7 @@ pre .deletion {
   padding-right: 0;
 }
 .entry-content blockquote {
-  margin: 1.5em 3em;
+  margin: 1.5em 0;
   padding: 5px 20px;
   border-left: 5px solid #aaa;
   color: #777;

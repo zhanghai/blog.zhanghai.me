@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-04-02T06:08:41.156Z</updated>
+  <updated>2016-04-02T16:29:56.757Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.zhanghai.me/introduction-to-plan-9-the-os/"/>
     <id>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</id>
     <published>2015-10-21T07:32:24.000Z</published>
-    <updated>2016-04-02T06:08:41.156Z</updated>
+    <updated>2016-04-02T16:29:56.757Z</updated>
     
     <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt; 这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。&lt;/p&gt;
 &lt;p&gt;以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。&lt;/p&gt;
@@ -41,10 +41,10 @@
 &lt;h2 id=&quot;发展&quot;&gt;&lt;a href=&quot;# 发展&quot; class=&quot;headerlink&quot; title=&quot;发展&quot;&gt;&lt;/a&gt;发展 &lt;/h2&gt;&lt;p&gt; 虽然 Plan 9 有着相对于 Unix 更加普适和可扩展的设计，但在实际使用中它并没有赢得太多的用户。&lt;/p&gt;
 &lt;p&gt;Plan 9 在 1992 年向大学公开，并在 1995 年由 AT&amp;amp;T 商业发布。然而 1996 年，AT&amp;amp;T 已将重心转移至 Inferno，一个基于 Plan 9 思想设计并且旨在与 Java 竞争的系统。到了 2000 年，掌管贝尔实验室的朗讯决定停止 Plan 9 的商业支持，并在几年之后将 Plan 9 的代码以自由软件许可的形式向大众公开。&lt;/p&gt;
 &lt;h2 id=&quot;评价&quot;&gt;&lt;a href=&quot;# 评价&quot; class=&quot;headerlink&quot; title=&quot;评价&quot;&gt;&lt;/a&gt;评价&lt;/h2&gt;&lt;p&gt;Plan 9 对 Unix 中的许多理念做了进一步的提升和扩展，对资源管理和分布式计算进行了优秀而统一的实现，在操作系统架构的历史上具有不可磨灭的意义；来自其中的 UTF-8、rc shell 等组件，也被其他操作系统所吸纳接受；并且，Plan 9 的后继者 Inferno 和 Plan B 还在继续发展。&lt;/p&gt;
-&lt;p&gt;但是，仅有优雅的设计，却缺乏相应的生态，这导致了 Plan 9 在实际应用中的结果不成功，令人惋惜。这一切正如 Eric Raymond 所说，足以让目标高远的软件工程师们时时警醒。&lt;/p&gt;
+&lt;p&gt;但是，仅有优雅的设计，却缺乏相应的生态，这导致了 Plan 9 在实际应用中的结果不成功，令人惋惜。这一切正如 Eric Raymond 所说，足以让目标高远的软件工程师们时时警醒：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Plan 9 会失败，纯粹只是因为它的改进程度没有大到能取代 Unix。与 Plan 9 相比，Unix 虽然破破烂烂带有明显的缺陷，但还是能够把工作良好地完成，而这就足以保住它的地位了。&lt;/p&gt;
-&lt;p&gt;这件事情给那些怀有雄心壮志的系统架构师上了一堂课：一个更优解决方案所面临的最危险的敌人，其实是那些能把事情刚好完成的程序。&lt;/p&gt;
+&lt;p&gt;这件事情教给了那些怀有雄心壮志的系统架构师一个道理：一个更优解决方案所面临的最危险的敌人，其实是那些能把事情刚好完成的程序。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;致谢&quot;&gt;&lt;a href=&quot;# 致谢&quot; class=&quot;headerlink&quot; title=&quot;致谢&quot;&gt;&lt;/a&gt;致谢 &lt;/h2&gt;&lt;p&gt; 本文写作过程中参考了 &lt;a href=&quot;https://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Plan 9 from Bell Labs - Wikipedia, the free encyclopedia&lt;/a&gt; 和 &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E8%B2%9D%E7%88%BE%E5%AF%A6%E9%A9%97%E5%AE%A4%E4%B9%9D%E8%99%9F%E8%A8%88%E7%95%AB&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;贝尔实验室九号计划 - 维基百科，自由的百科全书&lt;/a&gt; 等页面的内容，在此表示感谢。&lt;/p&gt;
 </content>
