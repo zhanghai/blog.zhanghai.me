@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-03-31T10:11:22.327Z">
+<meta property="og:updated_time" content="2016-04-13T12:42:55.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -185,6 +185,8 @@ It has a powerful Arch User Repository and makes it easy for yo">
 </li>
 </ul>
 <p>Note that you can tunnel http(s) request to local socks client using <a href="https://www.archlinux.org/packages/?name=delegate" target="_blank" rel="external">DeleGate</a>.</p>
+<h2 id="Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work"><a href="#Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work" class="headerlink" title="Touchpad settings and horizontal two-finger scrolling doesn’t work"></a>Touchpad settings and horizontal two-finger scrolling doesn’t work</h2><p>GNOME dropped support for synaptics driver due to luck of maintenance in version 3.20.</p>
+<p>Remove <code>xf86-input-synaptics</code> and <code>xf86-input-evdev</code>, install <code>xf86-input-libinput</code>, then reboot.</p>
 <h2 id="GNOME-proxy-setting"><a href="#GNOME-proxy-setting" class="headerlink" title="GNOME proxy setting"></a>GNOME proxy setting</h2><p>You can utilize GNOME’s proxy setting in <code>Settings &gt; Network</code> <del>even if you use <code>netctl</code> instead of <code>Network Manager</code></del> (Disabled in recent GNOME, see below). Both HTTP and SOCKS proxy are supported.</p>
 <p>You can also modify proxy setting with <code>dconf-editor</code>, Set <code>system.proxy.mode</code> to <code>manual</code>, then set your proxy in <code>system.proxy.{ftp,http,https,socks}</code>.</p>
 <p>Note that the proxy setting will also be read and set to corresponding environment variables by <code>gnome-terminal</code>, and no option is offered to turn this behavior off. To avoid setting proxy environment variables, reset the environment variables in your <code>.bashrc</code>.</p>

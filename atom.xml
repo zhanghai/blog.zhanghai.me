@@ -706,7 +706,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-03-31T10:11:22.327Z</updated>
+    <updated>2016-04-13T12:42:55.328Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -803,6 +803,8 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Note that you can tunnel http(s) request to local socks client using &lt;a href=&quot;https://www.archlinux.org/packages/?name=delegate&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DeleGate&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work&quot;&gt;&lt;a href=&quot;#Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work&quot; class=&quot;headerlink&quot; title=&quot;Touchpad settings and horizontal two-finger scrolling doesn’t work&quot;&gt;&lt;/a&gt;Touchpad settings and horizontal two-finger scrolling doesn’t work&lt;/h2&gt;&lt;p&gt;GNOME dropped support for synaptics driver due to luck of maintenance in version 3.20.&lt;/p&gt;
+&lt;p&gt;Remove &lt;code&gt;xf86-input-synaptics&lt;/code&gt; and &lt;code&gt;xf86-input-evdev&lt;/code&gt;, install &lt;code&gt;xf86-input-libinput&lt;/code&gt;, then reboot.&lt;/p&gt;
 &lt;h2 id=&quot;GNOME-proxy-setting&quot;&gt;&lt;a href=&quot;#GNOME-proxy-setting&quot; class=&quot;headerlink&quot; title=&quot;GNOME proxy setting&quot;&gt;&lt;/a&gt;GNOME proxy setting&lt;/h2&gt;&lt;p&gt;You can utilize GNOME’s proxy setting in &lt;code&gt;Settings &amp;gt; Network&lt;/code&gt; &lt;del&gt;even if you use &lt;code&gt;netctl&lt;/code&gt; instead of &lt;code&gt;Network Manager&lt;/code&gt;&lt;/del&gt; (Disabled in recent GNOME, see below). Both HTTP and SOCKS proxy are supported.&lt;/p&gt;
 &lt;p&gt;You can also modify proxy setting with &lt;code&gt;dconf-editor&lt;/code&gt;, Set &lt;code&gt;system.proxy.mode&lt;/code&gt; to &lt;code&gt;manual&lt;/code&gt;, then set your proxy in &lt;code&gt;system.proxy.{ftp,http,https,socks}&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Note that the proxy setting will also be read and set to corresponding environment variables by &lt;code&gt;gnome-terminal&lt;/code&gt;, and no option is offered to turn this behavior off. To avoid setting proxy environment variables, reset the environment variables in your &lt;code&gt;.bashrc&lt;/code&gt;.&lt;/p&gt;
