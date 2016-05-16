@@ -706,7 +706,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-04-28T10:05:17.780Z</updated>
+    <updated>2016-05-16T03:12:17.129Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -720,7 +720,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;Using-manual&quot;&gt;&lt;a href=&quot;#Using-manual&quot; class=&quot;headerlink&quot; title=&quot;Using manual&quot;&gt;&lt;/a&gt;Using manual&lt;/h2&gt;&lt;p&gt;Use &lt;code&gt;man [SECTION] &amp;lt;NAME&amp;gt;&lt;/code&gt; to show a manual.&lt;/p&gt;
+&lt;h2 id=&quot;Refer-to-manual&quot;&gt;&lt;a href=&quot;#Refer-to-manual&quot; class=&quot;headerlink&quot; title=&quot;Refer to manual&quot;&gt;&lt;/a&gt;Refer to manual&lt;/h2&gt;&lt;p&gt;Use &lt;code&gt;man [SECTION] &amp;lt;NAME&amp;gt;&lt;/code&gt; to show a manual.&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;whatis &amp;lt;NAME&amp;gt;&lt;/code&gt; to find out which sections are available in manual.&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;apropos &amp;lt;KEYWORD&amp;gt;&lt;/code&gt; to search for manuals whose name or description contains certain keyword.&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;man man-pages&lt;/code&gt; to see the definition of each seciton.&lt;/p&gt;
@@ -920,8 +920,12 @@
 &lt;h2 id=&quot;Merge-PDFs&quot;&gt;&lt;a href=&quot;#Merge-PDFs&quot; class=&quot;headerlink&quot; title=&quot;Merge PDFs&quot;&gt;&lt;/a&gt;Merge PDFs&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pdfunite &amp;lt;SOURCE_PDF_FILES&amp;gt; &amp;lt;OUTPUT_PDF_FILE&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;Convert-GB-encoded-mp3-tag-to-Unicode&quot;&gt;&lt;a href=&quot;#Convert-GB-encoded-mp3-tag-to-Unicode&quot; class=&quot;headerlink&quot; title=&quot;Convert GB* encoded mp3 tag to Unicode&quot;&gt;&lt;/a&gt;Convert GB* encoded mp3 tag to Unicode&lt;/h2&gt;&lt;p&gt;Install package &lt;code&gt;easytag&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Note that EasyTag may become the handler for MIME type &lt;code&gt;inode/directory&lt;/code&gt;, instead of your own file manager, say, Nautilus. You can delete the default association for Easytag and inode/directory in &lt;code&gt;~/.local/share/applications/mimeapps.list&lt;/code&gt;, which is managed by &lt;code&gt;gvfs-mime&lt;/code&gt;. See also the MIME type section.&lt;/p&gt;
+&lt;h2 id=&quot;Play-FLAC-with-CUE&quot;&gt;&lt;a href=&quot;#Play-FLAC-with-CUE&quot; class=&quot;headerlink&quot; title=&quot;Play FLAC with CUE&quot;&gt;&lt;/a&gt;Play FLAC with CUE&lt;/h2&gt;&lt;p&gt;Use &lt;code&gt;deadbeaf&lt;/code&gt;. Rhythmbox cannot handle CUE due to its library design.&lt;/p&gt;
+&lt;p&gt;Install &lt;code&gt;deadbeef-mpris2-plugin&lt;/code&gt; if you want MPRIS2 support (Controlling media playback in GNOME shell and other places).&lt;/p&gt;
 &lt;h2 id=&quot;Edit-FLAC-metadata&quot;&gt;&lt;a href=&quot;#Edit-FLAC-metadata&quot; class=&quot;headerlink&quot; title=&quot;Edit FLAC metadata&quot;&gt;&lt;/a&gt;Edit FLAC metadata&lt;/h2&gt;&lt;p&gt;Use &lt;code&gt;metaflac&lt;/code&gt; from the &lt;code&gt;flac&lt;/code&gt; package.&lt;/p&gt;
 &lt;h2 id=&quot;Test-FLAC-integrity&quot;&gt;&lt;a href=&quot;#Test-FLAC-integrity&quot; class=&quot;headerlink&quot; title=&quot;Test FLAC integrity&quot;&gt;&lt;/a&gt;Test FLAC integrity&lt;/h2&gt;&lt;p&gt;Use &lt;code&gt;flac --test &amp;lt;YOUR_FLAC_FILE&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Synchronize-directories&quot;&gt;&lt;a href=&quot;#Synchronize-directories&quot; class=&quot;headerlink&quot; title=&quot;Synchronize directories&quot;&gt;&lt;/a&gt;Synchronize directories&lt;/h2&gt;&lt;p&gt;Use &lt;code&gt;freefilesync&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Use &lt;code&gt;adb-sync&lt;/code&gt; from the &lt;code&gt;adb-sync-git&lt;/code&gt; for Android.&lt;/p&gt;
 &lt;h2 id=&quot;MIME-type-handling&quot;&gt;&lt;a href=&quot;#MIME-type-handling&quot; class=&quot;headerlink&quot; title=&quot;MIME type handling&quot;&gt;&lt;/a&gt;MIME type handling&lt;/h2&gt;&lt;p&gt;In GNOME, there are two components managing the default application for a MIME type.&lt;/p&gt;
 &lt;p&gt;The first one, which is system-wide, can be queried or set via &lt;code&gt;xdg-mime&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The second one, which is a per-user setting, can be queried or set via &lt;code&gt;gvfs-mime&lt;/code&gt;, or manually editing &lt;code&gt;~/.local/share/applications/mimeapps.list&lt;/code&gt;.&lt;/p&gt;

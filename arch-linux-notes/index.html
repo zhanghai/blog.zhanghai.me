@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-04-28T10:05:17.780Z">
+<meta property="og:updated_time" content="2016-05-16T03:12:17.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -102,7 +102,7 @@ It has a powerful Arch User Repository and makes it easy for yo">
 </li>
 </ul>
 <a id="more"></a>
-<h2 id="Using-manual"><a href="#Using-manual" class="headerlink" title="Using manual"></a>Using manual</h2><p>Use <code>man [SECTION] &lt;NAME&gt;</code> to show a manual.</p>
+<h2 id="Refer-to-manual"><a href="#Refer-to-manual" class="headerlink" title="Refer to manual"></a>Refer to manual</h2><p>Use <code>man [SECTION] &lt;NAME&gt;</code> to show a manual.</p>
 <p>Use <code>whatis &lt;NAME&gt;</code> to find out which sections are available in manual.</p>
 <p>Use <code>apropos &lt;KEYWORD&gt;</code> to search for manuals whose name or description contains certain keyword.</p>
 <p>Use <code>man man-pages</code> to see the definition of each seciton.</p>
@@ -302,8 +302,12 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <h2 id="Merge-PDFs"><a href="#Merge-PDFs" class="headerlink" title="Merge PDFs"></a>Merge PDFs</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdfunite &lt;SOURCE_PDF_FILES&gt; &lt;OUTPUT_PDF_FILE&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="Convert-GB-encoded-mp3-tag-to-Unicode"><a href="#Convert-GB-encoded-mp3-tag-to-Unicode" class="headerlink" title="Convert GB* encoded mp3 tag to Unicode"></a>Convert GB* encoded mp3 tag to Unicode</h2><p>Install package <code>easytag</code>.</p>
 <p>Note that EasyTag may become the handler for MIME type <code>inode/directory</code>, instead of your own file manager, say, Nautilus. You can delete the default association for Easytag and inode/directory in <code>~/.local/share/applications/mimeapps.list</code>, which is managed by <code>gvfs-mime</code>. See also the MIME type section.</p>
+<h2 id="Play-FLAC-with-CUE"><a href="#Play-FLAC-with-CUE" class="headerlink" title="Play FLAC with CUE"></a>Play FLAC with CUE</h2><p>Use <code>deadbeaf</code>. Rhythmbox cannot handle CUE due to its library design.</p>
+<p>Install <code>deadbeef-mpris2-plugin</code> if you want MPRIS2 support (Controlling media playback in GNOME shell and other places).</p>
 <h2 id="Edit-FLAC-metadata"><a href="#Edit-FLAC-metadata" class="headerlink" title="Edit FLAC metadata"></a>Edit FLAC metadata</h2><p>Use <code>metaflac</code> from the <code>flac</code> package.</p>
 <h2 id="Test-FLAC-integrity"><a href="#Test-FLAC-integrity" class="headerlink" title="Test FLAC integrity"></a>Test FLAC integrity</h2><p>Use <code>flac --test &lt;YOUR_FLAC_FILE&gt;</code>.</p>
+<h2 id="Synchronize-directories"><a href="#Synchronize-directories" class="headerlink" title="Synchronize directories"></a>Synchronize directories</h2><p>Use <code>freefilesync</code>.</p>
+<p>Use <code>adb-sync</code> from the <code>adb-sync-git</code> for Android.</p>
 <h2 id="MIME-type-handling"><a href="#MIME-type-handling" class="headerlink" title="MIME type handling"></a>MIME type handling</h2><p>In GNOME, there are two components managing the default application for a MIME type.</p>
 <p>The first one, which is system-wide, can be queried or set via <code>xdg-mime</code>.</p>
 <p>The second one, which is a per-user setting, can be queried or set via <code>gvfs-mime</code>, or manually editing <code>~/.local/share/applications/mimeapps.list</code>.</p>
