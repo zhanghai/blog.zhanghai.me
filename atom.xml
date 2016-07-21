@@ -706,7 +706,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-05-22T09:14:25.193Z</updated>
+    <updated>2016-07-21T07:42:43.090Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -990,6 +990,7 @@
 &lt;li&gt;&lt;code&gt;profile-cleaner&lt;/code&gt;: Optimize browser profile SQLite database, and more.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;proxychains&lt;/code&gt;: Proxify other programs.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;pv&lt;/code&gt;: View progress for &lt;code&gt;dd&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tig&lt;/code&gt;: Git repository browser.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;trash-cli&lt;/code&gt;: Trash bin in command line.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;tree&lt;/code&gt;: &lt;code&gt;ls&lt;/code&gt; recursively in tree format.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;vlc&lt;/code&gt;: Versatile and stable video player.&lt;/li&gt;
