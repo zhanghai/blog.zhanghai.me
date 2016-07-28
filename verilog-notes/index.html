@@ -15,7 +15,7 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
 <meta property="og:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
 Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
 虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
-<meta property="og:updated_time" content="2016-07-28T06:11:36.530Z">
+<meta property="og:updated_time" content="2016-07-28T06:12:56.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Verilog 编程笔记">
 <meta name="twitter:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
@@ -94,7 +94,7 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
 <p><a href="http://sutherland-hdl.com/pdfs/verilog_2001_ref_guide.pdf" target="_blank" rel="external">Verilog HDL Quick Reference Guide</a></p>
 <h2 id="指南"><a href="# 指南" class="headerlink" title="指南"></a>指南 </h2><p> 在本文草稿的同时，我的某位同学也完成了一份 Verilog 指南。指南十分详尽而实用，因此希望读者先行阅读。</p>
 <p><a href="https://github.com/ZJUArch/verilog-general-guide" target="_blank" rel="external">Verilog General Guide</a></p>
-<h2 id="重复（Replication）"><a href="# 重复（Replication）" class="headerlink" title="重复（Replication）"></a>重复（Replication）</h2><p>在 Verilog 中，你可以使用 <code>\{\{}}</code> 将指定的信号重复数次后连接。</p>
+<h2 id="重复（Replication）"><a href="# 重复（Replication）" class="headerlink" title="重复（Replication）"></a>重复（Replication）</h2><p>在 Verilog 中，你可以使用 <code>{COUNT{singal}}</code> 将指定的信号重复数次后连接。</p>
 <p>例如，想要写一个 32 位 0/1 相见的字面量，不需要写出 <code>32&#39;b01010101010101010101010101010101</code>，而是写 <code>{16{2&#39;b01}}</code> 即可简洁而直观地完成。</p>
 <p>另一个例子是 16 位到 32 位的符号扩展，也可以用 <code>{16{signal[15]}, signal[15:0]}</code> 来完成。</p>
 <h2 id="参数定义：parameter-localparam-define"><a href="# 参数定义：parameter-localparam-define" class="headerlink" title="参数定义：parameter, localparam, \define`"></a>参数定义：<code>parameter</code>, <code>localparam</code>, <code>\</code>define`</h2><p>Verilog 提供了三种定义“常量”的方式。</p>

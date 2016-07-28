@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-07-28T06:11:36.530Z</updated>
+  <updated>2016-07-28T06:12:56.617Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.zhanghai.me/verilog-notes/"/>
     <id>http://blog.zhanghai.me/verilog-notes/</id>
     <published>2016-03-23T11:27:26.000Z</published>
-    <updated>2016-07-28T06:11:36.530Z</updated>
+    <updated>2016-07-28T06:12:56.617Z</updated>
     
     <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt; 这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。&lt;/p&gt;
 &lt;p&gt;Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 &lt;a href=&quot;http://standards.ieee.org/findstds/standard/1364-1995.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog-1995&lt;/a&gt; 与 &lt;a href=&quot;http://standards.ieee.org/findstds/standard/1364-2001.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog-2001&lt;/a&gt; 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。&lt;/p&gt;
@@ -32,7 +32,7 @@
 &lt;p&gt;&lt;a href=&quot;http://sutherland-hdl.com/pdfs/verilog_2001_ref_guide.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog HDL Quick Reference Guide&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;指南&quot;&gt;&lt;a href=&quot;# 指南&quot; class=&quot;headerlink&quot; title=&quot;指南&quot;&gt;&lt;/a&gt;指南 &lt;/h2&gt;&lt;p&gt; 在本文草稿的同时，我的某位同学也完成了一份 Verilog 指南。指南十分详尽而实用，因此希望读者先行阅读。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/ZJUArch/verilog-general-guide&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog General Guide&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;重复（Replication）&quot;&gt;&lt;a href=&quot;# 重复（Replication）&quot; class=&quot;headerlink&quot; title=&quot;重复（Replication）&quot;&gt;&lt;/a&gt;重复（Replication）&lt;/h2&gt;&lt;p&gt;在 Verilog 中，你可以使用 &lt;code&gt;\{\{}}&lt;/code&gt; 将指定的信号重复数次后连接。&lt;/p&gt;
+&lt;h2 id=&quot;重复（Replication）&quot;&gt;&lt;a href=&quot;# 重复（Replication）&quot; class=&quot;headerlink&quot; title=&quot;重复（Replication）&quot;&gt;&lt;/a&gt;重复（Replication）&lt;/h2&gt;&lt;p&gt;在 Verilog 中，你可以使用 &lt;code&gt;{COUNT{singal}}&lt;/code&gt; 将指定的信号重复数次后连接。&lt;/p&gt;
 &lt;p&gt;例如，想要写一个 32 位 0/1 相见的字面量，不需要写出 &lt;code&gt;32&amp;#39;b01010101010101010101010101010101&lt;/code&gt;，而是写 &lt;code&gt;{16{2&amp;#39;b01}}&lt;/code&gt; 即可简洁而直观地完成。&lt;/p&gt;
 &lt;p&gt;另一个例子是 16 位到 32 位的符号扩展，也可以用 &lt;code&gt;{16{signal[15]}, signal[15:0]}&lt;/code&gt; 来完成。&lt;/p&gt;
 &lt;h2 id=&quot;参数定义：parameter-localparam-define&quot;&gt;&lt;a href=&quot;# 参数定义：parameter-localparam-define&quot; class=&quot;headerlink&quot; title=&quot;参数定义：parameter, localparam, \define`&quot;&gt;&lt;/a&gt;参数定义：&lt;code&gt;parameter&lt;/code&gt;, &lt;code&gt;localparam&lt;/code&gt;, &lt;code&gt;\&lt;/code&gt;define`&lt;/h2&gt;&lt;p&gt;Verilog 提供了三种定义“常量”的方式。&lt;/p&gt;
