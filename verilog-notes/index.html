@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Verilog 编程笔记 | 梦断代码</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
+Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
+虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verilog 编程笔记">
+<meta property="og:url" content="http://blog.zhanghai.me/verilog-notes/index.html">
+<meta property="og:site_name" content="梦断代码">
+<meta property="og:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
+Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
+虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
+<meta property="og:updated_time" content="2016-07-28T06:11:36.530Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Verilog 编程笔记">
+<meta name="twitter:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
+Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
+虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
+  
+    <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+  <i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+  <h1 class="blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li><a href="/">主页</a></li><li><a href="/archives">存档</a></li>
+      <li><a id="nav-search-btn" class="nav-icon" title="搜索"></a></li>
+      <li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS 订阅"></a></li>
+    </ul>
+  </nav>
+  <div id="search-form-wrap">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+  </div>
+</header>
+
+    <section id="main">
+      <article id="post-verilog-notes" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/verilog-notes/" class="article-date">
+  <time datetime="2016-03-23T11:27:26.000Z" itemprop="datePublished">3月 23 2016</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/verilog-notes/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Verilog 编程笔记
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。</p>
+<p>Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 <a href="http://standards.ieee.org/findstds/standard/1364-1995.html" target="_blank" rel="external">Verilog-1995</a> 与 <a href="http://standards.ieee.org/findstds/standard/1364-2001.html" target="_blank" rel="external">Verilog-2001</a> 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。</p>
+<p>虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标硬件设计的。Verilog 是一门面向逻辑电路的具体实现而设计的语言（正如 C 在某种程度上是面向汇编等底层实现的），因此写作 Verilog 时不可以将 C 等编程语言的思维方式代入，而是要始终清晰地思考正在编写的代码将能够综合成怎样的逻辑电路实现——如果可以，那么大多能够写出在字面和实现上都优雅的代码；如果不行，那么综合时大概也会报错或消耗大量资源，此时则应该考虑调整思路。</p>
+<a id="more"></a>
+<h2 id="手册"><a href="# 手册" class="headerlink" title="手册"></a>手册</h2><p>Verilog 的标准文档 IEEE 1364-2001 在网络上可以找到下载，但相比之下，这份标准还是稍显冗长或不够友好。而在标准文档之外，Xilinx ISE 的 XST 综合器也提供了实现文档，并且其中包含了许多 Verilog 语法的实用描述，因此可以作为一本更加友好的手册进行查阅。</p>
+<p><a href="http://www.xilinx.com/support/documentation/sw_manuals/xilinx14_7/xst_v6s6.pdf" target="_blank" rel="external">XST User Guide for Virtex-6, Spartan-6, and 7 Series Devices</a></p>
+<p>以及这里还有一份简单的非官方 Verilog-2001 手册：</p>
+<p><a href="http://sutherland-hdl.com/pdfs/verilog_2001_ref_guide.pdf" target="_blank" rel="external">Verilog HDL Quick Reference Guide</a></p>
+<h2 id="指南"><a href="# 指南" class="headerlink" title="指南"></a>指南 </h2><p> 在本文草稿的同时，我的某位同学也完成了一份 Verilog 指南。指南十分详尽而实用，因此希望读者先行阅读。</p>
+<p><a href="https://github.com/ZJUArch/verilog-general-guide" target="_blank" rel="external">Verilog General Guide</a></p>
+<h2 id="重复（Replication）"><a href="# 重复（Replication）" class="headerlink" title="重复（Replication）"></a>重复（Replication）</h2><p>在 Verilog 中，你可以使用 <code>\{\{}}</code> 将指定的信号重复数次后连接。</p>
+<p>例如，想要写一个 32 位 0/1 相见的字面量，不需要写出 <code>32&#39;b01010101010101010101010101010101</code>，而是写 <code>{16{2&#39;b01}}</code> 即可简洁而直观地完成。</p>
+<p>另一个例子是 16 位到 32 位的符号扩展，也可以用 <code>{16{signal[15]}, signal[15:0]}</code> 来完成。</p>
+<h2 id="参数定义：parameter-localparam-define"><a href="# 参数定义：parameter-localparam-define" class="headerlink" title="参数定义：parameter, localparam, \define`"></a>参数定义：<code>parameter</code>, <code>localparam</code>, <code>\</code>define`</h2><p>Verilog 提供了三种定义“常量”的方式。</p>
+<p><code>parameter</code> 是可以由模块外部改变的参数。除了在模块内部定义的语法，我更加推荐采用 Verilog-2001 中在模块接口声明中定义的语法：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> module_name</span><br><span class="line">	<span class="keyword">#</span>(</span><br><span class="line">		<span class="keyword">parameter</span> parameter_name <span class="keyword">=</span> parameter_default_value</span><br><span class="line">	) (</span><br><span class="line">		...</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line">module_name <span class="keyword">#</span>(</span><br><span class="line">		<span class="typename">.parameter_name</span>(parameter_value)</span><br><span class="line">	) (</span><br><span class="line">		...</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
+<p><code>localparam</code> 是模块内部定义的参数，语法如 <code>localparam localparam_name = localparam_value</code>。</p>
+<p><code>\</code>define` 是 Verilog 的宏定义，与 C 宏的文本替换相似。宏除了用于定义常量，还可以用来简化代码的编写，例如：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">`</span>define packed_wires <span class="keyword">=</span> <span class="keyword">&#123;</span>wire_1, wire_2, wire_3<span class="keyword">&#125;</span></span><br><span class="line">packed_wires <span class="keyword">=</span> <span class="number">3'b101</span></span><br></pre></td></tr></table></figure>
+<h2 id="变基部分选择（Indexed-part-select）"><a href="# 变基部分选择（Indexed-part-select）" class="headerlink" title="变基部分选择（Indexed part-select）"></a>变基部分选择（Indexed part-select）</h2><p>可以使用 <code>wire_name[index_wire_name]</code> 的方式来实现一位宽度的多路选择器。相应地，Verilog-2001 也提供了 <code>wire_name[WIDTH * index_wire_name +: WIDTH]</code> 的方式来实现多位宽度的多路选择器。详情可以参考这个 StackOverflow 问题：</p>
+<p><a href="http://electronics.stackexchange.com/questions/74277" target="_blank" rel="external">What is this operator called as “+:” in verilog - Electrical Engineering Stack Exchange</a>。</p>
+<p>然而这个语法的综合有一些怪异的地方，有时会导致综合成移位器而非多路选择器，消耗较多的资源，使用时需要留意一下综合报告。</p>
+<h2 id="对表达式进行选择"><a href="# 对表达式进行选择" class="headerlink" title="对表达式进行选择"></a>对表达式进行选择 </h2><p> 在 Verilog 中，无法直接对 <code>wire_name + 1&#39;b1</code> 选择某些位，但可以其实通过加上花括号的方式进行选择，例如 <code>{wire_name + 1&#39;b1}[3:0]</code>。这个形式可以用于显式地截短运算结果并且不触发警告。</p>
+<p>然而这个 trick 对于变基部分选择无效。以及似乎在某些旧型号的硬件上 XST 无法识别这个语法。</p>
+<h2 id="代码简化"><a href="# 代码简化" class="headerlink" title="代码简化"></a>代码简化 </h2><p> 可以采用 <code>generate</code>、<code>task</code> 或 <code>function</code> 简化代码逻辑的编写，详细的使用方法在 Verilog General Guide 中已经说明，故不再赘述。</p>
+<h2 id="信号宽度警告"><a href="# 信号宽度警告" class="headerlink" title="信号宽度警告"></a>信号宽度警告 </h2><p> 信号宽度警告是一种十分有用的警告，因为许多低级错误都是由于错误地（或忘记）指定信号宽度导致的。请务必仔细检查综合报告。</p>
+<p>由于裸写的非零十进制整数字面量默认为 32 位，容易增加多余的警告，因此建议在书写字面量时总是使用 <code>2&#39;b</code>、<code>10&#39;d</code>、<code>16&#39;h</code> 这样的前缀形式。</p>
+<p>至于对信号进行递增并且在溢出后自动归零，可以采用 <code>reg_name = reg_name + 1&#39;b1</code> 的形式，综合器不会将此判断为溢出而发出警告。</p>
+<h2 id="组合逻辑"><a href="# 组合逻辑" class="headerlink" title="组合逻辑"></a>组合逻辑 </h2><p> 在 Verilog 中组合逻辑可以通过在 <code>always @*</code> 块中使用 <code>if</code>、<code>switch</code> 和阻塞赋值 <code>=</code> 实现，也可以直接使用 <code>assign</code> 和 <code>?:</code> 这个条件运算符实现。</p>
+<p>我个人的建议是避免使用 <code>always</code> 块实现组合逻辑，因为在用 <code>if</code> 和 <code>switch</code> 实现逻辑时，很容易忘记书写某些情况下的默认值，导致综合结果为 FF/Latch 的时序电路而非组合电路，并且这件事情很难在综合报告中发现。</p>
+<p>我目前采取的实践是仅将 <code>always</code> 块用于实现时序电路，而使用条件运算符实现组合逻辑。</p>
+<p>顺带提及，<code>always @*</code> 用于实现组合电路，应该只使用阻塞赋值 <code>=</code>；<code>always @(posedge clock)</code> 用于实现时序电路，应该只使用非阻塞赋值 <code>=&gt;</code>；两者混用依然可以成功综合，但是意义不明，十分容易出错。</p>
+<h2 id="Lint"><a href="#Lint" class="headerlink" title="Lint"></a>Lint</h2><p>对于长时间调试难以找出的错误，可以尝试使用 Lint 工具对代码进行静态检查，它比 XST 综合器的检查更加严格，也常常能指出代码中埋藏的许多低级错误（我曾经用它在十分钟内找出了一个调试了一整天未能找出的 Bug）。</p>
+<p>Verilator 是一个免费的 Verilog 模拟器，其中也包含了 Lint 功能。安装 <code>verilator</code>后，执行 <code>verilator --lint-only top.v</code> 即可开始检查。</p>
+<h2 id="其他"><a href="# 其他" class="headerlink" title="其他"></a>其他 </h2><p> 综合过程中输出的 Simulation mismatch 警告不能无视，否则可能会导致不稳定的综合结果和奇怪的错误。</p>
+<h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语 </h2><p> 除了某些语法检查不够严格，Verilog 其实是一门设计得较为直觉的语言，语法结构大多可以映射到电路实现，有着 C 一般的简洁和直观。如果遵循一定的编码规范和最佳实践，使用硬件而非软件的思维进行编码，还是可以较为简单地达成目标的。</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/introduction-to-plan-9-the-os/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Plan 9 操作系统介绍
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+
+
+    </section>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:blog.zhanghai.me">
+    </form>
+</div>
+<footer id="footer">
+  <h1 class="footer-blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <span class="copyright">
+    &copy; 2016 张海<br>
+    Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'zhanghai';
+  
+  var disqus_url = 'http://blog.zhanghai.me/verilog-notes/';
+  
+  (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

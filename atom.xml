@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-04-02T16:29:56.757Z</updated>
+  <updated>2016-07-28T06:11:36.530Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Verilog 编程笔记</title>
+    <link href="http://blog.zhanghai.me/verilog-notes/"/>
+    <id>http://blog.zhanghai.me/verilog-notes/</id>
+    <published>2016-03-23T11:27:26.000Z</published>
+    <updated>2016-07-28T06:11:36.530Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt; 这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。&lt;/p&gt;
+&lt;p&gt;Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 &lt;a href=&quot;http://standards.ieee.org/findstds/standard/1364-1995.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog-1995&lt;/a&gt; 与 &lt;a href=&quot;http://standards.ieee.org/findstds/standard/1364-2001.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog-2001&lt;/a&gt; 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。&lt;/p&gt;
+&lt;p&gt;虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标硬件设计的。Verilog 是一门面向逻辑电路的具体实现而设计的语言（正如 C 在某种程度上是面向汇编等底层实现的），因此写作 Verilog 时不可以将 C 等编程语言的思维方式代入，而是要始终清晰地思考正在编写的代码将能够综合成怎样的逻辑电路实现——如果可以，那么大多能够写出在字面和实现上都优雅的代码；如果不行，那么综合时大概也会报错或消耗大量资源，此时则应该考虑调整思路。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;手册&quot;&gt;&lt;a href=&quot;# 手册&quot; class=&quot;headerlink&quot; title=&quot;手册&quot;&gt;&lt;/a&gt;手册&lt;/h2&gt;&lt;p&gt;Verilog 的标准文档 IEEE 1364-2001 在网络上可以找到下载，但相比之下，这份标准还是稍显冗长或不够友好。而在标准文档之外，Xilinx ISE 的 XST 综合器也提供了实现文档，并且其中包含了许多 Verilog 语法的实用描述，因此可以作为一本更加友好的手册进行查阅。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.xilinx.com/support/documentation/sw_manuals/xilinx14_7/xst_v6s6.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;XST User Guide for Virtex-6, Spartan-6, and 7 Series Devices&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;以及这里还有一份简单的非官方 Verilog-2001 手册：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://sutherland-hdl.com/pdfs/verilog_2001_ref_guide.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog HDL Quick Reference Guide&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;指南&quot;&gt;&lt;a href=&quot;# 指南&quot; class=&quot;headerlink&quot; title=&quot;指南&quot;&gt;&lt;/a&gt;指南 &lt;/h2&gt;&lt;p&gt; 在本文草稿的同时，我的某位同学也完成了一份 Verilog 指南。指南十分详尽而实用，因此希望读者先行阅读。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ZJUArch/verilog-general-guide&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Verilog General Guide&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;重复（Replication）&quot;&gt;&lt;a href=&quot;# 重复（Replication）&quot; class=&quot;headerlink&quot; title=&quot;重复（Replication）&quot;&gt;&lt;/a&gt;重复（Replication）&lt;/h2&gt;&lt;p&gt;在 Verilog 中，你可以使用 &lt;code&gt;\{\{}}&lt;/code&gt; 将指定的信号重复数次后连接。&lt;/p&gt;
+&lt;p&gt;例如，想要写一个 32 位 0/1 相见的字面量，不需要写出 &lt;code&gt;32&amp;#39;b01010101010101010101010101010101&lt;/code&gt;，而是写 &lt;code&gt;{16{2&amp;#39;b01}}&lt;/code&gt; 即可简洁而直观地完成。&lt;/p&gt;
+&lt;p&gt;另一个例子是 16 位到 32 位的符号扩展，也可以用 &lt;code&gt;{16{signal[15]}, signal[15:0]}&lt;/code&gt; 来完成。&lt;/p&gt;
+&lt;h2 id=&quot;参数定义：parameter-localparam-define&quot;&gt;&lt;a href=&quot;# 参数定义：parameter-localparam-define&quot; class=&quot;headerlink&quot; title=&quot;参数定义：parameter, localparam, \define`&quot;&gt;&lt;/a&gt;参数定义：&lt;code&gt;parameter&lt;/code&gt;, &lt;code&gt;localparam&lt;/code&gt;, &lt;code&gt;\&lt;/code&gt;define`&lt;/h2&gt;&lt;p&gt;Verilog 提供了三种定义“常量”的方式。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;parameter&lt;/code&gt; 是可以由模块外部改变的参数。除了在模块内部定义的语法，我更加推荐采用 Verilog-2001 中在模块接口声明中定义的语法：&lt;/p&gt;
+&lt;figure class=&quot;highlight verilog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;module&lt;/span&gt; module_name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;#&lt;/span&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;parameter&lt;/span&gt; parameter_name &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; parameter_default_value&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	) (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;endmodule&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;module_name &lt;span class=&quot;keyword&quot;&gt;#&lt;/span&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;typename&quot;&gt;.parameter_name&lt;/span&gt;(parameter_value)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	) (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;localparam&lt;/code&gt; 是模块内部定义的参数，语法如 &lt;code&gt;localparam localparam_name = localparam_value&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\&lt;/code&gt;define` 是 Verilog 的宏定义，与 C 宏的文本替换相似。宏除了用于定义常量，还可以用来简化代码的编写，例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight verilog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;`&lt;/span&gt;define packed_wires &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;&amp;#123;&lt;/span&gt;wire_1, wire_2, wire_3&lt;span class=&quot;keyword&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;packed_wires &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;3&#39;b101&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;变基部分选择（Indexed-part-select）&quot;&gt;&lt;a href=&quot;# 变基部分选择（Indexed-part-select）&quot; class=&quot;headerlink&quot; title=&quot;变基部分选择（Indexed part-select）&quot;&gt;&lt;/a&gt;变基部分选择（Indexed part-select）&lt;/h2&gt;&lt;p&gt;可以使用 &lt;code&gt;wire_name[index_wire_name]&lt;/code&gt; 的方式来实现一位宽度的多路选择器。相应地，Verilog-2001 也提供了 &lt;code&gt;wire_name[WIDTH * index_wire_name +: WIDTH]&lt;/code&gt; 的方式来实现多位宽度的多路选择器。详情可以参考这个 StackOverflow 问题：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://electronics.stackexchange.com/questions/74277&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What is this operator called as “+:” in verilog - Electrical Engineering Stack Exchange&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;然而这个语法的综合有一些怪异的地方，有时会导致综合成移位器而非多路选择器，消耗较多的资源，使用时需要留意一下综合报告。&lt;/p&gt;
+&lt;h2 id=&quot;对表达式进行选择&quot;&gt;&lt;a href=&quot;# 对表达式进行选择&quot; class=&quot;headerlink&quot; title=&quot;对表达式进行选择&quot;&gt;&lt;/a&gt;对表达式进行选择 &lt;/h2&gt;&lt;p&gt; 在 Verilog 中，无法直接对 &lt;code&gt;wire_name + 1&amp;#39;b1&lt;/code&gt; 选择某些位，但可以其实通过加上花括号的方式进行选择，例如 &lt;code&gt;{wire_name + 1&amp;#39;b1}[3:0]&lt;/code&gt;。这个形式可以用于显式地截短运算结果并且不触发警告。&lt;/p&gt;
+&lt;p&gt;然而这个 trick 对于变基部分选择无效。以及似乎在某些旧型号的硬件上 XST 无法识别这个语法。&lt;/p&gt;
+&lt;h2 id=&quot;代码简化&quot;&gt;&lt;a href=&quot;# 代码简化&quot; class=&quot;headerlink&quot; title=&quot;代码简化&quot;&gt;&lt;/a&gt;代码简化 &lt;/h2&gt;&lt;p&gt; 可以采用 &lt;code&gt;generate&lt;/code&gt;、&lt;code&gt;task&lt;/code&gt; 或 &lt;code&gt;function&lt;/code&gt; 简化代码逻辑的编写，详细的使用方法在 Verilog General Guide 中已经说明，故不再赘述。&lt;/p&gt;
+&lt;h2 id=&quot;信号宽度警告&quot;&gt;&lt;a href=&quot;# 信号宽度警告&quot; class=&quot;headerlink&quot; title=&quot;信号宽度警告&quot;&gt;&lt;/a&gt;信号宽度警告 &lt;/h2&gt;&lt;p&gt; 信号宽度警告是一种十分有用的警告，因为许多低级错误都是由于错误地（或忘记）指定信号宽度导致的。请务必仔细检查综合报告。&lt;/p&gt;
+&lt;p&gt;由于裸写的非零十进制整数字面量默认为 32 位，容易增加多余的警告，因此建议在书写字面量时总是使用 &lt;code&gt;2&amp;#39;b&lt;/code&gt;、&lt;code&gt;10&amp;#39;d&lt;/code&gt;、&lt;code&gt;16&amp;#39;h&lt;/code&gt; 这样的前缀形式。&lt;/p&gt;
+&lt;p&gt;至于对信号进行递增并且在溢出后自动归零，可以采用 &lt;code&gt;reg_name = reg_name + 1&amp;#39;b1&lt;/code&gt; 的形式，综合器不会将此判断为溢出而发出警告。&lt;/p&gt;
+&lt;h2 id=&quot;组合逻辑&quot;&gt;&lt;a href=&quot;# 组合逻辑&quot; class=&quot;headerlink&quot; title=&quot;组合逻辑&quot;&gt;&lt;/a&gt;组合逻辑 &lt;/h2&gt;&lt;p&gt; 在 Verilog 中组合逻辑可以通过在 &lt;code&gt;always @*&lt;/code&gt; 块中使用 &lt;code&gt;if&lt;/code&gt;、&lt;code&gt;switch&lt;/code&gt; 和阻塞赋值 &lt;code&gt;=&lt;/code&gt; 实现，也可以直接使用 &lt;code&gt;assign&lt;/code&gt; 和 &lt;code&gt;?:&lt;/code&gt; 这个条件运算符实现。&lt;/p&gt;
+&lt;p&gt;我个人的建议是避免使用 &lt;code&gt;always&lt;/code&gt; 块实现组合逻辑，因为在用 &lt;code&gt;if&lt;/code&gt; 和 &lt;code&gt;switch&lt;/code&gt; 实现逻辑时，很容易忘记书写某些情况下的默认值，导致综合结果为 FF/Latch 的时序电路而非组合电路，并且这件事情很难在综合报告中发现。&lt;/p&gt;
+&lt;p&gt;我目前采取的实践是仅将 &lt;code&gt;always&lt;/code&gt; 块用于实现时序电路，而使用条件运算符实现组合逻辑。&lt;/p&gt;
+&lt;p&gt;顺带提及，&lt;code&gt;always @*&lt;/code&gt; 用于实现组合电路，应该只使用阻塞赋值 &lt;code&gt;=&lt;/code&gt;；&lt;code&gt;always @(posedge clock)&lt;/code&gt; 用于实现时序电路，应该只使用非阻塞赋值 &lt;code&gt;=&amp;gt;&lt;/code&gt;；两者混用依然可以成功综合，但是意义不明，十分容易出错。&lt;/p&gt;
+&lt;h2 id=&quot;Lint&quot;&gt;&lt;a href=&quot;#Lint&quot; class=&quot;headerlink&quot; title=&quot;Lint&quot;&gt;&lt;/a&gt;Lint&lt;/h2&gt;&lt;p&gt;对于长时间调试难以找出的错误，可以尝试使用 Lint 工具对代码进行静态检查，它比 XST 综合器的检查更加严格，也常常能指出代码中埋藏的许多低级错误（我曾经用它在十分钟内找出了一个调试了一整天未能找出的 Bug）。&lt;/p&gt;
+&lt;p&gt;Verilator 是一个免费的 Verilog 模拟器，其中也包含了 Lint 功能。安装 &lt;code&gt;verilator&lt;/code&gt;后，执行 &lt;code&gt;verilator --lint-only top.v&lt;/code&gt; 即可开始检查。&lt;/p&gt;
+&lt;h2 id=&quot;其他&quot;&gt;&lt;a href=&quot;# 其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他 &lt;/h2&gt;&lt;p&gt; 综合过程中输出的 Simulation mismatch 警告不能无视，否则可能会导致不稳定的综合结果和奇怪的错误。&lt;/p&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;# 结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语 &lt;/h2&gt;&lt;p&gt; 除了某些语法检查不够严格，Verilog 其实是一门设计得较为直觉的语言，语法结构大多可以映射到电路实现，有着 C 一般的简洁和直观。如果遵循一定的编码规范和最佳实践，使用硬件而非软件的思维进行编码，还是可以较为简单地达成目标的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。&lt;/p&gt;
+&lt;p&gt;Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 &lt;a href=&quot;http://standards.ieee.org/findstds/standard/1364-1995.html&quot;&gt;Verilog-1995&lt;/a&gt; 与 &lt;a href=&quot;http://standards.ieee.org/findstds/standard/1364-2001.html&quot;&gt;Verilog-2001&lt;/a&gt; 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。&lt;/p&gt;
+&lt;p&gt;虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标硬件设计的。Verilog 是一门面向逻辑电路的具体实现而设计的语言（正如 C 在某种程度上是面向汇编等底层实现的），因此写作 Verilog 时不可以将 C 等编程语言的思维方式代入，而是要始终清晰地思考正在编写的代码将能够综合成怎样的逻辑电路实现——如果可以，那么大多能够写出在字面和实现上都优雅的代码；如果不行，那么综合时大概也会报错或消耗大量资源，此时则应该考虑调整思路。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
+    
+      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
+    
+      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
+    
+  </entry>
   
   <entry>
     <title>Plan 9 操作系统介绍</title>
@@ -70,7 +132,7 @@
     <link href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/"/>
     <id>http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/</id>
     <published>2015-10-04T13:44:12.000Z</published>
-    <updated>2015-10-05T02:54:06.211Z</updated>
+    <updated>2016-07-25T15:04:37.278Z</updated>
     
     <content type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with &lt;code&gt;ContentProvider&lt;/code&gt; (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).&lt;/p&gt;
 &lt;p&gt;But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.&lt;/p&gt;
@@ -94,7 +156,7 @@
 &lt;p&gt;Implementing and using such a framework is a complex and heavy task, and complexity is error-prone, while it brings little advantage over the decentralized solution we are going to talk about.&lt;/p&gt;
 &lt;h2 id=&quot;Stay-decentralized&quot;&gt;&lt;a href=&quot;#Stay-decentralized&quot; class=&quot;headerlink&quot; title=&quot;Stay decentralized&quot;&gt;&lt;/a&gt;Stay decentralized&lt;/h2&gt;&lt;p&gt;So we want to stay on the track of not having any central storage, and allow duplicated (so possibly inconsistent) entities of content in memory.&lt;/p&gt;
 &lt;p&gt;This way, we are to do a sync among components once we any content is newly fetched from network in this case. The solution is much more specific to each scenario in this case: we can utilize some already present event bus system to get notified of updates, listen to specific event code of content change, and then respond accordingly.&lt;/p&gt;
-&lt;p&gt;On the first sight, this solution may seem not generic enough, lacking in the beauty of unity. However, considering the overall cost of using a centralized storage with  URI scheme, I believe this decentralized-and-syncing mechanism is the way to go for applications in this scenario.&lt;/p&gt;
+&lt;p&gt;On the first sight, this solution may seem not generic enough, lacking in the beauty of unity. However, considering the overall cost of using a centralized storage with URI scheme, I believe this decentralized-and-syncing mechanism is the way to go for applications in this scenario.&lt;/p&gt;
 &lt;h2 id=&quot;Conclusion&quot;&gt;&lt;a href=&quot;#Conclusion&quot; class=&quot;headerlink&quot; title=&quot;Conclusion&quot;&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;&lt;p&gt;Different mechanisms apply to different scenarios. Android’s centralized &lt;code&gt;ContentProvider&lt;/code&gt; mechanism fits for content that should be persisted and synced, while the decentralized mechanism works well with application with highly-dynamic content.&lt;/p&gt;
 </content>
     

@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="IntroductionFor content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive so">
-<meta property="og:updated_time" content="2015-10-05T02:54:06.211Z">
+<meta property="og:updated_time" content="2016-07-25T15:04:37.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thoughts on Content Handling in Android Application">
 <meta name="twitter:description" content="IntroductionFor content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive so">
@@ -100,7 +100,7 @@
 <p>Implementing and using such a framework is a complex and heavy task, and complexity is error-prone, while it brings little advantage over the decentralized solution we are going to talk about.</p>
 <h2 id="Stay-decentralized"><a href="#Stay-decentralized" class="headerlink" title="Stay decentralized"></a>Stay decentralized</h2><p>So we want to stay on the track of not having any central storage, and allow duplicated (so possibly inconsistent) entities of content in memory.</p>
 <p>This way, we are to do a sync among components once we any content is newly fetched from network in this case. The solution is much more specific to each scenario in this case: we can utilize some already present event bus system to get notified of updates, listen to specific event code of content change, and then respond accordingly.</p>
-<p>On the first sight, this solution may seem not generic enough, lacking in the beauty of unity. However, considering the overall cost of using a centralized storage with  URI scheme, I believe this decentralized-and-syncing mechanism is the way to go for applications in this scenario.</p>
+<p>On the first sight, this solution may seem not generic enough, lacking in the beauty of unity. However, considering the overall cost of using a centralized storage with URI scheme, I believe this decentralized-and-syncing mechanism is the way to go for applications in this scenario.</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Different mechanisms apply to different scenarios. Android’s centralized <code>ContentProvider</code> mechanism fits for content that should be persisted and synced, while the decentralized mechanism works well with application with highly-dynamic content.</p>
 
     
