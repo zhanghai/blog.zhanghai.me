@@ -15,7 +15,7 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
 <meta property="og:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
 Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
 虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
-<meta property="og:updated_time" content="2016-07-28T06:21:24.417Z">
+<meta property="og:updated_time" content="2016-07-28T06:23:33.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Verilog 编程笔记">
 <meta name="twitter:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
@@ -106,7 +106,7 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
 <h2 id="变基部分选择（Indexed-part-select）"><a href="# 变基部分选择（Indexed-part-select）" class="headerlink" title="变基部分选择（Indexed part-select）"></a>变基部分选择（Indexed part-select）</h2><p>可以使用 <code>wire_name[index_wire_name]</code> 的方式来实现一位宽度的多路选择器。相应地，Verilog-2001 也提供了 <code>wire_name[WIDTH * index_wire_name +: WIDTH]</code> 的方式来实现多位宽度的多路选择器。详情可以参考这个 StackOverflow 问题：</p>
 <p><a href="http://electronics.stackexchange.com/questions/74277" target="_blank" rel="external">What is this operator called as “+:” in verilog - Electrical Engineering Stack Exchange</a>。</p>
 <p>然而这个语法的综合有一些怪异的地方，有时会导致综合成移位器而非多路选择器，消耗较多的资源，使用时需要留意一下综合报告。</p>
-<h2 id="对表达式进行选择"><a href="# 对表达式进行选择" class="headerlink" title="对表达式进行选择"></a>对表达式进行选择 </h2><p> 在 Verilog 中，无法直接对 <code>wire_name + 1&#39;b1</code> 选择某些位，但可以其实通过加上花括号的方式进行选择，例如 <code>{wire_name + 1&#39;b1}[3:0]</code>。这个形式可以用于显式地截短运算结果并且不触发警告。</p>
+<h2 id="对表达式进行选择"><a href="# 对表达式进行选择" class="headerlink" title="对表达式进行选择"></a>对表达式进行选择 </h2><p> 在 Verilog 中，无法直接对 <code>wire_name + 1&#39;b1</code> 这样的表达式选择某些位，但可以其实通过加上花括号的方式进行选择，例如 <code>{wire_name + 1&#39;b1}[3:0]</code>。这个形式可以用于显式地截短运算结果并且不触发警告。</p>
 <p>然而这个 trick 对于变基部分选择无效。以及似乎在某些旧型号的硬件上 XST 无法识别这个语法。</p>
 <h2 id="代码简化"><a href="# 代码简化" class="headerlink" title="代码简化"></a>代码简化 </h2><p> 可以采用 <code>generate</code>、<code>task</code> 或 <code>function</code> 简化代码逻辑的编写，详细的使用方法在 Verilog General Guide 中已经说明，故不再赘述。</p>
 <h2 id="信号宽度警告"><a href="# 信号宽度警告" class="headerlink" title="信号宽度警告"></a>信号宽度警告 </h2><p> 信号宽度警告是一种十分有用的警告，因为许多低级错误都是由于错误地（或忘记）指定信号宽度导致的。请务必仔细检查综合报告。</p>
@@ -115,7 +115,7 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
 <h2 id="组合逻辑"><a href="# 组合逻辑" class="headerlink" title="组合逻辑"></a>组合逻辑 </h2><p> 在 Verilog 中组合逻辑可以通过在 <code>always @*</code> 块中使用 <code>if</code>、<code>switch</code> 和阻塞赋值 <code>=</code> 实现，也可以直接使用 <code>assign</code> 和 <code>?:</code> 这个条件运算符实现。</p>
 <p>我个人的建议是避免使用 <code>always</code> 块实现组合逻辑，因为在用 <code>if</code> 和 <code>switch</code> 实现逻辑时，很容易忘记书写某些情况下的默认值，导致综合结果为 FF/Latch 的时序电路而非组合电路，并且这件事情很难在综合报告中发现。</p>
 <p>我目前采取的实践是仅将 <code>always</code> 块用于实现时序电路，而使用条件运算符实现组合逻辑。</p>
-<p>顺带提及，<code>always @*</code> 用于实现组合电路，应该只使用阻塞赋值 <code>=</code>；<code>always @(posedge clock)</code> 用于实现时序电路，应该只使用非阻塞赋值 <code>=&gt;</code>；两者混用依然可以成功综合，但是意义不明，十分容易出错。</p>
+<p>顺带提及，<code>always @*</code> 用于实现组合电路，应该只使用阻塞赋值 <code>=</code>；<code>always @(posedge clock)</code> 用于实现时序电路，应该只使用非阻塞赋值 <code>&lt;=</code>；两者混用依然可以成功综合，但是意义不明，十分容易出错。</p>
 <h2 id="Lint"><a href="#Lint" class="headerlink" title="Lint"></a>Lint</h2><p>对于长时间调试难以找出的错误，可以尝试使用 Lint 工具对代码进行静态检查，它比 XST 综合器的检查更加严格，也常常能指出代码中埋藏的许多低级错误（我曾经用它在十分钟内找出了一个调试了一整天未能找出的 Bug）。</p>
 <p>Verilator 是一个免费的 Verilog 模拟器，其中也包含了 Lint 功能。安装 <code>verilator</code>后，执行 <code>verilator --lint-only top.v</code> 即可开始检查。</p>
 <h2 id="其他"><a href="# 其他" class="headerlink" title="其他"></a>其他 </h2><p> 综合过程中输出的 Simulation mismatch 警告不能无视，否则可能会导致不稳定的综合结果和奇怪的错误。</p>
