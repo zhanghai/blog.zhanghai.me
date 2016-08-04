@@ -768,7 +768,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-07-21T07:42:43.090Z</updated>
+    <updated>2016-08-04T06:05:17.101Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -1047,6 +1047,7 @@
 &lt;li&gt;&lt;code&gt;lsof&lt;/code&gt;: List opened files.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;mtr&lt;/code&gt;: &lt;code&gt;traceroute&lt;/code&gt; + &lt;code&gt;ping&lt;/code&gt;, automatically.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;ntfs-3g&lt;/code&gt;: NTFS writing support, and others.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pastebinit&lt;/code&gt;: Various pastebin services.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;pdfgrep&lt;/code&gt;: &lt;code&gt;grep&lt;/code&gt; on PDF.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;powertop&lt;/code&gt;: Show power consumption.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;profile-cleaner&lt;/code&gt;: Optimize browser profile SQLite database, and more.&lt;/li&gt;
