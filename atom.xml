@@ -17,8 +17,8 @@
   
   <entry>
     <title>为 Android 项目使用 Travis CI 并发布持续集成版本</title>
-    <link href="http://blog.zhanghai.me/use-travis-ci-with-android-project-and-publish-ci-builds/"/>
-    <id>http://blog.zhanghai.me/use-travis-ci-with-android-project-and-publish-ci-builds/</id>
+    <link href="http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/"/>
+    <id>http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/</id>
     <published>2016-08-05T09:50:15.000Z</published>
     <updated>2016-08-05T15:54:17.018Z</updated>
     
