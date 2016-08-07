@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-08-07T16:18:12.849Z</updated>
+  <updated>2016-08-07T16:25:10.666Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/"/>
     <id>http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/</id>
     <published>2016-08-05T09:50:15.000Z</published>
-    <updated>2016-08-07T16:18:12.849Z</updated>
+    <updated>2016-08-07T16:25:10.666Z</updated>
     
     <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt;Travis CI 是 GitHub 上开源项目采用持续集成的常见选择。为了给&lt;a href=&quot;https://github.com/DreaminginCodeZH/Douya&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; 豆芽 &lt;/a&gt; 提供持续集成版本用于公开测试，我配置了 Travis CI，并自己编写了脚本将构建结果发布到另一个空项目的 Release 中，并将其间的过程和遇到的问题记录于此。&lt;/p&gt;
 &lt;p&gt;Travis CI 构建 Android 项目的时间较长，因此调试配置时十分耗时。希望我的经验能对他人有所帮助。&lt;/p&gt;
@@ -57,7 +57,7 @@
 &lt;h2 id=&quot;其他&quot;&gt;&lt;a href=&quot;# 其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他 &lt;/h2&gt;&lt;p&gt; 如果无法确定错误原因，就多加些 &lt;code&gt;echo&lt;/code&gt; 或者 &lt;code&gt;cat&lt;/code&gt; 吧。&lt;/p&gt;
 &lt;p&gt;如果希望在 Lint 失败时查看输出，可以在 &lt;code&gt;after_failure&lt;/code&gt; 中加入 &lt;code&gt;cat app/build/outputs/lint-results-*.html&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;我所采用的配置都可以在 &lt;a href=&quot;https://github.com/DreaminginCodeZH/Douya&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; 豆芽 &lt;/a&gt; 中找到。&lt;/p&gt;
-&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;# 结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语 &lt;/h2&gt;&lt;p&gt; 为 Android 项目使用 Travis CI 的过程还算简单，但是也有一些微妙的问题需要解决，这令我花费了不少时间。而将每次的构建输出上传至另一个仓库的 Release 则是我考虑了一段时间后得出的方案，之前也没见到这种方式，用 curl 调用 GitHub API 也是第一次，同时也再次感受到了 bash 的得心应手，总体上是一次十分有趣的体验。&lt;/p&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;# 结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语 &lt;/h2&gt;&lt;p&gt; 为 Android 项目使用 Travis CI 的过程还算简单，但是也有一些微妙的问题需要解决，这令我花费了不少时间。而将每次的构建输出上传至另一个仓库的 Release 则是我考虑了一段时间后得出的方案，之前没见到过这种方式，用 curl 调用 GitHub API 也是第一次，同时再次感受到了 bash 的得心应手，总体上是一次十分有趣的体验。&lt;/p&gt;
 &lt;p&gt;因此，将我的配置过程和结果记录在此，希望对其他开发者有所帮助。&lt;/p&gt;
 </content>
     

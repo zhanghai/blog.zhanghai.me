@@ -13,7 +13,7 @@ Travis CI 构建 Android 项目的时间较长，因此调试配置时十分耗�
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言Travis CI 是 GitHub 上开源项目采用持续集成的常见选择。为了给豆芽提供持续集成版本用于公开测试，我配置了 Travis CI，并自己编写了脚本将构建结果发布到另一个空项目的 Release 中，并将其间的过程和遇到的问题记录于此。
 Travis CI 构建 Android 项目的时间较长，因此调试配置时十分耗时。希望我的经验能对他人有所帮助。">
-<meta property="og:updated_time" content="2016-08-07T16:18:12.849Z">
+<meta property="og:updated_time" content="2016-08-07T16:25:10.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为 Android 项目使用 Travis CI 并发布持续集成版本">
 <meta name="twitter:description" content="前言Travis CI 是 GitHub 上开源项目采用持续集成的常见选择。为了给豆芽提供持续集成版本用于公开测试，我配置了 Travis CI，并自己编写了脚本将构建结果发布到另一个空项目的 Release 中，并将其间的过程和遇到的问题记录于此。
@@ -116,7 +116,7 @@ Travis CI 构建 Android 项目的时间较长，因此调试配置时十分耗�
 <h2 id="其他"><a href="# 其他" class="headerlink" title="其他"></a>其他 </h2><p> 如果无法确定错误原因，就多加些 <code>echo</code> 或者 <code>cat</code> 吧。</p>
 <p>如果希望在 Lint 失败时查看输出，可以在 <code>after_failure</code> 中加入 <code>cat app/build/outputs/lint-results-*.html</code>。</p>
 <p>我所采用的配置都可以在 <a href="https://github.com/DreaminginCodeZH/Douya" target="_blank" rel="external"> 豆芽 </a> 中找到。</p>
-<h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语 </h2><p> 为 Android 项目使用 Travis CI 的过程还算简单，但是也有一些微妙的问题需要解决，这令我花费了不少时间。而将每次的构建输出上传至另一个仓库的 Release 则是我考虑了一段时间后得出的方案，之前也没见到这种方式，用 curl 调用 GitHub API 也是第一次，同时也再次感受到了 bash 的得心应手，总体上是一次十分有趣的体验。</p>
+<h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语 </h2><p> 为 Android 项目使用 Travis CI 的过程还算简单，但是也有一些微妙的问题需要解决，这令我花费了不少时间。而将每次的构建输出上传至另一个仓库的 Release 则是我考虑了一段时间后得出的方案，之前没见到过这种方式，用 curl 调用 GitHub API 也是第一次，同时再次感受到了 bash 的得心应手，总体上是一次十分有趣的体验。</p>
 <p>因此，将我的配置过程和结果记录在此，希望对其他开发者有所帮助。</p>
 
     
