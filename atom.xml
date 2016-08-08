@@ -830,7 +830,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-08-04T06:05:17.101Z</updated>
+    <updated>2016-08-08T08:36:58.984Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -1096,14 +1096,15 @@
 &lt;figure class=&quot;highlight ini&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;title&quot;&gt;[Desktop Entry]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Categories=&lt;span class=&quot;value&quot;&gt;Development;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Comment=&lt;span class=&quot;value&quot;&gt;Xilinx ISE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Encoding=&lt;span class=&quot;value&quot;&gt;UTF-&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Exec=&lt;span class=&quot;value&quot;&gt;sh -c &lt;span class=&quot;string&quot;&gt;&quot;unset LANG &amp;amp;&amp;amp; unset QT_PLUGIN_PATH &amp;amp;&amp;amp; source /opt/Xilinx/14.7/ISE_DS/settings64.sh &amp;amp;&amp;amp; export PRINTER=null &amp;amp;&amp;amp; ise&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;GenericName=&lt;span class=&quot;value&quot;&gt;Xilinx ISE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Icon=&lt;span class=&quot;value&quot;&gt;/opt/Xilinx/&lt;span class=&quot;number&quot;&gt;14.7&lt;/span&gt;/ISE_DS/ISE/data/images/pn-ise.png&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Keywords=&lt;span class=&quot;value&quot;&gt;Xlinx;ISE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Name=&lt;span class=&quot;value&quot;&gt;Xilinx ISE&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;StartupNotify=&lt;span class=&quot;value&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;setting&quot;&gt;Type=&lt;span class=&quot;value&quot;&gt;Application&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;By adding &lt;code&gt;export PRINTER=null&lt;/code&gt; you can print schematic file to PDF once per launch. This is a bug in Xilinx ISE.&lt;/p&gt;
 &lt;h2 id=&quot;Additional-tools&quot;&gt;&lt;a href=&quot;#Additional-tools&quot; class=&quot;headerlink&quot; title=&quot;Additional tools&quot;&gt;&lt;/a&gt;Additional tools&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;cloc&lt;/code&gt;: Counting line of code.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ack&lt;/code&gt;: &lt;code&gt;grep&lt;/code&gt; replacement.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cloc&lt;/code&gt;: Count lines of code.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;dos2unix&lt;/code&gt;: Convert End-of-line and some encoding to Unix flavor.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;dosfstools&lt;/code&gt;: &lt;code&gt;mkfs.fat&lt;/code&gt;, etc.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;easytag&lt;/code&gt;: MP3 tag editing and conversion.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gpaste&lt;/code&gt;: Clipboard manager&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;gsmartcontrol&lt;/code&gt;: Graphical SMART viewer.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;haveged&lt;/code&gt;: Boost low entropy.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;htop&lt;/code&gt;: &lt;code&gt;top&lt;/code&gt; improved.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;htop&lt;/code&gt;: &lt;code&gt;top&lt;/code&gt; replacement.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;iotop&lt;/code&gt;: &lt;code&gt;top&lt;/code&gt; on I/O.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;jq&lt;/code&gt;: Manipulate JSON in command line.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;lsof&lt;/code&gt;: List opened files.&lt;/li&gt;
