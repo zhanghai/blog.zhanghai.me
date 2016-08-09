@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-08-08T08:36:58.984Z">
+<meta property="og:updated_time" content="2016-08-09T03:28:50.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -253,7 +253,7 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <p>For more information, see <a href="https://wiki.archlinux.org/index.php/Font_configuration" target="_blank" rel="external">Arch Wiki</a>.</p>
 <h2 id="Emoji-font"><a href="#Emoji-font" class="headerlink" title="Emoji font"></a>Emoji font</h2><p>Install <code>noto-fonts-emoji</code>.</p>
 <h2 id="Install-local-font"><a href="#Install-local-font" class="headerlink" title="Install local font"></a>Install local font</h2><p>From <a href="https://wiki.archlinux.org/index.php/Fonts" target="_blank" rel="external">Arch Wiki</a>:</p>
-<p>Drop your font files into <code>~/.fonts/</code>, <code>cd</code> into that directory, and execute the following command.</p>
+<p>Drop your font files into <code>~/.local/share/fonts/</code> (<code>~/.fonts/</code> is deprecated), <code>cd</code> into that directory, and execute the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -n <span class="string">"Updating font cache..."</span></span><br><span class="line"><span class="built_in">fc</span>-cache &gt;/dev/null <span class="operator">-f</span></span><br><span class="line">mkfontscale</span><br><span class="line">mkfontdir</span><br><span class="line"><span class="built_in">echo</span> <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <h2 id="Handle-filesystem-package-update"><a href="#Handle-filesystem-package-update" class="headerlink" title="Handle filesystem package update"></a>Handle filesystem package update</h2><p>Use <code>diff</code> and your editor to manually merge your <code>passwd</code>, <code>shadow</code>, <code>group</code> and <code>gshadow</code> with the <code>*.pacnew</code> one(s), then execute <code>pwconv</code> and <code>groupconv</code> for updating the shadow ones (<code>*-</code>).</p>
 <h2 id="Sync-time-with-NTP"><a href="#Sync-time-with-NTP" class="headerlink" title="Sync time with NTP"></a>Sync time with NTP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S ntp</span><br><span class="line">sudo ntpd -gq &amp;&amp; sudo hwclock -w</span><br></pre></td></tr></table></figure>
