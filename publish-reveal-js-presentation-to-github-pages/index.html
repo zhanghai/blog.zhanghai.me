@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>将 Reveal.js 演示文稿部署至 GitHub Pages | 梦断代码</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="前言Reveal.js 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 Reveal.js 的 Demo。
+为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 slides.zhanghai.me 的过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将 Reveal.js 演示文稿部署至 GitHub Pages">
+<meta property="og:url" content="http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/index.html">
+<meta property="og:site_name" content="梦断代码">
+<meta property="og:description" content="前言Reveal.js 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 Reveal.js 的 Demo。
+为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 slides.zhanghai.me 的过程。">
+<meta property="og:updated_time" content="2016-08-13T15:31:17.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="将 Reveal.js 演示文稿部署至 GitHub Pages">
+<meta name="twitter:description" content="前言Reveal.js 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 Reveal.js 的 Demo。
+为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 slides.zhanghai.me 的过程。">
+  
+    <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+  <i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+  <h1 class="blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li><a href="/">主页</a></li><li><a href="/archives">存档</a></li>
+      <li><a id="nav-search-btn" class="nav-icon" title="搜索"></a></li>
+      <li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS 订阅"></a></li>
+    </ul>
+  </nav>
+  <div id="search-form-wrap">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+  </div>
+</header>
+
+    <section id="main">
+      <article id="post-publish-reveal-js-presentation-to-github-pages" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/publish-reveal-js-presentation-to-github-pages/" class="article-date">
+  <time datetime="2016-08-13T14:08:21.000Z" itemprop="datePublished">8月 13 2016</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      将 Reveal.js 演示文稿部署至 GitHub Pages
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://github.com/hakimel/reveal.js" target="_blank" rel="external">Reveal.js</a> 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 <a href="http://lab.hakim.se/reveal-js/" target="_blank" rel="external">Reveal.js 的 Demo</a>。</p>
+<p>为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 <a href="http://slides.zhanghai.me/" target="_blank" rel="external">slides.zhanghai.me</a> 的过程。</p>
+<a id="more"></a>
+<h2 id="基本"><a href="# 基本" class="headerlink" title="基本"></a>基本 </h2><p> 为了建立一个 GitHub Pages 站点，我们需要准备以下一些文件：</p>
+<ul>
+<li><code>404.html</code>：GitHub Pages 将使用此页面作为默认 404 页面的替代，一般可以换成一个符合自己站点风格的页面。</li>
+<li><code>CNAME</code>：对于绑定自定义域名的 GitHub Pages，可以使用这个文件指定自己的自定义域名。</li>
+<li><code>.nojekyll</code>：我们的站点不需要 Jekyll 的特性干预，因此将它关闭来避免可能的问题。</li>
+</ul>
+<p>然后在 GitHub 上建立仓库，执行以下的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line"><span class="comment"># 将默认的分支名 master 改为 gh-pages</span></span><br><span class="line">git symbolic-ref HEAD refs/heads/gh-pages</span><br><span class="line">git commit -am <span class="string">'Initial commit.'</span></span><br><span class="line"><span class="comment"># 将 your/repo/origin 替换为你的仓库地址</span></span><br><span class="line">git remote add origin your/repo/origin</span><br><span class="line">git push --set-upstream origin gh-pages</span><br></pre></td></tr></table></figure>
+<p>当然，使用自定义域名的话还要配置一下 DNS 记录。</p>
+<h2 id="演示文稿"><a href="# 演示文稿" class="headerlink" title="演示文稿"></a>演示文稿 </h2><p> 为了部署 Reveal.js 的演示文稿，可以利用 Git 的 Submodule 来完成对 Reveal.js 项目本身的引用。如此以来，我们的站点项目的 Git 仓库就不用跟踪 Reveal.js 中各个文件的状态，又可以记住所引用的 Reveal.js 仓库当时的版本（Commit SHA1）。</p>
+<p>比较幸运的是，GitHub Pages 的构建过程是可以支持 Submodule 的。需要注意的是，Submodule 的仓库地址必须采用 https 而非 ssh 协议（否则会收到构建失败的邮件通知）。以下是将 Reveal.js 作为 Submodule 引入的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule add https://github.com/hakimel/reveal.js.git</span><br></pre></td></tr></table></figure>
+<p>之后将你的 <code>index.html</code> 中对于 Reveal.js 文件的应用都加上 <code>reveal.js/</code> 的目录前缀即可。</p>
+<p>其他详情可以参考我的站点仓库 <a href="https://github.com/DreaminginCodeZH/slides.zhanghai.me" target="_blank" rel="external">DreaminginCodeZH/slides.zhanghai.me</a>。</p>
+<h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语</h2><p>Reveal.js 是一个易用而优雅的 HTML 演示文稿框架，借助于它，我已经多年没有用过 PowerPoint 了。至于利用 GitHub Pages 将它放置在网页端，则可以在免运维的情况下可靠地分享自己的演示文稿，同时也可以不用安装大量 <code>npm</code> 依赖来开启演讲者视图，算是一个简单又有用的小技巧。</p>
+<p>因此，将我的配置过程和结果记录在此，希望能对他人有所帮助。</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/use-travis-ci-on-android-project-and-publish-ci-builds/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          为 Android 项目使用 Travis CI 并发布持续集成版本
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+
+
+    </section>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:blog.zhanghai.me">
+    </form>
+</div>
+<footer id="footer">
+  <h1 class="footer-blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <span class="copyright">
+    &copy; 2016 张海<br>
+    Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'zhanghai';
+  
+  var disqus_url = 'http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/';
+  
+  (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

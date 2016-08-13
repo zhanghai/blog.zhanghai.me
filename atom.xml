@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-08-07T16:25:10.666Z</updated>
+  <updated>2016-08-13T15:31:17.220Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将 Reveal.js 演示文稿部署至 GitHub Pages</title>
+    <link href="http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/"/>
+    <id>http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/</id>
+    <published>2016-08-13T14:08:21.000Z</published>
+    <updated>2016-08-13T15:31:17.220Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/hakimel/reveal.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reveal.js&lt;/a&gt; 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 &lt;a href=&quot;http://lab.hakim.se/reveal-js/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reveal.js 的 Demo&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 &lt;a href=&quot;http://slides.zhanghai.me/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;slides.zhanghai.me&lt;/a&gt; 的过程。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;基本&quot;&gt;&lt;a href=&quot;# 基本&quot; class=&quot;headerlink&quot; title=&quot;基本&quot;&gt;&lt;/a&gt;基本 &lt;/h2&gt;&lt;p&gt; 为了建立一个 GitHub Pages 站点，我们需要准备以下一些文件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;404.html&lt;/code&gt;：GitHub Pages 将使用此页面作为默认 404 页面的替代，一般可以换成一个符合自己站点风格的页面。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CNAME&lt;/code&gt;：对于绑定自定义域名的 GitHub Pages，可以使用这个文件指定自己的自定义域名。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.nojekyll&lt;/code&gt;：我们的站点不需要 Jekyll 的特性干预，因此将它关闭来避免可能的问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然后在 GitHub 上建立仓库，执行以下的命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git init&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 将默认的分支名 master 改为 gh-pages&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git symbolic-ref HEAD refs/heads/gh-pages&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git commit -am &lt;span class=&quot;string&quot;&gt;&#39;Initial commit.&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 将 your/repo/origin 替换为你的仓库地址&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git remote add origin your/repo/origin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git push --set-upstream origin gh-pages&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当然，使用自定义域名的话还要配置一下 DNS 记录。&lt;/p&gt;
+&lt;h2 id=&quot;演示文稿&quot;&gt;&lt;a href=&quot;# 演示文稿&quot; class=&quot;headerlink&quot; title=&quot;演示文稿&quot;&gt;&lt;/a&gt;演示文稿 &lt;/h2&gt;&lt;p&gt; 为了部署 Reveal.js 的演示文稿，可以利用 Git 的 Submodule 来完成对 Reveal.js 项目本身的引用。如此以来，我们的站点项目的 Git 仓库就不用跟踪 Reveal.js 中各个文件的状态，又可以记住所引用的 Reveal.js 仓库当时的版本（Commit SHA1）。&lt;/p&gt;
+&lt;p&gt;比较幸运的是，GitHub Pages 的构建过程是可以支持 Submodule 的。需要注意的是，Submodule 的仓库地址必须采用 https 而非 ssh 协议（否则会收到构建失败的邮件通知）。以下是将 Reveal.js 作为 Submodule 引入的命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git submodule add https://github.com/hakimel/reveal.js.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;之后将你的 &lt;code&gt;index.html&lt;/code&gt; 中对于 Reveal.js 文件的应用都加上 &lt;code&gt;reveal.js/&lt;/code&gt; 的目录前缀即可。&lt;/p&gt;
+&lt;p&gt;其他详情可以参考我的站点仓库 &lt;a href=&quot;https://github.com/DreaminginCodeZH/slides.zhanghai.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DreaminginCodeZH/slides.zhanghai.me&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;# 结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h2&gt;&lt;p&gt;Reveal.js 是一个易用而优雅的 HTML 演示文稿框架，借助于它，我已经多年没有用过 PowerPoint 了。至于利用 GitHub Pages 将它放置在网页端，则可以在免运维的情况下可靠地分享自己的演示文稿，同时也可以不用安装大量 &lt;code&gt;npm&lt;/code&gt; 依赖来开启演讲者视图，算是一个简单又有用的小技巧。&lt;/p&gt;
+&lt;p&gt;因此，将我的配置过程和结果记录在此，希望能对他人有所帮助。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/hakimel/reveal.js&quot;&gt;Reveal.js&lt;/a&gt; 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 &lt;a href=&quot;http://lab.hakim.se/reveal-js/&quot;&gt;Reveal.js 的 Demo&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 &lt;a href=&quot;http://slides.zhanghai.me/&quot;&gt;slides.zhanghai.me&lt;/a&gt; 的过程。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
+    
+  </entry>
   
   <entry>
     <title>为 Android 项目使用 Travis CI 并发布持续集成版本</title>
