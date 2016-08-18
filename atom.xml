@@ -872,7 +872,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-08-09T03:28:50.598Z</updated>
+    <updated>2016-08-18T02:15:12.730Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -892,6 +892,7 @@
 &lt;p&gt;Use &lt;code&gt;man man-pages&lt;/code&gt; to see the definition of each seciton.&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;help -m &amp;lt;BUILTIN&amp;gt;&lt;/code&gt; to show help for a shell builtin in manual page format.&lt;/p&gt;
 &lt;p&gt;The “SEE ALSO” section in a manual sometimes can be very helpful.&lt;/p&gt;
+&lt;p&gt;You can also use &lt;code&gt;man hier&lt;/code&gt;to get to know the Linux filesystem hierarchy.&lt;/p&gt;
 &lt;h2 id=&quot;Find-available-commands&quot;&gt;&lt;a href=&quot;#Find-available-commands&quot; class=&quot;headerlink&quot; title=&quot;Find available commands&quot;&gt;&lt;/a&gt;Find available commands&lt;/h2&gt;&lt;p&gt;Shell builtin &lt;code&gt;compgen&lt;/code&gt; can list possible completions for your input.&lt;/p&gt;
 &lt;h2 id=&quot;NTFS-partitions-auto-mounting&quot;&gt;&lt;a href=&quot;#NTFS-partitions-auto-mounting&quot; class=&quot;headerlink&quot; title=&quot;NTFS partitions auto mounting&quot;&gt;&lt;/a&gt;NTFS partitions auto mounting&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Use &lt;code&gt;gnome-disks&lt;/code&gt;, select partition and click the settings button below, click and then modify mount options in the popup menu.&lt;/p&gt;
