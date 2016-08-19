@@ -872,7 +872,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-08-18T02:15:12.730Z</updated>
+    <updated>2016-08-19T14:57:09.375Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -1079,7 +1079,8 @@
 &lt;p&gt;See &lt;code&gt;man inkscape&lt;/code&gt; for more formats.&lt;/p&gt;
 &lt;h2 id=&quot;Convert-PDF-to-PNG&quot;&gt;&lt;a href=&quot;#Convert-PDF-to-PNG&quot; class=&quot;headerlink&quot; title=&quot;Convert PDF to PNG&quot;&gt;&lt;/a&gt;Convert PDF to PNG&lt;/h2&gt;&lt;p&gt;From &lt;a href=&quot;http://stackoverflow.com/questions/6605006/convert-pdf-to-image-with-high-resolution&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;StackOverflow&lt;/a&gt;.&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;convert -density &lt;span class=&quot;number&quot;&gt;300&lt;/span&gt; &amp;lt;YOUR_FILE.pdf&amp;gt; &amp;lt;YOUR_FILE.png&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Where the density parameter is your desired DPI.&lt;/p&gt;
+&lt;p&gt;Where the &lt;code&gt;-density&lt;/code&gt; parameter is your desired DPI.&lt;/p&gt;
+&lt;p&gt;Note that the &lt;code&gt;-density&lt;/code&gt; parameter must come before the input file, or it won’t take effect.&lt;/p&gt;
 &lt;h2 id=&quot;Bitmap-operation&quot;&gt;&lt;a href=&quot;#Bitmap-operation&quot; class=&quot;headerlink&quot; title=&quot;Bitmap operation&quot;&gt;&lt;/a&gt;Bitmap operation&lt;/h2&gt;&lt;p&gt;Resize:&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mogrify -interpolate bicubic -resize &lt;span class=&quot;number&quot;&gt;50&lt;/span&gt;% *.png&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;Crop:&lt;/p&gt;

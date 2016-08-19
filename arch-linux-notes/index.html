@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-08-18T02:15:12.730Z">
+<meta property="og:updated_time" content="2016-08-19T14:57:09.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -295,7 +295,8 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <p>See <code>man inkscape</code> for more formats.</p>
 <h2 id="Convert-PDF-to-PNG"><a href="#Convert-PDF-to-PNG" class="headerlink" title="Convert PDF to PNG"></a>Convert PDF to PNG</h2><p>From <a href="http://stackoverflow.com/questions/6605006/convert-pdf-to-image-with-high-resolution" target="_blank" rel="external">StackOverflow</a>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -density <span class="number">300</span> &lt;YOUR_FILE.pdf&gt; &lt;YOUR_FILE.png&gt;</span><br></pre></td></tr></table></figure>
-<p>Where the density parameter is your desired DPI.</p>
+<p>Where the <code>-density</code> parameter is your desired DPI.</p>
+<p>Note that the <code>-density</code> parameter must come before the input file, or it won’t take effect.</p>
 <h2 id="Bitmap-operation"><a href="#Bitmap-operation" class="headerlink" title="Bitmap operation"></a>Bitmap operation</h2><p>Resize:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mogrify -interpolate bicubic -resize <span class="number">50</span>% *.png</span><br></pre></td></tr></table></figure>
 <p>Crop:</p>
