@@ -283,7 +283,7 @@
     <link href="http://blog.zhanghai.me/android-developer-guide/"/>
     <id>http://blog.zhanghai.me/android-developer-guide/</id>
     <published>2015-09-28T13:13:29.000Z</published>
-    <updated>2016-02-18T06:33:53.647Z</updated>
+    <updated>2016-08-26T06:58:46.472Z</updated>
     
     <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt; 从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -346,7 +346,8 @@
 &lt;/ul&gt;
 &lt;p&gt;推荐：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://plus.google.com/+RomanNurik/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;+Roman Nurik&lt;/a&gt;：Android 视图组件开发者，同时也是一位优秀的摄影师，你或许不经意间也见过他的作品。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://plus.google.com/+RomainGuy/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;+Romain Guy&lt;/a&gt;：Android 视图组件开发者，同时也是一位优秀的摄影师，你或许不经意间也见过他的作品。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://plus.google.com/+RomanNurik/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;+Roman Nurik&lt;/a&gt;：就职于 Google 的设计师，Muzei 的开发者。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://plus.google.com/105051985738280261832/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;+Dannie Hackborn&lt;/a&gt;：Android 框架开发者。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://plus.google.com/+ChetHaase/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;+Chet Haase&lt;/a&gt;：Android 框架开发者，写作此文时正在开发 Data Binding 支持库。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://android-developers.blogspot.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Developers Blog&lt;/a&gt;：Android Developers 的博客，可 RSS 订阅，不过 +Android Developers 在它更新时一般会发动态推荐。&lt;/li&gt;

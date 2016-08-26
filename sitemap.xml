@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/android-developer-guide/</loc>
+    
+    <lastmod>2016-08-26T06:58:46.472Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     
     <lastmod>2016-08-19T14:57:09.375Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://blog.zhanghai.me/android-design-guide/</loc>
     
     <lastmod>2016-02-18T06:33:57.924Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/android-developer-guide/</loc>
-    
-    <lastmod>2016-02-18T06:33:53.647Z</lastmod>
     
   </url>
   
