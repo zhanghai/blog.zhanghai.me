@@ -873,7 +873,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-08-19T14:57:09.375Z</updated>
+    <updated>2016-09-14T09:00:52.085Z</updated>
     
     <content type="html">&lt;p&gt;This is my notebook for some small tips and tricks when using Arch Linux.&lt;/p&gt;
 &lt;h2 id=&quot;Why-Arch-Linux&quot;&gt;&lt;a href=&quot;#Why-Arch-Linux&quot; class=&quot;headerlink&quot; title=&quot;Why Arch Linux?&quot;&gt;&lt;/a&gt;Why Arch Linux?&lt;/h2&gt;&lt;ul&gt;
@@ -965,12 +965,14 @@
 &lt;/ul&gt;
 &lt;p&gt;Note: socksProxyVersion and more properties are documented at &lt;a href=&quot;http://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;another documentation of Java&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Sample usage:&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=&lt;span class=&quot;number&quot;&gt;8080&lt;/span&gt; -Dhttp.nonProxyHosts=”localhost|host.example.com”&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=&lt;span class=&quot;number&quot;&gt;8080&lt;/span&gt; -Dhttp.nonProxyHosts=&lt;span class=&quot;string&quot;&gt;&#39;localhost|host.example.com&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Or you can utilize &lt;code&gt;_JAVA_OPTIONS&lt;/code&gt;:&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; _JAVA_OPTIONS=&lt;span class=&quot;string&quot;&gt;&quot;-DsocksProxyHost=localhost -DsocksProxyPort=10801&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Note that you can tunnel http(s) request to local socks client using &lt;a href=&quot;https://www.archlinux.org/packages/?name=delegate&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DeleGate&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Note that you can tunnel http(s) request to local socks client using &lt;a href=&quot;https://wiki.archlinux.org/index.php/polipo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Polipo&lt;/a&gt;, for example &lt;code&gt;polipo socksParentProxy=localhost:10800&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work&quot;&gt;&lt;a href=&quot;#Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work&quot; class=&quot;headerlink&quot; title=&quot;Touchpad settings and horizontal two-finger scrolling doesn’t work&quot;&gt;&lt;/a&gt;Touchpad settings and horizontal two-finger scrolling doesn’t work&lt;/h2&gt;&lt;p&gt;GNOME dropped support for synaptics driver due to luck of maintenance in version 3.20.&lt;/p&gt;
 &lt;p&gt;Remove &lt;code&gt;xf86-input-synaptics&lt;/code&gt; and &lt;code&gt;xf86-input-evdev&lt;/code&gt;, install &lt;code&gt;xf86-input-libinput&lt;/code&gt;, then reboot.&lt;/p&gt;
 &lt;h2 id=&quot;GNOME-proxy-setting&quot;&gt;&lt;a href=&quot;#GNOME-proxy-setting&quot; class=&quot;headerlink&quot; title=&quot;GNOME proxy setting&quot;&gt;&lt;/a&gt;GNOME proxy setting&lt;/h2&gt;&lt;p&gt;You can utilize GNOME’s proxy setting in &lt;code&gt;Settings &amp;gt; Network&lt;/code&gt; &lt;del&gt;even if you use &lt;code&gt;netctl&lt;/code&gt; instead of &lt;code&gt;Network Manager&lt;/code&gt;&lt;/del&gt; (Disabled in recent GNOME, see below). Both HTTP and SOCKS proxy are supported.&lt;/p&gt;

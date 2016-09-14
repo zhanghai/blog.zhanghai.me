@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-08-19T14:57:09.375Z">
+<meta property="og:updated_time" content="2016-09-14T09:00:52.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -180,12 +180,14 @@ It has a powerful Arch User Repository and makes it easy for yo">
 </ul>
 <p>Note: socksProxyVersion and more properties are documented at <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html" target="_blank" rel="external">another documentation of Java</a>.</p>
 <p>Sample usage:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=<span class="number">8080</span> -Dhttp.nonProxyHosts=”localhost|host.example.com”</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=<span class="number">8080</span> -Dhttp.nonProxyHosts=<span class="string">'localhost|host.example.com'</span></span><br></pre></td></tr></table></figure>
+<p>Or you can utilize <code>_JAVA_OPTIONS</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> _JAVA_OPTIONS=<span class="string">"-DsocksProxyHost=localhost -DsocksProxyPort=10801"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<p>Note that you can tunnel http(s) request to local socks client using <a href="https://www.archlinux.org/packages/?name=delegate" target="_blank" rel="external">DeleGate</a>.</p>
+<p>Note that you can tunnel http(s) request to local socks client using <a href="https://wiki.archlinux.org/index.php/polipo" target="_blank" rel="external">Polipo</a>, for example <code>polipo socksParentProxy=localhost:10800</code>.</p>
 <h2 id="Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work"><a href="#Touchpad-settings-and-horizontal-two-finger-scrolling-doesn’t-work" class="headerlink" title="Touchpad settings and horizontal two-finger scrolling doesn’t work"></a>Touchpad settings and horizontal two-finger scrolling doesn’t work</h2><p>GNOME dropped support for synaptics driver due to luck of maintenance in version 3.20.</p>
 <p>Remove <code>xf86-input-synaptics</code> and <code>xf86-input-evdev</code>, install <code>xf86-input-libinput</code>, then reboot.</p>
 <h2 id="GNOME-proxy-setting"><a href="#GNOME-proxy-setting" class="headerlink" title="GNOME proxy setting"></a>GNOME proxy setting</h2><p>You can utilize GNOME’s proxy setting in <code>Settings &gt; Network</code> <del>even if you use <code>netctl</code> instead of <code>Network Manager</code></del> (Disabled in recent GNOME, see below). Both HTTP and SOCKS proxy are supported.</p>
