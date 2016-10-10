@@ -3,17 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>存档：2016 | 梦断代码</title>
+  <title>WebGL 入门笔记 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梦断代码">
-<meta property="og:url" content="http://blog.zhanghai.me/archives/2016/index.html">
+  <meta name="description" content="前言  因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。
+WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。
+基础  请阅读 WebGL Fundamentals 以获得对于 WebGL 的大体了解。
+Shader在 WebG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebGL 入门笔记">
+<meta property="og:url" content="http://blog.zhanghai.me/webgl-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description">
+<meta property="og:description" content="前言  因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。
+WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。
+基础  请阅读 WebGL Fundamentals 以获得对于 WebGL 的大体了解。
+Shader在 WebG">
+<meta property="og:updated_time" content="2016-10-10T13:30:39.075Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="梦断代码">
-<meta name="twitter:description">
+<meta name="twitter:title" content="WebGL 入门笔记">
+<meta name="twitter:description" content="前言  因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。
+WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。
+基础  请阅读 WebGL Fundamentals 以获得对于 WebGL 的大体了解。
+Shader在 WebG">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
@@ -48,380 +58,7 @@
 </header>
 
     <section id="main">
-      
-  
-    <article id="post-webgl-notes/flag" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/webgl-notes/flag/" class="article-date">
-  <time datetime="2016-10-10T13:21:04.041Z" itemprop="datePublished">10月 10 2016</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/webgl-notes/flag/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
-    
-
-  </header>
-  <div class="entry-content">
-    
-      <!DOCTYPE html>
-<html lang="zh">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Flag of the People's Liberation Army</title>
-
-    <style>
-html, body {margin: 0;}
-canvas {width: 100%;}
-    </style>
-</head>
-
-<body>
-
-<canvas id="canvas">Your browser doesn't appear to support the <code>&lt;canvas&gt;</code> element.</canvas>
-
-<script id="vertex-shader" type="x-shader/x-vertex">
-attribute vec2 a_position;
-
-uniform mat3 u_transformation;
-
-void main() {gl_Position = vec4((u_transformation * vec3(a_position, 1)).xy, 0, 1);
-}
-</script>
-<script id="fragment-shader" type="x-shader/x-fragment">
-precision mediump float;
-
-uniform vec4 u_color;
-
-void main() {gl_FragColor = u_color;}
-</script>
-<script>
-'use strict';
-
-function makeIdentityMatrix() {
-    return [
-        1, 0, 0,
-        0, 1, 0,
-        0, 0, 1
-    ];
-}
-
-function makeTranslationMatrix(tx, ty) {
-    return [
-        1, 0, 0,
-        0, 1, 0,
-        tx, ty, 1
-    ];
-}
-
-function makeScalingMatrix(sx, sy) {
-    return [
-        sx, 0, 0,
-        0, sy, 0,
-        0, 0, 1
-    ];
-}
-
-function degreeToRadian(angle) {return angle / 180 * Math.PI;}
-
-function makeRotationMatrix(angle) {angle = degreeToRadian(angle);
-    var cosa = Math.cos(angle);
-    var sina = Math.sin(angle);
-    return [
-        cosa, sina, 0,
-        -sina, cosa, 0,
-        0, 0, 1
-    ];
-}
-
-function makeSkewXMatrix(angle) {angle = degreeToRadian(angle);
-    var tana = Math.tan(angle);
-    return [
-        1, 0, 0,
-        tana, 1, 0,
-        0, 0, 1
-    ];
-}
-
-function makeSkewYMatrix(angle) {angle = degreeToRadian(angle);
-    var tana = Math.tan(angle);
-    return [
-        1, tana, 0,
-        0, 1, 0,
-        0, 0, 1
-    ];
-}
-
-function makeProjectionMatrix(width, height) {
-    return [
-        2 / width, 0, 0,
-        0, -2 / height, 0,
-        -1, 1, 1
-    ];
-}
-
-function multiplyMatrix(a, b) {// A \cdot B = (B^T \cdot A^T)^T
-    var a00 = a[0], a01 = a[1], a02 = a[2];
-    var a10 = a[3], a11 = a[4], a12 = a[5];
-    var a20 = a[6], a21 = a[7], a22 = a[8];
-    var b00 = b[0], b01 = b[1], b02 = b[2];
-    var b10 = b[3], b11 = b[4], b12 = b[5];
-    var b20 = b[6], b21 = b[7], b22 = b[8];
-    return [
-        b00 * a00 + b01 * a10 + b02 * a20,
-        b00 * a01 + b01 * a11 + b02 * a21,
-        b00 * a02 + b01 * a12 + b02 * a22,
-        b10 * a00 + b11 * a10 + b12 * a20,
-        b10 * a01 + b11 * a11 + b12 * a21,
-        b10 * a02 + b11 * a12 + b12 * a22,
-        b20 * a00 + b21 * a10 + b22 * a20,
-        b20 * a01 + b21 * a11 + b22 * a21,
-        b20 * a02 + b21 * a12 + b22 * a22
-    ];
-}
-
-function createAndCompileShader(gl, id) {var element = document.getElementById(id);
-    var type = null;
-    switch (element.type) {
-        case 'x-shader/x-vertex':
-            type = gl.VERTEX_SHADER;
-            break;
-        case 'x-shader/x-fragment':
-            type = gl.FRAGMENT_SHADER;
-            break;
-        default:
-            throw 'Unknown shader type:' + element.type;
-    }
-    var source = element.textContent;
-    var shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {throw 'Error compiling shader:' + gl.getShaderInfoLog(shader);
-    }
-    return shader;
-}
-
-function createAndLinkProgram(gl, vertexShaderId, fragmentShaderId) {var program = gl.createProgram();
-    gl.attachShader(program, createAndCompileShader(gl, vertexShaderId));
-    gl.attachShader(program, createAndCompileShader(gl, fragmentShaderId));
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {throw 'Error linking program:' + gl.getProgramInfoLog(program);
-    }
-    return program;
-}
-
-/**
- * @param {[float]} value
- */
-function setUniformFv(gl, program, name, value) {gl['uniform' + value.length + 'fv'](gl.getUniformLocation(program, name), value);
-}
-
-/**
- * @param {string} color '#RRGGBB'
- * @param {float=} alpha \in [0, 1]
- */
-function setUniformColor(gl, program, name, color, alpha) {if (!/^#[0-9A-Fa-f]{6}$/.test(color)) {throw 'Invalid color:' + color;}
-    setUniformFv(gl, program, name, [parseInt(color.substr(1, 2), 16) / 0xff,
-        parseInt(color.substr(3, 2), 16) / 0xff,
-        parseInt(color.substr(5, 2), 16) / 0xff,
-        alpha || 1
-    ]);
-}
-
-function setUniformMatrix(gl, program, name, value) {gl['uniformMatrix' + Math.sqrt(value.length) + 'fv'](gl.getUniformLocation(program, name), false, value);
-}
-
-/**
- * @param {[[float]]} value
- */
-function setAttributeArrayFva(gl, program, name, value) {var buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    var data = new Float32Array(Array.prototype.concat.apply([], value));
-    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-    var location = gl.getAttribLocation(program, name);
-    gl.enableVertexAttribArray(location);
-    var size = value[0].length;
-    gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0);
-}
-
-var _gl = null;
-var _program = null;
-
-function initialize(gl, program) {
-    _gl = gl;
-    _program = program;
-}
-
-function setColor(color, alpha) {setUniformColor(_gl, _program, 'u_color', color, alpha);
-}
-
-var _transformations = [];
-
-function getTransformation() {return _transformations[_transformations.length - 1];
-}
-
-function _setTransformation(transformation) {setUniformMatrix(_gl, _program, 'u_transformation', transformation);
-}
-
-function setTransformation(transformation) {_setTransformation(transformation);
-    _transformations = [transformation];
-}
-
-function pushTransformation(transformation) {transformation = multiplyMatrix(getTransformation(), transformation);
-    _setTransformation(transformation);
-    _transformations.push(transformation);
-}
-
-function popTransformation() {_transformations.pop();
-    _setTransformation(getTransformation());
-}
-
-function drawTriangles(positions) {setAttributeArrayFva(_gl, _program, 'a_position', positions);
-    _gl.drawArrays(_gl.TRIANGLES, 0, positions.length);
-}
-
-function drawRectangle(x, y, width, height) {
-    var x1 = x;
-    var y1= y;
-    var x2 = x + width;
-    var y2 = y + height;
-    drawTriangles([[x1, y1],
-        [x2, y1],
-        [x1, y2],
-        [x1, y2],
-        [x2, y1],
-        [x2, y2]
-    ]);
-}
-
-function drawElementT() {
-    pushTransformation(multiplyMatrix(makeTranslationMatrix(0, -100),
-        multiplyMatrix(makeRotationMatrix(18),
-            makeTranslationMatrix(0, 100)
-        )
-    ));
-    drawTriangles([[0, -100],
-        [0, 0],
-        [50, 0]
-    ]);
-    popTransformation();}
-
-function drawElementC() {drawElementT();
-    pushTransformation(makeScalingMatrix(-1, 1));
-    drawElementT();
-    popTransformation();}
-
-function drawElementCWithRotation(angle) {pushTransformation(makeRotationMatrix(angle));
-    drawElementC();
-    popTransformation();}
-
-function draw(gl) {gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-
-    gl.clearColor(0xde / 0xff, 0x29 / 0xff, 0x10 / 0xff, 0xff / 0xff);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-
-    var program = createAndLinkProgram(gl, 'vertex-shader', 'fragment-shader');
-    gl.useProgram(program);
-
-    initialize(gl, program);
-
-    setColor('#ffdd00');
-
-    setTransformation(makeProjectionMatrix(1000, 800));
-
-    pushTransformation(makeTranslationMatrix(150, 200));
-    drawElementC();
-    drawElementCWithRotation(72);
-    drawElementCWithRotation(144);
-    drawElementCWithRotation(216);
-    drawElementCWithRotation(288);
-    popTransformation();
-
-    drawRectangle(400, 250, 100, 25);
-
-    pushTransformation([
-        0.6, -0.8, 0,
-        0.8, 0.6, 0,
-        0, 0, 1
-    ]);
-    drawRectangle(-81, 367, 75, 25);
-    popTransformation();
-
-    pushTransformation([
-        0.6, 0.8, 0,
-        -0.8, 0.6, 0,
-        0, 0, 1
-    ]);
-    drawRectangle(385.5, -139, 75, 25);
-    popTransformation();
-
-    gl.flush();}
-
-function main() {var canvas = document.getElementById('canvas');
-    var webgl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    if (!webgl) {alert("Error initializing WebGL. Your browser may not support it.");
-        return;
-    }
-
-    var needToDraw = true;
-    function resizeAndDraw() {
-        var resized = canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientWidth * 0.8;
-        if (resized) {
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientWidth * 0.8;
-        }
-        if (resized || needToDraw) {
-            needToDraw = false;
-            draw(webgl);
-        }
-        requestAnimationFrame(resizeAndDraw);
-    }
-    requestAnimationFrame(resizeAndDraw);
-}
-
-main();
-</script>
-</body>
-</html>
-
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
-        
-
-      </span>
-      <span class="tags">
-        
-
-      </span>
-    </div>
-  </footer>
-  
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-    <article id="post-webgl-notes" class="post">
+      <article id="post-webgl-notes" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/webgl-notes/" class="article-date">
@@ -441,8 +78,8 @@ main();
   <header class="entry-header">
     
   
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/webgl-notes/">WebGL 入门笔记</a>
+    <h1 class="article-title entry-title" itemprop="name">
+      WebGL 入门笔记
     </h1>
   
 
@@ -488,203 +125,42 @@ main();
     </div>
   </footer>
   
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-    <article id="post-publish-reveal-js-presentation-to-github-pages" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/publish-reveal-js-presentation-to-github-pages/" class="article-date">
-  <time datetime="2016-08-13T14:08:21.000Z" itemprop="datePublished">8月 13 2016</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
     
+<nav id="article-nav">
   
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/publish-reveal-js-presentation-to-github-pages/">将 Reveal.js 演示文稿部署至 GitHub Pages</a>
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://github.com/hakimel/reveal.js">Reveal.js</a> 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 <a href="http://lab.hakim.se/reveal-js/">Reveal.js 的 Demo</a>。</p>
-<p>为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 <a href="http://slides.zhanghai.me/">slides.zhanghai.me</a> 的过程。</p>
-      
-        <p class="more">
-          <a href="/publish-reveal-js-presentation-to-github-pages/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
+    <a href="/webgl-notes/flag/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
         
-
-      </span>
-      <span class="tags">
+          (no title)
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
+      </div>
+    </a>
+  
+  
+    <a href="/publish-reveal-js-presentation-to-github-pages/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          将 Reveal.js 演示文稿部署至 GitHub Pages
+        
+      </div>
+    </a>
+  
+</nav>
 
 
-      </span>
-    </div>
-  </footer>
   
 </article>
 
 
-  <hr class="article-divider">
 
 
-
-
-  
-    <article id="post-use-travis-ci-on-android-project-and-publish-ci-builds" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/use-travis-ci-on-android-project-and-publish-ci-builds/" class="article-date">
-  <time datetime="2016-08-05T09:50:15.000Z" itemprop="datePublished">8月 5 2016</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/#disqus_thread" class="article-comment-link">评论</a>
-      
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-  </header>
-  
-
-  <header class="entry-header">
-    
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/use-travis-ci-on-android-project-and-publish-ci-builds/">为 Android 项目使用 Travis CI 并发布持续集成版本</a>
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Travis CI 是 GitHub 上开源项目采用持续集成的常见选择。为了给<a href="https://github.com/DreaminginCodeZH/Douya">豆芽</a>提供持续集成版本用于公开测试，我配置了 Travis CI，并自己编写了脚本将构建结果发布到另一个空项目的 Release 中，并将其间的过程和遇到的问题记录于此。</p>
-<p>Travis CI 构建 Android 项目的时间较长，因此调试配置时十分耗时。希望我的经验能对他人有所帮助。</p>
-      
-        <p class="more">
-          <a href="/use-travis-ci-on-android-project-and-publish-ci-builds/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
-        
-
-      </span>
-      <span class="tags">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
-
-
-      </span>
-    </div>
-  </footer>
-  
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-    <article id="post-verilog-notes" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/verilog-notes/" class="article-date">
-  <time datetime="2016-03-23T11:27:26.000Z" itemprop="datePublished">3月 23 2016</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/verilog-notes/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
-    
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/verilog-notes/">Verilog 编程笔记</a>
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。</p>
-<p>Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 <a href="http://standards.ieee.org/findstds/standard/1364-1995.html">Verilog-1995</a> 与 <a href="http://standards.ieee.org/findstds/standard/1364-2001.html">Verilog-2001</a> 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。</p>
-<p>虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标硬件设计的。Verilog 是一门面向逻辑电路的具体实现而设计的语言（正如 C 在某种程度上是面向汇编等底层实现的），因此写作 Verilog 时不可以将 C 等编程语言的思维方式代入，而是要始终清晰地思考正在编写的代码将能够综合成怎样的逻辑电路实现——如果可以，那么大多能够写出在字面和实现上都优雅的代码；如果不行，那么综合时大概也会报错或消耗大量资源，此时则应该考虑调整思路。</p>
-      
-        <p class="more">
-          <a href="/verilog-notes/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
-        
-
-      </span>
-      <span class="tags">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
-
-
-      </span>
-    </div>
-  </footer>
-  
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-  
+  </section>
 
 
 
@@ -710,11 +186,13 @@ main();
 <script>
   var disqus_shortname = 'zhanghai';
   
+  var disqus_url = 'http://blog.zhanghai.me/webgl-notes/';
+  
   (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

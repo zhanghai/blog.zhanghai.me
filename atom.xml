@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2016-08-13T15:31:17.220Z</updated>
+  <updated>2016-10-10T12:44:36.341Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -14,6 +14,398 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://blog.zhanghai.me/webgl-notes/flag/"/>
+    <id>http://blog.zhanghai.me/webgl-notes/flag/</id>
+    <published>2016-10-10T13:21:04.041Z</published>
+    <updated>2016-10-10T12:44:36.341Z</updated>
+    
+    <content type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh&quot;&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+
+    &lt;title&gt;Flag of the People&#39;s Liberation Army&lt;/title&gt;
+
+    &lt;style&gt;
+html, body {margin: 0;}
+canvas {width: 100%;}
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;canvas id=&quot;canvas&quot;&gt;Your browser doesn&#39;t appear to support the &lt;code&gt;&amp;lt;canvas&amp;gt;&lt;/code&gt; element.&lt;/canvas&gt;
+
+&lt;script id=&quot;vertex-shader&quot; type=&quot;x-shader/x-vertex&quot;&gt;
+attribute vec2 a_position;
+
+uniform mat3 u_transformation;
+
+void main() {gl_Position = vec4((u_transformation * vec3(a_position, 1)).xy, 0, 1);
+}
+&lt;/script&gt;
+&lt;script id=&quot;fragment-shader&quot; type=&quot;x-shader/x-fragment&quot;&gt;
+precision mediump float;
+
+uniform vec4 u_color;
+
+void main() {gl_FragColor = u_color;}
+&lt;/script&gt;
+&lt;script&gt;
+&#39;use strict&#39;;
+
+function makeIdentityMatrix() {
+    return [
+        1, 0, 0,
+        0, 1, 0,
+        0, 0, 1
+    ];
+}
+
+function makeTranslationMatrix(tx, ty) {
+    return [
+        1, 0, 0,
+        0, 1, 0,
+        tx, ty, 1
+    ];
+}
+
+function makeScalingMatrix(sx, sy) {
+    return [
+        sx, 0, 0,
+        0, sy, 0,
+        0, 0, 1
+    ];
+}
+
+function degreeToRadian(angle) {return angle / 180 * Math.PI;}
+
+function makeRotationMatrix(angle) {angle = degreeToRadian(angle);
+    var cosa = Math.cos(angle);
+    var sina = Math.sin(angle);
+    return [
+        cosa, sina, 0,
+        -sina, cosa, 0,
+        0, 0, 1
+    ];
+}
+
+function makeSkewXMatrix(angle) {angle = degreeToRadian(angle);
+    var tana = Math.tan(angle);
+    return [
+        1, 0, 0,
+        tana, 1, 0,
+        0, 0, 1
+    ];
+}
+
+function makeSkewYMatrix(angle) {angle = degreeToRadian(angle);
+    var tana = Math.tan(angle);
+    return [
+        1, tana, 0,
+        0, 1, 0,
+        0, 0, 1
+    ];
+}
+
+function makeProjectionMatrix(width, height) {
+    return [
+        2 / width, 0, 0,
+        0, -2 / height, 0,
+        -1, 1, 1
+    ];
+}
+
+function multiplyMatrix(a, b) {// A \cdot B = (B^T \cdot A^T)^T
+    var a00 = a[0], a01 = a[1], a02 = a[2];
+    var a10 = a[3], a11 = a[4], a12 = a[5];
+    var a20 = a[6], a21 = a[7], a22 = a[8];
+    var b00 = b[0], b01 = b[1], b02 = b[2];
+    var b10 = b[3], b11 = b[4], b12 = b[5];
+    var b20 = b[6], b21 = b[7], b22 = b[8];
+    return [
+        b00 * a00 + b01 * a10 + b02 * a20,
+        b00 * a01 + b01 * a11 + b02 * a21,
+        b00 * a02 + b01 * a12 + b02 * a22,
+        b10 * a00 + b11 * a10 + b12 * a20,
+        b10 * a01 + b11 * a11 + b12 * a21,
+        b10 * a02 + b11 * a12 + b12 * a22,
+        b20 * a00 + b21 * a10 + b22 * a20,
+        b20 * a01 + b21 * a11 + b22 * a21,
+        b20 * a02 + b21 * a12 + b22 * a22
+    ];
+}
+
+function createAndCompileShader(gl, id) {var element = document.getElementById(id);
+    var type = null;
+    switch (element.type) {
+        case &#39;x-shader/x-vertex&#39;:
+            type = gl.VERTEX_SHADER;
+            break;
+        case &#39;x-shader/x-fragment&#39;:
+            type = gl.FRAGMENT_SHADER;
+            break;
+        default:
+            throw &#39;Unknown shader type:&#39; + element.type;
+    }
+    var source = element.textContent;
+    var shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {throw &#39;Error compiling shader:&#39; + gl.getShaderInfoLog(shader);
+    }
+    return shader;
+}
+
+function createAndLinkProgram(gl, vertexShaderId, fragmentShaderId) {var program = gl.createProgram();
+    gl.attachShader(program, createAndCompileShader(gl, vertexShaderId));
+    gl.attachShader(program, createAndCompileShader(gl, fragmentShaderId));
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {throw &#39;Error linking program:&#39; + gl.getProgramInfoLog(program);
+    }
+    return program;
+}
+
+/**
+ * @param {[float]} value
+ */
+function setUniformFv(gl, program, name, value) {gl[&#39;uniform&#39; + value.length + &#39;fv&#39;](gl.getUniformLocation(program, name), value);
+}
+
+/**
+ * @param {string} color &#39;#RRGGBB&#39;
+ * @param {float=} alpha \in [0, 1]
+ */
+function setUniformColor(gl, program, name, color, alpha) {if (!/^#[0-9A-Fa-f]{6}$/.test(color)) {throw &#39;Invalid color:&#39; + color;}
+    setUniformFv(gl, program, name, [parseInt(color.substr(1, 2), 16) / 0xff,
+        parseInt(color.substr(3, 2), 16) / 0xff,
+        parseInt(color.substr(5, 2), 16) / 0xff,
+        alpha || 1
+    ]);
+}
+
+function setUniformMatrix(gl, program, name, value) {gl[&#39;uniformMatrix&#39; + Math.sqrt(value.length) + &#39;fv&#39;](gl.getUniformLocation(program, name), false, value);
+}
+
+/**
+ * @param {[[float]]} value
+ */
+function setAttributeArrayFva(gl, program, name, value) {var buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    var data = new Float32Array(Array.prototype.concat.apply([], value));
+    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+    var location = gl.getAttribLocation(program, name);
+    gl.enableVertexAttribArray(location);
+    var size = value[0].length;
+    gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0);
+}
+
+var _gl = null;
+var _program = null;
+
+function initialize(gl, program) {
+    _gl = gl;
+    _program = program;
+}
+
+function setColor(color, alpha) {setUniformColor(_gl, _program, &#39;u_color&#39;, color, alpha);
+}
+
+var _transformations = [];
+
+function getTransformation() {return _transformations[_transformations.length - 1];
+}
+
+function _setTransformation(transformation) {setUniformMatrix(_gl, _program, &#39;u_transformation&#39;, transformation);
+}
+
+function setTransformation(transformation) {_setTransformation(transformation);
+    _transformations = [transformation];
+}
+
+function pushTransformation(transformation) {transformation = multiplyMatrix(getTransformation(), transformation);
+    _setTransformation(transformation);
+    _transformations.push(transformation);
+}
+
+function popTransformation() {_transformations.pop();
+    _setTransformation(getTransformation());
+}
+
+function drawTriangles(positions) {setAttributeArrayFva(_gl, _program, &#39;a_position&#39;, positions);
+    _gl.drawArrays(_gl.TRIANGLES, 0, positions.length);
+}
+
+function drawRectangle(x, y, width, height) {
+    var x1 = x;
+    var y1= y;
+    var x2 = x + width;
+    var y2 = y + height;
+    drawTriangles([[x1, y1],
+        [x2, y1],
+        [x1, y2],
+        [x1, y2],
+        [x2, y1],
+        [x2, y2]
+    ]);
+}
+
+function drawElementT() {
+    pushTransformation(multiplyMatrix(makeTranslationMatrix(0, -100),
+        multiplyMatrix(makeRotationMatrix(18),
+            makeTranslationMatrix(0, 100)
+        )
+    ));
+    drawTriangles([[0, -100],
+        [0, 0],
+        [50, 0]
+    ]);
+    popTransformation();}
+
+function drawElementC() {drawElementT();
+    pushTransformation(makeScalingMatrix(-1, 1));
+    drawElementT();
+    popTransformation();}
+
+function drawElementCWithRotation(angle) {pushTransformation(makeRotationMatrix(angle));
+    drawElementC();
+    popTransformation();}
+
+function draw(gl) {gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+
+    gl.clearColor(0xde / 0xff, 0x29 / 0xff, 0x10 / 0xff, 0xff / 0xff);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    var program = createAndLinkProgram(gl, &#39;vertex-shader&#39;, &#39;fragment-shader&#39;);
+    gl.useProgram(program);
+
+    initialize(gl, program);
+
+    setColor(&#39;#ffdd00&#39;);
+
+    setTransformation(makeProjectionMatrix(1000, 800));
+
+    pushTransformation(makeTranslationMatrix(150, 200));
+    drawElementC();
+    drawElementCWithRotation(72);
+    drawElementCWithRotation(144);
+    drawElementCWithRotation(216);
+    drawElementCWithRotation(288);
+    popTransformation();
+
+    drawRectangle(400, 250, 100, 25);
+
+    pushTransformation([
+        0.6, -0.8, 0,
+        0.8, 0.6, 0,
+        0, 0, 1
+    ]);
+    drawRectangle(-81, 367, 75, 25);
+    popTransformation();
+
+    pushTransformation([
+        0.6, 0.8, 0,
+        -0.8, 0.6, 0,
+        0, 0, 1
+    ]);
+    drawRectangle(385.5, -139, 75, 25);
+    popTransformation();
+
+    gl.flush();}
+
+function main() {var canvas = document.getElementById(&#39;canvas&#39;);
+    var webgl = canvas.getContext(&#39;webgl&#39;) || canvas.getContext(&#39;experimental-webgl&#39;);
+    if (!webgl) {alert(&quot;Error initializing WebGL. Your browser may not support it.&quot;);
+        return;
+    }
+
+    var needToDraw = true;
+    function resizeAndDraw() {
+        var resized = canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientWidth * 0.8;
+        if (resized) {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientWidth * 0.8;
+        }
+        if (resized || needToDraw) {
+            needToDraw = false;
+            draw(webgl);
+        }
+        requestAnimationFrame(resizeAndDraw);
+    }
+    requestAnimationFrame(resizeAndDraw);
+}
+
+main();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh&quot;&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WebGL 入门笔记</title>
+    <link href="http://blog.zhanghai.me/webgl-notes/"/>
+    <id>http://blog.zhanghai.me/webgl-notes/</id>
+    <published>2016-10-10T12:01:43.000Z</published>
+    <updated>2016-10-10T13:30:39.075Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt; 因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。&lt;/p&gt;
+&lt;p&gt;WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。&lt;/p&gt;
+&lt;h2 id=&quot;基础&quot;&gt;&lt;a href=&quot;# 基础&quot; class=&quot;headerlink&quot; title=&quot;基础&quot;&gt;&lt;/a&gt;基础 &lt;/h2&gt;&lt;p&gt; 请阅读 &lt;a href=&quot;https://www.html5rocks.com/en/tutorials/webgl/webgl_fundamentals/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebGL Fundamentals&lt;/a&gt; 以获得对于 WebGL 的大体了解。&lt;/p&gt;
+&lt;h2 id=&quot;Shader&quot;&gt;&lt;a href=&quot;#Shader&quot; class=&quot;headerlink&quot; title=&quot;Shader&quot;&gt;&lt;/a&gt;Shader&lt;/h2&gt;&lt;p&gt;在 WebGL 中需要两种 shader 进行渲染。第一种是 vertex shader，负责对顶点进行变换，例如将像素坐标映射到 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_model_view_projection&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;clip space&lt;/a&gt;。而第二种是 fragment shader，负责对像素点进行着色。&lt;/p&gt;
+&lt;p&gt;Shader 可以有两种参数。第一种是 attribute，在每次调用中不同，例如当前顶点的位置；第二种是 uniform，在渲染过程中共享，例如渲染的变换矩阵。&lt;/p&gt;
+&lt;p&gt;以下是两个实用的简单 2D shader：&lt;/p&gt;
+&lt;p&gt;Vertex shader：&lt;/p&gt;
+&lt;figure class=&quot;highlight glsl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;attribute&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;vec2&lt;/span&gt; a_position;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;uniform&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;mat3&lt;/span&gt; u_transformation;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;gl_Position&lt;/span&gt; = &lt;span class=&quot;keyword&quot;&gt;vec4&lt;/span&gt;((u_transformation * &lt;span class=&quot;keyword&quot;&gt;vec3&lt;/span&gt;(a_position, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)).xy, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Fragment shader：&lt;/p&gt;
+&lt;figure class=&quot;highlight glsl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;precision&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;mediump&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;float&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;uniform&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;vec4&lt;/span&gt; u_color;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;built_in&quot;&gt;gl_FragColor&lt;/span&gt; = u_color;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;初始化&quot;&gt;&lt;a href=&quot;# 初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化 &lt;/h2&gt;&lt;p&gt; 以下是我的一些工具函数，参考了 &lt;a href=&quot;http://webglfundamentals.org/webgl/lessons/webgl-boilerplate.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebGL Boilerplate&lt;/a&gt; 和一部分 &lt;a href=&quot;http://webglfundamentals.org/webgl/lessons/webgl-less-code-more-fun.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebGL - Less Code, More Fun&lt;/a&gt;：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;createAndCompileShader&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;gl, id&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; element = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementById(id);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; type = &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;switch&lt;/span&gt; (element.type) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;x-shader/x-vertex&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            type = gl.VERTEX_SHADER;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;x-shader/x-fragment&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            type = gl.FRAGMENT_SHADER;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;default&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;Unknown shader type:&#39;&lt;/span&gt; + element.type;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; source = element.textContent;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; shader = gl.createShader(type);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.shaderSource(shader, source);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.compileShader(shader);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;Error compiling shader:&#39;&lt;/span&gt; + gl.getShaderInfoLog(shader);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; shader;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;createAndLinkProgram&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;gl, vertexShaderId, fragmentShaderId&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; program = gl.createProgram();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.attachShader(program, createAndCompileShader(gl, vertexShaderId));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.attachShader(program, createAndCompileShader(gl, fragmentShaderId));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.linkProgram(program);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!gl.getProgramParameter(program, gl.LINK_STATUS)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;Error linking program:&#39;&lt;/span&gt; + gl.getProgramInfoLog(program);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; program;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;提供数据&quot;&gt;&lt;a href=&quot;# 提供数据&quot; class=&quot;headerlink&quot; title=&quot;提供数据&quot;&gt;&lt;/a&gt;提供数据 &lt;/h2&gt;&lt;p&gt; 以下是我自己写作的一些工具函数：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&amp;#10; * @param &amp;#123;[float]&amp;#125; value&amp;#10; */&amp;#10;function setUniformFv(gl, program, name, value) &amp;#123;&amp;#10;    gl[&amp;#39;uniform&amp;#39; + value.length + &amp;#39;fv&amp;#39;](gl.getUniformLocation(program, name), value);&amp;#10;&amp;#125;&amp;#10;&amp;#10;/**&amp;#10; * @param &amp;#123;string&amp;#125; color &amp;#39;#RRGGBB&amp;#39;&amp;#10; * @param &amp;#123;float=&amp;#125; alpha \in [0, 1]&amp;#10; */&amp;#10;function setUniformColor(gl, program, name, color, alpha) &amp;#123;&amp;#10;    if (!/^#[0-9A-Fa-f]&amp;#123;6&amp;#125;$/.test(color)) &amp;#123;&amp;#10;        throw &amp;#39;Invalid color: &amp;#39; + color;&amp;#10;    &amp;#125;&amp;#10;    setUniformFv(gl, program, name, [&amp;#10;        parseInt(color.substr(1, 2), 16) / 0xff,&amp;#10;        parseInt(color.substr(3, 2), 16) / 0xff,&amp;#10;        parseInt(color.substr(5, 2), 16) / 0xff,&amp;#10;        alpha || 1&amp;#10;    ]);&amp;#10;&amp;#125;&amp;#10;&amp;#10;function setUniformMatrix(gl, program, name, value) &amp;#123;&amp;#10;    gl[&amp;#39;uniformMatrix&amp;#39; + Math.sqrt(value.length) + &amp;#39;fv&amp;#39;](gl.getUniformLocation(program, name), false, value);&amp;#10;&amp;#125;&amp;#10;&amp;#10;/**&amp;#10; * @param &amp;#123;[[float]]&amp;#125; value&amp;#10; */&amp;#10;function setAttributeArrayFva(gl, program, name, value) &amp;#123;&amp;#10;    var buffer = gl.createBuffer();&amp;#10;    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);&amp;#10;    var data = new Float32Array(Array.prototype.concat.apply([], value));&amp;#10;    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);&amp;#10;    var location = gl.getAttribLocation(program, name);&amp;#10;    gl.enableVertexAttribArray(location);&amp;#10;    var size = value[0].length;&amp;#10;    gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0);&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;变换矩阵&quot;&gt;&lt;a href=&quot;# 变换矩阵&quot; class=&quot;headerlink&quot; title=&quot;变换矩阵&quot;&gt;&lt;/a&gt;变换矩阵 &lt;/h2&gt;&lt;p&gt; 以下代码参考了 &lt;a href=&quot;https://www.html5rocks.com/en/tutorials/webgl/webgl_transforms/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebGL 2D Translation&lt;/a&gt; 和 &lt;a href=&quot;https://www.html5rocks.com/en/tutorials/webgl/webgl_orthographic_3d/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebGL Orthographic 3D&lt;/a&gt;。需要注意的是，原教程的代码中有部分矩阵错误地以行优先而非列有限的方式进行表示或运算。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;makeIdentityMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;makeTranslationMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;tx, ty&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        tx, ty, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;makeScalingMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;sx, sy&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        sx, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, sy, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;degreeToRadian&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;angle&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; angle / &lt;span class=&quot;number&quot;&gt;180&lt;/span&gt; * &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.PI;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;makeRotationMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;angle&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    angle = degreeToRadian(angle);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; cosa = &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.cos(angle);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; sina = &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.sin(angle);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cosa, sina, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        -sina, cosa, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;makeSkewXMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;angle&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    angle = degreeToRadian(angle);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; tana = &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.tan(angle);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        tana, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;makeSkewYMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;angle&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    angle = degreeToRadian(angle);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; tana = &lt;span class=&quot;built_in&quot;&gt;Math&lt;/span&gt;.tan(angle);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, tana, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;makeProjectionMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;width, height&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; / width, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, -&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; / height, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        -&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;multiplyMatrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;a, b&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// A \cdot B = (B^T \cdot A^T)^T&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a00 = a[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;], a01 = a[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;], a02 = a[&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a10 = a[&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;], a11 = a[&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;], a12 = a[&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a20 = a[&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;], a21 = a[&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;], a22 = a[&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; b00 = b[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;], b01 = b[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;], b02 = b[&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; b10 = b[&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;], b11 = b[&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;], b12 = b[&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; b20 = b[&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;], b21 = b[&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;], b22 = b[&lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b00 * a00 + b01 * a10 + b02 * a20,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b00 * a01 + b01 * a11 + b02 * a21,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b00 * a02 + b01 * a12 + b02 * a22,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b10 * a00 + b11 * a10 + b12 * a20,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b10 * a01 + b11 * a11 + b12 * a21,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b10 * a02 + b11 * a12 + b12 * a22,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b20 * a00 + b21 * a10 + b22 * a20,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b20 * a01 + b21 * a11 + b22 * a21,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        b20 * a02 + b21 * a12 + b22 * a22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;近似于 -OpenGL- 的 -API- 封装&quot;&gt;&lt;a href=&quot;# 近似于 -OpenGL- 的 -API- 封装&quot; class=&quot;headerlink&quot; title=&quot;近似于 OpenGL 的 API 封装&quot;&gt;&lt;/a&gt;近似于 OpenGL 的 API 封装&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var _gl = null;&amp;#10;var _program = null;&amp;#10;&amp;#10;function initialize(gl, program) &amp;#123;&amp;#10;    _gl = gl;&amp;#10;    _program = program;&amp;#10;&amp;#125;&amp;#10;&amp;#10;function setColor(color, alpha) &amp;#123;&amp;#10;    setUniformColor(_gl, _program, &amp;#39;u_color&amp;#39;, color, alpha);&amp;#10;&amp;#125;&amp;#10;&amp;#10;var _transformations = [];&amp;#10;&amp;#10;function getTransformation() &amp;#123;&amp;#10;    return _transformations[_transformations.length - 1];&amp;#10;&amp;#125;&amp;#10;&amp;#10;function _setTransformation(transformation) &amp;#123;&amp;#10;    setUniformMatrix(_gl, _program, &amp;#39;u_transformation&amp;#39;, transformation);&amp;#10;&amp;#125;&amp;#10;&amp;#10;function setTransformation(transformation) &amp;#123;&amp;#10;    _setTransformation(transformation);&amp;#10;    _transformations = [transformation];&amp;#10;&amp;#125;&amp;#10;&amp;#10;function pushTransformation(transformation) &amp;#123;&amp;#10;    transformation = multiplyMatrix(getTransformation(), transformation);&amp;#10;    _setTransformation(transformation);&amp;#10;    _transformations.push(transformation);&amp;#10;&amp;#125;&amp;#10;&amp;#10;function popTransformation() &amp;#123;&amp;#10;    _transformations.pop();&amp;#10;    _setTransformation(getTransformation());&amp;#10;&amp;#125;&amp;#10;&amp;#10;function drawTriangles(positions) &amp;#123;&amp;#10;    setAttributeArrayFva(_gl, _program, &amp;#39;a_position&amp;#39;, positions);&amp;#10;    _gl.drawArrays(_gl.TRIANGLES, 0, positions.length);&amp;#10;&amp;#125;&amp;#10;&amp;#10;function drawRectangle(x, y, width, height) &amp;#123;&amp;#10;    var x1 = x;&amp;#10;    var y1= y;&amp;#10;    var x2 = x + width;&amp;#10;    var y2 = y + height;&amp;#10;    drawTriangles([&amp;#10;        [x1, y1],&amp;#10;        [x2, y1],&amp;#10;        [x1, y2],&amp;#10;        [x1, y2],&amp;#10;        [x2, y1],&amp;#10;        [x2, y2]&amp;#10;    ]);&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;绘制和应对大小改变&quot;&gt;&lt;a href=&quot;# 绘制和应对大小改变&quot; class=&quot;headerlink&quot; title=&quot;绘制和应对大小改变&quot;&gt;&lt;/a&gt;绘制和应对大小改变 &lt;/h2&gt;&lt;p&gt; 以下代码参考了 &lt;a href=&quot;http://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebGL Resizing the Canvas&lt;/a&gt; 和 &lt;a href=&quot;http://webglfundamentals.org/webgl/lessons/webgl-anti-patterns.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebGL Anti-Patterns&lt;/a&gt;。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;draw&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;gl&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.viewport(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, gl.drawingBufferWidth, gl.drawingBufferHeight);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.clearColor(&lt;span class=&quot;number&quot;&gt;0xde&lt;/span&gt; / &lt;span class=&quot;number&quot;&gt;0xff&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0x29&lt;/span&gt; / &lt;span class=&quot;number&quot;&gt;0xff&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0x10&lt;/span&gt; / &lt;span class=&quot;number&quot;&gt;0xff&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0xff&lt;/span&gt; / &lt;span class=&quot;number&quot;&gt;0xff&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.clear(gl.COLOR_BUFFER_BIT);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; program = createAndLinkProgram(gl, &lt;span class=&quot;string&quot;&gt;&#39;vertex-shader&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;fragment-shader&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.useProgram(program);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    initialize(gl, program);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    setColor(&lt;span class=&quot;string&quot;&gt;&#39;#ffdd00&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    setTransformation(makeProjectionMatrix(&lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;800&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Draw here.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    gl.flush();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; canvas = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementById(&lt;span class=&quot;string&quot;&gt;&#39;canvas&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; webgl = canvas.getContext(&lt;span class=&quot;string&quot;&gt;&#39;webgl&#39;&lt;/span&gt;) || canvas.getContext(&lt;span class=&quot;string&quot;&gt;&#39;experimental-webgl&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (!webgl) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        alert(&lt;span class=&quot;string&quot;&gt;&quot;Error initializing WebGL. Your browser may not support it.&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; needToDraw = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;resizeAndDraw&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; resized = canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientWidth * &lt;span class=&quot;number&quot;&gt;0.8&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (resized) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            canvas.width = canvas.clientWidth;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            canvas.height = canvas.clientWidth * &lt;span class=&quot;number&quot;&gt;0.8&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (resized || needToDraw) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            needToDraw = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            draw(webgl);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        requestAnimationFrame(resizeAndDraw);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    requestAnimationFrame(resizeAndDraw);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;main();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;结语&quot;&gt;&lt;a href=&quot;# 结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语 &lt;/h2&gt;&lt;p&gt; 作为一个复杂度适中的示例，我的作业代码可以在 &lt;a href=&quot;/webgl-notes/flag.html&quot; title=&quot;这里&quot;&gt;这里&lt;/a&gt; 看到。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h2&gt;&lt;p&gt; 因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。&lt;/p&gt;
+&lt;p&gt;WebGL
+    
+    </summary>
+    
+    
+      <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
+    
+      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
+    
+      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
+    
+  </entry>
   
   <entry>
     <title>将 Reveal.js 演示文稿部署至 GitHub Pages</title>

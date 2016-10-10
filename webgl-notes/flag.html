@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flag of the People's Liberation Army</title>
+
+    <style>
+html, body {
+    margin: 0;
+}
+canvas {
+    width: 100%;
+}
+    </style>
+</head>
+
+<body>
+
+<canvas id="canvas">Your browser doesn't appear to support the <code>&lt;canvas&gt;</code> element.</canvas>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec2 a_position;
+
+uniform mat3 u_transformation;
+
+void main() {
+    gl_Position = vec4((u_transformation * vec3(a_position, 1)).xy, 0, 1);
+}
+</script>
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+uniform vec4 u_color;
+
+void main() {
+   gl_FragColor = u_color;
+}
+</script>
+<script>
+'use strict';
+
+function makeIdentityMatrix() {
+    return [
+        1, 0, 0,
+        0, 1, 0,
+        0, 0, 1
+    ];
+}
+
+function makeTranslationMatrix(tx, ty) {
+    return [
+        1, 0, 0,
+        0, 1, 0,
+        tx, ty, 1
+    ];
+}
+
+function makeScalingMatrix(sx, sy) {
+    return [
+        sx, 0, 0,
+        0, sy, 0,
+        0, 0, 1
+    ];
+}
+
+function degreeToRadian(angle) {
+    return angle / 180 * Math.PI;
+}
+
+function makeRotationMatrix(angle) {
+    angle = degreeToRadian(angle);
+    var cosa = Math.cos(angle);
+    var sina = Math.sin(angle);
+    return [
+        cosa, sina, 0,
+        -sina, cosa, 0,
+        0, 0, 1
+    ];
+}
+
+function makeSkewXMatrix(angle) {
+    angle = degreeToRadian(angle);
+    var tana = Math.tan(angle);
+    return [
+        1, 0, 0,
+        tana, 1, 0,
+        0, 0, 1
+    ];
+}
+
+function makeSkewYMatrix(angle) {
+    angle = degreeToRadian(angle);
+    var tana = Math.tan(angle);
+    return [
+        1, tana, 0,
+        0, 1, 0,
+        0, 0, 1
+    ];
+}
+
+function makeProjectionMatrix(width, height) {
+    return [
+        2 / width, 0, 0,
+        0, -2 / height, 0,
+        -1, 1, 1
+    ];
+}
+
+function multiplyMatrix(a, b) {
+    // A \cdot B = (B^T \cdot A^T)^T
+    var a00 = a[0], a01 = a[1], a02 = a[2];
+    var a10 = a[3], a11 = a[4], a12 = a[5];
+    var a20 = a[6], a21 = a[7], a22 = a[8];
+    var b00 = b[0], b01 = b[1], b02 = b[2];
+    var b10 = b[3], b11 = b[4], b12 = b[5];
+    var b20 = b[6], b21 = b[7], b22 = b[8];
+    return [
+        b00 * a00 + b01 * a10 + b02 * a20,
+        b00 * a01 + b01 * a11 + b02 * a21,
+        b00 * a02 + b01 * a12 + b02 * a22,
+        b10 * a00 + b11 * a10 + b12 * a20,
+        b10 * a01 + b11 * a11 + b12 * a21,
+        b10 * a02 + b11 * a12 + b12 * a22,
+        b20 * a00 + b21 * a10 + b22 * a20,
+        b20 * a01 + b21 * a11 + b22 * a21,
+        b20 * a02 + b21 * a12 + b22 * a22
+    ];
+}
+
+function createAndCompileShader(gl, id) {
+    var element = document.getElementById(id);
+    var type = null;
+    switch (element.type) {
+        case 'x-shader/x-vertex':
+            type = gl.VERTEX_SHADER;
+            break;
+        case 'x-shader/x-fragment':
+            type = gl.FRAGMENT_SHADER;
+            break;
+        default:
+            throw 'Unknown shader type: ' + element.type;
+    }
+    var source = element.textContent;
+    var shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        throw 'Error compiling shader: ' + gl.getShaderInfoLog(shader);
+    }
+    return shader;
+}
+
+function createAndLinkProgram(gl, vertexShaderId, fragmentShaderId) {
+    var program = gl.createProgram();
+    gl.attachShader(program, createAndCompileShader(gl, vertexShaderId));
+    gl.attachShader(program, createAndCompileShader(gl, fragmentShaderId));
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        throw 'Error linking program: ' + gl.getProgramInfoLog(program);
+    }
+    return program;
+}
+
+/**
+ * @param {[float]} value
+ */
+function setUniformFv(gl, program, name, value) {
+    gl['uniform' + value.length + 'fv'](gl.getUniformLocation(program, name), value);
+}
+
+/**
+ * @param {string} color '#RRGGBB'
+ * @param {float=} alpha \in [0, 1]
+ */
+function setUniformColor(gl, program, name, color, alpha) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(color)) {
+        throw 'Invalid color: ' + color;
+    }
+    setUniformFv(gl, program, name, [
+        parseInt(color.substr(1, 2), 16) / 0xff,
+        parseInt(color.substr(3, 2), 16) / 0xff,
+        parseInt(color.substr(5, 2), 16) / 0xff,
+        alpha || 1
+    ]);
+}
+
+function setUniformMatrix(gl, program, name, value) {
+    gl['uniformMatrix' + Math.sqrt(value.length) + 'fv'](gl.getUniformLocation(program, name), false, value);
+}
+
+/**
+ * @param {[[float]]} value
+ */
+function setAttributeArrayFva(gl, program, name, value) {
+    var buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    var data = new Float32Array(Array.prototype.concat.apply([], value));
+    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+    var location = gl.getAttribLocation(program, name);
+    gl.enableVertexAttribArray(location);
+    var size = value[0].length;
+    gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0);
+}
+
+var _gl = null;
+var _program = null;
+
+function initialize(gl, program) {
+    _gl = gl;
+    _program = program;
+}
+
+function setColor(color, alpha) {
+    setUniformColor(_gl, _program, 'u_color', color, alpha);
+}
+
+var _transformations = [];
+
+function getTransformation() {
+    return _transformations[_transformations.length - 1];
+}
+
+function _setTransformation(transformation) {
+    setUniformMatrix(_gl, _program, 'u_transformation', transformation);
+}
+
+function setTransformation(transformation) {
+    _setTransformation(transformation);
+    _transformations = [transformation];
+}
+
+function pushTransformation(transformation) {
+    transformation = multiplyMatrix(getTransformation(), transformation);
+    _setTransformation(transformation);
+    _transformations.push(transformation);
+}
+
+function popTransformation() {
+    _transformations.pop();
+    _setTransformation(getTransformation());
+}
+
+function drawTriangles(positions) {
+    setAttributeArrayFva(_gl, _program, 'a_position', positions);
+    _gl.drawArrays(_gl.TRIANGLES, 0, positions.length);
+}
+
+function drawRectangle(x, y, width, height) {
+    var x1 = x;
+    var y1= y;
+    var x2 = x + width;
+    var y2 = y + height;
+    drawTriangles([
+        [x1, y1],
+        [x2, y1],
+        [x1, y2],
+        [x1, y2],
+        [x2, y1],
+        [x2, y2]
+    ]);
+}
+
+function drawElementT() {
+    pushTransformation(multiplyMatrix(
+        makeTranslationMatrix(0, -100),
+        multiplyMatrix(
+            makeRotationMatrix(18),
+            makeTranslationMatrix(0, 100)
+        )
+    ));
+    drawTriangles([
+        [0, -100],
+        [0, 0],
+        [50, 0]
+    ]);
+    popTransformation();
+}
+
+function drawElementC() {
+    drawElementT();
+    pushTransformation(makeScalingMatrix(-1, 1));
+    drawElementT();
+    popTransformation();
+}
+
+function drawElementCWithRotation(angle) {
+    pushTransformation(makeRotationMatrix(angle));
+    drawElementC();
+    popTransformation();
+}
+
+function draw(gl) {
+
+    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+
+    gl.clearColor(0xde / 0xff, 0x29 / 0xff, 0x10 / 0xff, 0xff / 0xff);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    var program = createAndLinkProgram(gl, 'vertex-shader', 'fragment-shader');
+    gl.useProgram(program);
+
+    initialize(gl, program);
+
+    setColor('#ffdd00');
+
+    setTransformation(makeProjectionMatrix(1000, 800));
+
+    pushTransformation(makeTranslationMatrix(150, 200));
+    drawElementC();
+    drawElementCWithRotation(72);
+    drawElementCWithRotation(144);
+    drawElementCWithRotation(216);
+    drawElementCWithRotation( 288);
+    popTransformation();
+
+    drawRectangle(400, 250, 100, 25);
+
+    pushTransformation([
+        0.6, -0.8, 0,
+        0.8, 0.6, 0,
+        0, 0, 1
+    ]);
+    drawRectangle(-81, 367, 75, 25);
+    popTransformation();
+
+    pushTransformation([
+        0.6, 0.8, 0,
+        -0.8, 0.6, 0,
+        0, 0, 1
+    ]);
+    drawRectangle(385.5, -139, 75, 25);
+    popTransformation();
+
+    gl.flush();
+}
+
+function main() {
+
+    var canvas = document.getElementById('canvas');
+    var webgl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!webgl) {
+        alert("Error initializing WebGL. Your browser may not support it.");
+        return;
+    }
+
+    var needToDraw = true;
+    function resizeAndDraw() {
+        var resized = canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientWidth * 0.8;
+        if (resized) {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientWidth * 0.8;
+        }
+        if (resized || needToDraw) {
+            needToDraw = false;
+            draw(webgl);
+        }
+        requestAnimationFrame(resizeAndDraw);
+    }
+    requestAnimationFrame(resizeAndDraw);
+}
+
+main();
+</script>
+</body>
+</html>
