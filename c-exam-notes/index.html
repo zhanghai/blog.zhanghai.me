@@ -21,7 +21,7 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
@@ -84,11 +84,11 @@
 <p>看见定义变量，总是注意变量是否被初始化过。</p>
 <p>注意 <code>if</code> 中的等号是 <code>=</code> 还是 <code>==</code>。</p>
 <p><code>if</code> 语句没有花括号时只包含之后一行，如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition)</span><br><span class="line">    optionally_executed();</span><br><span class="line">    always_executed();</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (condition)</div><div class="line">    optionally_executed();</div><div class="line">    always_executed();</div></pre></td></tr></table></figure>
 <p><code>if else</code>语句在没有花括号时，<code>else</code>总是匹配最近的<code>if</code>（Dangling Else），如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a)</span><br><span class="line">    <span class="keyword">if</span> (b) do_b();</span><br><span class="line"><span class="keyword">else</span> do_c();</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a)</div><div class="line">    <span class="keyword">if</span> (b) do_b();</div><div class="line"><span class="keyword">else</span> do_c();</div></pre></td></tr></table></figure>
 <p>实际上是：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a) &#123;</span><br><span class="line">    <span class="keyword">if</span> (b) &#123;</span><br><span class="line">        do_b();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        do_c();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a) &#123;</div><div class="line">    <span class="keyword">if</span> (b) &#123;</div><div class="line">        do_b();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        do_c();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><code>switch</code>语句在缺少 <code>break</code> 时将 Fall through。</p>
 <p>求值逻辑表达式时 <code> 真</code>为 <code>1</code>，<code> 假</code>为 <code>0</code>。 判断逻辑表达式时，<code> 非 0</code>为 <code> 真</code>，<code>0</code>为 <code> 假</code>。</p>
 <p><code>true</code>、<code>false</code>、<code>TRUE</code>、<code>FALSE</code> 是合法的变量名，因为在 C 中它们不是关键字。</p>
@@ -96,21 +96,21 @@
 <p>注意整型除法结果被截断， <code>int n = 2; 1 / n == 0</code>。</p>
 <p>注意本地变量需要初始化。</p>
 <p>注意变量作用域屏蔽，如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> b;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>; &#125;</div></pre></td></tr></table></figure>
 <p>注意函数为传值，指针也是值传递，例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> *temp = a;</div><div class="line">    a = b;</div><div class="line">    b = temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>并不影响外部。</p>
 <p>注意 <code>int</code> 溢出，若易发生溢出（如阶乘操作）应使用 <code>long</code> 或<code>double</code>代替。</p>
 <p><code>char a = 255</code>，打印后值为 <code>-1</code>，因为 <code>char</code> 为有符号类型并采用补码表示，其范围为 <code>-128 ~ 127</code>。</p>
 <p>负数的位移操作中符号位也参与位移；左操作数为负数的右移 <code>&gt;&gt;</code> 结果由实现定义，Turbo C 为补 1。</p>
 <p><code>a/b</code>与 <code>a%b</code> 结果在 <code>a</code> 与<code>b</code>中有一个为负数时由实现定义，但保证 <code>a / b * b + a % b</code> 结果为<code>a</code>。</p>
 <p>过滤回车结束的输入字符串：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> ((ch = getchar()) != <span class="string">'\n'</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ch ...) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    str[i++] = ch;</span><br><span class="line">&#125;</span><br><span class="line">str[i] = <span class="string">'\0'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">i = <span class="number">0</span>;</div><div class="line"><span class="keyword">while</span> ((ch = getchar()) != <span class="string">'\n'</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (ch ...) &#123;</div><div class="line">        <span class="keyword">continue</span>;</div><div class="line">    &#125;</div><div class="line">    str[i++] = ch;</div><div class="line">&#125;</div><div class="line">str[i] = <span class="string">'\0'</span>;</div></pre></td></tr></table></figure>
 <p>C 语言二维数组存储采用 Row-major 方式，即在内存中存储为 row1, row2, row3…，初始化时必须给出列数以确定行中元素个数，静态变量中未初始化元素自动为 0，使用时可以将列数溢出到下一行，即偏移值计算为 row_count * row + column。</p>
 <p>注意分号：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (...);</span><br><span class="line">            do_something();</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (...);</div><div class="line">            do_something();</div></pre></td></tr></table></figure>
 <p><code>do_something</code>只执行一次。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="number">0</span>);</span><br><span class="line">    do_something();</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="number">0</span>);</div><div class="line">    do_something();</div></pre></td></tr></table></figure>
 <p><code>do_something</code>一定会被执行。</p>
 <p><code>sizeof()</code>表达式的值在编译时确定。编译器不计算其中表达式的值，仅将其替换为对应类型。<code>sizeof</code>应用于数组时结果为 数组元素个数 * 元素大小，应用于指针时为指针变量长度（在 32 位机器上地址长度为 32，故值为 8；64 位机器上为 16）。</p>
 <p>无论 <code>x</code> 是数组还是指针，在定义上编译器认为 <code>x[3]</code> 与<code>*(x+3)</code>是等价的。但根据 x 的类型是数组还是指针, 编译器将为 <code>x+3</code> 或<code>sizeof(x)</code>生成不同的代码。</p>
@@ -204,9 +204,9 @@
 <p>通过 <code>memset(array,0,sizeof(array))</code> 可以实现数组重初始化。（需要<code>string.h</code>）</p>
 <p>宏 <code>#</code> 代表将此后的文本变为字符串；<code>##</code>代表连接文本；含有 <code>#</code> 与<code>##</code>的宏不进行参数展开，可利用包装宏展开。（<a href="http://learn.akae.cn/media/ch21s02.html" target="_blank" rel="external">参考</a>）</p>
 <p>宏函数定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> func_name(var) \</span><br><span class="line">do &#123; \</span><br><span class="line">    do_something(); \</span><br><span class="line">&#125; while (<span class="number">0</span>)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> func_name(var) \</span></div><div class="line">do &#123; \</div><div class="line">    do_something(); \</div><div class="line">&#125; while (0)</div></pre></td></tr></table></figure>
 <p>调用与函数调用一致：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func_name(var);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">func_name(var);</div></pre></td></tr></table></figure>
 <p><code>scanf</code>中 <code>f</code> 为<code>float</code>，<code>lf</code>为 <code>double</code>；<code>printf</code> 中<code>f</code>为 <code>double</code>；<code>lf</code> 未定义。</p>
 <p><code>,</code>逗号表达式对左侧表达式求值并丢弃返回值，之后对右侧表达式求值并返回其返回值。</p>
 <p><code>#define SWAP(a,b) (a)^=(b)^=(a)^=(b)</code>可实现无临时变量的交换。</p>
@@ -236,7 +236,7 @@
 <p><code>auto</code>，<code>register</code>，<code>volatile</code>均为 C 关键字。</p>
 <p><code>007</code>为八进制数字，注意范围为 <em>0-7</em>，<code>0x0F</code> 为十六进制数字。</p>
 <p><code>strcat</code>实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcat</span><span class="params">(<span class="keyword">char</span> *str1, <span class="keyword">char</span> *str2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (*str &amp;&amp; *++str);</span><br><span class="line">    <span class="keyword">while</span> (*str1++ = *str2++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcat</span><span class="params">(<span class="keyword">char</span> *str1, <span class="keyword">char</span> *str2)</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span> (*str &amp;&amp; *++str);</div><div class="line">    <span class="keyword">while</span> (*str1++ = *str2++);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote class="callout"><div class="title">相关阅读</div><a href="http://blog.yzyzsun.me/c-traps-and-pitfalls/" target="_blank" rel="external">《C 陷阱与缺陷》笔记 | 孙耀珠的博客</a></blockquote>
 
     
@@ -332,11 +332,11 @@
 <script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

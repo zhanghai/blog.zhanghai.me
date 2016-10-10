@@ -27,7 +27,7 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
@@ -99,10 +99,10 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
 <p>另一个例子是 16 位到 32 位的符号扩展，也可以用 <code>{16{signal[15]}, signal[15:0]}</code> 来完成。</p>
 <h2 id="参数定义：parameter-localparam-define"><a href="# 参数定义：parameter-localparam-define" class="headerlink" title="参数定义：parameter, localparam, `define"></a>参数定义：<code>parameter</code>, <code>localparam</code>, <code>`define</code></h2><p>Verilog 提供了三种定义“常量”的方式。</p>
 <p><code>parameter</code> 是可以由模块外部改变的参数。除了在模块内部定义的语法，我更加推荐采用 Verilog-2001 中在模块接口声明中定义的语法：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> module_name</span><br><span class="line">	<span class="keyword">#</span>(</span><br><span class="line">		<span class="keyword">parameter</span> parameter_name <span class="keyword">=</span> parameter_default_value</span><br><span class="line">	) (</span><br><span class="line">		...</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line">module_name <span class="keyword">#</span>(</span><br><span class="line">		<span class="typename">.parameter_name</span>(parameter_value)</span><br><span class="line">	) (</span><br><span class="line">		...</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">module</span> module_name</div><div class="line">	#(</div><div class="line">		<span class="keyword">parameter</span> parameter_name = parameter_default_value</div><div class="line">	) (</div><div class="line">		...</div><div class="line">	)</div><div class="line"></div><div class="line">	...</div><div class="line"><span class="keyword">endmodule</span></div><div class="line"></div><div class="line">module_name #(</div><div class="line">		<span class="variable">.parameter_name</span>(parameter_value)</div><div class="line">	) (</div><div class="line">		...</div><div class="line">	);</div></pre></td></tr></table></figure>
 <p><code>localparam</code> 是模块内部定义的参数，语法如 <code>localparam localparam_name = localparam_value</code>。</p>
 <p><code>`define</code> 是 Verilog 的宏定义，与 C 宏的文本替换相似。宏除了用于定义常量，还可以用来简化代码的编写，例如：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">`</span>define packed_wires <span class="keyword">=</span> <span class="keyword">&#123;</span>wire_1, wire_2, wire_3<span class="keyword">&#125;</span></span><br><span class="line">packed_wires <span class="keyword">=</span> <span class="number">3'b101</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">`<span class="meta-keyword">define</span> packed_wires = &#123;wire_1, wire_2, wire_3&#125;</span></div><div class="line">packed_wires = <span class="number">3'b101</span></div></pre></td></tr></table></figure>
 <h2 id="变基部分选择（Indexed-part-select）"><a href="# 变基部分选择（Indexed-part-select）" class="headerlink" title="变基部分选择（Indexed part-select）"></a>变基部分选择（Indexed part-select）</h2><p>可以使用 <code>wire_name[index_wire_name]</code> 的方式来实现一位宽度的多路选择器。相应地，Verilog-2001 也提供了 <code>wire_name[WIDTH * index_wire_name +: WIDTH]</code> 的方式来实现多位宽度的多路选择器。详情可以参考这个 StackOverflow 问题：</p>
 <p><a href="http://electronics.stackexchange.com/questions/74277" target="_blank" rel="external">What is this operator called as “+:” in verilog - Electrical Engineering Stack Exchange</a>。</p>
 <p>然而这个语法的综合有一些怪异的地方，有时会导致综合成移位器而非多路选择器，消耗较多的资源，使用时需要留意一下综合报告。</p>
@@ -214,11 +214,11 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
 <script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

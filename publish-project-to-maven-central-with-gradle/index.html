@@ -21,7 +21,7 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
@@ -83,7 +83,7 @@
 <h2 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><p>作为一个 Android 开发者，一般会使用 Gradle 进行构建与发布。广为使用的脚本是 Chris Banes 所写的 <code>gradle-mvn-push</code>，项目中的 <code>README.md</code> 有详细的步骤说明。</p>
 <blockquote class="callout"><div class="title">外部文章</div><a href="https://github.com/chrisbanes/gradle-mvn-push/blob/master/README.md" target="_blank" rel="external">gradle-mvn-push 的 README</a></blockquote>
 <p>我不喜欢将密码明文写在配置文件中，而是习惯从终端读入密码，因此我对 <code>gradle-mvn-push.gradle</code> 进行了一些修改：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> getReleaseRepositoryUrl() &#123;</span><br><span class="line">    <span class="keyword">return</span> hasProperty(<span class="string">'RELEASE_REPOSITORY_URL'</span>) ? RELEASE_REPOSITORY_URL</span><br><span class="line">            : <span class="string">"https://oss.sonatype.org/service/local/staging/deploy/maven2/"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> getSnapshotRepositoryUrl() &#123;</span><br><span class="line">    <span class="keyword">return</span> hasProperty(<span class="string">'SNAPSHOT_REPOSITORY_URL'</span>) ? SNAPSHOT_REPOSITORY_URL</span><br><span class="line">            : <span class="string">"https://oss.sonatype.org/content/repositories/snapshots/"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">    gradle.taskGraph.whenReady &#123; taskGraph -&gt;</span><br><span class="line">        <span class="keyword">if</span> (taskGraph.allTasks.<span class="keyword">any</span> &#123; it <span class="keyword">instanceof</span> Sign &#125;) &#123;</span><br><span class="line">            <span class="keyword">allprojects</span> &#123;</span><br><span class="line">                 ext.<span class="string">"signing.password"</span> = System.console() != <span class="keyword">null</span> ? System.console().readLine(<span class="string">"\nPGP private key password:"</span>) : <span class="string">""</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">def</span> getReleaseRepositoryUrl() &#123;</div><div class="line">    <span class="keyword">return</span> hasProperty(<span class="string">'RELEASE_REPOSITORY_URL'</span>) ? RELEASE_REPOSITORY_URL</div><div class="line">            : <span class="string">"https://oss.sonatype.org/service/local/staging/deploy/maven2/"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">def</span> getSnapshotRepositoryUrl() &#123;</div><div class="line">    <span class="keyword">return</span> hasProperty(<span class="string">'SNAPSHOT_REPOSITORY_URL'</span>) ? SNAPSHOT_REPOSITORY_URL</div><div class="line">            : <span class="string">"https://oss.sonatype.org/content/repositories/snapshots/"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">    gradle.taskGraph.whenReady &#123; taskGraph -&gt;</div><div class="line">        <span class="keyword">if</span> (taskGraph.allTasks.<span class="keyword">any</span> &#123; it <span class="keyword">instanceof</span> Sign &#125;) &#123;</div><div class="line">            <span class="keyword">allprojects</span> &#123;</div><div class="line">                 ext.<span class="string">"signing.password"</span> = System.console() != <span class="keyword">null</span> ? System.console().readLine(<span class="string">"\nPGP private key password:"</span>) : <span class="string">""</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>此外，这个脚本在构建 <code>JavaDoc</code> 时会使用系统的语言设置，导致生成的文档可能是中文版本。通过将 <code>LANG=&quot;en_US.UTF-8&quot;</code> 附加在 <code>gradle</code> 命令之前可以将语言设置为英文。</p>
 <p>关于我自己采用的配置，可以参考我 <a href="https://github.com/DreaminginCodeZH/MaterialProgressBar" target="_blank" rel="external"> 在 Github 上的项目</a>。</p>
 <h2 id="OSSRH"><a href="#OSSRH" class="headerlink" title="OSSRH"></a>OSSRH</h2><p>为了在 Maven Central 上发布项目，一般会选择在 Sonatype OSSRH (OSS Repository Hosting) 上注册账户进行操作。最顶层的帮助是以下这篇文章，从其中的链接可以进入其他子页面查看详细步骤。</p>
@@ -120,11 +120,11 @@
 </li>
 <li><p><code>secring.gpg</code> 中找不到私钥。</p>
 <p> GnuPG 2.1 <a href="https://www.gnupg.org/faq/whats-new-in-2.1.html#nosecring" target="_blank" rel="external">已经不再使用 <code>secring.gpg</code></a>，因此新创建的私钥不会向其中写入，而是会由 <code>gpg-agent</code> 写入至 <code>private-keys-v1.d</code> 目录。为了兼容 Gradle 签名插件，我将私钥导出，模拟了一个 <code>secring.gpg</code>。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISPLAY=<span class="string">""</span> gpg --output secring.gpg --export-secret-keys &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DISPLAY=<span class="string">""</span> gpg --output secring.gpg --export-secret-keys &lt;YOUR_KEY_ID&gt;</div></pre></td></tr></table></figure>
 </li>
 <li><p>需要将公钥发布至公钥服务器才能通过审核。</p>
 <p> 在对项目进行 Close 时，会对签名进行验证，因此需要将你的公钥上传以使其可以被公开获取。我选择了发布至 MIT 公钥服务器。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --keyserver pgp.mit.edu --send-key &lt;YOUR_KEY_ID&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gpg --keyserver pgp.mit.edu --send-key &lt;YOUR_KEY_ID&gt;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="附加：为示例应用生成签名密钥"><a href="# 附加：为示例应用生成签名密钥" class="headerlink" title="附加：为示例应用生成签名密钥"></a>附加：为示例应用生成签名密钥 </h2><p> 可以使用 Java 的 <code>keytool</code> 工具进行生成，但 Android Studio 提供了自带推荐参数并且简单易用的界面。</p>
@@ -227,11 +227,11 @@
 <script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
