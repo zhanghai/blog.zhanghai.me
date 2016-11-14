@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
+    
+    <lastmod>2016-11-14T07:59:27.233Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     
     <lastmod>2016-10-17T11:12:01.027Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</loc>
     
     <lastmod>2015-10-21T07:39:08.313Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
-    
-    <lastmod>2015-05-02T07:05:18.000Z</lastmod>
     
   </url>
   
