@@ -919,7 +919,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-11-23T06:34:03.253Z</updated>
+    <updated>2016-11-29T12:25:21.386Z</updated>
     
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why-Arch-Linux"><a href="#Why-Arch-Linux" class="headerlink" title="Why Arch Linux?"></a>Why Arch Linux?</h2><ul>
@@ -1214,7 +1214,9 @@
 <li><code>profile-cleaner</code>: Optimize browser profile SQLite database, and more.</li>
 <li><code>proxychains</code>: Proxify other programs.</li>
 <li><code>pv</code>: View progress for <code>dd</code>, etc.</li>
+<li><code>rlwrap</code>: Wrap programs with readline style input.</li>
 <li><code>tig</code>: Git repository browser.</li>
+<li><code>translate-shell</code>: Command-line translator using Google Translate or others.</li>
 <li><code>trash-cli</code>: Trash bin in command line.</li>
 <li><code>tree</code>: <code>ls</code> recursively in tree format.</li>
 <li><code>vlc</code>: Versatile and stable video player.</li>
