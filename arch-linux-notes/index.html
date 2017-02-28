@@ -19,7 +19,7 @@ Why Arch Linux?
 It is fresh and simple in package dependency.
 
 It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2016-11-29T12:25:21.386Z">
+<meta property="og:updated_time" content="2017-02-28T15:10:00.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux.
@@ -122,6 +122,8 @@ It has a powerful Arch User Repository and makes it easy for yo">
 <p>You can verify <code>bbswitch</code> status by <code>cat /proc/acpi/bbswitch</code> and view its log by <code>dmesg | grep bbswitch</code>.</p>
 <p>Note that the <code>nouveau</code> kernel module is shipped in <code>linux</code>.</p>
 <p>Also note that if your install <code>bumblebee</code>, it will ship the blacklist file for you.</p>
+<h2 id="Hardware-video-acceleration"><a href="#Hardware-video-acceleration" class="headerlink" title="Hardware video acceleration"></a>Hardware video acceleration</h2><p>See <a href="https://wiki.archlinux.org/index.php/Hardware_video_acceleration" target="_blank" rel="external">Arch Wiki</a>.</p>
+<p>If <code>mkv</code> playback doesn’t work well in VLC, remove <code>libvdpau-va-gl</code>.</p>
 <h2 id="Shrink-pacman-cache"><a href="#Shrink-pacman-cache" class="headerlink" title="Shrink pacman cache"></a>Shrink pacman cache</h2><p>From <a href="https://wiki.archlinux.org/index.php/pacman" target="_blank" rel="external">Arch Wiki</a>:</p>
 <p><code>paccache -r</code> deletes all the cached versions of each package except for the most recent 3 (without confirmation).</p>
 <p><code>paccache -ruk0</code> removes all the cached versions of uninstalled packages.</p>
@@ -459,7 +461,7 @@ It has a powerful Arch User Repository and makes it easy for yo">
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2016 张海<br>
+    &copy; 2017 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>

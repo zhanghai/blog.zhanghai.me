@@ -919,7 +919,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2016-11-29T12:25:21.386Z</updated>
+    <updated>2017-02-28T15:10:00.820Z</updated>
     
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why-Arch-Linux"><a href="#Why-Arch-Linux" class="headerlink" title="Why Arch Linux?"></a>Why Arch Linux?</h2><ul>
@@ -953,6 +953,8 @@
 <p>You can verify <code>bbswitch</code> status by <code>cat /proc/acpi/bbswitch</code> and view its log by <code>dmesg | grep bbswitch</code>.</p>
 <p>Note that the <code>nouveau</code> kernel module is shipped in <code>linux</code>.</p>
 <p>Also note that if your install <code>bumblebee</code>, it will ship the blacklist file for you.</p>
+<h2 id="Hardware-video-acceleration"><a href="#Hardware-video-acceleration" class="headerlink" title="Hardware video acceleration"></a>Hardware video acceleration</h2><p>See <a href="https://wiki.archlinux.org/index.php/Hardware_video_acceleration" target="_blank" rel="external">Arch Wiki</a>.</p>
+<p>If <code>mkv</code> playback doesn’t work well in VLC, remove <code>libvdpau-va-gl</code>.</p>
 <h2 id="Shrink-pacman-cache"><a href="#Shrink-pacman-cache" class="headerlink" title="Shrink pacman cache"></a>Shrink pacman cache</h2><p>From <a href="https://wiki.archlinux.org/index.php/pacman" target="_blank" rel="external">Arch Wiki</a>:</p>
 <p><code>paccache -r</code> deletes all the cached versions of each package except for the most recent 3 (without confirmation).</p>
 <p><code>paccache -ruk0</code> removes all the cached versions of uninstalled packages.</p>
