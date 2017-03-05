@@ -97,9 +97,9 @@
     </summary>
     
     
-      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
-    
       <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
+    
+      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
     
   </entry>
   
@@ -157,9 +157,9 @@
     </summary>
     
     
-      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
-    
       <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
+    
+      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
     
       <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
     
@@ -550,9 +550,9 @@
     </summary>
     
     
-      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
-    
       <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
+    
+      <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
     
   </entry>
   
@@ -919,7 +919,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2017-02-28T15:10:00.820Z</updated>
+    <updated>2017-03-05T03:44:33.726Z</updated>
     
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why-Arch-Linux"><a href="#Why-Arch-Linux" class="headerlink" title="Why Arch Linux?"></a>Why Arch Linux?</h2><ul>
@@ -1091,6 +1091,7 @@
 <h2 id="Install-local-font"><a href="#Install-local-font" class="headerlink" title="Install local font"></a>Install local font</h2><p>From <a href="https://wiki.archlinux.org/index.php/Fonts" target="_blank" rel="external">Arch Wiki</a>:</p>
 <p>Drop your font files into <code>~/.local/share/fonts/</code> (<code>~/.fonts/</code> is deprecated), <code>cd</code> into that directory, and execute the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -n <span class="string">"Updating font cache..."</span></div><div class="line"><span class="built_in">fc</span>-cache &gt;/dev/null <span class="_">-f</span></div><div class="line">mkfontscale</div><div class="line">mkfontdir</div><div class="line"><span class="built_in">echo</span> <span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h2 id="CJK-font-not-showing-in-some-PDF-viewers"><a href="#CJK-font-not-showing-in-some-PDF-viewers" class="headerlink" title="CJK font not showing in some PDF viewers"></a>CJK font not showing in some PDF viewers</h2><p>Install <code>poppler-data</code>.</p>
 <h2 id="Handle-filesystem-package-update"><a href="#Handle-filesystem-package-update" class="headerlink" title="Handle filesystem package update"></a>Handle filesystem package update</h2><p>Use <code>diff</code> and your editor to manually merge your <code>passwd</code>, <code>shadow</code>, <code>group</code> and <code>gshadow</code> with the <code>*.pacnew</code> one(s), then execute <code>pwconv</code> and <code>groupconv</code> for updating the shadow ones (<code>*-</code>).</p>
 <h2 id="Sync-time-with-NTP"><a href="#Sync-time-with-NTP" class="headerlink" title="Sync time with NTP"></a>Sync time with NTP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo pacman -S ntp</div><div class="line">sudo ntpd -gq &amp;&amp; sudo hwclock -w</div></pre></td></tr></table></figure>
 <p>For more information, see <a href="https://wiki.archlinux.org/index.php/Time" target="_blank" rel="external">Arch Wiki</a>.</p>
