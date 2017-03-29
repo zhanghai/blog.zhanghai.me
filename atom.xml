@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2017-03-29T07:26:09.707Z</updated>
+  <updated>2017-03-29T07:26:58.637Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.zhanghai.me/writing-thesis-with-latex/"/>
     <id>http://blog.zhanghai.me/writing-thesis-with-latex/</id>
     <published>2017-03-29T07:16:36.000Z</published>
-    <updated>2017-03-29T07:26:09.707Z</updated>
+    <updated>2017-03-29T07:26:58.637Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。</p>
 <a id="more"></a>
@@ -38,7 +38,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mklatex -xelatex main</div></pre></td></tr></table></figure>
 <h2 id="了解 -LaTeX- 和解决问题"><a href="# 了解 -LaTeX- 和解决问题" class="headerlink" title="了解 LaTeX 和解决问题"></a>了解 LaTeX 和解决问题</h2><p>LaTeX 有很多历史问题带来的不同，也有多重相似但不同的工具选择，因此网上提供的解决方案不一定可以工作，需要自己试验。</p>
 <p>可以通过 <a href="https://www.sharelatex.com/learn" target="_blank" rel="external">ShareLaTeX 提供的文档</a> 获得对 LaTeX 的初步了解。但是，这份文档中提到的引用等高级特性的使用可能与我们的方式不同。</p>
-<p>推荐使用 <a href="https://tex.stackexchange.com/" target="_blank" rel="external">TeX StackExchange</a> 作为解决问题时的主要信息来源。</p>
+<p>推荐使用 <a href="https://tex.stackexchange.com/" target="_blank" rel="external">TeX - LaTeX Stack Exchange</a> 作为解决问题时的主要信息来源。</p>
 <p>可以通过 <code>texdef</code> 命令查看 LaTeX 中命令的定义。例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">texdef -t xelatex <span class="_">-s</span> -c csbachelor \thebibliography</div></pre></td></tr></table></figure>
 <h2 id="零碎知识"><a href="# 零碎知识" class="headerlink" title="零碎知识"></a>零碎知识</h2><ul>
