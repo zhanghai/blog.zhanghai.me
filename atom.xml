@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2017-03-29T07:20:47.274Z</updated>
+  <updated>2017-03-29T07:22:48.381Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.zhanghai.me/writing-thesis-with-latex/"/>
     <id>http://blog.zhanghai.me/writing-thesis-with-latex/</id>
     <published>2017-03-29T07:16:36.000Z</published>
-    <updated>2017-03-29T07:20:47.274Z</updated>
+    <updated>2017-03-29T07:22:48.381Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。</p>
 <a id="more"></a>
@@ -64,8 +64,6 @@ texdef -t xelatex -s -c csbachelor \thebibliography</code>bash</p>
     
     </summary>
     
-    
-      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
     
