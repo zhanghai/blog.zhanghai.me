@@ -47,6 +47,95 @@
     <section id="main">
       
   
+    <article id="post-writing-thesis-with-latex" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/writing-thesis-with-latex/" class="article-date">
+  <time datetime="2017-03-29T07:16:36.000Z" itemprop="datePublished">3月 29 2017</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/writing-thesis-with-latex/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/writing-thesis-with-latex/">使用 LaTeX 编写论文</a>
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。</p>
+<h2 id="样例项目"><a href="# 样例项目" class="headerlink" title="样例项目"></a>样例项目 </h2><p> 我对学院提供的旧 LaTeX 模板进行了较多的修改，使其符合了学院方面的最新格式要求，并且修复了设置字号时行间距不正确等等错误，可以直接使用或者用于参考学习：</p>
+<p><a href="https://github.com/DreaminginCodeZH/zju-csse-undergraduate-design-proposal-latex-template" target="_blank" rel="external">DreaminginCodeZH/zju-csse-undergraduate-design-proposal-latex-template</a></p>
+<h2 id="安装 -LaTeX"><a href="# 安装 -LaTeX" class="headerlink" title="安装 LaTeX"></a>安装 LaTeX</h2><p>在 Arch Linux 上安装 LaTeX（TeXLive）较为简单，可以参考 <a href="https://wiki.archlinux.org/index.php/TeX_Live" target="_blank" rel="external">Arch Wiki</a> 安装对应的软件包。</p>
+<p>也可以直接执行以下命令进行安装，这样基本不会在使用时遇到无法找到常用宏包的情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pacman -S texlive-most texlive-langchinese</div></pre></td></tr></table></figure>
+<h2 id="构建文档"><a href="# 构建文档" class="headerlink" title="构建文档"></a>构建文档</h2><p>xeCJK 是提供 LaTeX 中文支持的宏包，并且依赖于 XeLaTeX，因此，我们需要使用 <code>xelatex</code> 命令进行构建。</p>
+<p>LaTeX 在构建交叉索引时需要多次运行，才能最终解析所有的引用，并且期间需要 BibTeX 对参考文献数据库进行处理。因此，一般的手动构建命令是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xelatex main</div><div class="line">bibtex main</div><div class="line">xelatex main</div><div class="line">xelatex main</div></pre></td></tr></table></figure>
+<p>不同于部分网页上给出的示例，这些命令都可以接受不带后缀名的参数，并且有时写出后缀名可能会阻碍多文件等情况下的正确构建。</p>
+<p>对于子目录和多文件使用引用的情况，在主文件中应该使用 <code>\include</code> 而非 <code>\input</code>，否则会需要其他处理。</p>
+<p>为了简化构建步骤，实际上应当使用 <code>mklatex</code>，它会根据需要自动调用各种命令。因此之前的手动构建步骤可以被以下命令替代：</p>
+<p><code>bash
+mklatex -xelatex main</code>bash</p>
+<h2 id="了解 -LaTeX- 和解决问题"><a href="# 了解 -LaTeX- 和解决问题" class="headerlink" title="了解 LaTeX 和解决问题"></a>了解 LaTeX 和解决问题</h2><p>LaTeX 有很多历史问题带来的不同，也有多重相似但不同的工具选择，因此网上提供的解决方案不一定可以工作，需要自己试验。</p>
+<p>可以通过 <a href="https://www.sharelatex.com/learn" target="_blank" rel="external">ShareLaTeX 提供的文档</a> 获得对 LaTeX 的初步了解。但是，这份文档中提到的引用等高级特性的使用可能与我们的方式不同。</p>
+<p>推荐使用 <a href="https://tex.stackexchange.com/" target="_blank" rel="external">TeX StackExchange</a> 作为解决问题时的主要信息来源。</p>
+<p>可以通过 <code>texdef</code> 命令查看 LaTeX 中命令的定义。例如：</p>
+<p><code>bash
+texdef -t xelatex -s -c csbachelor \thebibliography</code>bash</p>
+<h2 id="零碎知识"><a href="# 零碎知识" class="headerlink" title="零碎知识"></a>零碎知识</h2><ul>
+<li><code>\\</code>：换行，不新建段落。可选参数可以控制空白长度。</li>
+<li><code>\par</code>：创建段落。<code>\parskip</code> 和 <code>\parindent</code> 将生效。<em>部分命令需要对段落才能生效，因此可能需要在最后一段文字最后加上 <code>\par</code>。</em></li>
+<li><code>\</code>：一个空格。</li>
+<li><code>&amp;</code>：一个 NBSP，不会被分行打断，常用于类似 <code>图~1</code> 这样的场景。</li>
+<li><code>\hspace{1em}</code>：一个 1 em 长度的空格。</li>
+<li><code>\renewcommand</code>：修改命令定义。</li>
+<li><code>\setlength</code>：修改长度变量。</li>
+<li><code>\setcounter</code>：修改计数器。</li>
+</ul>
+<h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语</h2><p>LaTeX 十分强大，并且作为纯文本格式依然比 Word 文档等更加清晰、明确、可靠。但是，整个 LaTeX 环境也正因为它的高自由度和复杂，在许多方面缺乏一致性，这给使用者带来了不少困难。</p>
+<p>总体来说，在经过大量的学习和尝试之后，我依然认为 LaTeX 是一个优秀的排版工具。它可以让使用者在一次配置之后获得强大的功能，并且在写作过程中始终保持工作在纯文本层面上。</p>
+<p>关于各种命令和功能的常见用法，读者可以继续参考我在文章开头提到过的 <a href="https://github.com/DreaminginCodeZH/zju-csse-undergraduate-design-proposal-latex-template" target="_blank" rel="external"> 报告模板</a>，我也会在写作毕业设计论文时继续更新。</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+</article>
+
+
+  <hr class="article-divider">
+
+
+
+
+  
     <article id="post-webgl-notes" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
@@ -219,6 +308,68 @@
       <span class="tags">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-science/">计算机科学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+</article>
+
+
+  <hr class="article-divider">
+
+
+
+
+  
+    <article id="post-building-portable-desktop-application-with-swt" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/building-portable-desktop-application-with-swt/" class="article-date">
+  <time datetime="2015-04-29T02:25:34.000Z" itemprop="datePublished">4月 29 2015</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/building-portable-desktop-application-with-swt/">使用 SWT 搭建跨平台桌面应用</a>
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
+<img src="/building-portable-desktop-application-with-swt/mipsasm-windows.png" alt="MIPS 汇编集成开发环境 - Windows" title="MIPS 汇编集成开发环境 - Windows">
+      
+        <p class="more">
+          <a href="/building-portable-desktop-application-with-swt/#more">继续阅读</a>
+        </p>
+      
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
 
       </span>
