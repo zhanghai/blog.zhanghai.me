@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。">
 <meta property="og:image" content="http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/optical-system.png">
-<meta property="og:updated_time" content="2017-04-07T02:31:16.205Z">
+<meta property="og:updated_time" content="2017-04-07T05:43:29.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 JavaScript 编写 GTK+ 3 应用程序">
 <meta name="twitter:description" content="前言JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。">
@@ -82,7 +82,7 @@
     
       <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言</h2><p>JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。</p>
 <a id="more"></a>
-<h2 id="选择运行时"><a href="# 选择运行时" class="headerlink" title="选择运行时"></a>选择运行时 </h2><p> 首选的运行时当然是 node，因为它有着良好的 ES2015 特性支持，并且可以方便地使用 npm 管理的模块。在经过一番搜索之后，我找到了 <a href="">WebReflection/node-gtk</a> 这个项目，却发现它无法使用 node-gyp 在我的 Arch Linux 上进行编译。另一个 [creationix/node-gir] 提供了对 GObject Introspection 的绑定，但是在它的 README 中写明了有 bug 和内存管理等问题，看上去也难以令人满意。</p>
+<h2 id="选择运行时"><a href="# 选择运行时" class="headerlink" title="选择运行时"></a>选择运行时 </h2><p> 首选的运行时当然是 node，因为它有着良好的 ES2015 特性支持，并且可以方便地使用 npm 管理的模块。在经过一番搜索之后，我找到了 <a href="https://github.com/WebReflection/node-gtk" target="_blank" rel="external">WebReflection/node-gtk</a> 这个项目，却发现它无法使用 node-gyp 在我的 Arch Linux 上进行编译。另一个 <a href="https://github.com/creationix/node-gir" target="_blank" rel="external">creationix/node-gir</a> 提供了对 GObject Introspection 的绑定，但是在它的 README 中写明了有 bug 和内存管理等问题，看上去也难以令人满意。</p>
 <p>因此，我选择了使用 GJS 作为运行时。虽然没有 node 的 ES2015 支持和使用不同模块的便利，但对于使用 GObject Introspection 的绑定而言足够可靠。</p>
 <h2 id="编写应用程序"><a href="# 编写应用程序" class="headerlink" title="编写应用程序"></a>编写应用程序 </h2><p>GNOME 官方提供了<a href="https://developer.gnome.org/gnome-devel-demos/stable/hellognome.js.html" target="_blank" rel="external"> 一个简单的 GJS 程序示例</a>，可以按照它的架构进行编程。</p>
 <h2 id="文档"><a href="# 文档" class="headerlink" title="文档"></a>文档</h2><ul>
