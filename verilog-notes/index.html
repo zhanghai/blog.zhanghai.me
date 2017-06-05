@@ -5,22 +5,17 @@
   
   <title>Verilog 编程笔记 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
-Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
-虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
+  <meta name="description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。 Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。 虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
+<meta name="keywords" content="编程,笔记,学业">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Verilog 编程笔记">
 <meta property="og:url" content="http://blog.zhanghai.me/verilog-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
-Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
-虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
+<meta property="og:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。 Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。 虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
 <meta property="og:updated_time" content="2016-07-28T06:23:33.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Verilog 编程笔记">
-<meta name="twitter:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。
-Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。
-虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
+<meta name="twitter:description" content="前言这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。 Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标准主要有 Verilog-1995 与 Verilog-2001 两个版本，建议在创建工程时选择 Verilog-2001 标准以支持更多实用的语法。 虽然 Verilog 的语法与 C 相似，但是二者是面向各自的目标">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
@@ -30,6 +25,17 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
   <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-100427567-2', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 
 </head>
 
@@ -50,7 +56,7 @@ Verilog 是一门主要用于逻辑电路设计的硬件描述语言。语言标
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
   </div>
 </header>
 

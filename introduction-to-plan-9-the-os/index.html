@@ -5,19 +5,17 @@
   
   <title>Plan 9 操作系统介绍 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
-以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。">
+  <meta name="description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。 以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。">
+<meta name="keywords" content="软件,学业,计算机科学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Plan 9 操作系统介绍">
 <meta property="og:url" content="http://blog.zhanghai.me/introduction-to-plan-9-the-os/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
-以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。">
+<meta property="og:description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。 以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。">
 <meta property="og:updated_time" content="2016-04-02T16:29:56.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Plan 9 操作系统介绍">
-<meta name="twitter:description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。
-以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。">
+<meta name="twitter:description" content="前言这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。 以下就是我自己对 Plan 9 这个操作系统在设计上的理解和概括。">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
@@ -27,6 +25,17 @@
   <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-100427567-2', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 
 </head>
 
@@ -47,7 +56,7 @@
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
   </div>
 </header>
 

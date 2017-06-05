@@ -5,19 +5,17 @@
   
   <title>WebGL 入门笔记 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="前言因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。
-WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。">
+  <meta name="description" content="前言因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。 WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。">
+<meta name="keywords" content="编程,笔记,学业">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebGL 入门笔记">
 <meta property="og:url" content="http://blog.zhanghai.me/webgl-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="前言因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。
-WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。">
+<meta property="og:description" content="前言因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。 WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。">
 <meta property="og:updated_time" content="2016-10-11T11:01:37.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebGL 入门笔记">
-<meta name="twitter:description" content="前言因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。
-WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。">
+<meta name="twitter:description" content="前言因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。 WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 相比，两者缺少基础图形的渲染管线，而是需要手写 shader 进行渲染。">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
@@ -27,6 +25,17 @@ WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 
   <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-100427567-2', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 
 </head>
 
@@ -47,7 +56,7 @@ WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
   </div>
 </header>
 
@@ -89,7 +98,7 @@ WebGL 拥有与 OpenGL ES 相似的 API（前者基于后者），但与 OpenGL 
 <p>Shader 可以有两种参数。第一种是 attribute，在每次调用中不同，例如当前顶点的位置；第二种是 uniform，在渲染过程中共享，例如渲染的变换矩阵。</p>
 <p>以下是两个实用的简单 2D shader：</p>
 <p>Vertex shader：</p>
-<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">attribute <span class="type">vec2</span> a_position;</div><div class="line"></div><div class="line"><span class="keyword">uniform</span> <span class="type">mat3</span> u_transformation;</div><div class="line"></div><div class="line"><span class="type">void</span> main() &#123;</div><div class="line">    <span class="built_in">gl_Position</span> = <span class="type">vec4</span>((u_transformation * <span class="type">vec3</span>(a_position, <span class="number">1</span>)).xy, <span class="number">0</span>, <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">attribute</span> <span class="type">vec2</span> a_position;</div><div class="line"></div><div class="line"><span class="keyword">uniform</span> <span class="type">mat3</span> u_transformation;</div><div class="line"></div><div class="line"><span class="type">void</span> main() &#123;</div><div class="line">    <span class="built_in">gl_Position</span> = <span class="type">vec4</span>((u_transformation * <span class="type">vec3</span>(a_position, <span class="number">1</span>)).xy, <span class="number">0</span>, <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Fragment shader：</p>
 <figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">precision</span> <span class="keyword">mediump</span> <span class="type">float</span>;</div><div class="line"></div><div class="line"><span class="keyword">uniform</span> <span class="type">vec4</span> u_color;</div><div class="line"></div><div class="line"><span class="type">void</span> main() &#123;</div><div class="line">   <span class="built_in">gl_FragColor</span> = u_color;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="初始化"><a href="# 初始化" class="headerlink" title="初始化"></a>初始化 </h2><p> 以下是我的一些工具函数，参考了 <a href="http://webglfundamentals.org/webgl/lessons/webgl-boilerplate.html" target="_blank" rel="external">WebGL Boilerplate</a> 和一部分 <a href="http://webglfundamentals.org/webgl/lessons/webgl-less-code-more-fun.html" target="_blank" rel="external">WebGL - Less Code, More Fun</a>：</p>
