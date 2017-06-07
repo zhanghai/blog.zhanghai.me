@@ -110,9 +110,9 @@
     </summary>
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
     
@@ -200,9 +200,9 @@
     </summary>
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
   </entry>
   
@@ -260,9 +260,9 @@
     </summary>
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
       <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
     
@@ -385,7 +385,7 @@
     <link href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/"/>
     <id>http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/</id>
     <published>2015-10-04T13:44:12.000Z</published>
-    <updated>2016-07-25T15:04:37.278Z</updated>
+    <updated>2016-07-25T15:04:37.279Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
 <p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>
@@ -432,7 +432,7 @@
     <link href="http://blog.zhanghai.me/android-developer-guide/"/>
     <id>http://blog.zhanghai.me/android-developer-guide/</id>
     <published>2015-09-28T13:13:29.000Z</published>
-    <updated>2016-08-26T06:58:46.472Z</updated>
+    <updated>2017-06-07T14:58:35.973Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。</p>
 <a id="more"></a>
@@ -440,7 +440,7 @@
 <p>对于尚无 Java 基础的同学，我推荐 <a href="http://book.douban.com/subject/1474824/" target="_blank" rel="external">《Thinking in Java》</a> 这本书（中文译本为<a href="http://book.douban.com/subject/2130190/" target="_blank" rel="external">《Java 编程思想》</a>），因为它对 Java 语法和设计的讲解较为精确详细，同时对设计模式和最佳实践也有合适的涉猎。这本书除了最后一章关于图形界面的部分可以跳过，之前所有的章节，都应当仔细地阅读和理解一遍。我个人在阅读时使用了两周大约 40 小时的时间。</p>
 <p>此外，初学者请格外重视代码风格，始终遵循 Java 的编码规范，因为这可以使代码风格统一、结构有序、逻辑清晰和易于维护。IntelliJ Idea（Android Studio）的默认代码风格正与之符合。</p>
 <h2 id="框架入门"><a href="# 框架入门" class="headerlink" title="框架入门"></a>框架入门 </h2><p> 在拥有了 Java 语法基础之后，就可以开始学习 Android 的框架了。</p>
-<p>Android API 和最佳实践的更新较为迅速，所以几乎没有可靠的 Android 开发书籍，不推荐购买书籍入门。而 <a href="developer.android.com/develop">Android 官方网站的文档</a> 是保持与框架同步的，同时也有很多关于最佳实践的介绍。</p>
+<p>Android API 和最佳实践的更新较为迅速，所以几乎没有可靠的 Android 开发书籍，不推荐购买书籍入门。而 <a href="https://developer.android.com/develop" target="_blank" rel="external">Android 官方网站的文档</a> 是保持与框架同步的，同时也有很多关于最佳实践的介绍。</p>
 <p>所以我的建议是，从官方文档的 <a href="https://developer.android.com/training/index.html" target="_blank" rel="external">Training</a> 开始，读完最基础的部分后，自己想好要做的一个小型项目，再按照需求查找 <a href="https://developer.android.com/guide/index.html" target="_blank" rel="external">Guide</a> 和 <a href="https://developer.android.com/reference/packages.html" target="_blank" rel="external">Reference</a>，结合 <a href="https://stackoverflow.com/" target="_blank" rel="external">StackOverflow</a> 等资源，在实践中完成第一个自己的 Android 应用，掌握一些 Android 开发的基础知识。这个过程我使用了另外两周的时间。</p>
 <p>此外作为补充，<a href="http://guides.codepath.com/android" target="_blank" rel="external">Code Path 的教程</a> 也可以参考，虽然并非必须；大多数最佳实践和陷阱都需要开发者自己通过搜索多方资料和阅读源代码积累。</p>
 <h2 id="开发环境"><a href="# 开发环境" class="headerlink" title="开发环境"></a>开发环境 </h2><p> 关于开发时使用的环境，Eclipse 早已经是日薄西山，而构建于 <a href="https://www.jetbrains.com/idea/" target="_blank" rel="external">IntelliJ Idea</a> 之上的 <a href="https://developer.android.com/tools/studio/index.html" target="_blank" rel="external">Android Studio</a> 才是 Google 和社区支持的重心，也是在官方文档中建议使用的开发环境。</p>
@@ -587,7 +587,7 @@
     <link href="http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/"/>
     <id>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</id>
     <published>2015-06-11T04:32:45.000Z</published>
-    <updated>2015-12-16T12:29:23.735Z</updated>
+    <updated>2015-12-16T12:29:23.736Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
 <a id="more"></a>
@@ -653,9 +653,9 @@
     </summary>
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
   </entry>
   
@@ -664,7 +664,7 @@
     <link href="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/"/>
     <id>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</id>
     <published>2015-04-29T02:25:34.000Z</published>
-    <updated>2017-03-29T07:17:58.977Z</updated>
+    <updated>2017-03-29T07:17:58.978Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
 <img src="/building-portable-desktop-application-with-swt/mipsasm-windows.png" alt="MIPS 汇编集成开发环境 - Windows" title="MIPS 汇编集成开发环境 - Windows">
@@ -719,7 +719,7 @@
     <link href="http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/"/>
     <id>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</id>
     <published>2015-02-25T05:04:38.000Z</published>
-    <updated>2016-11-14T07:59:27.233Z</updated>
+    <updated>2016-11-14T07:59:27.234Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p>Android 中<code>ListView</code> 的拖放操作和动画实现已经被 <a href="https://www.youtube.com/watch?v=_BZIvjMgH-Q" target="_blank" rel="external"> 这个 DevByte</a> 和 <a href="https://android.googlesource.com/platform/development/+/master/samples/devbytes/animation/ListViewDraggingAnimation" target="_blank" rel="external"> 相关的样例 </a> 说明，并且也有 <a href="https://github.com/nhaarman/ListViewAnimations" target="_blank" rel="external">ListViewAnimations</a> 这样强大的开源库进行了集成。但是，一番 Google 后，我发现基于 <code>LinearLayout</code> 的相关实现却不多。</p>
 <p>然而，有时我们可能需要使用 <code>LinearLayout</code> 替代 <code>ListView</code> 来实现列表，例如不需要 <code>ListView</code> 的视图回收机制（比如使用 <code>Fragment</code> 作为列表项），或者我们需要把这个视图放在 <code>ScrollView</code> 中。</p>
@@ -770,7 +770,7 @@
     <link href="http://blog.zhanghai.me/bash-scripting-notes/"/>
     <id>http://blog.zhanghai.me/bash-scripting-notes/</id>
     <published>2015-02-15T13:08:11.000Z</published>
-    <updated>2015-11-01T16:18:13.997Z</updated>
+    <updated>2015-11-01T16:18:13.998Z</updated>
     
     <content type="html"><![CDATA[<p>This is my notebook for bash scripting.</p>
 <h2 id="Styling"><a href="#Styling" class="headerlink" title="Styling"></a>Styling</h2><p>Use <a href="https://google.github.io/styleguide/shell.xml" target="_blank" rel="external">Google style guide for shell</a>.</p>
@@ -1024,7 +1024,7 @@
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
     <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2017-05-25T06:56:23.838Z</updated>
+    <updated>2017-05-25T06:56:23.839Z</updated>
     
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why-Arch-Linux"><a href="#Why-Arch-Linux" class="headerlink" title="Why Arch Linux?"></a>Why Arch Linux?</h2><ul>
@@ -1364,11 +1364,11 @@
     <link href="http://blog.zhanghai.me/android-design-guide/"/>
     <id>http://blog.zhanghai.me/android-design-guide/</id>
     <published>2014-11-02T10:23:15.000Z</published>
-    <updated>2016-02-18T06:33:57.924Z</updated>
+    <updated>2017-06-07T14:57:20.100Z</updated>
     
     <content type="html"><![CDATA[<img src="/android-design-guide/android_design_elements_landing.png" alt="欢迎" title="欢迎">
 <h2 id="零、前言"><a href="# 零、前言" class="headerlink" title="零、前言"></a>零、前言 </h2><p> 这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考 <a href="http://developer.android.com/design/index.html" target="_blank" rel="external"> 官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="external">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
-<p>在今年，Google 已经推出了新的 <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">Material 设计标准</a>，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。</p>
+<p>在今年，Google 已经推出了新的 <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">Material 设计规范 </a>，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。<del> 我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。</del>本文写作于 2014 年，而今 Material Design 已趋于成熟并且被广泛应用，因此推荐读者转而阅读 Material Design 设计规范。</p>
 <a id="more"></a>
 <h2 id="一、设计原则"><a href="# 一、设计原则" class="headerlink" title="一、设计原则"></a>一、<a href="http://developer.android.com/design/get-started/principles.html" target="_blank" rel="external">设计原则 </a></h2><p> 为了对设计中的问题解决提供指导，设计师结合他们所追求的设计理念和实际的设计案例，制定了一系列的设计原则。</p>
 <p>在学习 Android 设计的过程中，首先接触 Android 官方推荐的设计原则，可以在设计过程的初期就逐渐熟悉并得到运用。在这以后，经过长期的观察与设计，大家也可以渐渐总结出自己的设计原则。总而言之，有所坚持，有所变通。</p>
@@ -1494,7 +1494,7 @@
     
       &lt;img src=&quot;/android-design-guide/android_design_elements_landing.png&quot; alt=&quot;欢迎&quot; title=&quot;欢迎&quot;&gt;
 &lt;h2 id=&quot;零、前言&quot;&gt;&lt;a href=&quot;#零、前言&quot; class=&quot;headerlink&quot; title=&quot;零、前言&quot;&gt;&lt;/a&gt;零、前言&lt;/h2&gt;&lt;p&gt;这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考&lt;a href=&quot;http://developer.android.com/design/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方的设计教程&lt;/a&gt;，同时会加入一些自己的见解，并穿插一些实用资源。其中 &lt;a href=&quot;http://www.geekpark.net/users/163712/topics&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NovaDNG&lt;/a&gt; 的几篇文章对我影响较大，对此十分感谢。&lt;/p&gt;
-&lt;p&gt;在今年，Google 已经推出了新的 &lt;a href=&quot;https://www.google.com/design/spec/material-design/introduction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Material 设计标准&lt;/a&gt;，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。&lt;/p&gt;
+&lt;p&gt;在今年，Google 已经推出了新的 &lt;a href=&quot;https://www.google.com/design/spec/material-design/introduction.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Material 设计规范&lt;/a&gt;，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。&lt;del&gt;我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。&lt;/del&gt;本文写作于 2014 年，而今 Material Design 已趋于成熟并且被广泛应用，因此推荐读者转而阅读 Material Design 设计规范。&lt;/p&gt;
     
     </summary>
     

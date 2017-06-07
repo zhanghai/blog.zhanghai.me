@@ -5,13 +5,13 @@
   
   <title>Android 设计简明教程 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="零、前言这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考官方的设计教程，同时会加入一些自己的见解，并穿插一些实用资源。其中 NovaDNG 的几篇文章对我影响较大，对此十分感谢。 在今年，Google 已经推出了新的 Material 设计标准，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些">
+  <meta name="description" content="零、前言这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考官方的设计教程，同时会加入一些自己的见解，并穿插一些实用资源。其中 NovaDNG 的几篇文章对我影响较大，对此十分感谢。 在今年，Google 已经推出了新的 Material 设计规范，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些">
 <meta name="keywords" content="教程,设计,Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 设计简明教程">
 <meta property="og:url" content="http://blog.zhanghai.me/android-design-guide/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="零、前言这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考官方的设计教程，同时会加入一些自己的见解，并穿插一些实用资源。其中 NovaDNG 的几篇文章对我影响较大，对此十分感谢。 在今年，Google 已经推出了新的 Material 设计标准，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些">
+<meta property="og:description" content="零、前言这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考官方的设计教程，同时会加入一些自己的见解，并穿插一些实用资源。其中 NovaDNG 的几篇文章对我影响较大，对此十分感谢。 在今年，Google 已经推出了新的 Material 设计规范，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些">
 <meta property="og:image" content="http://blog.zhanghai.me/android-design-guide/android_design_elements_landing.png">
 <meta property="og:image" content="http://blog.zhanghai.me/android-design-guide/android_principles_looks_same.png">
 <meta property="og:image" content="http://blog.zhanghai.me/android-design-guide/holo_everywhere.png">
@@ -35,10 +35,10 @@
 <meta property="og:image" content="http://blog.zhanghai.me/android-design-guide/android_typography_sizes.png">
 <meta property="og:image" content="http://blog.zhanghai.me/android-design-guide/android_typography_defaults.png">
 <meta property="og:image" content="http://blog.zhanghai.me/android-design-guide/android_color_palette.png">
-<meta property="og:updated_time" content="2016-02-18T06:33:57.924Z">
+<meta property="og:updated_time" content="2017-06-07T14:57:20.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 设计简明教程">
-<meta name="twitter:description" content="零、前言这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考官方的设计教程，同时会加入一些自己的见解，并穿插一些实用资源。其中 NovaDNG 的几篇文章对我影响较大，对此十分感谢。 在今年，Google 已经推出了新的 Material 设计标准，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些">
+<meta name="twitter:description" content="零、前言这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考官方的设计教程，同时会加入一些自己的见解，并穿插一些实用资源。其中 NovaDNG 的几篇文章对我影响较大，对此十分感谢。 在今年，Google 已经推出了新的 Material 设计规范，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些">
 <meta name="twitter:image" content="http://blog.zhanghai.me/android-design-guide/android_design_elements_landing.png">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
@@ -116,7 +116,7 @@ ga('send', 'pageview');
     
       <img src="/android-design-guide/android_design_elements_landing.png" alt="欢迎" title="欢迎">
 <h2 id="零、前言"><a href="# 零、前言" class="headerlink" title="零、前言"></a>零、前言 </h2><p> 这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考 <a href="http://developer.android.com/design/index.html" target="_blank" rel="external"> 官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="external">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
-<p>在今年，Google 已经推出了新的 <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">Material 设计标准</a>，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。</p>
+<p>在今年，Google 已经推出了新的 <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">Material 设计规范 </a>，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。<del> 我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。</del>本文写作于 2014 年，而今 Material Design 已趋于成熟并且被广泛应用，因此推荐读者转而阅读 Material Design 设计规范。</p>
 <a id="more"></a>
 <h2 id="一、设计原则"><a href="# 一、设计原则" class="headerlink" title="一、设计原则"></a>一、<a href="http://developer.android.com/design/get-started/principles.html" target="_blank" rel="external">设计原则 </a></h2><p> 为了对设计中的问题解决提供指导，设计师结合他们所追求的设计理念和实际的设计案例，制定了一系列的设计原则。</p>
 <p>在学习 Android 设计的过程中，首先接触 Android 官方推荐的设计原则，可以在设计过程的初期就逐渐熟悉并得到运用。在这以后，经过长期的观察与设计，大家也可以渐渐总结出自己的设计原则。总而言之，有所坚持，有所变通。</p>
