@@ -19,7 +19,7 @@
     <title>使用 JavaScript 编写 GTK+ 3 应用程序</title>
     <link href="http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/"/>
     <id>http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/</id>
-    <published>2017-04-07T02:23:35.000Z</published>
+    <published>2017-04-07T17:23:35.000Z</published>
     <updated>2017-04-07T05:43:29.630Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言</h2><p>JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。</p>
@@ -65,7 +65,7 @@
     <title>使用 LaTeX 编写论文</title>
     <link href="http://blog.zhanghai.me/writing-thesis-with-latex/"/>
     <id>http://blog.zhanghai.me/writing-thesis-with-latex/</id>
-    <published>2017-03-29T07:16:36.000Z</published>
+    <published>2017-03-29T22:16:36.000Z</published>
     <updated>2017-03-29T07:36:36.094Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。</p>
@@ -122,7 +122,7 @@
     <title>WebGL 入门笔记</title>
     <link href="http://blog.zhanghai.me/webgl-notes/"/>
     <id>http://blog.zhanghai.me/webgl-notes/</id>
-    <published>2016-10-10T12:01:43.000Z</published>
+    <published>2016-10-11T03:01:43.000Z</published>
     <updated>2016-10-11T11:01:37.233Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 因为计算机图形学课程作业的需要，我在使用过 OpenGL 的基础上学习了使用 WebGL 进行二维图形渲染。</p>
@@ -168,7 +168,7 @@
     <title>将 Reveal.js 演示文稿部署至 GitHub Pages</title>
     <link href="http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/"/>
     <id>http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/</id>
-    <published>2016-08-13T14:08:21.000Z</published>
+    <published>2016-08-14T05:08:21.000Z</published>
     <updated>2016-08-13T15:31:17.220Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://github.com/hakimel/reveal.js" target="_blank" rel="external">Reveal.js</a> 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 <a href="http://lab.hakim.se/reveal-js/" target="_blank" rel="external">Reveal.js 的 Demo</a>。</p>
@@ -210,7 +210,7 @@
     <title>为 Android 项目使用 Travis CI 并发布持续集成版本</title>
     <link href="http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/"/>
     <id>http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/</id>
-    <published>2016-08-05T09:50:15.000Z</published>
+    <published>2016-08-06T00:50:15.000Z</published>
     <updated>2016-08-07T16:25:10.666Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p>Travis CI 是 GitHub 上开源项目采用持续集成的常见选择。为了给<a href="https://github.com/DreaminginCodeZH/Douya" target="_blank" rel="external"> 豆芽 </a> 提供持续集成版本用于公开测试，我配置了 Travis CI，并自己编写了脚本将构建结果发布到另一个空项目的 Release 中，并将其间的过程和遇到的问题记录于此。</p>
@@ -272,7 +272,7 @@
     <title>Verilog 编程笔记</title>
     <link href="http://blog.zhanghai.me/verilog-notes/"/>
     <id>http://blog.zhanghai.me/verilog-notes/</id>
-    <published>2016-03-23T11:27:26.000Z</published>
+    <published>2016-03-24T02:27:26.000Z</published>
     <updated>2016-07-28T06:23:33.294Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 这是我在大学修习逻辑与计算机设计基础、计算机组成和计算机体系结构三门硬件课的过程中积累的 Verilog 笔记。</p>
@@ -334,7 +334,7 @@
     <title>Plan 9 操作系统介绍</title>
     <link href="http://blog.zhanghai.me/introduction-to-plan-9-the-os/"/>
     <id>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</id>
-    <published>2015-10-21T07:32:24.000Z</published>
+    <published>2015-10-21T22:32:24.000Z</published>
     <updated>2016-04-02T16:29:56.757Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 这篇文章是我在操作系统原理课程的作业。作业选题本身很宽，大意是只要描述操作系统的发展即可。因为早就对 Plan 9 这个旨在取代 Unix 的操作系统有兴趣，又可以借此花时间仔细理解和实际使用一次这个系统，于是毫不犹豫地选择了这个题目。</p>
@@ -384,7 +384,7 @@
     <title>Thoughts on Content Handling in Android Application</title>
     <link href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/"/>
     <id>http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/</id>
-    <published>2015-10-04T13:44:12.000Z</published>
+    <published>2015-10-05T04:44:12.000Z</published>
     <updated>2016-07-25T15:04:37.279Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
@@ -431,7 +431,7 @@
     <title>Android 开发入门指南</title>
     <link href="http://blog.zhanghai.me/android-developer-guide/"/>
     <id>http://blog.zhanghai.me/android-developer-guide/</id>
-    <published>2015-09-28T13:13:29.000Z</published>
+    <published>2015-09-29T04:13:29.000Z</published>
     <updated>2017-06-07T14:58:35.973Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。</p>
@@ -528,7 +528,7 @@
     <title>关于 C 语言的面试问题</title>
     <link href="http://blog.zhanghai.me/c-interview-questions/"/>
     <id>http://blog.zhanghai.me/c-interview-questions/</id>
-    <published>2015-09-15T01:32:43.000Z</published>
+    <published>2015-09-15T16:32:43.000Z</published>
     <updated>2015-11-17T08:47:05.883Z</updated>
     
     <content type="html"><![CDATA[<h2 id="由来"><a href="# 由来" class="headerlink" title="由来"></a>由来 </h2><p> 这是我在作为学生组织的面试官时，对熟练掌握 C/C++ 的面试者提出几个的问题，以及对于这几个问题我自己的答案。</p>
@@ -586,7 +586,7 @@
     <title>使用 Gradle 发布项目至 Maven Central</title>
     <link href="http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/"/>
     <id>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</id>
-    <published>2015-06-11T04:32:45.000Z</published>
+    <published>2015-06-11T19:32:45.000Z</published>
     <updated>2015-12-16T12:29:23.736Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 将项目发布至 Maven Central，可以使开发者在使用时十分方便地进行整合和依赖管理。然而发布过程并不简单，因此将我发布的过程和遇到的问题记录于此。</p>
@@ -663,7 +663,7 @@
     <title>使用 SWT 搭建跨平台桌面应用</title>
     <link href="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/"/>
     <id>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</id>
-    <published>2015-04-29T02:25:34.000Z</published>
+    <published>2015-04-29T17:25:34.000Z</published>
     <updated>2017-03-29T07:17:58.978Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。</p>
@@ -718,7 +718,7 @@
     <title>LinearLayout 的拖放操作和动画</title>
     <link href="http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/"/>
     <id>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</id>
-    <published>2015-02-25T05:04:38.000Z</published>
+    <published>2015-02-25T21:04:38.000Z</published>
     <updated>2016-11-14T07:59:27.234Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p>Android 中<code>ListView</code> 的拖放操作和动画实现已经被 <a href="https://www.youtube.com/watch?v=_BZIvjMgH-Q" target="_blank" rel="external"> 这个 DevByte</a> 和 <a href="https://android.googlesource.com/platform/development/+/master/samples/devbytes/animation/ListViewDraggingAnimation" target="_blank" rel="external"> 相关的样例 </a> 说明，并且也有 <a href="https://github.com/nhaarman/ListViewAnimations" target="_blank" rel="external">ListViewAnimations</a> 这样强大的开源库进行了集成。但是，一番 Google 后，我发现基于 <code>LinearLayout</code> 的相关实现却不多。</p>
@@ -769,7 +769,7 @@
     <title>Bash Scripting Notes</title>
     <link href="http://blog.zhanghai.me/bash-scripting-notes/"/>
     <id>http://blog.zhanghai.me/bash-scripting-notes/</id>
-    <published>2015-02-15T13:08:11.000Z</published>
+    <published>2015-02-16T05:08:11.000Z</published>
     <updated>2015-11-01T16:18:13.998Z</updated>
     
     <content type="html"><![CDATA[<p>This is my notebook for bash scripting.</p>
@@ -813,7 +813,7 @@
     <title>C 语言应试笔记</title>
     <link href="http://blog.zhanghai.me/c-exam-notes/"/>
     <id>http://blog.zhanghai.me/c-exam-notes/</id>
-    <published>2015-02-15T10:38:12.000Z</published>
+    <published>2015-02-16T02:38:12.000Z</published>
     <updated>2016-01-18T11:03:38.146Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>
@@ -997,7 +997,7 @@
     <title>求是潮手机站 Android 客户端 V3</title>
     <link href="http://blog.zhanghai.me/qsc-mobile-android-v3/"/>
     <id>http://blog.zhanghai.me/qsc-mobile-android-v3/</id>
-    <published>2014-12-16T11:33:35.000Z</published>
+    <published>2014-12-17T03:33:35.000Z</published>
     <updated>2015-05-02T06:23:58.000Z</updated>
     
     <content type="html"><![CDATA[<img src="/qsc-mobile-android-v3/0.png" alt="零" title="零">
@@ -1023,8 +1023,8 @@
     <title>Arch Linux Notes</title>
     <link href="http://blog.zhanghai.me/arch-linux-notes/"/>
     <id>http://blog.zhanghai.me/arch-linux-notes/</id>
-    <published>2014-11-03T06:18:11.000Z</published>
-    <updated>2017-05-25T06:56:23.839Z</updated>
+    <published>2014-11-03T22:18:11.000Z</published>
+    <updated>2017-09-08T05:12:19.511Z</updated>
     
     <content type="html"><![CDATA[<p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why-Arch-Linux"><a href="#Why-Arch-Linux" class="headerlink" title="Why Arch Linux?"></a>Why Arch Linux?</h2><ul>
@@ -1317,6 +1317,7 @@
 <li><code>jq</code>: Manipulate JSON in command line.</li>
 <li><code>lsof</code>: List opened files.</li>
 <li><code>mtr</code>: <code>traceroute</code> + <code>ping</code>, automatically.</li>
+<li><code>nload</code>: Display current network usage.</li>
 <li><code>ntfs-3g</code>: NTFS writing support, and others.</li>
 <li><code>pastebinit</code>: Various pastebin services.</li>
 <li><code>pdfgrep</code>: <code>grep</code> on PDF.</li>
@@ -1363,7 +1364,7 @@
     <title>Android 设计简明教程</title>
     <link href="http://blog.zhanghai.me/android-design-guide/"/>
     <id>http://blog.zhanghai.me/android-design-guide/</id>
-    <published>2014-11-02T10:23:15.000Z</published>
+    <published>2014-11-03T02:23:15.000Z</published>
     <updated>2017-06-07T14:57:20.100Z</updated>
     
     <content type="html"><![CDATA[<img src="/android-design-guide/android_design_elements_landing.png" alt="欢迎" title="欢迎">
@@ -1511,7 +1512,7 @@
     <title>Key Sequence Transformation in X11</title>
     <link href="http://blog.zhanghai.me/key-sequence-transformation-in-x11/"/>
     <id>http://blog.zhanghai.me/key-sequence-transformation-in-x11/</id>
-    <published>2014-11-01T05:04:38.000Z</published>
+    <published>2014-11-01T20:04:38.000Z</published>
     <updated>2015-03-13T07:07:44.000Z</updated>
     
     <content type="html"><![CDATA[<p>This article is originally titled <a href="https://github.com/DreaminginCodeZH/xkeymacs/issues/1" target="_blank" rel="external">Abandoning treatment for X11</a>, for my <a href="https://github.com/DreaminginCodeZH/xkeymacs" target="_blank" rel="external">xkeymacs</a> project.</p>
@@ -1573,7 +1574,7 @@
     <title>你好，世界！</title>
     <link href="http://blog.zhanghai.me/hello-world/"/>
     <id>http://blog.zhanghai.me/hello-world/</id>
-    <published>2014-10-31T05:45:52.000Z</published>
+    <published>2014-10-31T20:45:52.000Z</published>
     <updated>2015-03-02T08:59:18.000Z</updated>
     
     <content type="html"><![CDATA[<p> 你好，世界！</p>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
+    
+    <lastmod>2017-09-08T05:12:19.511Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/android-developer-guide/</loc>
     
     <lastmod>2017-06-07T14:58:35.973Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://blog.zhanghai.me/android-design-guide/</loc>
     
     <lastmod>2017-06-07T14:57:20.100Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
-    
-    <lastmod>2017-05-25T06:56:23.839Z</lastmod>
     
   </url>
   
@@ -135,14 +135,14 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/404.html</loc>
+    <loc>http://blog.zhanghai.me/hello-world/</loc>
     
     <lastmod>2015-03-02T08:59:18.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/hello-world/</loc>
+    <loc>http://blog.zhanghai.me/404.html</loc>
     
     <lastmod>2015-03-02T08:59:18.000Z</lastmod>
     
