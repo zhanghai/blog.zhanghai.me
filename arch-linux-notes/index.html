@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://blog.zhanghai.me/arch-linux-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="This is my notebook for some small tips and tricks when using Arch Linux. Why Arch Linux? It is fresh and simple in package dependency.  It has a powerful Arch User Repository and makes it easy for yo">
-<meta property="og:updated_time" content="2017-09-08T05:12:19.511Z">
+<meta property="og:updated_time" content="2017-12-06T07:39:31.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arch Linux Notes">
 <meta name="twitter:description" content="This is my notebook for some small tips and tricks when using Arch Linux. Why Arch Linux? It is fresh and simple in package dependency.  It has a powerful Arch User Repository and makes it easy for yo">
@@ -291,7 +291,7 @@ ga('send', 'pageview');
 <h2 id="Clip-video"><a href="#Clip-video" class="headerlink" title="Clip video"></a>Clip video</h2><p>From <a href="http://stackoverflow.com/a/18449609/2420519" target="_blank" rel="external">StackOverflow</a>:</p>
 <p>If you want to support video players without edit list support (or actually drop the unused frames), you need to do a re-encode, which is the default if <code>copy</code> is not specified.</p>
 <p>Normally, you can use the following command to clip a video:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ffmpeg -i &lt;INPUT_FILE&gt; [-ss &lt;START_TIME&gt;] [-t &lt;STOP_TIME&gt;] [-async 1] &lt;OUTPUT_FILE&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ffmpeg -i &lt;INPUT_FILE&gt; [-ss &lt;START_TIME&gt;] [-to &lt;STOP_TIME&gt;] [-async 1] &lt;OUTPUT_FILE&gt;</div></pre></td></tr></table></figure>
 <h2 id="Convert-video-to-animated-GIF"><a href="#Convert-video-to-animated-GIF" class="headerlink" title="Convert video to animated GIF"></a>Convert video to animated GIF</h2><p>Adapted From <a href="http://dtbaker.net/random-linux-posts/convert-video-avi-mpeg-mp4-to-a-gif-animation-on-linux/" target="_blank" rel="external">dtbaker</a> and <a href="http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality/556031" target="_blank" rel="external">a SuperUser question</a>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir frames</div><div class="line">ffmpeg -ss &lt;HH:MM:SS[.XXX]|START_SECONDS&gt; -t&lt;HH:MM:SS[.XXX]|DURATION_SECONDS&gt; -i &lt;YOUR_VIDEO_FILE&gt; [-r &lt;FPS&gt;] -s &lt;WIDTH_NORMALLY_480&gt;x&lt;HEIGHT_NORMALLY_270&gt; ./frames/frame%04d.png</div><div class="line">convert -delay &lt;100/FPS&gt; -loop 0 -layers Optimize ./frames/frame*.png output.gif</div></pre></td></tr></table></figure>
 <p>If you need to compress your GIF file, use <code>gifsicle</code> or do it <a href="http://ezgif.com/optimize" target="_blank" rel="external">online</a>; for cropping, you also can use <a href="http://ezgif.com/crop" target="_blank" rel="external">this site</a> with option “Crop with Gifsicle” (ImageMagick output seems corrupted).</p>
