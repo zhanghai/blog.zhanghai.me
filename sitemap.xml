@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/writing-thesis-with-latex/</loc>
+    
+    <lastmod>2018-01-31T10:14:30.267Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     
     <lastmod>2017-12-06T07:39:31.520Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/</loc>
     
     <lastmod>2017-04-07T05:43:29.630Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/writing-thesis-with-latex/</loc>
-    
-    <lastmod>2017-03-29T07:36:36.094Z</lastmod>
     
   </url>
   
@@ -135,14 +135,14 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/404.html</loc>
+    <loc>http://blog.zhanghai.me/hello-world/</loc>
     
     <lastmod>2015-03-02T08:59:18.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/hello-world/</loc>
+    <loc>http://blog.zhanghai.me/404.html</loc>
     
     <lastmod>2015-03-02T08:59:18.000Z</lastmod>
     
