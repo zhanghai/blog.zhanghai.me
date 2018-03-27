@@ -9,6 +9,7 @@
 <meta property="og:title" content="梦断代码">
 <meta property="og:url" content="http://blog.zhanghai.me/archives/2015/02/index.html">
 <meta property="og:site_name" content="梦断代码">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="梦断代码">
   
@@ -87,7 +88,7 @@ ga('send', 'pageview');
   </header>
   <div class="entry-content">
     
-      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Android 中<code>ListView</code>的拖放操作和动画实现已经被<a href="https://www.youtube.com/watch?v=_BZIvjMgH-Q" target="_blank" rel="external">这个 DevByte</a> 和<a href="https://android.googlesource.com/platform/development/+/master/samples/devbytes/animation/ListViewDraggingAnimation" target="_blank" rel="external">相关的样例</a>说明，并且也有 <a href="https://github.com/nhaarman/ListViewAnimations" target="_blank" rel="external">ListViewAnimations</a> 这样强大的开源库进行了集成。但是，一番 Google 后，我发现基于<code>LinearLayout</code>的相关实现却不多。</p>
+      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Android 中<code>ListView</code>的拖放操作和动画实现已经被<a href="https://www.youtube.com/watch?v=_BZIvjMgH-Q" target="_blank" rel="noopener">这个 DevByte</a> 和<a href="https://android.googlesource.com/platform/development/+/master/samples/devbytes/animation/ListViewDraggingAnimation" target="_blank" rel="noopener">相关的样例</a>说明，并且也有 <a href="https://github.com/nhaarman/ListViewAnimations" target="_blank" rel="noopener">ListViewAnimations</a> 这样强大的开源库进行了集成。但是，一番 Google 后，我发现基于<code>LinearLayout</code>的相关实现却不多。</p>
 <p>然而，有时我们可能需要使用<code>LinearLayout</code>替代<code>ListView</code>来实现列表，例如不需要<code>ListView</code>的视图回收机制（比如使用<code>Fragment</code>作为列表项），或者我们需要把这个视图放在<code>ScrollView</code>中。</p>
 <p>在使用<code>LinearLayout</code>实现拖放和动画时，实现代码相比于之前提到的<code>ListView</code>实现也需要一些变动。因为我在网络上没有找到相应的资料，所以写下这篇文章来记录这个过程。</p>
       
@@ -151,7 +152,7 @@ ga('send', 'pageview');
   <div class="entry-content">
     
       <p>This is my notebook for bash scripting.</p>
-<h2 id="Styling"><a href="#Styling" class="headerlink" title="Styling"></a>Styling</h2><p>Use <a href="https://google.github.io/styleguide/shell.xml" target="_blank" rel="external">Google style guide for shell</a>.</p>
+<h2 id="Styling"><a href="#Styling" class="headerlink" title="Styling"></a>Styling</h2><p>Use <a href="https://google.github.io/styleguide/shell.xml" target="_blank" rel="noopener">Google style guide for shell</a>.</p>
       
         <p class="more">
           <a href="/bash-scripting-notes/#more">继续阅读</a>
