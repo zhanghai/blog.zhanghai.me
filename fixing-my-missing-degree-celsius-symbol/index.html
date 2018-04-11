@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Fixing My Missing Degree Celsius Symbol | 梦断代码</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="OpenWeather has been my favorite GNOME extension for quick and beautiful weather information for years. However today when I looked at my top bar again for weather, I had the impression as if somethin">
+<meta name="keywords" content="Linux,Software">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fixing My Missing Degree Celsius Symbol">
+<meta property="og:url" content="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/index.html">
+<meta property="og:site_name" content="梦断代码">
+<meta property="og:description" content="OpenWeather has been my favorite GNOME extension for quick and beautiful weather information for years. However today when I looked at my top bar again for weather, I had the impression as if somethin">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/open-weather-without-degree-celsius.png">
+<meta property="og:image" content="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/open-weather-with-degree-celsius.png">
+<meta property="og:image" content="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/pango-view-wqy-micro-hei.png">
+<meta property="og:image" content="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/font-forge-wqy-micro-hei.png">
+<meta property="og:image" content="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/saw-range-expected-charset.png">
+<meta property="og:updated_time" content="2018-04-11T06:03:24.686Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fixing My Missing Degree Celsius Symbol">
+<meta name="twitter:description" content="OpenWeather has been my favorite GNOME extension for quick and beautiful weather information for years. However today when I looked at my top bar again for weather, I had the impression as if somethin">
+<meta name="twitter:image" content="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/open-weather-without-degree-celsius.png">
+  
+    <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-100427567-2', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+  <i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+  <h1 class="blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li><a href="/">主页</a></li><li><a href="/archives">存档</a></li>
+      <li><a id="nav-search-btn" class="nav-icon" title="搜索"></a></li>
+      <li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS 订阅"></a></li>
+    </ul>
+  </nav>
+  <div id="search-form-wrap">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+  </div>
+</header>
+
+    <section id="main">
+      <article id="post-fixing-my-missing-degree-celsius-symbol" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/fixing-my-missing-degree-celsius-symbol/" class="article-date">
+  <time datetime="2018-04-11T04:01:59.000Z" itemprop="datePublished">4月 10 2018</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Fixing My Missing Degree Celsius Symbol
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <p><a href="https://extensions.gnome.org/extension/750/openweather/" target="_blank" rel="noopener">OpenWeather</a> has been my favorite GNOME extension for quick and beautiful weather information for years. However today when I looked at my top bar again for weather, I had the impression as if something missing:</p>
+<img src="/fixing-my-missing-degree-celsius-symbol/open-weather-without-degree-celsius.png" title="Now">
+<p>And this is what it used to be like:</p>
+<img src="/fixing-my-missing-degree-celsius-symbol/open-weather-with-degree-celsius.png" title="Used to be">
+<p>My degree Celsius symbol is missing!</p>
+<a id="more"></a>
+<h2 id="Finding-the-culprit"><a href="#Finding-the-culprit" class="headerlink" title="Finding the culprit"></a>Finding the culprit</h2><p>The first thing I thought was, is this specific to OpenWeather? And I was surprised to find out that when I googled “degree Celsius symbol”, the <code>°C</code> as <code>U+00B0 ° degree sign</code> plus <code>U+0043 C latin capital letter c</code> is present, while ℃ <code>U+2103 ℃ degree celsius</code> is simply empty. However a <code>&lt;span&gt;</code> with <code>font-family: serif</code> on Wikipedia showed the symbol correctly, so this must be a font/fontconfig issue.</p>
+<p>And I <code>less</code>ed my own fontconfig configuration with <code>/etc/fonts/local.conf</code>:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE fontconfig SYSTEM "fonts.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fontconfig</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>sans-serif<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Micro Hei<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Zen Hei<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Bitmap Song<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>DejaVu Sans<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>Noto Color Emoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>serif<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>DejaVu Serif<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Bitmap Song<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Zen Hei Sharp<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>AR PL UMing CN<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>AR PL UMing TW<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>AR PL New Sung<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>Noto Color Emoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>monospace<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"prepend"</span> <span class="attr">binding</span>=<span class="string">"strong"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Micro Hei Mono<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Zen Hei Mono<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Bitmap Song<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>DejaVu Sans Mono<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>Noto Color Emoji<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fontconfig</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>So the different order of font families in <code>sans-serif</code> and <code>serif</code> might be the issue. I googled a while for finding out the font selected by fontconfig for a glyph, and found <a href="https://repolinux.wordpress.com/2013/03/10/find-out-fallback-font-used-by-fontconfig-for-a-certain-character/" target="_blank" rel="noopener">an article</a> suggesting the use of <code>FC_DEBUG</code> and <code>pango-view</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FC_DEBUG=4 pango-view -q --font=<span class="string">'&lt;YOUR_FONT_FAMILY&gt;'</span> -t <span class="string">'&lt;YOUR_CHARACTER&gt;'</span> 2&gt;&amp;1 | grep -o <span class="string">'family:"[^"]\+'</span> | cut -c 10- | tail -n 1</span><br></pre></td></tr></table></figure>
+<p>The latter part basically filters out the last printed family name from the tedious debug output. And when I run this for my degree Celsius symbol (<code>℃</code>), I found:</p>
+<img src="/fixing-my-missing-degree-celsius-symbol/pango-view-wqy-micro-hei.png" title="Result of pango-view">
+<p>What’s wrong with <code>WenQuanYi Micro Hei</code>? I’ve been using it for years, and now it’s giving me nothing for degree Celsius symbol? Why did fontconfig chose it?</p>
+<p>Confused by this I opened my <code>wqy-microhei.ttc</code> with FontForge, and was again surprised to find out that my <code>WenQuanYi Micro Hei</code> is providing an empty glyph (instead of nothing) for certain codepoints!</p>
+<img src="/fixing-my-missing-degree-celsius-symbol/font-forge-wqy-micro-hei.png" title="Fontforge with highlight on empty glyphs">
+<p>This is crazy and I’m left wondering how my degree Celsius symbol ever worked in the past few years.</p>
+<h2 id="Finding-the-way-to-fix-it"><a href="#Finding-the-way-to-fix-it" class="headerlink" title="Finding the way to fix it"></a>Finding the way to fix it</h2><p>There must be some configuration that allow me to blacklist certain glyphs in a font! And after another round of digging around, I found some interesting results.</p>
+<p>The first one is <a href="https://bugs.freedesktop.org/show_bug.cgi?id=7528" target="_blank" rel="noopener">a bug on fontconfig Bugzilla</a> which requested such support back in 2006 and was marked fixed in 2011. Feeling excited, I scrolled down and found a single line of comment from the dev:</p>
+<blockquote>
+<p>This is fixed in master with target=scan charset editing.</p>
+</blockquote>
+<p>After all the hard work, why didn’t he or she celebrate the moment of closing this bug with a more detailed explanation, or at least a helpful pointer? Even after reading though <code>man fonts-conf</code>, I found nothing describing how I can edit the charset of a font family. After all, the <code>&lt;charset&gt;</code> element says it must contain one or more integer, however the whole charset normally contains a huge amount of binary integers.</p>
+<p>So I searched deeper and found <a href="https://stackoverflow.com/a/47614324" target="_blank" rel="noopener">another answer on StackOverflow</a>. It suggested an undocumented way of configuration that’s mentioned somewhere in a RedHat bug thread, which was its only appearance on the whole Internet:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">match</span> <span class="attr">target</span>=<span class="string">"scan"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">compare</span>=<span class="string">"not_eq"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>VL Gothic<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"charset"</span> <span class="attr">mode</span>=<span class="string">"assign"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">minus</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>charset<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">range</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">int</span>&gt;</span>0x0021<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">int</span>&gt;</span>0x00FF<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">range</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">minus</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>This is just what i wanted! So I happily applied this to my mischievous <code>WenQuanYi Micro Hei</code>, changing the <code>compare</code> to <code>&quot;eq&quot;</code> and setting the range to include <code>0x2103</code> (My precious degree Celsius symbol). Finally, <code>sudo fc-cache -f &amp;&amp; fc-cache -f</code>! [sigh of relief]</p>
+<img src="/fixing-my-missing-degree-celsius-symbol/saw-range-expected-charset.png" title="Result of pango-view">
+<p>Nope.</p>
+<p>This could have worked, in some time of the history, but is not working for now, on my latest Arch Linux installation.</p>
+<p>No.</p>
+<p>But wait. I did saw something mentioning, we have a <code>&lt;charset&gt;</code> element and it must contain some integers? So I started to coin my own solution (You should also do the same for <code>WenQuanYi Micro Hei Mono</code>):</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">match</span> <span class="attr">target</span>=<span class="string">"scan"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">test</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Micro Hei<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">test</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"charset"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">minus</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>charset<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">int</span>&gt;</span>0x2103<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">int</span>&gt;</span>0x2109<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">int</span>&gt;</span>0x212B<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">int</span>&gt;</span>0x2164<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">int</span>&gt;</span>0x2169<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">minus</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>sudo fc-cache -f &amp;&amp; fc-cache -f</code>, <code>pango-view</code> again to confirm, and <code>Alt+F2 r</code> to restart my GNOME shell. It worked! After all these hours, my degree Celsius symbol is back and alive again!</p>
+<h2 id="A-final-note"><a href="#A-final-note" class="headerlink" title="A final note"></a>A final note</h2><p>The above solution is only a workaround, and to actually fix this, The <code>Wenquanyi Micro Hei</code> font itself should be patched. In fact this was what I first tried when I surprisingly found out those empty glyphs.</p>
+<p>However, when I went to <a href="https://wenq.org/" target="_blank" rel="noopener">wenq.org</a>, there latest update was posted in late 2011 (We are in 2018 now), and their forum is giving me a blank page with certain resources returning 404. Their SourceForge issue tracker is also unattended for years with that <a href="https://sourceforge.net/p/wqy/bugs/42/" target="_blank" rel="noopener">notorious hangul advance bug</a> still open. Sadly, the whole project seems dead. So I decided to work around instead of fixing this.</p>
+<p><strong>Update</strong>: With another link on their official website, I was able to find their real bug tracker and <a href="https://wenq.org/dev/index.cgi?MicroHei_Bug/0012" target="_blank" rel="noopener">this bug</a>, and <a href="https://wenq.org/dev/index.cgi?MicroHei_Bug/0013" target="_blank" rel="noopener">a similar bug</a>. The dev said it’s fixed, but maybe some recent <code>fontconfig</code> or <code>pango</code> changes brought it back. Maybe some day I should fork it and try to actually fix these bugs.</p>
+<p>And according to the dev’s comment, those glyphs existed in <code>Droid Sans Fallback</code>, so a proper fix to my configuration should also include adding <code>Droid Sans Fallback</code> to the <code>sans-serif</code> and <code>monospace</code> families, right below the <code>WenQuanYi Micro Hei</code> entry.</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">Software</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/buliding-gtk-3-application-with-javascript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          使用 JavaScript 编写 GTK+ 3 应用程序
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+
+
+    </section>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:blog.zhanghai.me">
+    </form>
+</div>
+<footer id="footer">
+  <h1 class="footer-blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <span class="copyright">
+    &copy; 2018 张海<br>
+    Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'zhanghai';
+  
+  var disqus_url = 'http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/';
+  
+  (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
