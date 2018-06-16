@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/</loc>
+    
+    <lastmod>2018-06-16T10:01:23.318Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/</loc>
     
     <lastmod>2018-04-11T07:13:30.685Z</lastmod>

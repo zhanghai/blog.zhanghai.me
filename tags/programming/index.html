@@ -59,11 +59,151 @@ ga('send', 'pageview');
     <section id="main">
       
   
+    <article id="post-writing-a-comparator-for-natural-sort-order" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/writing-a-comparator-for-natural-sort-order/" class="article-date">
+  <time datetime="2018-06-16T06:03:48.000Z" itemprop="datePublished">6月 16 2018</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/writing-a-comparator-for-natural-sort-order/">Writing a Comparator for Natural Sort Order</a>
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <p>Natural sort order is what we usually see in most file managers when browsing a list of numbered files, that it sorts the numerical part of the file name as a number instead of comparing it character by character. For instance:</p>
+<table>
+<thead>
+<tr>
+<th>Natural sort</th>
+<th>Lexicographical sort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.txt</td>
+<td>1.txt</td>
+</tr>
+<tr>
+<td>10.txt</td>
+<td>2.txt</td>
+</tr>
+<tr>
+<td>100.txt</td>
+<td>3.txt</td>
+</tr>
+<tr>
+<td>101.txt</td>
+<td>4.txt</td>
+</tr>
+<tr>
+<td>102.txt</td>
+<td>5.txt</td>
+</tr>
+<tr>
+<td>103.txt</td>
+<td>10.txt</td>
+</tr>
+<tr>
+<td>104.txt</td>
+<td>11.txt</td>
+</tr>
+<tr>
+<td>105.txt</td>
+<td>12.txt</td>
+</tr>
+<tr>
+<td>11.txt</td>
+<td>13.txt</td>
+</tr>
+<tr>
+<td>12.txt</td>
+<td>14.txt</td>
+</tr>
+<tr>
+<td>13.txt</td>
+<td>15.txt</td>
+</tr>
+<tr>
+<td>14.txt</td>
+<td>100.txt</td>
+</tr>
+<tr>
+<td>15.txt</td>
+<td>101.txt</td>
+</tr>
+<tr>
+<td>2.txt</td>
+<td>102.txt</td>
+</tr>
+<tr>
+<td>3.txt</td>
+<td>103.txt</td>
+</tr>
+<tr>
+<td>4.txt</td>
+<td>104.txt</td>
+</tr>
+<tr>
+<td>5.txt</td>
+<td>105.txt</td>
+</tr>
+</tbody>
+</table>
+<p>Lexicographical sort can be easily implemented using <code>String::compareToIgnoreCase</code>, but it is not very acceptable for end users. However for natural sort, things is actually a little more complicated.</p>
+      
+        <p class="more">
+          <a href="/writing-a-comparator-for-natural-sort-order/#more">继续阅读</a>
+        </p>
+      
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+</article>
+
+
+  <hr class="article-divider">
+
+
+
+
+  
     <article id="post-thoughts-on-content-handling-in-android-application" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/thoughts-on-content-handling-in-android-application/" class="article-date">
-  <time datetime="2015-10-05T04:44:12.000Z" itemprop="datePublished">10月 4 2015</time>
+  <time datetime="2015-10-04T13:44:12.000Z" itemprop="datePublished">10月 4 2015</time>
 </a>
 
     </span>
@@ -125,7 +265,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/bash-scripting-notes/" class="article-date">
-  <time datetime="2015-02-16T05:08:11.000Z" itemprop="datePublished">2月 15 2015</time>
+  <time datetime="2015-02-15T13:08:11.000Z" itemprop="datePublished">2月 15 2015</time>
 </a>
 
     </span>
@@ -187,7 +327,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/key-sequence-transformation-in-x11/" class="article-date">
-  <time datetime="2014-11-01T20:04:38.000Z" itemprop="datePublished">11月 1 2014</time>
+  <time datetime="2014-11-01T05:04:38.000Z" itemprop="datePublished">11月 1 2014</time>
 </a>
 
     </span>

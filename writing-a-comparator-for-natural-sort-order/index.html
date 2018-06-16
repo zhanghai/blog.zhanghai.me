@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Writing a Comparator for Natural Sort Order | 梦断代码</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Natural sort order is what we usually see in most file managers when browsing a list of numbered files, that it sorts the numerical part of the file name as a number instead of comparing it character">
+<meta name="keywords" content="Programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Writing a Comparator for Natural Sort Order">
+<meta property="og:url" content="http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/index.html">
+<meta property="og:site_name" content="梦断代码">
+<meta property="og:description" content="Natural sort order is what we usually see in most file managers when browsing a list of numbered files, that it sorts the numerical part of the file name as a number instead of comparing it character">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-16T10:01:23.318Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Writing a Comparator for Natural Sort Order">
+<meta name="twitter:description" content="Natural sort order is what we usually see in most file managers when browsing a list of numbered files, that it sorts the numerical part of the file name as a number instead of comparing it character">
+  
+    <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-100427567-2', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+  <i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+  <h1 class="blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <nav class="nav">
+    <ul>
+      <li><a href="/">主页</a></li><li><a href="/archives">存档</a></li>
+      <li><a id="nav-search-btn" class="nav-icon" title="搜索"></a></li>
+      <li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS 订阅"></a></li>
+    </ul>
+  </nav>
+  <div id="search-form-wrap">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+  </div>
+</header>
+
+    <section id="main">
+      <article id="post-writing-a-comparator-for-natural-sort-order" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/writing-a-comparator-for-natural-sort-order/" class="article-date">
+  <time datetime="2018-06-16T06:03:48.000Z" itemprop="datePublished">6月 16 2018</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Writing a Comparator for Natural Sort Order
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <p>Natural sort order is what we usually see in most file managers when browsing a list of numbered files, that it sorts the numerical part of the file name as a number instead of comparing it character by character. For instance:</p>
+<table>
+<thead>
+<tr>
+<th>Natural sort</th>
+<th>Lexicographical sort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.txt</td>
+<td>1.txt</td>
+</tr>
+<tr>
+<td>10.txt</td>
+<td>2.txt</td>
+</tr>
+<tr>
+<td>100.txt</td>
+<td>3.txt</td>
+</tr>
+<tr>
+<td>101.txt</td>
+<td>4.txt</td>
+</tr>
+<tr>
+<td>102.txt</td>
+<td>5.txt</td>
+</tr>
+<tr>
+<td>103.txt</td>
+<td>10.txt</td>
+</tr>
+<tr>
+<td>104.txt</td>
+<td>11.txt</td>
+</tr>
+<tr>
+<td>105.txt</td>
+<td>12.txt</td>
+</tr>
+<tr>
+<td>11.txt</td>
+<td>13.txt</td>
+</tr>
+<tr>
+<td>12.txt</td>
+<td>14.txt</td>
+</tr>
+<tr>
+<td>13.txt</td>
+<td>15.txt</td>
+</tr>
+<tr>
+<td>14.txt</td>
+<td>100.txt</td>
+</tr>
+<tr>
+<td>15.txt</td>
+<td>101.txt</td>
+</tr>
+<tr>
+<td>2.txt</td>
+<td>102.txt</td>
+</tr>
+<tr>
+<td>3.txt</td>
+<td>103.txt</td>
+</tr>
+<tr>
+<td>4.txt</td>
+<td>104.txt</td>
+</tr>
+<tr>
+<td>5.txt</td>
+<td>105.txt</td>
+</tr>
+</tbody>
+</table>
+<p>Lexicographical sort can be easily implemented using <code>String::compareToIgnoreCase</code>, but it is not very acceptable for end users. However for natural sort, things is actually a little more complicated.</p>
+<a id="more"></a>
+<h2 id="The-Definition"><a href="#The-Definition" class="headerlink" title="The Definition"></a>The Definition</h2><p>There is a small <a href="https://www.wikiwand.com/en/Natural_sort_order" target="_blank" rel="noopener">Wikipedia article on Natural Sort Order</a>, which mentioned the following definition for natural sort order:</p>
+<blockquote>
+<p>Natural sort order is an ordering of strings in alphabetical order, except that multi-digit numbers are ordered as a single character.</p>
+</blockquote>
+<p>However, there’s still some undefined behavior about this sort order when case-insensitivity is involved alongside treating numbers as a whole. In <a href="https://jjacky.com/2013-03-22-natural-sort-order-in-c/" target="_blank" rel="noopener">an article discussing natural sort order in C</a>, the author mentioned the following case:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test1</td>
+</tr>
+<tr>
+<td>tesT1</td>
+</tr>
+<tr>
+<td>test1</td>
+</tr>
+<tr>
+<td>tEst2</td>
+</tr>
+<tr>
+<td>test2</td>
+</tr>
+<tr>
+<td>test3</td>
+</tr>
+</tbody>
+</table>
+<p>These string is listed in a reasonable way, however if you simply define the natural sorting to be sorting chunks of characters and numbers individually, the <code>Test</code> string have to be equal to <code>test</code> so that the ordering won’t be deterministic.</p>
+<p>And there’s another case involving leading zeros:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test1</td>
+</tr>
+<tr>
+<td>test01</td>
+</tr>
+<tr>
+<td>test001</td>
+</tr>
+<tr>
+<td>test01a</td>
+</tr>
+</tbody>
+</table>
+<p>Intuitively, things that are shorter should come before those longer ones, so equal numbers with less leading zeros should come before those with more. Furthermore, if there’s more text following the number, it should come after those without, thus the aforementioned leading zero comparison has a lower priority.</p>
+<p>I didn’t find any standard for these corner cases, so I’m merely deciding on the most reasonable approach.</p>
+<h2 id="Various-Implementations"><a href="#Various-Implementations" class="headerlink" title="Various Implementations"></a>Various Implementations</h2><p>There’s <a href="https://blog.codinghorror.com/sorting-for-humans-natural-sort-order/" target="_blank" rel="noopener">an article on CodingHorror</a> and <a href="https://stackoverflow.com/questions/1262239/natural-sort-order-string-comparison-in-java-is-one-built-in" target="_blank" rel="noopener">a StackOverflow question</a> that referenced some existing implementations.</p>
+<p>And here are some additional implementations that I found inside some battlefield applications:</p>
+<ul>
+<li><a href="https://github.com/eneim/cabinet/blob/master/app/src/main/java/com/afollestad/cabinet/utils/AlphanumComparator.java" target="_blank" rel="noopener">Cabinet/AlphanumComparator</a>: Adapted from DaveKoelle’s <code>AlphanumComparator</code>.</li>
+<li><a href="https://github.com/GNOME/glib/blob/master/glib/gunicollate.c" target="_blank" rel="noopener">glib/g_utf8_collate_key_for_filename</a>: Used by Nautilus, generates a new string that can be used for comparison.</li>
+<li><a href="https://github.com/coreutils/gnulib/blob/master/lib/filevercmp.c" target="_blank" rel="noopener">gnulib/filevercmp</a>: Used by GNU coreutils’ <code>ls -v</code>.</li>
+<li><a href="https://github.com/coreutils/coreutils/blob/master/src/sort.c" target="_blank" rel="noopener">coreutils/sort</a>: Used by GNU coreutils’ <code>sort -V</code>.</li>
+</ul>
+<p>But there’s some common issues in existing implementations:</p>
+<ul>
+<li>Use of regular expression: The comparator is frequently evaluated during the sort, so performance is our concern and splitting on regular expressions is not what we expect under such conditions.</li>
+<li>Memory allocation: Also due to the frequent invocation, we should avoid memory allocation (e.g. actually building those “chunks”), and this can be done by iteration over the two strings.</li>
+<li>Unicode awareness: Unicode code points are not necessarily single <code>char</code>s (think of surrogates), so those code point related methods should be used instead of simple increment to advance the index of current “character”.</li>
+<li>Locale awareness: Instead of <code>c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;</code>, one should use <code>Character.isDigit()</code> and <code>Character.digit()</code> for getting numbers out of a character.</li>
+<li>Correctness: Some implementations cannot handle the two aforementioned corner cases properly.</li>
+<li>Coding style: Some implementations are simply not so readable.</li>
+</ul>
+<h2 id="My-Implementation"><a href="#My-Implementation" class="headerlink" title="My Implementation"></a>My Implementation</h2><p>So I wrote my own implementation with those issues in mind, and it basically iterates over the two string and handles consecutive digits together. Most of the code is self-explanatory and the comments can also describe the algorithm:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NaturalOrderComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DIGIT_RADIX = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String string1, String string2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> start2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> leadingZeroCompareResult = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (start1 &lt; string1.length() &amp;&amp; start2 &lt; string2.length()) &#123;</span><br><span class="line">            <span class="keyword">int</span> codePoint1 = string1.codePointAt(start1);</span><br><span class="line">            <span class="keyword">int</span> codePoint2 = string2.codePointAt(start2);</span><br><span class="line">            <span class="comment">// Check if both code points are digits.</span></span><br><span class="line">            <span class="keyword">if</span> (!Character.isDigit(codePoint1) || !Character.isDigit(codePoint2)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!codePointEqualsIgnoreCase(codePoint1, codePoint2)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> codePointCompareToIgnoreCase(codePoint1, codePoint2);</span><br><span class="line">                &#125;</span><br><span class="line">                start1 = string1.offsetByCodePoints(start1, <span class="number">1</span>);</span><br><span class="line">                start2 = string2.offsetByCodePoints(start2, <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// Get end of current number.</span></span><br><span class="line">            <span class="keyword">int</span> end1 = start1;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                end1 = string1.offsetByCodePoints(end1, <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">while</span> (end1 &lt; string1.length() &amp;&amp; Character.isDigit(string1.codePointAt(end1)));</span><br><span class="line">            <span class="keyword">int</span> end2 = start2;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                end2 = string2.offsetByCodePoints(end2, <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">while</span> (end2 &lt; string2.length() &amp;&amp; Character.isDigit(string2.codePointAt(end2)));</span><br><span class="line">            <span class="comment">// Get start of current number without leading zeros.</span></span><br><span class="line">            <span class="keyword">int</span> noLeadingZeroStart1 = start1;</span><br><span class="line">            <span class="keyword">while</span> (noLeadingZeroStart1 &lt; end1 &amp;&amp; Character.digit(string1.codePointAt(</span><br><span class="line">                    noLeadingZeroStart1), DIGIT_RADIX) == <span class="number">0</span>) &#123;</span><br><span class="line">                noLeadingZeroStart1 = string1.offsetByCodePoints(noLeadingZeroStart1, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> noLeadingZeroStart2 = start2;</span><br><span class="line">            <span class="keyword">while</span> (noLeadingZeroStart2 &lt; end2 &amp;&amp; Character.digit(string2.codePointAt(</span><br><span class="line">                    noLeadingZeroStart2), DIGIT_RADIX) == <span class="number">0</span>) &#123;</span><br><span class="line">                noLeadingZeroStart2 = string2.offsetByCodePoints(noLeadingZeroStart2, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// If the two lengths of numbers (without leading zeros) differ, the shorter one comes</span></span><br><span class="line">            <span class="comment">// first.</span></span><br><span class="line">            <span class="keyword">int</span> noLeadingZeroLength1 = string1.codePointCount(noLeadingZeroStart1, end1);</span><br><span class="line">            <span class="keyword">int</span> noLeadingZeroLength2 = string2.codePointCount(noLeadingZeroStart2, end2);</span><br><span class="line">            <span class="keyword">if</span> (noLeadingZeroLength1 != noLeadingZeroLength2) &#123;</span><br><span class="line">                <span class="keyword">return</span> noLeadingZeroLength1 - noLeadingZeroLength2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// If any two digits starting from the first non-zero ones differs, the less one comes</span></span><br><span class="line">            <span class="comment">// first.</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> digitIndex1 = noLeadingZeroStart1, digitIndex2 = noLeadingZeroStart2;</span><br><span class="line">                 digitIndex1 &lt; end1; digitIndex1 = string1.offsetByCodePoints(digitIndex1, <span class="number">1</span>),</span><br><span class="line">                         digitIndex2 = string2.offsetByCodePoints(digitIndex2, <span class="number">1</span>)) &#123;</span><br><span class="line">                <span class="keyword">int</span> digit1 = Character.digit(string1.codePointAt(digitIndex1), DIGIT_RADIX);</span><br><span class="line">                <span class="keyword">int</span> digit2 = Character.digit(string2.codePointAt(digitIndex2), DIGIT_RADIX);</span><br><span class="line">                <span class="keyword">if</span> (digit1 != digit2) &#123;</span><br><span class="line">                    <span class="keyword">return</span> digit1 - digit2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// If the two numbers are the same, the one with less leading zeros (shorter) comes</span></span><br><span class="line">            <span class="comment">// first.</span></span><br><span class="line">            <span class="keyword">int</span> leadingZeroLength1 = string1.codePointCount(start1, noLeadingZeroStart1);</span><br><span class="line">            <span class="keyword">int</span> leadingZeroLength2 = string2.codePointCount(start2, noLeadingZeroStart2);</span><br><span class="line">            <span class="keyword">if</span> (leadingZeroLength1 != leadingZeroLength2) &#123;</span><br><span class="line">                <span class="keyword">if</span> (leadingZeroCompareResult == <span class="number">0</span>) &#123;</span><br><span class="line">                    leadingZeroCompareResult = leadingZeroLength1 - leadingZeroLength2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            start1 = end1;</span><br><span class="line">            start2 = end2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// If one of the two strings is exhausted first, it comes first.</span></span><br><span class="line">        <span class="keyword">int</span> remainingLength1 = string1.codePointCount(start1, string1.length());</span><br><span class="line">        <span class="keyword">int</span> remainingLength2 = string2.codePointCount(start2, string2.length());</span><br><span class="line">        <span class="keyword">if</span> (remainingLength1 != remainingLength2) &#123;</span><br><span class="line">            <span class="keyword">return</span> remainingLength1 - remainingLength2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// The one with less leading zeros (shorter) comes first if others are the same.</span></span><br><span class="line">        <span class="keyword">if</span> (leadingZeroCompareResult != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> leadingZeroCompareResult;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Fall back to plain comparison.</span></span><br><span class="line">        <span class="keyword">return</span> string1.compareTo(string2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @see String#regionMatches(boolean, int, String, int, int)</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">codePointEqualsIgnoreCase</span><span class="params">(<span class="keyword">int</span> codePoint1, <span class="keyword">int</span> codePoint2)</span> </span>&#123;</span><br><span class="line">        codePoint1 = Character.toUpperCase(codePoint1);</span><br><span class="line">        codePoint2 = Character.toUpperCase(codePoint2);</span><br><span class="line">        <span class="keyword">if</span> (codePoint1 == codePoint2) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        codePoint1 = Character.toLowerCase(codePoint1);</span><br><span class="line">        codePoint2 = Character.toLowerCase(codePoint2);</span><br><span class="line">        <span class="keyword">return</span> codePoint1 == codePoint2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @see String.CaseInsensitiveComparator#compare(String, String)</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">codePointCompareToIgnoreCase</span><span class="params">(<span class="keyword">int</span> codePoint1, <span class="keyword">int</span> codePoint2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (codePoint1 != codePoint2) &#123;</span><br><span class="line">            codePoint1 = Character.toUpperCase(codePoint1);</span><br><span class="line">            codePoint2 = Character.toUpperCase(codePoint2);</span><br><span class="line">            <span class="keyword">if</span> (codePoint1 != codePoint2) &#123;</span><br><span class="line">                codePoint1 = Character.toUpperCase(codePoint1);</span><br><span class="line">                codePoint2 = Character.toUpperCase(codePoint2);</span><br><span class="line">                <span class="keyword">if</span> (codePoint1 != codePoint2) &#123;</span><br><span class="line">                    <span class="keyword">return</span> codePoint1 - codePoint2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The code is also available as <a href="https://gist.github.com/DreaminginCodeZH/57ab1232405435fb1ef6e6af06b5dc36" target="_blank" rel="noopener">a GitHub gist</a> and is licensed under the Apache 2.0 license.</p>
+<h2 id="Further-Considerations"><a href="#Further-Considerations" class="headerlink" title="Further Considerations"></a>Further Considerations</h2><p>In fact, to account for Unicode’s compatibility decomposition, canonical composition and <a href="https://www.w3.org/International/wiki/Case_folding" target="_blank" rel="noopener">case folding</a>, an ICU <code>Normalizer</code> should be used with mode <code>NFKC_Casefold</code>. However, since the ICU package is not available on Android until Android Oreo, and the JDK implementation didn’t account for such level of correctness, I’m currently leaving it out and you can trivially add it by applying the normalization before comparison.</p>
+
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/fixing-my-missing-degree-celsius-symbol/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Fixing My Missing Degree Celsius Symbol
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+
+
+    </section>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:blog.zhanghai.me">
+    </form>
+</div>
+<footer id="footer">
+  <h1 class="footer-blog-title">
+    <a href="/">梦断代码</a>
+  </h1>
+  <span class="copyright">
+    &copy; 2018 张海<br>
+    Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  </span>
+</footer>
+
+    
+<script>
+  var disqus_shortname = 'zhanghai';
+  
+  var disqus_url = 'http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/';
+  
+  (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

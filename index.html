@@ -59,11 +59,151 @@ ga('send', 'pageview');
     <section id="main">
       
   
+    <article id="post-writing-a-comparator-for-natural-sort-order" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/writing-a-comparator-for-natural-sort-order/" class="article-date">
+  <time datetime="2018-06-16T06:03:48.000Z" itemprop="datePublished">6月 16 2018</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/writing-a-comparator-for-natural-sort-order/">Writing a Comparator for Natural Sort Order</a>
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <p>Natural sort order is what we usually see in most file managers when browsing a list of numbered files, that it sorts the numerical part of the file name as a number instead of comparing it character by character. For instance:</p>
+<table>
+<thead>
+<tr>
+<th>Natural sort</th>
+<th>Lexicographical sort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.txt</td>
+<td>1.txt</td>
+</tr>
+<tr>
+<td>10.txt</td>
+<td>2.txt</td>
+</tr>
+<tr>
+<td>100.txt</td>
+<td>3.txt</td>
+</tr>
+<tr>
+<td>101.txt</td>
+<td>4.txt</td>
+</tr>
+<tr>
+<td>102.txt</td>
+<td>5.txt</td>
+</tr>
+<tr>
+<td>103.txt</td>
+<td>10.txt</td>
+</tr>
+<tr>
+<td>104.txt</td>
+<td>11.txt</td>
+</tr>
+<tr>
+<td>105.txt</td>
+<td>12.txt</td>
+</tr>
+<tr>
+<td>11.txt</td>
+<td>13.txt</td>
+</tr>
+<tr>
+<td>12.txt</td>
+<td>14.txt</td>
+</tr>
+<tr>
+<td>13.txt</td>
+<td>15.txt</td>
+</tr>
+<tr>
+<td>14.txt</td>
+<td>100.txt</td>
+</tr>
+<tr>
+<td>15.txt</td>
+<td>101.txt</td>
+</tr>
+<tr>
+<td>2.txt</td>
+<td>102.txt</td>
+</tr>
+<tr>
+<td>3.txt</td>
+<td>103.txt</td>
+</tr>
+<tr>
+<td>4.txt</td>
+<td>104.txt</td>
+</tr>
+<tr>
+<td>5.txt</td>
+<td>105.txt</td>
+</tr>
+</tbody>
+</table>
+<p>Lexicographical sort can be easily implemented using <code>String::compareToIgnoreCase</code>, but it is not very acceptable for end users. However for natural sort, things is actually a little more complicated.</p>
+      
+        <p class="more">
+          <a href="/writing-a-comparator-for-natural-sort-order/#more">继续阅读</a>
+        </p>
+      
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+</article>
+
+
+  <hr class="article-divider">
+
+
+
+
+  
     <article id="post-fixing-my-missing-degree-celsius-symbol" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/fixing-my-missing-degree-celsius-symbol/" class="article-date">
-  <time datetime="2018-04-11T04:01:59.000Z" itemprop="datePublished">4月 10 2018</time>
+  <time datetime="2018-04-10T13:01:59.000Z" itemprop="datePublished">4月 10 2018</time>
 </a>
 
     </span>
@@ -128,7 +268,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/buliding-gtk-3-application-with-javascript/" class="article-date">
-  <time datetime="2017-04-07T17:23:35.000Z" itemprop="datePublished">4月 7 2017</time>
+  <time datetime="2017-04-07T02:23:35.000Z" itemprop="datePublished">4月 7 2017</time>
 </a>
 
     </span>
@@ -189,7 +329,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/writing-thesis-with-latex/" class="article-date">
-  <time datetime="2017-03-29T22:16:36.000Z" itemprop="datePublished">3月 29 2017</time>
+  <time datetime="2017-03-29T07:16:36.000Z" itemprop="datePublished">3月 29 2017</time>
 </a>
 
     </span>
@@ -250,7 +390,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/webgl-notes/" class="article-date">
-  <time datetime="2016-10-11T03:01:43.000Z" itemprop="datePublished">10月 10 2016</time>
+  <time datetime="2016-10-10T12:01:43.000Z" itemprop="datePublished">10月 10 2016</time>
 </a>
 
     </span>
@@ -312,7 +452,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/publish-reveal-js-presentation-to-github-pages/" class="article-date">
-  <time datetime="2016-08-14T05:08:21.000Z" itemprop="datePublished">8月 13 2016</time>
+  <time datetime="2016-08-13T14:08:21.000Z" itemprop="datePublished">8月 13 2016</time>
 </a>
 
     </span>
@@ -374,7 +514,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/use-travis-ci-on-android-project-and-publish-ci-builds/" class="article-date">
-  <time datetime="2016-08-06T00:50:15.000Z" itemprop="datePublished">8月 5 2016</time>
+  <time datetime="2016-08-05T09:50:15.000Z" itemprop="datePublished">8月 5 2016</time>
 </a>
 
     </span>
@@ -436,7 +576,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/verilog-notes/" class="article-date">
-  <time datetime="2016-03-24T02:27:26.000Z" itemprop="datePublished">3月 23 2016</time>
+  <time datetime="2016-03-23T11:27:26.000Z" itemprop="datePublished">3月 23 2016</time>
 </a>
 
     </span>
@@ -499,7 +639,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/introduction-to-plan-9-the-os/" class="article-date">
-  <time datetime="2015-10-21T22:32:24.000Z" itemprop="datePublished">10月 21 2015</time>
+  <time datetime="2015-10-21T07:32:24.000Z" itemprop="datePublished">10月 21 2015</time>
 </a>
 
     </span>
@@ -561,7 +701,7 @@ ga('send', 'pageview');
   <header class="entry-meta-header">
     <span class="meta-elements date">
       <a href="/thoughts-on-content-handling-in-android-application/" class="article-date">
-  <time datetime="2015-10-05T04:44:12.000Z" itemprop="datePublished">10月 4 2015</time>
+  <time datetime="2015-10-04T13:44:12.000Z" itemprop="datePublished">10月 4 2015</time>
 </a>
 
     </span>
@@ -604,67 +744,6 @@ ga('send', 'pageview');
       <span class="tags">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
-
-
-      </span>
-    </div>
-  </footer>
-  
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
-    <article id="post-android-developer-guide" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/android-developer-guide/" class="article-date">
-  <time datetime="2015-09-29T04:13:29.000Z" itemprop="datePublished">9月 28 2015</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/android-developer-guide/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
-    
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/android-developer-guide/">Android 开发入门指南</a>
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从我入门 Android 开发至今已经两年有余，过程中有了一些经验和积累，所以在此将我对于入门者的建议记录下来。</p>
-      
-        <p class="more">
-          <a href="/android-developer-guide/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
-        
-
-      </span>
-      <span class="tags">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
 
 
       </span>
