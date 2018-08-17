@@ -189,7 +189,7 @@ h6 a:hover {
 }
 pre,
 code {
-  font-family: "WenQuanYi Micro Hei Mono", "Source Code Pro", Consolas, Monaco, Menlo, "WenQuanYi Zen Hei Mono", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", monospace;
+  font-family: "WenQuanYi Micro Hei Mono", "Source Code Pro", Consolas, Monaco, Menlo, "WenQuanYi Zen Hei Mono", monospace;
   font-size: 1em;
 }
 .left,
@@ -223,7 +223,7 @@ code {
 }
 .entry-content .gist .gist-file .gist-data pre {
   padding: 0 !important;
-  font-family: "WenQuanYi Micro Hei Mono", "Source Code Pro", Consolas, Monaco, Menlo, "WenQuanYi Zen Hei Mono", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", monospace;
+  font-family: "WenQuanYi Micro Hei Mono", "Source Code Pro", Consolas, Monaco, Menlo, "WenQuanYi Zen Hei Mono", monospace;
 }
 .entry-content .gist .gist-file .gist-meta {
   background: none;
