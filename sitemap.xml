@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
+    
+    <lastmod>2019-02-11T04:41:11.351Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/remapping-keys-with-udev-hwdb/</loc>
     
-    <lastmod>2019-02-11T04:26:51.078Z</lastmod>
+    <lastmod>2019-02-11T04:37:39.704Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/</loc>
     
     <lastmod>2018-04-11T07:13:30.685Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
-    
-    <lastmod>2018-03-27T18:59:52.719Z</lastmod>
     
   </url>
   
