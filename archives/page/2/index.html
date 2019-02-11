@@ -59,6 +59,68 @@ ga('send', 'pageview');
     <section id="main">
       
   
+    <article id="post-thoughts-on-content-handling-in-android-application" class="post">
+  <header class="entry-meta-header">
+    <span class="meta-elements date">
+      <a href="/thoughts-on-content-handling-in-android-application/" class="article-date">
+  <time datetime="2015-10-05T04:44:12.000Z" itemprop="datePublished">10月 4 2015</time>
+</a>
+
+    </span>
+    <span class="meta-elements author">张海</span>
+    <div class="commentscount">
+      
+        <a href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/#disqus_thread" class="article-comment-link">评论</a>
+      
+    </div>
+  </header>
+  
+
+  <header class="entry-header">
+    
+  
+    <h1 itemprop="name" class="entry-title">
+      <a class="article-title" href="/thoughts-on-content-handling-in-android-application/">Thoughts on Content Handling in Android Application</a>
+    </h1>
+  
+
+
+  </header>
+  <div class="entry-content">
+    
+      <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
+<p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>
+      
+        <p class="more">
+          <a href="/thoughts-on-content-handling-in-android-application/#more">继续阅读</a>
+        </p>
+      
+    
+  </div>
+  <footer class="entry-footer">
+    <div class="entry-meta-footer">
+      <span class="category">
+        
+
+      </span>
+      <span class="tags">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+
+
+      </span>
+    </div>
+  </footer>
+  
+</article>
+
+
+  <hr class="article-divider">
+
+
+
+
+  
     <article id="post-android-developer-guide" class="post">
   <header class="entry-meta-header">
     <span class="meta-elements date">
@@ -623,69 +685,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-android-design-guide" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/android-design-guide/" class="article-date">
-  <time datetime="2014-11-03T02:23:15.000Z" itemprop="datePublished">11月 2 2014</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
-      
-        <a href="http://blog.zhanghai.me/android-design-guide/#disqus_thread" class="article-comment-link">评论</a>
-      
-    </div>
-  </header>
-  
-
-  <header class="entry-header">
-    
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/android-design-guide/">Android 设计简明教程</a>
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <img src="/android-design-guide/android_design_elements_landing.png" title="欢迎">
-<h2 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h2><p>这是我作为一名 Android 开发者对 Android 设计的理解。在这个教程中，我主要参考<a href="http://developer.android.com/design/index.html" target="_blank" rel="noopener">官方的设计教程</a>，同时会加入一些自己的见解，并穿插一些实用资源。其中 <a href="http://www.geekpark.net/users/163712/topics" target="_blank" rel="noopener">NovaDNG</a> 的几篇文章对我影响较大，对此十分感谢。</p>
-<p>在今年，Google 已经推出了新的 <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="noopener">Material 设计规范</a>，对真实世界进行抽象的模拟，实现了在各个平台上的统一设计标准。<del>我对这个标准的理念认同，然而在布局等细节上有些许分歧。诸位可以学习完 Android 设计后继续学习 Material 设计，作出自己的判断。</del>本文写作于 2014 年，而今 Material Design 已趋于成熟并且被广泛应用，因此推荐读者转而阅读 Material Design 设计规范。</p>
-      
-        <p class="more">
-          <a href="/android-design-guide/#more">继续阅读</a>
-        </p>
-      
-    
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
-        
-
-      </span>
-      <span class="tags">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design/">设计</a></li></ul>
-
-
-      </span>
-    </div>
-  </footer>
-  
-</article>
-
-
-  <hr class="article-divider">
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/archives/">« 上一页</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">下一页 »</a>
@@ -706,7 +705,7 @@ ga('send', 'pageview');
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2018 张海<br>
+    &copy; 2019 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>

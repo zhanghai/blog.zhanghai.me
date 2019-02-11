@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/remapping-keys-with-udev-hwdb/</loc>
+    
+    <lastmod>2019-02-11T04:26:51.078Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/</loc>
     
     <lastmod>2018-06-16T10:09:47.201Z</lastmod>
