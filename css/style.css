@@ -1048,12 +1048,6 @@ pre .deletion {
   .post .entry-title {
     font-size: 180%;
   }
-  .post .entry-content pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    word-break: break-all;
-    overflow-x: hidden;
-  }
 }
 @media (max-width: 767px) {
   #container {
