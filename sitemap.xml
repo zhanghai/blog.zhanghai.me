@@ -2,163 +2,163 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
+    <loc>http://blog.zhanghai.me/writing-thesis-with-latex/</loc>
     
-    <lastmod>2019-02-11T04:41:11.351Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/remapping-keys-with-udev-hwdb/</loc>
-    
-    <lastmod>2019-02-11T04:37:39.704Z</lastmod>
+    <lastmod>2019-05-16T05:05:51.868Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.zhanghai.me/writing-a-comparator-for-natural-sort-order/</loc>
     
-    <lastmod>2018-06-16T10:09:47.201Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/</loc>
-    
-    <lastmod>2018-04-11T07:13:30.685Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/writing-thesis-with-latex/</loc>
-    
-    <lastmod>2018-01-31T10:14:30.267Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/android-developer-guide/</loc>
-    
-    <lastmod>2017-06-07T14:58:35.973Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/android-design-guide/</loc>
-    
-    <lastmod>2017-06-07T14:57:20.100Z</lastmod>
+    <lastmod>2019-05-16T05:05:51.868Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/</loc>
     
-    <lastmod>2017-04-07T05:43:29.630Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</loc>
-    
-    <lastmod>2017-03-29T07:17:58.978Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
-    
-    <lastmod>2016-11-14T07:59:27.234Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/webgl-notes/</loc>
-    
-    <lastmod>2016-10-11T11:01:37.233Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/</loc>
-    
-    <lastmod>2016-08-13T15:31:17.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/</loc>
-    
-    <lastmod>2016-08-07T16:25:10.666Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/verilog-notes/</loc>
-    
-    <lastmod>2016-07-28T06:23:33.294Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/</loc>
-    
-    <lastmod>2016-07-25T15:04:37.279Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</loc>
-    
-    <lastmod>2016-04-02T16:29:56.757Z</lastmod>
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.zhanghai.me/c-exam-notes/</loc>
     
-    <lastmod>2016-01-18T11:03:38.146Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</loc>
-    
-    <lastmod>2015-12-16T12:29:23.736Z</lastmod>
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.zhanghai.me/c-interview-questions/</loc>
     
-    <lastmod>2015-11-17T08:47:05.883Z</lastmod>
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/bash-scripting-notes/</loc>
+    <loc>http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/</loc>
     
-    <lastmod>2015-11-01T16:18:13.998Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/qsc-mobile-android-v3/</loc>
-    
-    <lastmod>2015-05-02T06:23:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/key-sequence-transformation-in-x11/</loc>
-    
-    <lastmod>2015-03-13T07:07:44.000Z</lastmod>
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://blog.zhanghai.me/hello-world/</loc>
     
-    <lastmod>2015-03-02T08:59:18.000Z</lastmod>
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/key-sequence-transformation-in-x11/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/qsc-mobile-android-v3/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/verilog-notes/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/remapping-keys-with-udev-hwdb/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/webgl-notes/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/bash-scripting-notes/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/android-design-guide/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/android-developer-guide/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/building-portable-desktop-application-with-swt/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.861Z</lastmod>
     
   </url>
   

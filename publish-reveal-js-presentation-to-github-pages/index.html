@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言Reveal.js 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 Reveal.js 的 Demo。 为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 slides.zhanghai.me 的过程。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-08-13T15:31:17.220Z">
+<meta property="og:updated_time" content="2019-05-16T05:05:51.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="将 Reveal.js 演示文稿部署至 GitHub Pages">
 <meta name="twitter:description" content="前言Reveal.js 是一个美观实用 HTML 演示文稿框架，只需要你决定内容，就可以方便地产出外观优雅的演示文稿。你可以在线查看 Reveal.js 的 Demo。 为了分享已经制作好的演示文稿，可以使用 GitHub Pages 进行部署，同时也能够不用安装依赖地开启演讲者视图。以下是我建立 slides.zhanghai.me 的过程。">
@@ -107,7 +107,7 @@ ga('send', 'pageview');
 <p>比较幸运的是，GitHub Pages 的构建过程是可以支持 Submodule 的。需要注意的是，Submodule 的仓库地址必须采用 https 而非 ssh 协议（否则会收到构建失败的邮件通知）。以下是将 Reveal.js 作为 Submodule 引入的命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule add https://github.com/hakimel/reveal.js.git</span><br></pre></td></tr></table></figure>
 <p>之后将你的 <code>index.html</code> 中对于 Reveal.js 文件的应用都加上 <code>reveal.js/</code> 的目录前缀即可。</p>
-<p>其他详情可以参考我的站点仓库 <a href="https://github.com/DreaminginCodeZH/slides.zhanghai.me" target="_blank" rel="noopener">DreaminginCodeZH/slides.zhanghai.me</a>。</p>
+<p>其他详情可以参考我的站点仓库 <a href="https://github.com/zhanghai/slides.zhanghai.me" target="_blank" rel="noopener">zhanghai/slides.zhanghai.me</a>。</p>
 <h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语</h2><p>Reveal.js 是一个易用而优雅的 HTML 演示文稿框架，借助于它，我已经多年没有用过 PowerPoint 了。至于利用 GitHub Pages 将它放置在网页端，则可以在免运维的情况下可靠地分享自己的演示文稿，同时也可以不用安装大量 <code>npm</code> 依赖来开启演讲者视图，算是一个简单又有用的小技巧。</p>
 <p>因此，将我的配置过程和结果记录在此，希望能对他人有所帮助。</p>
 

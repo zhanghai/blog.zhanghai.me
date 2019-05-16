@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/mipsasm-windows.png">
 <meta property="og:image" content="http://blog.zhanghai.me/building-portable-desktop-application-with-swt/mipsasm-gtk3.png">
-<meta property="og:updated_time" content="2017-03-29T07:17:58.978Z">
+<meta property="og:updated_time" content="2019-05-16T05:05:51.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 SWT 搭建跨平台桌面应用">
 <meta name="twitter:description" content="前言在我的计算机组成课程上，教授要求编写一个 MIPS 汇编器并提供图形界面。由于我的工作环境并非 Windows，同时希望在各个平台的界面中使用原生控件，并且我偏好使用静态类型语言，所以决定使用 SWT 进行图形界面的编写。">
@@ -123,7 +123,7 @@ ga('send', 'pageview');
 <p>从接口方面看，SWT 遵循着一致的命名规范，但 Builder 模式的缺失使得构造控件的过程较为冗长，此外将样式、键码等大量常量放置在 <a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/SWT.html" target="_blank" rel="noopener"><code>SWT</code></a> 类中也显得较为奇怪。</p>
 <p>从功能方面看，SWT 跨平台调用原生控件的能力确实令人惊喜。众多部件在 Windows、Linux GTK+ 3 和 GTK+ 2、Mac OS X Cocoa 上不需要经过调试即表现良好，并且通过打包与原生应用几乎没有什么差异。美中不足的只是一些小的设计细节，例如标签中的文本不能使用光标选择复制、带有链接的多行标签需要使用另一个类却不能指定多行文本居中对齐。但总体来说，这些瑕疵要么可以绕过，要么相比于 SWT 本身带来的便捷来说，无伤大雅。</p>
 <h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语 </h2><p> 菜单、字体、图像、对话框、<a href="http://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api/org/eclipse/swt/custom/StyledText.html" target="_blank" rel="noopener"><code>StyledText</code></a>，还有关于 SWT 的很多方面这篇文章没有覆盖到。但网络上相关的资源是十分丰富的，例如 Google、Eclipse 的 Javadoc 和 Java2s 上的代码示例都是有用的信息来源。</p>
-<p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以 <a href="https://github.com/DreaminginCodeZH/mipsasm" target="_blank" rel="noopener"> 移步至 GitHub 浏览</a>。</p>
+<p>如果有兴趣，我的项目中也有一些按照我自己对 SWT 的理解写出的代码，可以 <a href="https://github.com/zhanghai/mipsasm" target="_blank" rel="noopener"> 移步至 GitHub 浏览</a>。</p>
 
     
   </div>
