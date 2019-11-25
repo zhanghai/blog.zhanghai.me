@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/remapping-keys-with-udev-hwdb/</loc>
+    
+    <lastmod>2019-11-25T02:04:12.475Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/arch-linux-notes/</loc>
     
     <lastmod>2019-08-02T08:21:51.852Z</lastmod>
@@ -44,7 +51,7 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/</loc>
+    <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
     
     <lastmod>2019-05-16T05:05:51.865Z</lastmod>
     
@@ -58,7 +65,21 @@
   </url>
   
   <url>
+    <loc>http://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/introduction-to-plan-9-the-os/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/key-sequence-transformation-in-x11/</loc>
     
     <lastmod>2019-05-16T05:05:51.865Z</lastmod>
     
@@ -79,13 +100,6 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/key-sequence-transformation-in-x11/</loc>
-    
-    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.zhanghai.me/qsc-mobile-android-v3/</loc>
     
     <lastmod>2019-05-16T05:05:51.865Z</lastmod>
@@ -100,13 +114,6 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/</loc>
-    
-    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.zhanghai.me/verilog-notes/</loc>
     
     <lastmod>2019-05-16T05:05:51.865Z</lastmod>
@@ -114,14 +121,7 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/drag-and-drop-with-animation-on-linearlayout/</loc>
-    
-    <lastmod>2019-05-16T05:05:51.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/remapping-keys-with-udev-hwdb/</loc>
+    <loc>http://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/</loc>
     
     <lastmod>2019-05-16T05:05:51.865Z</lastmod>
     
@@ -135,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://blog.zhanghai.me/bash-scripting-notes/</loc>
-    
-    <lastmod>2019-05-16T05:05:51.861Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.zhanghai.me/android-design-guide/</loc>
     
     <lastmod>2019-05-16T05:05:51.861Z</lastmod>
@@ -150,6 +143,13 @@
   
   <url>
     <loc>http://blog.zhanghai.me/android-developer-guide/</loc>
+    
+    <lastmod>2019-05-16T05:05:51.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhanghai.me/bash-scripting-notes/</loc>
     
     <lastmod>2019-05-16T05:05:51.861Z</lastmod>
     
