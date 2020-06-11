@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <title>关于 C 语言的面试问题 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
-  <meta name="description" content="由来这是我在作为学生组织的面试官时，对熟练掌握 C/C++ 的面试者提出几个的问题，以及对于这几个问题我自己的答案。 语法规则和特定技巧很大程度上只是记忆的问题，而在几个事实上知晓与否并不能断定面试者的高下。C 语言是一门十分接近底层实现的语言，许多的设计决定与实现直接相关，如果想要合适地运用，也要求程序员对于 C 的实现有透彻的理解。因此，这几个问题主要考察的是面试者在 C 原理与设计层面上的理">
-<meta name="keywords" content="编程,笔记,职业">
+  <meta name="description" content="由来这是我在作为学生组织的面试官时，对熟练掌握 C&#x2F;C++ 的面试者提出几个的问题，以及对于这几个问题我自己的答案。 语法规则和特定技巧很大程度上只是记忆的问题，而在几个事实上知晓与否并不能断定面试者的高下。C 语言是一门十分接近底层实现的语言，许多的设计决定与实现直接相关，如果想要合适地运用，也要求程序员对于 C 的实现有透彻的理解。因此，这几个问题主要考察的是面试者在 C 原理与设计层面上的理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于 C 语言的面试问题">
 <meta property="og:url" content="http://blog.zhanghai.me/c-interview-questions/index.html">
 <meta property="og:site_name" content="梦断代码">
-<meta property="og:description" content="由来这是我在作为学生组织的面试官时，对熟练掌握 C/C++ 的面试者提出几个的问题，以及对于这几个问题我自己的答案。 语法规则和特定技巧很大程度上只是记忆的问题，而在几个事实上知晓与否并不能断定面试者的高下。C 语言是一门十分接近底层实现的语言，许多的设计决定与实现直接相关，如果想要合适地运用，也要求程序员对于 C 的实现有透彻的理解。因此，这几个问题主要考察的是面试者在 C 原理与设计层面上的理">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-16T05:05:51.865Z">
+<meta property="og:description" content="由来这是我在作为学生组织的面试官时，对熟练掌握 C&#x2F;C++ 的面试者提出几个的问题，以及对于这几个问题我自己的答案。 语法规则和特定技巧很大程度上只是记忆的问题，而在几个事实上知晓与否并不能断定面试者的高下。C 语言是一门十分接近底层实现的语言，许多的设计决定与实现直接相关，如果想要合适地运用，也要求程序员对于 C 的实现有透彻的理解。因此，这几个问题主要考察的是面试者在 C 原理与设计层面上的理">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-09-15T16:32:43.000Z">
+<meta property="article:modified_time" content="2019-05-16T05:05:51.865Z">
+<meta property="article:author" content="张海">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="职业">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于 C 语言的面试问题">
-<meta name="twitter:description" content="由来这是我在作为学生组织的面试官时，对熟练掌握 C/C++ 的面试者提出几个的问题，以及对于这几个问题我自己的答案。 语法规则和特定技巧很大程度上只是记忆的问题，而在几个事实上知晓与否并不能断定面试者的高下。C 语言是一门十分接近底层实现的语言，许多的设计决定与实现直接相关，如果想要合适地运用，也要求程序员对于 C 的实现有透彻的理解。因此，这几个问题主要考察的是面试者在 C 原理与设计层面上的理">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <!-- Google Analytics -->
@@ -38,8 +42,8 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-</head>
-</html>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -94,6 +98,7 @@ ga('send', 'pageview');
       <h2 id="由来"><a href="# 由来" class="headerlink" title="由来"></a>由来 </h2><p> 这是我在作为学生组织的面试官时，对熟练掌握 C/C++ 的面试者提出几个的问题，以及对于这几个问题我自己的答案。</p>
 <p>语法规则和特定技巧很大程度上只是记忆的问题，而在几个事实上知晓与否并不能断定面试者的高下。C 语言是一门十分接近底层实现的语言，许多的设计决定与实现直接相关，如果想要合适地运用，也要求程序员对于 C 的实现有透彻的理解。因此，这几个问题主要考察的是面试者在 C 原理与设计层面上的理解。</p>
 <a id="more"></a>
+
 <h2 id="问题"><a href="# 问题" class="headerlink" title="问题"></a>问题</h2><ol>
 <li><p>为什么以下的语句不会导致非法内存访问？</p>
  <!-- Unable to wrap a backtick code block in a list item. -->
@@ -112,6 +117,7 @@ ga('send', 'pageview');
 </li>
 <li><p>因为 C 中的 <code>struct</code> 不过是对偏移量计算的简化，可以通过在子类的头部直接放置一个父类成员，之后进行类型转换，就能实现数据成员的继承，示例如下：</p>
  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">&#125; <span class="keyword">base_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">base_t</span> base;</span><br><span class="line">    <span class="keyword">float</span> f;</span><br><span class="line">&#125; <span class="keyword">derived_t</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">derived_t</span> *derived = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">derived_t</span>));</span><br><span class="line"><span class="keyword">base_t</span> *base = (<span class="keyword">base_t</span> *) derived;</span><br></pre></td></tr></table></figure>
+
 <p> 为了实现函数的继承和多态，则需要函数指针，<code>this</code>指针参数，构造器等实现，此处不再赘述。</p>
 </li>
 <li><p>在 C 中，<code>void *</code>指向的是未知类型的内存区域，无论按照什么类型理解，都是合法的；并且 malloc 这样的常用调用返回类型只能是<code>void *</code>，允许自动转换可以大大减少麻烦。</p>
@@ -135,7 +141,7 @@ ga('send', 'pageview');
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/career/">职业</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/" rel="tag">编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/career/" rel="tag">职业</a></li></ul>
 
 
       </span>
@@ -175,7 +181,7 @@ ga('send', 'pageview');
 
   <section id="comments">
     <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
     </div>
   </section>
 
@@ -193,7 +199,7 @@ ga('send', 'pageview');
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2019 张海<br>
+    &copy; 2020 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>
@@ -215,14 +221,20 @@ ga('send', 'pageview');
 </script>
 
 
-<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
   </div>
 </body>

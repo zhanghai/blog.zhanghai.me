@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <title>Bash Scripting Notes | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="This is my notebook for bash scripting. StylingUse Google style guide for shell.">
-<meta name="keywords" content="Linux,Note,Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bash Scripting Notes">
 <meta property="og:url" content="http://blog.zhanghai.me/bash-scripting-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="This is my notebook for bash scripting. StylingUse Google style guide for shell.">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-16T05:05:51.861Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-02-16T05:08:11.000Z">
+<meta property="article:modified_time" content="2019-05-16T05:05:51.861Z">
+<meta property="article:author" content="张海">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bash Scripting Notes">
-<meta name="twitter:description" content="This is my notebook for bash scripting. StylingUse Google style guide for shell.">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <!-- Google Analytics -->
@@ -38,8 +42,8 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-</head>
-</html>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -94,6 +98,7 @@ ga('send', 'pageview');
       <p>This is my notebook for bash scripting.</p>
 <h2 id="Styling"><a href="#Styling" class="headerlink" title="Styling"></a>Styling</h2><p>Use <a href="https://google.github.io/styleguide/shell.xml" target="_blank" rel="noopener">Google style guide for shell</a>.</p>
 <a id="more"></a>
+
 <h2 id="Organization"><a href="#Organization" class="headerlink" title="Organization"></a>Organization</h2><p>Use functions; use a <code>main</code> function and call it by <code>main &quot;$@&quot;</code> at the end of the script.</p>
 <h2 id="Boolean-variable"><a href="#Boolean-variable" class="headerlink" title="Boolean variable"></a>Boolean variable</h2><p>Use <code>1</code> or <code>0</code> literal for boolean; test by <code>[[${bool_val} -eq 1 ]]</code>.</p>
 <h2 id="Local-variable"><a href="#Local-variable" class="headerlink" title="Local variable"></a>Local variable</h2><p>Use <code>local</code> for function local variable; seprate declaration and assignment.</p>
@@ -102,12 +107,18 @@ ga('send', 'pageview');
 <h2 id="Read-password"><a href="#Read-password" class="headerlink" title="Read password"></a>Read password</h2><p>Use <code>read -p &lt;prompt&gt; -s &lt;variable&gt;; echo</code> to read password.</p>
 <h2 id="Use-sudo"><a href="#Use-sudo" class="headerlink" title="Use sudo"></a>Use sudo</h2><p>Include this function and call it before you’re going to use <code>sudo</code>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">prepare_sudo</span></span>() &#123;</span><br><span class="line">    sudo -v</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="Here-document"><a href="#Here-document" class="headerlink" title="Here document"></a>Here document</h2><p>Use Here document for usage(), etc.</p>
 <p>You can utilize the following technique to write a here document as root</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tee <span class="string">"<span class="variable">$&#123;profile_path&#125;</span>"</span> &gt;/dev/null &lt;&lt;EOF</span><br></pre></td></tr></table></figure>
-<h2 id="Script-name"><a href="#Script-name" class="headerlink" title="Script name"></a>Script name</h2><p><code></code><br>name=$(basename “$0”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Report error</span><br></pre></td></tr></table></figure></p>
-<p>error() {<br>    echo “${FUNCNAME[1]}: $@” &gt;&amp;2<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Configuration file</span><br><span class="line"></span><br><span class="line">You can source an external configuration file as bash script. A bit unsafe though.</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">source example.conf</span><br></pre></td></tr></table></figure></p>
+
+<h2 id="Script-name"><a href="#Script-name" class="headerlink" title="Script name"></a>Script name</h2><p>``<br>name=$(basename “$0”)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Report error</span><br></pre></td></tr></table></figure>
+<p>error() {<br>    echo “${FUNCNAME[1]}: $@” &gt;&amp;2<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Configuration file</span><br><span class="line"></span><br><span class="line">You can source an external configuration file as bash script. A bit unsafe though.</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;bash</span><br><span class="line">source example.conf</span><br></pre></td></tr></table></figure>
+
 <h2 id="Wait-for-certain-condition"><a href="#Wait-for-certain-condition" class="headerlink" title="Wait for certain condition"></a>Wait for certain condition</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 <span class="string">"<span class="variable">$&#123;timeout&#125;</span>"</span>); <span class="keyword">do</span></span><br><span class="line">    check_something;</span><br><span class="line">    sleep 1;</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="Watch-file-changes"><a href="#Watch-file-changes" class="headerlink" title="Watch file changes"></a>Watch file changes</h2><p>Use <code>inotifywait</code>.</p>
 <h1 id="Colored-makepkg-like-functions"><a href="#Colored-makepkg-like-functions" class="headerlink" title="Colored makepkg-like functions"></a>Colored makepkg-like functions</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">msg_blue()·&#123;</span><br><span class="line">    <span class="built_in">printf</span>·<span class="string">"<span class="variable">$&#123;BLUE&#125;</span>==&gt;<span class="variable">$&#123;ALL_OFF&#125;</span><span class="variable">$&#123;BOLD&#125;</span>·<span class="variable">$1</span><span class="variable">$&#123;ALL_OFF&#125;</span>\n"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">note()·&#123;</span><br><span class="line">    <span class="built_in">printf</span>·<span class="string">"<span class="variable">$&#123;BLUE&#125;</span>==&gt;<span class="variable">$&#123;ALL_OFF&#125;</span><span class="variable">$&#123;YELLOW&#125;</span>·NOTE:<span class="variable">$&#123;ALL_OFF&#125;</span><span class="variable">$&#123;BOLD&#125;</span>·<span class="variable">$1</span><span class="variable">$&#123;ALL_OFF&#125;</span>\n"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ALL_OFF=<span class="string">"<span class="variable">$(tput·sgr0)</span>"</span></span><br><span class="line">BOLD=<span class="string">"<span class="variable">$(tput·bold)</span>"</span></span><br><span class="line">BLUE=<span class="string">"<span class="variable">$&#123;BOLD&#125;</span><span class="variable">$(tput·setaf·4)</span>"</span></span><br><span class="line">YELLOW=<span class="string">"<span class="variable">$&#123;BOLD&#125;</span><span class="variable">$(tput·setaf·3)</span>"</span></span><br></pre></td></tr></table></figure>
 
@@ -121,7 +132,7 @@ ga('send', 'pageview');
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">Programming</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/" rel="tag">Programming</a></li></ul>
 
 
       </span>
@@ -161,7 +172,7 @@ ga('send', 'pageview');
 
   <section id="comments">
     <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
     </div>
   </section>
 
@@ -179,7 +190,7 @@ ga('send', 'pageview');
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2019 张海<br>
+    &copy; 2020 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>
@@ -201,14 +212,20 @@ ga('send', 'pageview');
 </script>
 
 
-<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
   </div>
 </body>

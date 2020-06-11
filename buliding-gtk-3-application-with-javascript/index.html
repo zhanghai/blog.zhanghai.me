@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <title>使用 JavaScript 编写 GTK+ 3 应用程序 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="前言JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。">
-<meta name="keywords" content="编程,教程,学业">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 JavaScript 编写 GTK+ 3 应用程序">
 <meta property="og:url" content="http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/optical-system.png">
-<meta property="og:updated_time" content="2019-05-16T05:05:51.865Z">
+<meta property="article:published_time" content="2017-04-07T17:23:35.000Z">
+<meta property="article:modified_time" content="2019-05-16T05:05:51.865Z">
+<meta property="article:author" content="张海">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="学业">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 JavaScript 编写 GTK+ 3 应用程序">
-<meta name="twitter:description" content="前言JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。">
 <meta name="twitter:image" content="http://blog.zhanghai.me/buliding-gtk-3-application-with-javascript/optical-system.png">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
@@ -25,7 +27,9 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <!-- Google Analytics -->
@@ -40,8 +44,8 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-</head>
-</html>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -95,6 +99,7 @@ ga('send', 'pageview');
     
       <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言</h2><p>JavaScript 是一门灵活的动态语言，在实现应用功能时十分易用。最近有写作图形界面程序的需要，又比较喜爱 GTK+ 3 的设计，因此想到可以尝试使用 JavaScript 来完成任务。</p>
 <a id="more"></a>
+
 <h2 id="选择运行时"><a href="# 选择运行时" class="headerlink" title="选择运行时"></a>选择运行时 </h2><p> 首选的运行时当然是 node，因为它有着良好的 ES2015 特性支持，并且可以方便地使用 npm 管理的模块。在经过一番搜索之后，我找到了 <a href="https://github.com/WebReflection/node-gtk" target="_blank" rel="noopener">WebReflection/node-gtk</a> 这个项目，却发现它无法使用 node-gyp 在我的 Arch Linux 上进行编译。另一个 <a href="https://github.com/creationix/node-gir" target="_blank" rel="noopener">creationix/node-gir</a> 提供了对 GObject Introspection 的绑定，但是在它的 README 中写明了有 bug 和内存管理等问题，看上去也难以令人满意。</p>
 <p>因此，我选择了使用 GJS 作为运行时。虽然没有 node 的 ES2015 支持和使用不同模块的便利，但对于使用 GObject Introspection 的绑定而言足够可靠。</p>
 <h2 id="编写应用程序"><a href="# 编写应用程序" class="headerlink" title="编写应用程序"></a>编写应用程序 </h2><p>GNOME 官方提供了<a href="https://developer.gnome.org/gnome-devel-demos/stable/hellognome.js.html" target="_blank" rel="noopener"> 一个简单的 GJS 程序示例</a>，可以按照它的架构进行编程。</p>
@@ -109,11 +114,14 @@ ga('send', 'pageview');
 <h3 id="布局"><a href="# 布局" class="headerlink" title="布局"></a>布局 </h3><p> 可以一直使用 <code>Gtk.Grid</code> 进行布局，它的功能类似于 Android 中的 <code>LinearLayout</code>。可以设置它的 <code>border_width</code>、<code>row_spacing</code> 和 <code>column_spacing</code> 来控制留白，以及设置 <code>expand</code>、<code>hexpand</code> 和 <code>vexpand</code> 控制大小。通过调用（继承自 <code>Gtk.Container</code> 并经过覆盖）<code>add()</code> 方法即可按顺序添加子控件，不需要使用 <code>attach()</code> 那样复杂的功能。</p>
 <h3 id="设置 -CSS-Class"><a href="# 设置 -CSS-Class" class="headerlink" title="设置 CSS Class"></a>设置 CSS Class</h3><p>例如给 <code>Gtk.Button</code> 添加 <code>suggested-action</code> CSS 类使其变蓝：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button.get_style_context().add_class(<span class="string">'suggested-action'</span>);</span><br></pre></td></tr></table></figure>
+
+
 <h3 id="控件杂项"><a href="# 控件杂项" class="headerlink" title="控件杂项"></a>控件杂项</h3><p><code>Gtk.Entry</code> 相当于 Android 中的 <code>EditText</code>。可以通过设置 <code>width_char</code> 来修改 <code>Gtk.Entry</code> 的最小大小。</p>
 <p><code>Gtk.Widiget</code> 的 <code>sensitive</code> 属性相当于 Android 中的 <code>android:enabled</code>。</p>
 <h2 id="结语"><a href="# 结语" class="headerlink" title="结语"></a>结语</h2><p>Gjs 使得我们可以使用灵活的 JavaScript 编写美观的原生程序，总体来说体验是很好的。</p>
 <p>我把自己编写的一个小程序放在了 <a href="https://gist.github.com/zhanghai/4ae88f5afae4c353c0a30c0c6595efe5" target="_blank" rel="noopener">GitHub Gist</a>，可以作为参考。</p>
-<img src="/buliding-gtk-3-application-with-javascript/optical-system.png" title="Gjs 应用程序 OpticalSystem">
+<img src="/buliding-gtk-3-application-with-javascript/optical-system.png" class=""title="Gjs 应用程序 OpticalSystem">
+
 <p>最后，在编写这篇文章时，我找到了另一个 <a href="https://github.com/jo/hello-gjs-npm" target="_blank" rel="noopener"> 结合了 Gjs、NPM 和 Babel 的示例项目</a>，读者也可以参考它进行编程。</p>
 
     
@@ -126,7 +134,7 @@ ga('send', 'pageview');
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">编程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/" rel="tag">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/" rel="tag">编程</a></li></ul>
 
 
       </span>
@@ -166,7 +174,7 @@ ga('send', 'pageview');
 
   <section id="comments">
     <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
     </div>
   </section>
 
@@ -184,7 +192,7 @@ ga('send', 'pageview');
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2019 张海<br>
+    &copy; 2020 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>
@@ -206,14 +214,20 @@ ga('send', 'pageview');
 </script>
 
 
-<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
   </div>
 </body>

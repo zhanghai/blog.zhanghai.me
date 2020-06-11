@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <title>使用 LaTeX 编写论文 | 梦断代码</title>
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="前言临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。">
-<meta name="keywords" content="教程,软件,学业">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 LaTeX 编写论文">
 <meta property="og:url" content="http://blog.zhanghai.me/writing-thesis-with-latex/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-16T05:05:51.868Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-29T22:16:36.000Z">
+<meta property="article:modified_time" content="2019-05-16T05:05:51.868Z">
+<meta property="article:author" content="张海">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="学业">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 LaTeX 编写论文">
-<meta name="twitter:description" content="前言临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。">
   
     <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <!-- Google Analytics -->
@@ -38,8 +42,8 @@ ga('send', 'pageview');
 <!-- End Google Analytics -->
 
 
-</head>
-</html>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
 <body>
   <div id="container">
     <div class="mobile-nav-panel">
@@ -93,24 +97,29 @@ ga('send', 'pageview');
     
       <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 临近毕设，学院里提供了毕业设计报告的 LaTeX 模板，于是决定离开简单的 Markdown ，开始使用 LaTeX 进行写作。以下就是我使用过程中的一些记录。</p>
 <a id="more"></a>
+
 <h2 id="样例项目"><a href="# 样例项目" class="headerlink" title="样例项目"></a>样例项目 </h2><p> 我对学院提供的旧 LaTeX 模板进行了较多的修改，使其符合了学院方面的最新格式要求，并且修复了设置字号时行间距不正确等等错误，可以直接使用或者用于参考学习：</p>
 <p><a href="https://github.com/zhanghai/zju-csse-undergraduate-design-proposal-latex-template" target="_blank" rel="noopener">浙江大学计算机科学与技术、软件工程专业本科毕业设计开题报告 LaTeX 模板</a></p>
 <p>其中的 <code>install-fonts.sh</code> 可以用于从 Windows 分区获取需要的字体并进行安装。</p>
 <h2 id="安装 -LaTeX"><a href="# 安装 -LaTeX" class="headerlink" title="安装 LaTeX"></a>安装 LaTeX</h2><p>在 Arch Linux 上安装 LaTeX（TeXLive）较为简单，可以参考 <a href="https://wiki.archlinux.org/index.php/TeX_Live" target="_blank" rel="noopener">Arch Wiki</a> 安装对应的软件包。</p>
 <p>也可以直接执行以下命令进行安装，这样基本不会在使用时遇到无法找到常用宏包的情况。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S texlive-most texlive-langchinese</span><br></pre></td></tr></table></figure>
+
 <h2 id="构建文档"><a href="# 构建文档" class="headerlink" title="构建文档"></a>构建文档</h2><p>xeCJK 是提供 LaTeX 中文支持的宏包，并且依赖于 XeLaTeX，因此，我们需要使用 <code>xelatex</code> 命令进行构建。</p>
 <p>LaTeX 在构建交叉索引时需要多次运行，才能最终解析所有的引用，并且期间需要 BibTeX 对参考文献数据库进行处理。因此，一般的手动构建命令是：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xelatex main</span><br><span class="line">bibtex main</span><br><span class="line">xelatex main</span><br><span class="line">xelatex main</span><br></pre></td></tr></table></figure>
+
 <p>不同于部分网页上给出的示例，这些命令都可以接受不带后缀名的参数，并且有时写出后缀名可能会阻碍多文件等情况下的正确构建。</p>
 <p>对于子目录和多文件使用引用的情况，在主文件中应该使用 <code>\include</code> 而非 <code>\input</code>，否则会需要其他处理。</p>
 <p>为了简化构建步骤，实际上应当使用 <code>latexmk</code>，它会根据需要自动调用各种命令。因此之前的手动构建步骤可以被以下命令替代：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">latexmk -xelatex main</span><br></pre></td></tr></table></figure>
+
 <h2 id="了解 -LaTeX- 和解决问题"><a href="# 了解 -LaTeX- 和解决问题" class="headerlink" title="了解 LaTeX 和解决问题"></a>了解 LaTeX 和解决问题</h2><p>LaTeX 有很多历史问题带来的不同，也有多重相似但不同的工具选择，因此网上提供的解决方案不一定可以工作，需要自己试验。</p>
 <p>可以通过 <a href="https://www.sharelatex.com/learn" target="_blank" rel="noopener">ShareLaTeX 提供的文档</a> 获得对 LaTeX 的初步了解。但是，这份文档中提到的引用等高级特性的使用可能与我们的方式不同。</p>
 <p>推荐使用 <a href="https://tex.stackexchange.com/" target="_blank" rel="noopener">TeX - LaTeX Stack Exchange</a> 作为解决问题时的主要信息来源。</p>
 <p>可以通过 <code>texdef</code> 命令查看 LaTeX 中命令的定义。例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdef -t xelatex -s -c csbachelor \thebibliography</span><br></pre></td></tr></table></figure>
+
 <h2 id="零碎知识"><a href="# 零碎知识" class="headerlink" title="零碎知识"></a>零碎知识</h2><ul>
 <li><code>\\</code>：换行，不新建段落。可选参数可以控制空白长度。</li>
 <li><code>\par</code>：创建段落。<code>\parskip</code> 和 <code>\parindent</code> 将生效。<em>部分命令需要对段落才能生效，因此可能需要在最后一段文字最后加上 <code>\par</code>。</em></li>
@@ -135,7 +144,7 @@ ga('send', 'pageview');
       </span>
       <span class="tags">
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">软件</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schoolwork/" rel="tag">学业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">教程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/" rel="tag">软件</a></li></ul>
 
 
       </span>
@@ -175,7 +184,7 @@ ga('send', 'pageview');
 
   <section id="comments">
     <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
     </div>
   </section>
 
@@ -193,7 +202,7 @@ ga('send', 'pageview');
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2019 张海<br>
+    &copy; 2020 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>
@@ -215,14 +224,20 @@ ga('send', 'pageview');
 </script>
 
 
-<script src="//cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
   </div>
 </body>
