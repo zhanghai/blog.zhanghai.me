@@ -13,7 +13,7 @@
 <meta property="og:description" content="This is my notebook for some small tips and tricks when using Arch Linux. Why Arch Linux? It is fresh and simple in package dependency.  It has a powerful Arch User Repository and makes it easy for yo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2014-11-03T22:18:11.000Z">
-<meta property="article:modified_time" content="2020-11-09T01:58:06.582Z">
+<meta property="article:modified_time" content="2020-11-09T02:13:03.502Z">
 <meta property="article:author" content="张海">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Linux">
@@ -255,7 +255,7 @@ ga('send', 'pageview');
 <h2 id="Watch-FS-buffer-status"><a href="#Watch-FS-buffer-status" class="headerlink" title="Watch FS buffer status"></a>Watch FS buffer status</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch grep -e Dirty: -e Writeback: /proc/meminfo</span><br></pre></td></tr></table></figure>
 
 <p>You can execute <code>sync</code> to flush the buffer immediately.</p>
-<h2 id="Map-Alt-Gr-Right-Alt-to-Alt-in-GNOME-Shell"><a href="#Map-Alt-Gr-Right-Alt-to-Alt-in-GNOME-Shell" class="headerlink" title="Map Alt Gr (Right Alt) to Alt in GNOME Shell"></a>Map Alt Gr (Right Alt) to Alt in GNOME Shell</h2><p>Launch <code>gnome-tweaks</code> and go to the “Keyboard &amp; Mouse” tab, then click “Additional Layout Options” and expand “Key to choose the 3rd level” and uncheck “Right Alt”. Finally restart the shell for the setting to take effect.</p>
+<h2 id="Map-Alt-Gr-Right-Alt-to-Alt-in-GNOME-Shell"><a href="#Map-Alt-Gr-Right-Alt-to-Alt-in-GNOME-Shell" class="headerlink" title="Map Alt Gr (Right Alt) to Alt in GNOME Shell"></a>Map Alt Gr (Right Alt) to Alt in GNOME Shell</h2><p>Launch <code>gnome-tweaks</code> and go to the “Keyboard &amp; Mouse” tab, then click “Additional Layout Options”, expand “Key to choose the 3rd level” and uncheck “Right Alt”, finally restart the shell for the change to take effect.</p>
 <h2 id="Map-Alt-Gr-Right-Alt-to-Alt-in-tty"><a href="#Map-Alt-Gr-Right-Alt-to-Alt-in-tty" class="headerlink" title="Map Alt Gr (Right Alt) to Alt in tty"></a>Map Alt Gr (Right Alt) to Alt in tty</h2><p>From <a href="https://wiki.archlinux.org/index.php/Keyboard_Configuration_in_Console_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="noopener">Arch Wiki</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/kbd/keymaps/i386/qwerty</span><br><span class="line">cp us.map.gz us-two-alt-keys.map.gz</span><br><span class="line">gunzip us-two-alt-keys.map.gz</span><br></pre></td></tr></table></figure>
 
