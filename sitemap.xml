@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhanghai.me/fixing-line-editing-on-android-8-0/</loc>
+    
+    <lastmod>2020-11-22T06:15:02.547Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhanghai.me/android-design-guide/</loc>
     
     <lastmod>2020-11-22T06:09:56.194Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/</loc>
     
     <lastmod>2020-11-22T06:08:03.407Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhanghai.me/fixing-line-editing-on-android-8-0/</loc>
-    
-    <lastmod>2020-11-22T06:06:45.774Z</lastmod>
     
   </url>
   

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhanghai.me/"/>
-  <updated>2020-11-22T06:06:45.774Z</updated>
+  <updated>2020-11-22T06:15:02.547Z</updated>
   <id>http://blog.zhanghai.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.zhanghai.me/fixing-line-editing-on-android-8-0/"/>
     <id>http://blog.zhanghai.me/fixing-line-editing-on-android-8-0/</id>
     <published>2020-11-22T04:24:25.000Z</published>
-    <updated>2020-11-22T06:06:45.774Z</updated>
+    <updated>2020-11-22T06:15:02.547Z</updated>
     
     <content type="html"><![CDATA[<p>Recently I’ve been working on a toy that launches an REPL in <code>adb shell</code>, which would be more comfortable to use if it has the line editing functionality similar to <code>bash</code>. After some research, I found that actually there are a number of line editing libraries available, so it should be a nice and easy addition. However, after some integration work, I was surprised to find that all these libraries (e.g. <a href="https://github.com/jline/jline3" target="_blank" rel="noopener">jline3</a>, <a href="https://github.com/antirez/linenoise" target="_blank" rel="noopener">linenoise</a> (which was also once <a href="https://android.googlesource.com/platform/system/core/+/refs/tags/android-4.4.4_r2.0.1/liblinenoise/" target="_blank" rel="noopener">imported into AOSP</a>)) only worked on older versions of Android, that is, until Android 8.0.</p><a id="more"></a><h2 id="Identifying-the-issue"><a href="#Identifying-the-issue" class="headerlink" title="Identifying the issue"></a>Identifying the issue</h2><p>So I created a <a href="https://github.com/zhanghai/linenoise-android" target="_blank" rel="noopener">small sample app</a> with <code>linenoise</code> and debugged it to pinpoint the issue. Strangely, I found that it was <a href="https://github.com/antirez/linenoise/blob/97d2850af13c339369093b78abe5265845d78220/linenoise.c#L258" target="_blank" rel="noopener">the following line</a> that failed:</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* put terminal in raw mode after flushing */</span></span><br><span class="line"><span class="keyword">if</span> (tcsetattr(fd,TCSAFLUSH,&amp;raw) &lt; <span class="number">0</span>) <span class="keyword">goto</span> fatal;</span><br></pre></td></tr></table></figure><p>Which returned <code>-1</code> with <code>errno</code> set to <code>EACCES</code> (<code>13</code>). But why would this terminal configuration fail anyway?</p><p>So I took a look at <a href="https://linux.die.net/man/3/tcsetattr" target="_blank" rel="noopener"><code>man tcsetattr</code></a>:</p><blockquote><p>tcsetattr() sets the parameters associated with the terminal (unless support is required from the underlying hardware that is not available) from the termios structure referred to by termios_p. optional_actions specifies when the changes take effect:</p><p>TCSANOW</p><p>the change occurs immediately.</p><p>TCSADRAIN</p><p>the change occurs after all output written to fd has been transmitted. This function should be used when changing parameters that affect output.</p><p>TCSAFLUSH</p><p>the change occurs after all output written to the object referred by fd has been transmitted, and all input that has been received but not read will be discarded before the change is made.</p></blockquote><p>The manual page didn’t contain any information for specific error codes, so it wasn’t very helpful for understanding why we’ve got <code>EACCES</code>. Maybe we’ve lost some kind of access to the TTY device since Android 8.0+? However, the default Android shell <code>mksh</code> (used by <code>adb shell</code>) still has working line editing, and how that was done became another mystery to me.</p><p>So I began searching for <code>tcsetattr Android</code>, and found that the Termux people also noticed <a href="https://github.com/termux/termux-packages/issues/1359" target="_blank" rel="noopener">the same issue</a> years ago — the <code>EACCES</code> was actually a SELinux denial. And as a workaround, they were redefining <code>TCSAFLUSH</code> to be <code>TCSANOW</code>, but that isn’t functionally equivalent and may be subject to subtle breakages. So I decided to find out what was actually going wrong in SELinux.</p><p>My next step was to figure out why line editing is still working for <code>mksh</code> — is there any similar patch in AOSP, and how did AOSP do it? After some code search, I found out that <code>mksh</code> was actually <a href="https://cs.android.com/android/platform/superproject/+/master:external/mksh/src/sh.h;l=530;drc=a5d35a625a246b18a75388646d6b9b861c6dda4b" target="_blank" rel="noopener">using <code>TCSADRAIN</code> instead of <code>TCSAFLUSH</code></a> since a long time ago, so it seems both <code>TCSANOW</code> and <code>TCSADRAIN</code> are working, and it’s just <code>TCSAFLUSH</code> became broken on Android 8.0+. However, <code>TCSAFLUSH</code> still sounds more robust and is still <a href="https://cs.android.com/search?q=TCSAFLUSH%20-f:.*%5C.(h%7Cgo%7Cpy%7Crs%7Ctxt)" target="_blank" rel="noopener">being used in a number of places in Android</a>, notably <code>toybox</code>‘s <code>stty</code> implementation (which broke <code>jline3</code>). So I think it’s still worth fixing <code>TCSAFLUSH</code>.</p><h2 id="Debugging-the-SELinux-denial"><a href="#Debugging-the-SELinux-denial" class="headerlink" title="Debugging the SELinux denial"></a>Debugging the SELinux denial</h2><p>To debug the SELinux denial, I looked at the SELinux logcat message on an Android 11 emulator:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type&#x3D;1400 audit(0.0:763): avc: denied &#123; ioctl &#125; for path&#x3D;&quot;&#x2F;dev&#x2F;pts&#x2F;0&quot; dev&#x3D;&quot;devpts&quot; ino&#x3D;3 ioctlcmd&#x3D;0x5404 scontext&#x3D;u:r:shell:s0 tcontext&#x3D;u:object_r:devpts:s0 tclass&#x3D;chr_file permissive&#x3D;0</span><br></pre></td></tr></table></figure><p>It is clear that <code>tcsetattr</code> is actually a wrapper over an <code>ioctl</code> operation on the TTY device, and Android do have SELinux rules over <code>ioctl</code>. So I looked for <code>devpts</code> and <code>ioctl</code> inside <a href="https://cs.android.com/android/platform/superproject/+/master:system/sepolicy/" target="_blank" rel="noopener">system/sepolicy</a>, and found the macro <code>unpriv_tty_ioctls</code> in <a href="https://cs.android.com/android/platform/superproject/+/master:system/sepolicy/public/ioctl_macros;l=51;drc=5fe69e082ac44aba637469fc59fee9f311c8d20b" target="_blank" rel="noopener"><code>ioctl_macros</code></a>:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># commonly used TTY ioctls</span><br><span class="line"># merge with unpriv_unix_sock_ioctls?</span><br><span class="line">define(&#96;unpriv_tty_ioctls&#39;, &#96;&#123;</span><br><span class="line">  TIOCOUTQ FIOCLEX FIONCLEX TCGETS TCSETS TIOCGWINSZ TIOCSWINSZ TIOCSCTTY</span><br><span class="line">  TCSETSW TCFLSH TIOCSPGRP TIOCGPGRP</span><br><span class="line">&#125;&#39;)</span><br></pre></td></tr></table></figure><p>Which is used in <a href="https://cs.android.com/android/platform/superproject/+/master:system/sepolicy/public/domain.te;l=293;drc=12376168b44904799936cad2ea1de10dfad456f6" target="_blank" rel="noopener"><code>domain.te</code></a>:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Restrict PTYs to only allowed ioctls.</span><br><span class="line"># Note that granting this allowlist to domain does</span><br><span class="line"># not grant the wider ioctl permission. That must be granted</span><br><span class="line"># separately.</span><br><span class="line">allowxperm domain devpts:chr_file ioctl unpriv_tty_ioctls;</span><br></pre></td></tr></table></figure><p>So I took a look at <a href="https://linux.die.net/man/4/tty_ioctl" target="_blank" rel="noopener"><code>man tty_ioctl</code></a>:</p><blockquote><p>TCSETS</p><p>const struct termios *argp</p><p>Equivalent to tcsetattr(fd, TCSANOW, argp).</p><p>Set the current serial port settings.</p><p>TCSETSW</p><p>const struct termios *argp</p><p>Equivalent to tcsetattr(fd, TCSADRAIN, argp).</p><p>Allow the output buffer to drain, and set the current serial port settings.</p><p>TCSETSF</p><p>const struct termios *argp</p><p>Equivalent to tcsetattr(fd, TCSAFLUSH, argp).</p><p>Allow the output buffer to drain, discard pending input, and set the current serial port settings.</p></blockquote><p>Notably, the macro <code>unpriv_tty_ioctls</code> included <code>TCSETS</code> and <code>TCSETSW</code>, but not <code>TCSETSF</code>. So it seems it’s indeed the missing <code>TCSETSF</code> that caused this SELinux denial.</p><h2 id="Fixing-the-SELinux-policy"><a href="#Fixing-the-SELinux-policy" class="headerlink" title="Fixing the SELinux policy"></a>Fixing the SELinux policy</h2><p>Now that we have the root cause, can we fix it by simply adding <code>TCSETSF</code> to the macro <code>unpriv_tty_ioctls</code>, or was there any other concerns about it so that it was deliberately left out?</p><p>So I looked into git history of the file. Actually, the variant <code>TCSETSW</code> was the initial one added into <code>unpriv_tty_ioctls</code> in <a href="https://android-review.googlesource.com/c/platform/system/sepolicy/+/306278/" target="_blank" rel="noopener">aosp/306278</a>, and the base <code>TCSETS</code> was added later by <a href="https://android-review.googlesource.com/c/platform/system/sepolicy/+/310920/" target="_blank" rel="noopener">aosp/310920</a>. Looking at the initial change <a href="https://android-review.googlesource.com/c/platform/system/sepolicy/+/306278/" target="_blank" rel="noopener">aosp/306278</a>, the primary reason to restrict ioctl for TTY devices was to mitigate the security exploit of <code>TIOCSTI</code>, so it indeed seems that adding <code>TCSETSF</code> as another variant of <code>TCSETS</code> and <code>TCSETSW</code> would be fine, and should fix all the code relying on it.</p><h2 id="Testing-and-submitting-the-fix"><a href="#Testing-and-submitting-the-fix" class="headerlink" title="Testing and submitting the fix"></a>Testing and submitting the fix</h2><p>Then I started testing my fix locally. As I’m working on Android already, I naturally starting tested on an eng build, however soon I was surprised to find that my sample app runs perfectly even without my fix. Was it somehow patched recently? However since I’ve been looking at the latest version of the source code anyway, was my entire theory going in the wrong direction? I became deeply confused, until I suddenly realized the special thing about eng build — <code>adb shell</code> has root access.</p><p>So I immediately checked the SELinux context of the shell with <code>ps -AZ | grep sh</code>, and the output was <code>u:r:su:s0</code>, so actually this wouldn’t be the usual SELinux context on consumer devices because the shell process can’t be in the <code>su</code> domain. The <code>su</code> domain has a lot of privileges, and no wonder my sample app was working fine inside it. I became relieved that I’m not dealing with something crazy, and began testing on a user build instead. This time the sample app failed without the fix, and worked when my fix was applied, so this is finally confirmed to be the correct fix. Yay!</p><p>The remaining work was uploading the patch as <a href="https://android-review.googlesource.com/c/platform/system/sepolicy/+/1491378/" target="_blank" rel="noopener">aosp/1491378</a>, getting it persubmit verified and code reviewed, and finally submitting the change. This concludes my small weekend journey into SELinux, and the <code>TCSAFLUSH</code> issue will become fixed with Android S release. However since there’s no way to backport the fix, we still have to stick with <code>TCSADRAIN</code> for Android 8.0–10 compatibility for some years.</p>]]></content>
     
@@ -32,6 +32,8 @@
     </summary>
     
     
+    
+      <category term="Linux" scheme="http://blog.zhanghai.me/tags/linux/"/>
     
       <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
     
@@ -234,9 +236,9 @@
     
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
     
@@ -286,9 +288,9 @@
     
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
   </entry>
   
@@ -310,9 +312,9 @@
     
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
       <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
     
@@ -463,9 +465,9 @@
     
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
   </entry>
   
@@ -538,9 +540,9 @@
     
     
     
-      <category term="Note" scheme="http://blog.zhanghai.me/tags/note/"/>
-    
       <category term="Linux" scheme="http://blog.zhanghai.me/tags/linux/"/>
+    
+      <category term="Note" scheme="http://blog.zhanghai.me/tags/note/"/>
     
       <category term="Programming" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
