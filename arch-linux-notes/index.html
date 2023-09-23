@@ -13,7 +13,7 @@
 <meta property="og:description" content="This is my notebook for some small tips and tricks when using Arch Linux. Why Arch Linux? It is fresh and simple in package dependency.  It has a powerful Arch User Repository and makes it easy for yo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2014-11-03T22:18:11.000Z">
-<meta property="article:modified_time" content="2023-09-23T05:31:24.421Z">
+<meta property="article:modified_time" content="2023-09-23T05:40:13.841Z">
 <meta property="article:author" content="张海">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Linux">
@@ -391,7 +391,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <h2 id="Resize-window-for-screenshot"><a href="#Resize-window-for-screenshot" class="headerlink" title="Resize window for screenshot"></a>Resize window for screenshot</h2><p>Enable the <code>Screenshot window sizer</code> extension in <code>gnome-tweaks</code>, then you can use <code>Ctrl+Atl+S</code> to cycle through a list of 16:9 window sizes.</p>
 <h2 id="Save-screenshot-to-clipboard-when-PrtSc"><a href="#Save-screenshot-to-clipboard-when-PrtSc" class="headerlink" title="Save screenshot to clipboard when PrtSc"></a>Save screenshot to clipboard when PrtSc</h2><p>Swap the values of <code>org.gnome.settings-daemon.plugins.media-keys.{,area-,window-}screenshot{,-clip}</code>.</p>
 <h2 id="Remapping-ThinkPad-keys"><a href="#Remapping-ThinkPad-keys" class="headerlink" title="Remapping ThinkPad keys"></a>Remapping ThinkPad keys</h2><p>On my ThinkPad X1 Carbon, the usual location for Menu key is a PrtSc key, and <code>Fn</code> + <code>F9</code>–<code>F12</code> doesn’t map to media keys. <code>xmodmap</code> didn’t work, and modification to <code>xkb</code> database gets overwritten when <code>xkeyboard-config</code> updates. So here is the way to achieve this this with udev hwdb.</p>
-<p>Create file <code>/etc/udev/hwdb.d/90-thinkpad-x1-carbon.hwdb</code>:</p>
+<p>Create file <code>/etc/udev/hwdb.d/90-thinkpad.hwdb</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">evdev:atkbd:dmi:bvn*:bvr*:bd*:svnLENOVO*:pn*:pvrThinkPad*</span><br><span class="line"> KEYBOARD_KEY_b7&#x3D;compose</span><br><span class="line"> KEYBOARD_KEY_d2&#x3D;sysrq</span><br><span class="line"></span><br><span class="line">evdev:name:ThinkPad Extra Buttons:dmi:bvn*:bvr*:bd*:svnLENOVO*:pn*:*</span><br><span class="line"> KEYBOARD_KEY_4b&#x3D;playpause</span><br><span class="line"> KEYBOARD_KEY_4c&#x3D;stopcd</span><br><span class="line"> KEYBOARD_KEY_4d&#x3D;previoussong</span><br><span class="line"> KEYBOARD_KEY_45&#x3D;nextsong</span><br></pre></td></tr></table></figure>
 
 <p>And run <code>sudo systemd-hwdb update &amp;&amp; sudo udevadm trigger</code>. Enjoy the remapped keys!</p>
