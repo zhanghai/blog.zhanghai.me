@@ -13,7 +13,7 @@
 <meta property="og:description" content="This is my notebook for some small tips and tricks when using Arch Linux. Why Arch Linux? It is fresh and simple in package dependency.  It has a powerful Arch User Repository and makes it easy for yo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2014-11-03T22:18:11.000Z">
-<meta property="article:modified_time" content="2020-12-30T07:45:23.487Z">
+<meta property="article:modified_time" content="2023-09-23T03:22:26.609Z">
 <meta property="article:author" content="张海">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Linux">
@@ -341,7 +341,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir frames</span><br><span class="line">ffmpeg -ss &lt;HH:MM:SS[.XXX]|START_SECONDS&gt; -t&lt;HH:MM:SS[.XXX]|DURATION_SECONDS&gt; -i &lt;YOUR_VIDEO_FILE&gt; [-r &lt;FPS&gt;] -s &lt;WIDTH_NORMALLY_480&gt;x&lt;HEIGHT_NORMALLY_270&gt; ./frames/frame%04d.png</span><br><span class="line">convert -delay &lt;100/FPS&gt; -loop 0 -layers Optimize ./frames/frame*.png output.gif</span><br></pre></td></tr></table></figure>
 
 <p>If you need to compress your GIF file, use <code>gifsicle</code> or do it <a href="http://ezgif.com/optimize" target="_blank" rel="noopener">online</a>; for cropping, you also can use <a href="http://ezgif.com/crop" target="_blank" rel="noopener">this site</a> with option “Crop with Gifsicle” (ImageMagick output seems corrupted).</p>
-<h2 id="Convert-SVG-to-PNG-or-else"><a href="#Convert-SVG-to-PNG-or-else" class="headerlink" title="Convert SVG to PNG (or else)"></a>Convert SVG to PNG (or else)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inkscape --<span class="built_in">export</span>-png=&lt;OUTPUT_FILE&gt; --<span class="built_in">export</span>-width=&lt;WIDTH&gt; --<span class="built_in">export</span>-height=&lt;HEIGHT&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Convert-SVG-to-PNG-or-others"><a href="#Convert-SVG-to-PNG-or-others" class="headerlink" title="Convert SVG to PNG (or others)"></a>Convert SVG to PNG (or others)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inkscape --<span class="built_in">export</span>-png=&lt;OUTPUT_FILE&gt; --<span class="built_in">export</span>-width=&lt;WIDTH&gt; --<span class="built_in">export</span>-height=&lt;HEIGHT&gt;</span><br></pre></td></tr></table></figure>
 
 <p><code>--export-dpi</code> is also available.</p>
 <p>See <code>man inkscape</code> for more formats.</p>
@@ -413,20 +413,10 @@ gtag('config', 'G-4PPR6NZGPK');
 <p>Disabling the Forge splash screen by setting <code>enabled=false</code> in <code>.minecraft/config/splash.properties</code> can workaround this problem.</p>
 <h2 id="Cannot-start-graphical-application-under-su-or-sudo-on-XWayland"><a href="#Cannot-start-graphical-application-under-su-or-sudo-on-XWayland" class="headerlink" title="Cannot start graphical application under su or sudo on XWayland"></a>Cannot start graphical application under su or sudo on XWayland</h2><p>Execute <code>xhost +local:</code> to allow local connections to X server.</p>
 <h2 id="Better-Rhythmbox-UI-design"><a href="#Better-Rhythmbox-UI-design" class="headerlink" title="Better Rhythmbox UI design"></a>Better Rhythmbox UI design</h2><p>Install and enable <a href="https://aur.archlinux.org/packages/rhythmbox-plugin-alternative-toolbar-git/" target="_blank" rel="noopener">Alternative Toolbar</a>.</p>
-<h2 id="Install-Xilinx-ISE"><a href="#Install-Xilinx-ISE" class="headerlink" title="Install Xilinx ISE"></a>Install Xilinx ISE</h2><p>Modified from <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK" target="_blank" rel="noopener">Arch Wiki</a>:</p>
-<ol>
-<li>Download Xilinx ISE Installer from <a href="http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/design-tools.html" target="_blank" rel="noopener">here</a>.</li>
-<li>Install <code>ncurses5-compat-libs</code>, it is a required dependency of the installer.</li>
-<li>Untar only the first image, execute <code>sudo xsetup</code>, choose system edition, uncheck sending data, and leave other options the default. You don’t need to check the “Install cable driver” option. Don’t try to build a custom package for it; it’s painful and buggy.</li>
-<li>Fix <code>libstdc++.so</code> as in <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK#Dynamic_Library_Fix_.28libstdc.2B.2B.so.29" target="_blank" rel="noopener">here</a>.</li>
-<li>Install Digilent USB-JTAG drivers as in <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK#Digilent_USB-JTAG_Drivers" target="_blank" rel="noopener">here</a>. You don’t need to install <code>fxload</code>, or add yourself to the <code>uucp</code> group, or add a udev rule. You can program the device with the command <code>djtgcfg</code> with <code>digilent.adept.utilities</code> installed.</li>
-<li>Create <code>~/.local/share/applications/xilinx-ise.desktop</code> as in <a href="https://wiki.archlinux.org/index.php/Xilinx_ISE_WebPACK#Launching_via_desktop_icons" target="_blank" rel="noopener">here</a>. My alternative version is given below.</li>
-<li>Get a license, and feed it to the license manager.</li>
-</ol>
-<p><code>xilinx-ise.desktop</code>:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">Categories</span>=Development<span class="comment">;</span></span><br><span class="line"><span class="attr">Comment</span>=Xilinx ISE</span><br><span class="line"><span class="attr">Encoding</span>=UTF-<span class="number">8</span></span><br><span class="line"><span class="attr">Exec</span>=sh -c <span class="string">"unset LANG &amp;&amp; unset QT_PLUGIN_PATH &amp;&amp; source /opt/Xilinx/14.7/ISE_DS/settings64.sh &amp;&amp; export PRINTER=null &amp;&amp; ise"</span></span><br><span class="line"><span class="attr">GenericName</span>=Xilinx ISE</span><br><span class="line"><span class="attr">Icon</span>=/opt/Xilinx/<span class="number">14.7</span>/ISE_DS/ISE/data/images/pn-ise.png</span><br><span class="line"><span class="attr">Keywords</span>=Xlinx<span class="comment">;ISE</span></span><br><span class="line"><span class="attr">Name</span>=Xilinx ISE</span><br><span class="line"><span class="attr">StartupNotify</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">Type</span>=Application</span><br></pre></td></tr></table></figure>
-
-<p>By adding <code>export PRINTER=null</code> you can print schematic file to PDF once per launch. This is a bug in Xilinx ISE.</p>
+<h2 id="Emacs-shows-white-menu-bar-in-dark-theme"><a href="#Emacs-shows-white-menu-bar-in-dark-theme" class="headerlink" title="Emacs shows white menu bar in dark theme"></a>Emacs shows white menu bar in dark theme</h2><p>Launch <code>gnome-tweaks</code> and go to the “Appearance” tab, then select “Adwaita-dark” for “Legacy Applications”.</p>
+<h2 id="Video-playback-tearing-in-full-screen"><a href="#Video-playback-tearing-in-full-screen" class="headerlink" title="Video playback tearing in full screen"></a>Video playback tearing in full screen</h2><p>Install GNOME extension <a href="https://extensions.gnome.org/extension/1873/disable-unredirect-fullscreen-windows/" target="_blank" rel="noopener">Disable unredirect fullscreen windows</a>.</p>
+<h2 id="Automatically-change-wallpapers"><a href="#Automatically-change-wallpapers" class="headerlink" title="Automatically change wallpapers"></a>Automatically change wallpapers</h2><p>Install <code>variety</code>, and <code>https://unsplash.com/collections/3863203/desktop-wallpapers</code> can be a good image source.</p>
+<p>You may also want to enable “Auto-rotate the image according to EXIF data” under “Wallpaper” and filter for image size under “Filtering”. The built-in indicator doesn’t work on GNOME 3 so you may also disable it.</p>
 <h2 id="Additional-tools"><a href="#Additional-tools" class="headerlink" title="Additional tools"></a>Additional tools</h2><ul>
 <li><code>ack</code>: <code>grep</code> replacement.</li>
 <li><code>cloc</code>: Count lines of code.</li>
@@ -526,7 +516,7 @@ gtag('config', 'G-4PPR6NZGPK');
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2022 张海<br>
+    &copy; 2023 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>

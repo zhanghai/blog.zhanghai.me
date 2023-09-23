@@ -33,9 +33,9 @@
     
     
     
-      <category term="Linux" scheme="http://blog.zhanghai.me/tags/linux/"/>
-    
       <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
+    
+      <category term="Linux" scheme="http://blog.zhanghai.me/tags/linux/"/>
     
       <category term="Software" scheme="http://blog.zhanghai.me/tags/software/"/>
     
@@ -211,9 +211,9 @@
     
     
     
-      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
     
@@ -238,9 +238,9 @@
     
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
   </entry>
   
@@ -264,9 +264,9 @@
     
       <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
-      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
-    
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
+    
+      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
     
   </entry>
   
@@ -312,11 +312,11 @@
     
     
     
+      <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
+    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
     
       <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
-      <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
     
   </entry>
   
@@ -341,9 +341,9 @@
     
       <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
-      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
-    
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
+    
+      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
     
   </entry>
   
@@ -365,11 +365,11 @@
     
     
     
-      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
-    
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
     
       <category term="计算机科学" scheme="http://blog.zhanghai.me/tags/computer-science/"/>
+    
+      <category term="软件" scheme="http://blog.zhanghai.me/tags/software/"/>
     
   </entry>
   
@@ -414,11 +414,11 @@
     
     
     
-      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
+      <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
     
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
     
-      <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
+      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
   </entry>
   
@@ -489,9 +489,9 @@
     
     
     
-      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
-    
       <category term="教程" scheme="http://blog.zhanghai.me/tags/tutorial/"/>
+    
+      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
     
@@ -516,9 +516,9 @@
     
     
     
-      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
-    
       <category term="Android" scheme="http://blog.zhanghai.me/tags/android/"/>
+    
+      <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
   </entry>
   
@@ -567,9 +567,9 @@
     
       <category term="编程" scheme="http://blog.zhanghai.me/tags/programming/"/>
     
-      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
-    
       <category term="学业" scheme="http://blog.zhanghai.me/tags/schoolwork/"/>
+    
+      <category term="笔记" scheme="http://blog.zhanghai.me/tags/note/"/>
     
   </entry>
   
