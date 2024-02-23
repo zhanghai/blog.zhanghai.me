@@ -13,7 +13,7 @@
 <meta property="og:description" content="This is my notebook for some small tips and tricks when using Arch Linux. Why Arch Linux? It is fresh and simple in package dependency.  It has a powerful Arch User Repository and makes it easy for yo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2014-11-03T22:18:11.000Z">
-<meta property="article:modified_time" content="2023-09-23T05:54:44.147Z">
+<meta property="article:modified_time" content="2024-02-23T06:03:10.944Z">
 <meta property="article:author" content="张海">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="Linux">
@@ -220,9 +220,9 @@ gtag('config', 'G-4PPR6NZGPK');
 
 <h2 id="GNOME-online-account"><a href="#GNOME-online-account" class="headerlink" title="GNOME online account"></a>GNOME online account</h2><p>You can log in your Google account and all the things will be configured and synchronized automatically to your laptop. It can be a huge boost for your work flow.</p>
 <p>If you need a proxy to access Google, configure it as in the GNOME proxy setting section.</p>
-<h2 id="Save-ssh-key-passphrase-to-keyring"><a href="#Save-ssh-key-passphrase-to-keyring" class="headerlink" title="Save ssh key passphrase to keyring"></a>Save ssh key passphrase to keyring</h2><p>As in <a href="https://wiki.archlinux.org/index.php/GNOME_Keyring#SSH_keys" target="_blank" rel="noopener">Arch Wiki</a>, use <code>seahorse-ssh-askpass</code>.</p>
-<p>As of <code>seahorse</code> 3.18.0-2, <code>SSH_ASKPASS</code> is not exported by default anymore, so you will need to add the following lines to your <code>/etc/profile</code>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set ssh askpass</span></span><br><span class="line">SSH_ASKPASS=/usr/lib/seahorse/seahorse-ssh-askpass</span><br></pre></td></tr></table></figure>
+<h2 id="Save-ssh-key-passphrase-to-keyring"><a href="#Save-ssh-key-passphrase-to-keyring" class="headerlink" title="Save ssh key passphrase to keyring"></a>Save ssh key passphrase to keyring</h2><p>As in <a href="https://wiki.archlinux.org/title/GNOME/Keyring#SSH_keys" target="_blank" rel="noopener">Arch Wiki</a>, use <code>/usr/lib/seahorse/ssh-askpass</code>.</p>
+<p>As of <code>gnome-keyring</code> 46.1-1, <code>SSH_AUTH_SOCK</code> is not exported by default anymore, so you will need to add the following lines to your <code>.bashrc</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> SSH_AUTH_SOCK=<span class="string">"<span class="variable">$&#123;XDG_RUNTIME_DIR&#125;</span>/gcr/ssh"</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Nautilus-hangs-occasionally"><a href="#Nautilus-hangs-occasionally" class="headerlink" title="Nautilus hangs occasionally"></a>Nautilus hangs occasionally</h2><p>In my case it often happened when I started to search something. Turned out that it is caused by my putting too many files under indexed directories.</p>
 <p>To fix the hang up, launch <code>tracker-preferences</code>, go to “Locations” tab, and turn off “Recurse” for directories you may store a large amount of files. Then execute <code>tracker reset --hard</code> to reset tracker index and configurations. This resolved my issue so far.</p>
@@ -517,7 +517,7 @@ gtag('config', 'G-4PPR6NZGPK');
     <a href="/">梦断代码</a>
   </h1>
   <span class="copyright">
-    &copy; 2023 张海<br>
+    &copy; 2024 张海<br>
     Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
     Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
   </span>
