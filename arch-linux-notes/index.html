@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PPR6NZGPK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-4PPR6NZGPK');
+  </script>
+
+
+  
   <title>Arch Linux Notes | 梦断代码</title>
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="This is my notebook for some small tips and tricks when using Arch Linux. Why Arch Linux? It is fresh and simple in package dependency.  It has a powerful Arch User Repository and makes it easy for yo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arch Linux Notes">
@@ -20,93 +30,57 @@
 <meta property="article:tag" content="Software">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="梦断代码" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="梦断代码" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
   
   
 <link rel="stylesheet" href="/css/style.css">
 
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-100427567-2', 'auto');
-ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
+    
+<link rel="stylesheet" href="/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS&#x2F;woiFS3uNKo8eIuni59rjyNGtXfstRzStA&#x3D;" crossorigin="anonymous">
 
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4PPR6NZGPK"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-4PPR6NZGPK');
-</script>
-<!-- End Google Analytics 4 -->
-
-
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
-  <div id="container">
-    <div class="mobile-nav-panel">
-  <i class="icon-reorder icon-large"></i>
-</div>
-<header id="header">
-  <h1 class="blog-title">
+  <header class="page-header">
+  <h1 class="page-header-title">
     <a href="/">梦断代码</a>
   </h1>
-  <nav class="nav">
-    <ul>
-      <li><a href="/">主页</a></li><li><a href="/archives">存档</a></li>
-      <li><a id="nav-search-btn" class="nav-icon" title="搜索"></a></li>
-      <li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS 订阅"></a></li>
-    </ul>
-  </nav>
-  <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.zhanghai.me"></form>
-  </div>
+  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="page-header-search"><input type="search" name="q" class="page-header-search-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="https://blog.zhanghai.me"></form>
+  
+    <a class="page-header-link" href="/atom.xml" title="RSS 订阅">
+      <!-- ph-rss-thin -->
+      <svg height="24px" viewBox="0 0 256 256" width="24px"><path d="M104.08,151.92A67.52,67.52,0,0,1,124,200a4,4,0,0,1-8,0,60,60,0,0,0-60-60,4,4,0,0,1,0-8A67.52,67.52,0,0,1,104.08,151.92ZM56,84a4,4,0,0,0,0,8A108,108,0,0,1,164,200a4,4,0,0,0,8,0A116,116,0,0,0,56,84Zm116,0A162.92,162.92,0,0,0,56,36a4,4,0,0,0,0,8A155,155,0,0,1,166.31,89.69,155,155,0,0,1,212,200a4,4,0,0,0,8,0A162.92,162.92,0,0,0,172,84ZM60,188a8,8,0,1,0,8,8A8,8,0,0,0,60,188Z" /></svg>
+    </a>
+  
 </header>
 
-    <section id="main">
-      <article id="post-arch-linux-notes" class="post">
-  <header class="entry-meta-header">
-    <span class="meta-elements date">
-      <a href="/arch-linux-notes/" class="article-date">
-  <time datetime="2014-11-03T22:18:11.000Z" itemprop="datePublished">11月 3 2014</time>
-</a>
-
-    </span>
-    <span class="meta-elements author">张海</span>
-    <div class="commentscount">
+  <main class="page-main"><article id="post-arch-linux-notes" class="post post-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title" itemprop="headline name">
       
-        <a href="https://blog.zhanghai.me/arch-linux-notes/#disqus_thread" class="article-comment-link">评论</a>
+        Arch Linux Notes
       
+    </h1>
+    <div class="post-metadata">
+      <img class="post-avatar" src="/avatar.png" alt="张海">
+      <div class="post-metadata-title">
+        <div class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">张海</span>
+        </div>
+        <div class="post-metadata-summary"><span class="post-read-time">20 分钟读完</span><time class="post-date" datetime="2014-11-03T22:18:11.000Z" itemprop="datePublished">2014年11月3日</time>
+        </div>
+      </div>
     </div>
   </header>
-  
 
-  <header class="entry-header">
+  <section class="post-body" itemprop="articleBody">
     
-  
-    <h1 class="article-title entry-title" itemprop="name">
-      Arch Linux Notes
-    </h1>
-  
-
-
-  </header>
-  <div class="entry-content">
-    
-      <p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
+    <p>This is my notebook for some small tips and tricks when using Arch Linux.</p>
 <h2 id="Why-Arch-Linux"><a href="#Why-Arch-Linux" class="headerlink" title="Why Arch Linux?"></a>Why Arch Linux?</h2><ul>
 <li><p>It is fresh and simple in package dependency.</p>
 </li>
@@ -446,111 +420,90 @@ gtag('config', 'G-4PPR6NZGPK');
 <li><code>vlc</code>: Versatile and stable video player.</li>
 </ul>
 
+  </section>
+
+  <footer class="post-footer">
     
-  </div>
-  <footer class="entry-footer">
-    <div class="entry-meta-footer">
-      <span class="category">
+    
+      <div class="post-tags">
+        <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/linux/" rel="tag">Linux</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/note/" rel="tag">Note</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/software/" rel="tag">Software</a></li></ul>
+      </div>
+    
+    
+      <div class="post-copyright">
         
-
-      </span>
-      <span class="tags">
+          Copyright &copy; 张海 2014
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/" rel="tag">Software</a></li></ul>
-
-
-      </span>
-    </div>
+      </div>
+    
   </footer>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/qsc-mobile-android-v3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          求是潮手机站 Android 客户端 V3
-        
-      </div>
-    </a>
-  
-  
-    <a href="/android-design-guide/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Android 设计简明教程
-        
-      </div>
-    </a>
-  
-</nav>
-
-
-  
 </article>
 
 
+  
+    <nav class="post-navigation">
+      <div class="post-navigation-item">
+        
+          <a class="post-navigation-link" href="/qsc-mobile-android-v3/">
+            <div class="post-navigation-caption">上一篇</div>
+            <div class="post-navigation-title">求是潮手机站 Android 客户端 V3</div>
+          </a>
+        
+      </div>
+      <div class="post-navigation-item">
+        
+          <a class="post-navigation-link" href="/android-design-guide/">
+            <div class="post-navigation-caption">下一篇</div>
+            <div class="post-navigation-title">Android 设计简明教程</div>
+          </a>
+        
+      </div>
+    </nav>
+  
 
-
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-
-
-
+  
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript>
+      </div>
     </section>
-    <div class="mb-search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:blog.zhanghai.me">
-    </form>
-</div>
-<footer id="footer">
-  <h1 class="footer-blog-title">
-    <a href="/">梦断代码</a>
-  </h1>
-  <span class="copyright">
-    &copy; 2024 张海<br>
-    Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
-    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-  </span>
+  
+
+
+</main>
+  <footer class="page-footer">
+  <div class="page-footer-text">由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动</div>
 </footer>
 
+  
+  
+<script src="/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-&#x2F;JqT3SQfawRcv&#x2F;BIHPThkBvs0OEvtFFmqPF&#x2F;lYI&#x2F;Cxo&#x3D;" crossorigin="anonymous"></script>
+
+  
+<script src="/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP&#x2F;HTHLT7097U8Y5b8&#x3D;" crossorigin="anonymous"></script>
+
+
+
+
+  <script>
+    var disqus_shortname = 'zhanghai';
     
-<script>
-  var disqus_shortname = 'zhanghai';
-  
-  var disqus_url = 'https://blog.zhanghai.me/arch-linux-notes/';
-  
-  (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
+      var disqus_url = 'https://blog.zhanghai.me/arch-linux-notes/';
+    
+    (() => {
+      const script = document.createElement('script');
+      script.async = true;
+        const scriptName = 'embed.js';
+      script.src = `https://${disqus_shortname}.disqus.com/${scriptName}`;
+      const body = document.getElementsByTagName('body')[0]
+      body.appendChild(script);
+    })();
+  </script>
 
 
 
 <script src="/js/script.js"></script>
 
 
-  </div>
 </body>
 </html>
