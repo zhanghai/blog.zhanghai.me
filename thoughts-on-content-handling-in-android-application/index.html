@@ -8,7 +8,7 @@
   <meta name="description" content="IntroductionFor content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive so">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thoughts on Content Handling in Android Application">
-<meta property="og:url" content="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/index.html">
+<meta property="og:url" content="https://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="IntroductionFor content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive so">
 <meta property="og:locale" content="zh_CN">
@@ -52,7 +52,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <!-- End Google Analytics 4 -->
 
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
   <div id="container">
@@ -71,7 +71,7 @@ gtag('config', 'G-4PPR6NZGPK');
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.zhanghai.me"></form>
   </div>
 </header>
 
@@ -87,7 +87,7 @@ gtag('config', 'G-4PPR6NZGPK');
     <span class="meta-elements author">张海</span>
     <div class="commentscount">
       
-        <a href="http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="https://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/#disqus_thread" class="article-comment-link">评论</a>
       
     </div>
   </header>
@@ -107,7 +107,7 @@ gtag('config', 'G-4PPR6NZGPK');
     
       <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>For content-oriented Android application, how and where to store the content to display is a issue every developer will be concerned with. The Android framework provided a comprehensive solution with <code>ContentProvider</code> (and a lot more) which suits quite well with a SQLite database; but in a lot of other scenarios, the app only need to have some information cached, while the majority of content is directly retrieved from network, thus eliminating the need for a database (and a complicated content scheme).</p>
 <p>But when we look into the core of this issue, we will soon find out that it is in fact a problem of whether to have a central storage, and how to notify different components about a change.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="Initial-Scenario"><a href="#Initial-Scenario" class="headerlink" title="Initial Scenario"></a>Initial Scenario</h2><p>Let’s look at the naive solution first, retrieving content from network and only keeping them in memory. In this case, no central storage is needed, and every component fetches its content independently, simple enough. But this approach immediately becomes flawed when it comes to content updating such as user modification. For instance, we have a list activity and a detail activity, and the user can often modified something in the detail activity, say, they clicked ‘like’, and the like button shall look activated not only in the detail activity, but also in the list activity now in background.</p>
 <p>Content is fetched independently, so every component have no knowledge of whether someone else is holding the same content as itself, and that content will become stale when shown to user if the content this component newly retrieved is an updated version. Ideally speaking, any piece content is a single resource that should have only one state at point of time, and keeping it represented by one entity in memory is the best way to achieve this — yes, a central storage (whether in memory or also backed by disk), and the DRY (don’t repeat yourself) principle, a different story of the solution framework provided.</p>
@@ -181,7 +181,7 @@ gtag('config', 'G-4PPR6NZGPK');
 
   <section id="comments">
     <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
   </section>
 
@@ -209,7 +209,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <script>
   var disqus_shortname = 'zhanghai';
   
-  var disqus_url = 'http://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/';
+  var disqus_url = 'https://blog.zhanghai.me/thoughts-on-content-handling-in-android-application/';
   
   (function() {
     var dsq = document.createElement('script');

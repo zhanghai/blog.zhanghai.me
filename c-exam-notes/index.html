@@ -8,7 +8,7 @@
   <meta name="description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C 语言应试笔记">
-<meta property="og:url" content="http://blog.zhanghai.me/c-exam-notes/index.html">
+<meta property="og:url" content="https://blog.zhanghai.me/c-exam-notes/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="前言这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。">
 <meta property="og:locale" content="zh_CN">
@@ -53,7 +53,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <!-- End Google Analytics 4 -->
 
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
   <div id="container">
@@ -72,7 +72,7 @@ gtag('config', 'G-4PPR6NZGPK');
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.zhanghai.me"></form>
   </div>
 </header>
 
@@ -88,7 +88,7 @@ gtag('config', 'G-4PPR6NZGPK');
     <span class="meta-elements author">张海</span>
     <div class="commentscount">
       
-        <a href="http://blog.zhanghai.me/c-exam-notes/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="https://blog.zhanghai.me/c-exam-notes/#disqus_thread" class="article-comment-link">评论</a>
       
     </div>
   </header>
@@ -107,7 +107,7 @@ gtag('config', 'G-4PPR6NZGPK');
   <div class="entry-content">
     
       <h2 id="前言"><a href="# 前言" class="headerlink" title="前言"></a>前言 </h2><p> 这是我在大一时 C 语言课程考试前总结的坑们，每次相关考试前都会复习一次。如果你发现可以补充的地方，欢迎评论。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="正文"><a href="# 正文" class="headerlink" title="正文"></a>正文 </h2><blockquote class="callout"><div class="title"> 一言以概 </div> 任何看上去有简单答案的问题都藏有坑。</blockquote>
 
@@ -129,10 +129,10 @@ gtag('config', 'G-4PPR6NZGPK');
 <p>注意整型除法结果被截断， <code>int n = 2; 1 / n == 0</code>。</p>
 <p>注意本地变量需要初始化。</p>
 <p>注意变量作用域屏蔽，如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> b;</span><br><span class="line"><span class="type">void</span> <span class="title function_">f</span><span class="params">()</span> &#123; <span class="type">int</span> a = <span class="number">0</span>, b = <span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
 
 <p>注意函数为传值，指针也是值传递，例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> *b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> *temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>并不影响外部。</p>
 <p>注意 <code>int</code> 溢出，若易发生溢出（如阶乘操作）应使用 <code>long</code> 或<code>double</code>代替。</p>
@@ -140,7 +140,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <p>负数的位移操作中符号位也参与位移；左操作数为负数的右移 <code>&gt;&gt;</code> 结果由实现定义，Turbo C 为补 1。</p>
 <p><code>a/b</code>与 <code>a%b</code> 结果在 <code>a</code> 与<code>b</code>中有一个为负数时由实现定义，但保证 <code>a / b * b + a % b</code> 结果为<code>a</code>。</p>
 <p>过滤回车结束的输入字符串：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> ((ch = getchar()) != <span class="string">'\n'</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ch ...) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    str[i++] = ch;</span><br><span class="line">&#125;</span><br><span class="line">str[i] = <span class="string">'\0'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> ((ch = getchar()) != <span class="string">&#x27;\n&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ch ...) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    str[i++] = ch;</span><br><span class="line">&#125;</span><br><span class="line">str[i] = <span class="string">&#x27;\0&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>C 语言二维数组存储采用 Row-major 方式，即在内存中存储为 row1, row2, row3…，初始化时必须给出列数以确定行中元素个数，静态变量中未初始化元素自动为 0，使用时可以将列数溢出到下一行，即偏移值计算为 row_count * row + column。</p>
 <p>注意分号：</p>
@@ -160,9 +160,9 @@ gtag('config', 'G-4PPR6NZGPK');
 <p>注意 <code>x&lt;=y&lt;=z</code> 意为<code>(x&lt;=y)&lt;=z</code>，意义非预期但合法。</p>
 <p><code>scanf</code>遇到空白字符截止，为输入一行可使用 <code>scanf(&quot;[^\n]&quot;,str)</code> 或<code>gets()</code>。</p>
 <p>注意：<code>scanf(&quot;%s&quot;, s)</code>输入 <code>&quot;How are you?&quot;</code> 遇到空格截断，只得到<code>How</code>。</p>
-<p><code>strcpy(char *dst, char *src) {while(*dst++ = *src++); };</code>中 <code>++</code> 优先级高于<code>*</code></p>
+<p><code>strcpy(char *dst, char *src) &#123; while(*dst++ = *src++); &#125;;</code>中 <code>++</code> 优先级高于<code>*</code></p>
 <p><code>[]</code>、<code>()</code>优先级高于 <code>*</code>，故<code>int *array[1]</code> 等价于 <code>(int *)array[1]</code>，为 int 指针的数组；<code>int (*p)[1]</code> 为指向 <code>int</code> 数组的指针。</p>
-<p>解读方法：以 <code>int **a[1][2]</code> 为例。从 a 出发，优先向右解读。（<a href="http://unixwiz.net/techtips/reading-cdecl.html" target="_blank" rel="noopener">来源</a>）</p>
+<p>解读方法：以 <code>int **a[1][2]</code> 为例。从 a 出发，优先向右解读。（<a target="_blank" rel="noopener" href="http://unixwiz.net/techtips/reading-cdecl.html">来源</a>）</p>
 <ol>
 <li><code>a</code> is … <code>int</code></li>
 <li><code>a</code> is <code>array</code> of 1 … <code>int</code></li>
@@ -170,7 +170,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <li><code>a</code> is <code>array</code> of 1 <code>array</code> of 2 <code>pointer</code>s to … <code>int</code></li>
 <li><code>a</code> is <code>array</code> of 1 <code>array</code> of 2 <code>pointer</code>s to <code>poiner</code> to <code>int</code></li>
 </ol>
-<p>优先级：<em>后置自增 / 自减 <em>、函数调用、数组元素、结构成员 &gt; 前置自增 / 自减、正负、类型装换、</em> 解引用 *、取地址、数据类型大小、内存操作、（逻辑、位）非 &gt; 结构成员解引用 &gt; 乘除、取余 &gt; 加减 &gt; * 位移</em> &gt; 比较 &gt; 等价 &gt; （逻辑、位）与、或、异或 &gt; 三元条件、（复合）赋值。</p>
+<p>优先级：<em>后置自增 &#x2F; 自减 </em>、函数调用、数组元素、结构成员 &gt; 前置自增 &#x2F; 自减、正负、类型装换、<em> 解引用 </em>、取地址、数据类型大小、内存操作、（逻辑、位）非 &gt; 结构成员解引用 &gt; 乘除、取余 &gt; 加减 &gt; <em> 位移</em> &gt; 比较 &gt; 等价 &gt; （逻辑、位）与、或、异或 &gt; 三元条件、（复合）赋值。</p>
 <p>字符串字面值与字符常量中转义序列 <code>\ddd</code> 可以为 1、2、3 位 8 进制数（0<del>7），上限为 377；<code>\xhh</code>可以为 1、2 位十六进制数（0</del>F）。</p>
 <p>转义序列列表：</p>
 <table>
@@ -238,9 +238,9 @@ gtag('config', 'G-4PPR6NZGPK');
 <p>使用草稿纸记录变量取值以计算程序输出，或对某些类型可理解程序意图猜测程序输出，或两者结合。</p>
 <p><code>10^-6</code>表示为<code>1e-6</code>。</p>
 <p>通过 <code>memset(array,0,sizeof(array))</code> 可以实现数组重初始化。（需要<code>string.h</code>）</p>
-<p>宏 <code>#</code> 代表将此后的文本变为字符串；<code>##</code>代表连接文本；含有 <code>#</code> 与<code>##</code>的宏不进行参数展开，可利用包装宏展开。（<a href="http://learn.akae.cn/media/ch21s02.html" target="_blank" rel="noopener">参考</a>）</p>
+<p>宏 <code>#</code> 代表将此后的文本变为字符串；<code>##</code>代表连接文本；含有 <code>#</code> 与<code>##</code>的宏不进行参数展开，可利用包装宏展开。（<a target="_blank" rel="noopener" href="http://learn.akae.cn/media/ch21s02.html">参考</a>）</p>
 <p>宏函数定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> func_name(var) \</span></span><br><span class="line"><span class="keyword">do</span> &#123; \</span><br><span class="line">    do_something(); \</span><br><span class="line">&#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> func_name(var) \</span></span><br><span class="line"><span class="meta">do &#123; \</span></span><br><span class="line"><span class="meta">    do_something(); \</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
 
 <p>调用与函数调用一致：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func_name(var);</span><br></pre></td></tr></table></figure>
@@ -272,9 +272,9 @@ gtag('config', 'G-4PPR6NZGPK');
 <p><code>auto</code>，<code>register</code>，<code>volatile</code>均为 C 关键字。</p>
 <p><code>007</code>为八进制数字，注意范围为 <em>0-7</em>，<code>0x0F</code> 为十六进制数字。</p>
 <p><code>strcat</code>实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcat</span><span class="params">(<span class="keyword">char</span> *str1, <span class="keyword">char</span> *str2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (*str &amp;&amp; *++str);</span><br><span class="line">    <span class="keyword">while</span> (*str1++ = *str2++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">strcat</span><span class="params">(<span class="type">char</span> *str1, <span class="type">char</span> *str2)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (*str &amp;&amp; *++str);</span><br><span class="line">    <span class="keyword">while</span> (*str1++ = *str2++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote class="callout"><div class="title">相关阅读</div><a href="http://blog.yzyzsun.me/c-traps-and-pitfalls/" target="_blank" rel="noopener">《C 陷阱与缺陷》笔记 | 孙耀珠的博客</a></blockquote>
+<blockquote class="callout"><div class="title">相关阅读</div><a target="_blank" rel="noopener" href="http://blog.yzyzsun.me/c-traps-and-pitfalls/">《C 陷阱与缺陷》笔记 | 孙耀珠的博客</a></blockquote>
 
     
   </div>
@@ -326,7 +326,7 @@ gtag('config', 'G-4PPR6NZGPK');
 
   <section id="comments">
     <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
   </section>
 
@@ -354,7 +354,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <script>
   var disqus_shortname = 'zhanghai';
   
-  var disqus_url = 'http://blog.zhanghai.me/c-exam-notes/';
+  var disqus_url = 'https://blog.zhanghai.me/c-exam-notes/';
   
   (function() {
     var dsq = document.createElement('script');

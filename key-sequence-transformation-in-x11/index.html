@@ -8,7 +8,7 @@
   <meta name="description" content="This article is originally titled Abandoning treatment for X11, for my xkeymacs project.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Key Sequence Transformation in X11">
-<meta property="og:url" content="http://blog.zhanghai.me/key-sequence-transformation-in-x11/index.html">
+<meta property="og:url" content="https://blog.zhanghai.me/key-sequence-transformation-in-x11/index.html">
 <meta property="og:site_name" content="梦断代码">
 <meta property="og:description" content="This article is originally titled Abandoning treatment for X11, for my xkeymacs project.">
 <meta property="og:locale" content="zh_CN">
@@ -52,7 +52,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <!-- End Google Analytics 4 -->
 
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 <body>
   <div id="container">
@@ -71,7 +71,7 @@ gtag('config', 'G-4PPR6NZGPK');
     </ul>
   </nav>
   <div id="search-form-wrap">
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhanghai.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.zhanghai.me"></form>
   </div>
 </header>
 
@@ -87,7 +87,7 @@ gtag('config', 'G-4PPR6NZGPK');
     <span class="meta-elements author">张海</span>
     <div class="commentscount">
       
-        <a href="http://blog.zhanghai.me/key-sequence-transformation-in-x11/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="https://blog.zhanghai.me/key-sequence-transformation-in-x11/#disqus_thread" class="article-comment-link">评论</a>
       
     </div>
   </header>
@@ -105,16 +105,16 @@ gtag('config', 'G-4PPR6NZGPK');
   </header>
   <div class="entry-content">
     
-      <p>This article is originally titled <a href="https://github.com/zhanghai/xkeymacs/issues/1" target="_blank" rel="noopener">Abandoning treatment for X11</a>, for my <a href="https://github.com/zhanghai/xkeymacs" target="_blank" rel="noopener">xkeymacs</a> project.</p>
-<a id="more"></a>
+      <p>This article is originally titled <a target="_blank" rel="noopener" href="https://github.com/zhanghai/xkeymacs/issues/1">Abandoning treatment for X11</a>, for my <a target="_blank" rel="noopener" href="https://github.com/zhanghai/xkeymacs">xkeymacs</a> project.</p>
+<span id="more"></span>
 
 <hr>
 <p>I think I’ve done all that’s possible to achieve with X11 API in this project, but there still remain a bunch of issues. This document is about what they are and why they may not be resolved as an X11 application.</p>
 <p>Before we start with the issues, we need clarify the situation first.</p>
 <p>There are three ways to grab key events in X11: <code>XGrabKeyboard</code>, <code>XGrabKey</code> with <code>GrabModeSync</code> and <code>XGrabKey</code> with <code>GrabModeAsync</code>. In the meantime, there is only one way to send a key event in X11: <code>XTestFakeKeyEvent</code>, while <code>XSendEvents</code> marks events sent as synthesized and a bunch of applications (such as <code>xterm</code>) ignore events with this flag for some security reasons, according to various sources.</p>
 <p>If you want to replay the key event you just grabbed, use <code>XAllowEvents</code> with <code>ReplayKeyboard</code>. This requires the key event to come from <code>XGrabKey</code> or a previous <code>XAllowEvents</code> with <code>SyncKeyboard</code>, but not from a <code>XGrabKeyboard</code>.</p>
-<p>You cannot use <code>XGrabKeyboard</code> along with <code>XTestFakeKeyEvent</code> because the former sets an active grab and it will receive the key event faked by yourself. If you want to <code>XUngrabKeyboard</code> and wait for <code>XTestFakeKeyEvent</code> to accomplish, sadly there seems to be no way. <code>XFlush</code> flushes your own request to X server, while <code>XSync</code> flushes and make X server process all requests and generate events, but <strong>not handling</strong> them, according to <a href="https://motif.ics.com/forum/xsync-xflush" target="_blank" rel="noopener">this thread</a>.</p>
-<p><code>XGrabKey</code> is called a passive grab. It is activated and then behaves like <code>XGrabKeyboard</code> when the registered key and modifier combination is found, and actually ungrabbed after the <code>KeyRelease</code> event of that combination (see <a href="http://lists.freedesktop.org/archives/xorg/2006-May/015090.html" target="_blank" rel="noopener">this mail</a>). So if you send a key in <code>KeyPress</code> event, you <em>will</em> intercept the key you just sent. To workaround this issue, you can do <code>XUngrabKeyboard</code> before you send the key. This results in garbage <code>KeyRelease</code> events sent to the focused window, however it is normally ignored. Another workaround would be sending the key in <code>KeyRelease</code> event, which works, but is not the desired behavior.</p>
+<p>You cannot use <code>XGrabKeyboard</code> along with <code>XTestFakeKeyEvent</code> because the former sets an active grab and it will receive the key event faked by yourself. If you want to <code>XUngrabKeyboard</code> and wait for <code>XTestFakeKeyEvent</code> to accomplish, sadly there seems to be no way. <code>XFlush</code> flushes your own request to X server, while <code>XSync</code> flushes and make X server process all requests and generate events, but <strong>not handling</strong> them, according to <a target="_blank" rel="noopener" href="https://motif.ics.com/forum/xsync-xflush">this thread</a>.</p>
+<p><code>XGrabKey</code> is called a passive grab. It is activated and then behaves like <code>XGrabKeyboard</code> when the registered key and modifier combination is found, and actually ungrabbed after the <code>KeyRelease</code> event of that combination (see <a target="_blank" rel="noopener" href="http://lists.freedesktop.org/archives/xorg/2006-May/015090.html">this mail</a>). So if you send a key in <code>KeyPress</code> event, you <em>will</em> intercept the key you just sent. To workaround this issue, you can do <code>XUngrabKeyboard</code> before you send the key. This results in garbage <code>KeyRelease</code> events sent to the focused window, however it is normally ignored. Another workaround would be sending the key in <code>KeyRelease</code> event, which works, but is not the desired behavior.</p>
 <p>Note that if you replay a key event with <code>XAllowEvents</code> in <code>KeyPress</code>, It will also result in garbage <code>KeyRelease</code> events, because according to the documentation the replayed event will ignore any key grabs set by any client.</p>
 <p>So here is the first issue.</p>
 <ul>
@@ -126,7 +126,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <p>When sending some key combination, one have to know the status of the modifier keys and adjust them, send the key, and then restore them. This is expected to happen in a very short period of time so the user won’t notice. To accomplish this, <code>XQueryKeymap</code> and multiple <code>XTestFakeKeyEvent</code> is used.</p>
 <p>And the second issue.</p>
 <ul>
-<li><p>Sending keys containing <code>F1</code>~<code>F8</code> causes user to be switched to <code>tty</code></p>
+<li><p>Sending keys containing <code>F1</code>~&#96;F8<code>causes user to be switched to</code>tty&#96;</p>
 <p>  When sending keys containing <code>F3</code> or <code>F4</code>, sometimes I got switched to <code>tty</code> by an unexpected <code>Control+Alt+F3/4</code> combination. This happens for most of the time when I send <code>Control+F4</code> for <code>(Control+X) k</code>. You can see that there is nothing about <code>Alt</code>, but still I was almost always switched to <code>tty4</code>, however <code>xev</code> reported the expected key sequence for this situation. The underlying logic is unknown, it may have something to do with <code>tty</code> switching hot key implementation.</p>
 </li>
 </ul>
@@ -141,11 +141,11 @@ gtag('config', 'G-4PPR6NZGPK');
 </li>
 </ul>
 <p>So the conclusion is that, while X11 provided some API for keyboard event operations, it is  vague in documentation and working mechanism, and clearly not designed, nor suitable for translating key sequences into others. This may be the reason why almost no such project like this is known.</p>
-<p>For an alternative API, some people in a mailing list suggested <a href="https://developer.gnome.org/libatspi/stable/libatspi-atspi-registry.html" target="_blank" rel="noopener">Atspi</a>, which I haven’t tried out myself.</p>
+<p>For an alternative API, some people in a mailing list suggested <a target="_blank" rel="noopener" href="https://developer.gnome.org/libatspi/stable/libatspi-atspi-registry.html">Atspi</a>, which I haven’t tried out myself.</p>
 <hr>
 <p>UPDATE:</p>
 <p>Later I found out that this can be achieved with <code>evdev</code> and <code>uinput</code>.</p>
-<p>For a python implementation, see my <a href="https://github.com/zhanghai/pykeymacs" target="_blank" rel="noopener">pykeymacs</a>.</p>
+<p>For a python implementation, see my <a target="_blank" rel="noopener" href="https://github.com/zhanghai/pykeymacs">pykeymacs</a>.</p>
 
     
   </div>
@@ -197,7 +197,7 @@ gtag('config', 'G-4PPR6NZGPK');
 
   <section id="comments">
     <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+      <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
   </section>
 
@@ -225,7 +225,7 @@ gtag('config', 'G-4PPR6NZGPK');
 <script>
   var disqus_shortname = 'zhanghai';
   
-  var disqus_url = 'http://blog.zhanghai.me/key-sequence-transformation-in-x11/';
+  var disqus_url = 'https://blog.zhanghai.me/key-sequence-transformation-in-x11/';
   
   (function() {
     var dsq = document.createElement('script');
