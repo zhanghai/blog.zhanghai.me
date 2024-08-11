@@ -158,8 +158,8 @@ html {
 body {
   background: #fff;
   color: #242424;
-  font-family: "Source Sans", "Source Sans Pro", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Source Han Sans", "Noto Sans CJK SC", sans-serif;
-  font-size-adjust: none;
+  font-family: "Copyright Klim Type Foundry", "Source Sans", "Source Sans Pro", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Source Han Sans", "Noto Sans CJK SC", sans-serif;
+  font-size-adjust: 0.523;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -866,8 +866,8 @@ body {
 .post-body h4,
 .post-body h5,
 .post-body h6 {
-  font-family: "Source Sans", "Source Sans Pro", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Source Han Sans", "Noto Sans CJK SC", sans-serif;
-  font-size-adjust: none;
+  font-family: "Copyright Klim Type Foundry", "Source Sans", "Source Sans Pro", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Source Han Sans", "Noto Sans CJK SC", sans-serif;
+  font-size-adjust: 0.523;
 }
 .post-body figcaption {
   color: #6b6b6b;
