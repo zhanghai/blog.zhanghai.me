@@ -260,7 +260,6 @@ body {
   -ms-flex-item-align: stretch;
   background: none;
   border: none;
-  padding-right: 12px;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -268,6 +267,8 @@ body {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+  min-width: 0;
+  padding-right: 12px;
 }
 .page-header .page-header-search .page-header-search-input:focus {
   outline: none;
