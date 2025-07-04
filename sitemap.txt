@@ -13,8 +13,8 @@ https://blog.zhanghai.me/fixing-my-missing-degree-celsius-symbol/
 https://blog.zhanghai.me/hello-world/
 https://blog.zhanghai.me/introduction-to-plan-9-the-os/
 https://blog.zhanghai.me/key-sequence-transformation-in-x11/
-https://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/
 https://blog.zhanghai.me/publish-project-to-maven-central-with-gradle/
+https://blog.zhanghai.me/publish-reveal-js-presentation-to-github-pages/
 https://blog.zhanghai.me/qsc-mobile-android-v3/
 https://blog.zhanghai.me/use-travis-ci-on-android-project-and-publish-ci-builds/
 https://blog.zhanghai.me/verilog-notes/
